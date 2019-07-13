@@ -1,264 +1,243 @@
 #include "menu.h"
-#include<SFML/Graphics.hpp>
-#include<iostream>
-#include<filesystem>
-#include<SFML/Audio.hpp>
 
-bool Menu::isOnButton(sf::Sprite & sprite)
+Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_), background(win)
 {
-	//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
-	//std::cout << sprite.getGlobalBounds().left << " " << sprite.getGlobalBounds().top << " "<< sprite.getGlobalBounds().height << " " << sprite.getGlobalBounds().width << std::endl;
+	if (!clickBuff.loadFromFile("../Sounds/click1.ogg"))
+		exit(-1);
 
-	if (sf::Mouse::getPosition(window).x > sprite.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (sprite.getGlobalBounds().left + sprite.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > sprite.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (sprite.getGlobalBounds().top + sprite.getGlobalBounds().height))
-		return true;
-	return false;
-}
+	if (!switchBuff.loadFromFile("../Sounds/switch2.ogg"))
+		exit(-1);
 
-bool Menu::isAlredyOnButton(sf::Sprite& sprite)
-{
-	return false;
-}
-
-int Menu::update()
-{
-	sf::Font font;
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
-		return -1;
+		exit(-1);
+	
+	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
+		exit(-1);
 
+	if (!block.loadFromFile("../PNG/grey_button15.png"))
+		exit(-1);
+
+	if (!blockPressed.loadFromFile("../PNG/grey_button00.png"))
+		exit(-1);
+
+	if (!back.loadFromFile("../stars_space_sky_glitter_116409_1920x108022.jpg"))
+		exit(-1);
+
+	if (!base.loadFromFile("../base3.png"))
+		exit(-1);
+	//background.setTexture(back);
+	background.set(back,base, 0 , 0.002);
+
+	if (!mar.loadFromFile("../PNG/grey_sliderRight.png"))
+		exit(-1);
+
+	if (!VolumeSliderLine.loadFromFile("../PNG/grey_sliderHorizontal.png"))
+		exit(-1);
+
+	if (!VolumePointner.loadFromFile("../PNG/grey_sliderUp.png"))
+		exit(-1);
+
+	if (!listBlock.loadFromFile("../PNG/grey_button06.png"))
+		exit(-1);
+
+	mark.setTexture(mar);
+	mark.setPosition(-200, -200);
+
+
+
+}
+
+st Menu::mainMenuUpdate()
+{
 	sf::Text title;
 	title.setFont(font);
 	title.setCharacterSize(140);
 	title.setString("Sylio");
-	title.setPosition(window.getSize().x/2 - 250, window.getSize().y/2 - 300);
+	title.setPosition(window.getSize().x / 2 - 250, window.getSize().y / 2 - 300);
 	title.setFillColor(sf::Color::Black);
-
-	sf::SoundBuffer buffer;
-	if (!buffer.loadFromFile("../Bonus/switch3.ogg"))
-		return -1;
-	sf::Sound switch1;
-	switch1.setBuffer(buffer);
-	switch1.setVolume(30);
-
-	sf::SoundBuffer buffer2;
-	if (!buffer2.loadFromFile("../Bonus/click1.ogg"))
-		return -1;
-	sf::Sound click;
-	click.setBuffer(buffer2);
-
-	sf::Texture back;
-	if (!back.loadFromFile("../background.jpg"))
-		return -1;
-	sf::Sprite background;
-	background.setTexture(back);
 
 	sf::Text ver;
 	ver.setFont(font);
 	ver.setCharacterSize(15);
 	ver.setString(version);
-	ver.setPosition(window.getSize().x - 100,window.getSize().y - 15);
+	ver.setPosition(window.getSize().x - 100, window.getSize().y - 15);
 
-	sf::Texture ex;
-	if (!ex.loadFromFile("../PNG/red_boxCross.png"))
-		return -1;
-	sf::Sprite exit(ex);
-	exit.setPosition(window.getSize().x - 40, 0);
-
-	sf::Texture mar;
-	if (!mar.loadFromFile("../PNG/green_sliderRight.png"))
-		return -1;
-	sf::Sprite mark(mar);
 	mark.setPosition(-200, -200);
 
-	sf::Texture block;
-	if (!block.loadFromFile("../PNG/green_button00.png"))
-		std::cout << "block load error";
+	Button normalGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	normalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 100);
+	normalGame.setTitle("normal game");
+	normalGame.setSoundVolume(setting.SoundVolume);
 
-	sf::Texture blockPressed;
-	if (!blockPressed.loadFromFile("../PNG/green_button05.png"))
-		return -1;
+	Button multiplayerGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	multiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2);
+	multiplayerGame.setTitle("multipleyer game");
+	multiplayerGame.setSoundVolume(setting.SoundVolume);
 
-	sf::Sprite blockNormalGame(block);
-	sf::Sprite blockSettings(block);
-	sf::Sprite blockQuit(block);
-	sf::Sprite blockMultiplayerGame(block);
-	blockNormalGame.setScale(1.8, 1);
-	blockNormalGame.setPosition(window.getSize().x / 2 - 190*1.8/2, window.getSize().y / 2 - 50);
+	Button settings(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
+	settings.setTitle("settings");
+	settings.setSoundVolume(setting.SoundVolume);
 	
-	sf::Text NormalGame;
-	NormalGame.setFont(font);
-	NormalGame.setCharacterSize(25);
-	NormalGame.setString("Normal Game");
-	NormalGame.setPosition(blockNormalGame.getPosition().x + 20, blockNormalGame.getPosition().y + 8);
+	Button quit(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	quit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
+	quit.setTitle("quit");
+	quit.setSoundVolume(setting.SoundVolume);
 
-	blockMultiplayerGame.setScale(1.8, 1);
-	blockMultiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 100);
-
-	sf::Text MultiplayerGame;
-	MultiplayerGame.setFont(font);
-	MultiplayerGame.setCharacterSize(25);
-	MultiplayerGame.setString("Multiplayer Game");
-	MultiplayerGame.setPosition(blockMultiplayerGame.getPosition().x + 20, blockMultiplayerGame.getPosition().y + 8 );
-
-	blockSettings.setScale(1.8, 1);
-	blockSettings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 200);
-
-	sf::Text Settings;
-	Settings.setFont(font);
-	Settings.setCharacterSize(25);
-	Settings.setString("Settings");
-	Settings.setPosition(blockSettings.getPosition().x + 20, blockSettings.getPosition().y + 8);
-
-	blockQuit.setScale(1.8, 1);
-	blockQuit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 300);
-
-	sf::Text Quit;
-	Quit.setFont(font);
-	Quit.setCharacterSize(25);
-	Quit.setString("Quit");
-	Quit.setPosition(blockQuit.getPosition().x + 20, blockQuit.getPosition().y + 8);
-
-	bool isAlredyOnN = false;
-	bool mouseAlredyPressed = false;
-	bool isAlredyOnD = false;
 	while (window.isOpen())
 	{
 		// check all the window's events that were triggered since the last iteration of the loop
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (isOnButton(blockNormalGame)) {
-				if (!isAlredyOnN) {
-					mark.setPosition(blockNormalGame.getPosition().x - 50, blockNormalGame.getPosition().y + 10);
-					switch1.play();
-					isAlredyOnN = true;
-					isAlredyOnD = false;
-				}
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				{
-					if (!mouseAlredyPressed)
-					{
-						blockNormalGame.setTexture(blockPressed);
-						mouseAlredyPressed = true;
-						click.play();
-					}
-					// left mouse button is pressed: shoot
-				}
-				else
-					if (mouseAlredyPressed)
-					{
-						blockNormalGame.setTexture(block);
-						mouseAlredyPressed = false;
-					}
-			}
-			else if (isOnButton(blockMultiplayerGame)) {
-					if (!isAlredyOnN) {
-						mark.setPosition(blockMultiplayerGame.getPosition().x - 50, blockMultiplayerGame.getPosition().y + 10);
-						switch1.play();
-						isAlredyOnN = true;
-						isAlredyOnD = false;
-					}
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-					{
-						if (!mouseAlredyPressed)
-						{
-							blockMultiplayerGame.setTexture(blockPressed);
-							mouseAlredyPressed = true;
-							click.play();
-						}
-						// left mouse button is pressed: shoot
-					}
-					else
-						if (mouseAlredyPressed)
-						{
-							blockMultiplayerGame.setTexture(block);
-							mouseAlredyPressed = false;
-						}
-			}
-			else if (isOnButton(blockSettings)) {
-				if (!isAlredyOnN) {
-					mark.setPosition(blockSettings.getPosition().x - 50, blockSettings.getPosition().y + 10);
-					switch1.play();
-					isAlredyOnN = true;
-					isAlredyOnD = false;
-				}
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				{
-					if (!mouseAlredyPressed)
-					{
-						blockSettings.setTexture(blockPressed);
-						mouseAlredyPressed = true;
-						click.play();
-					}
-					// left mouse button is pressed: shoot
-				}
-				else
-					if (mouseAlredyPressed)
-					{
-						blockSettings.setTexture(block);
-						mouseAlredyPressed = false;
-					}
-			}
-		    else if (isOnButton(blockQuit)) {
-					if (!isAlredyOnN) {
-						mark.setPosition(blockQuit.getPosition().x - 50, blockQuit.getPosition().y + 10);
-						switch1.play();
-						isAlredyOnN = true;
-						isAlredyOnD = false;
-					}
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-					{
-						if (!mouseAlredyPressed)
-						{
-							blockQuit.setTexture(blockPressed);
-							mouseAlredyPressed = true;
-							click.play();
-						}
-						// left mouse button is pressed: shoot
-					}
-					else
-						if (mouseAlredyPressed)
-						{
-							blockQuit.setTexture(block);
-							mouseAlredyPressed = false;
-							return 5;
-						}
-				}
-				//std::cout << "dd\n";
-			else {
-				mouseAlredyPressed = false;
-				if (isAlredyOnD == false) {
-					mark.setPosition(-200, -200);
-					isAlredyOnN = false;
-					isAlredyOnD = true;
-				}
-			}
+			normalGame.checkState();
+			multiplayerGame.checkState();
+			settings.checkState();
+			quit.checkState();
+			if (normalGame.buttonFunction());
+			else if (multiplayerGame.buttonFunction());
+			else if (settings.buttonFunction())
+				return st::settings;
+			else if (quit.buttonFunction())
+				return st::quit;
+			else ;
 		}
 
-		// clear the window with black color
 		window.clear(sf::Color::Black);
 
-		// draw everything here...
-		// window.draw(...);
-		window.draw(background);
+		background.draw();
 		window.draw(ver);
 		window.draw(title);
 
-		window.draw(blockNormalGame);
-		window.draw(NormalGame);
-
-		window.draw(blockMultiplayerGame);
-		window.draw(MultiplayerGame);
-
-		window.draw(blockSettings);
-		window.draw(Settings);
-
-		window.draw(blockQuit);
-		window.draw(Quit);
-
+		normalGame.draw();
+		multiplayerGame.draw();
+		settings.draw();
+		quit.draw();
 		window.draw(mark);
-		// end the current frame
 		window.display();
 	}
+}
+st Menu::settingsUupdate()
+{
+	mark.setPosition(-200, -200);
+	sf::Event event;
+
+
+	sf::Text VolMusicText;
+	sf::Text VolSounndEffectsTest;
+	sf::Text ChoseMusicText;
+	sf::Text fileError;
+	
+
+
+	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
+	int liney = window.getSize().y / 2 - 50;
+	
+	Slider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
+	musicSlider.setPosition(linex, liney - 300, 1);//1- music /2 -sound
+	musicSlider.setSoundVolume(setting.SoundVolume);
+
+	Slider soundSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
+	soundSlider.setPosition(linex, liney - 100, 2);
+	soundSlider.setSoundVolume(setting.SoundVolume);
+
+	List list;
+	std::filesystem::path directory = "../Music";
+
+	int i = 0;
+	for (const auto& entry : std::filesystem::directory_iterator(directory))
+	{
+		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
+		list.pushBack(window, blockPressed, listBlock, mark, clickBuff, switchBuff, font);
+		list.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 50 + i * 50);
+		list.setText(entry.path().filename().generic_string());
+		i++;
+		if (i == 5)
+			break;
+	}
+	list.setSoundVolume(setting.SoundVolume);
+
+	Button goBack(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	goBack.setPosition(linex, liney + 200 + 4 * 58);
+	goBack.setTitle("Back");
+	goBack.setSoundVolume(setting.SoundVolume);
+
+	Button musicApply(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	musicApply.setPosition(linex, liney + 100 + 4 * 58);
+	musicApply.setTitle("apply");
+	musicApply.setSoundVolume(setting.SoundVolume);
+
+	VolMusicText.setString("Music Volume");
+	VolSounndEffectsTest.setString("Sound Effects Volume");
+	ChoseMusicText.setString("Chose music file");
+	fileError.setString("could not open file");
+
+	VolSounndEffectsTest.setFont(font);
+	VolMusicText.setFont(font);
+	ChoseMusicText.setFont(font);
+	fileError.setFont(font);
+
+
+
+	VolMusicText.setCharacterSize(25);
+	VolSounndEffectsTest.setCharacterSize(25);
+	ChoseMusicText.setCharacterSize(25);
+	fileError.setCharacterSize(15);
+
+	VolMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 - 400 + 8);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
+	VolSounndEffectsTest.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 - 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
+	ChoseMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 100 +8); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
+	fileError.setPosition(-200,-200); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
+	fileError.setFillColor(sf::Color::Red);
+
+	while (window.isOpen())
+	{
+		while (window.pollEvent(event))
+		{
+
+			goBack.checkState();
+			musicApply.checkState();
+			musicSlider.checkState();
+			soundSlider.checkState();
+			list.checkState();
+			if (goBack.buttonFunction())
+				return st::mainMenu;
+			else if (musicApply.buttonFunction())
+			{
+				bool try_ = music.setGameMusic(list.getFileDirect());
+				if (try_)
+					fileError.setPosition(-200, -200);
+				else
+					fileError.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 + 8);
+			}
+			else if (musicSlider.sliderFunction());
+			else if (soundSlider.sliderFunction())
+			{
+				musicSlider.setSoundVolume(setting.SoundVolume);
+				soundSlider.setSoundVolume(setting.SoundVolume);
+				goBack.setSoundVolume(setting.SoundVolume);
+				list.setSoundVolume(setting.SoundVolume);
+				musicApply.setSoundVolume(setting.SoundVolume);
+			}
+			else;
+		}
+		window.clear(sf::Color::Black);
+
+		background.draw();
+		goBack.draw();
+		musicSlider.draw();
+		soundSlider.draw();
+		list.draw();
+		musicApply.draw();
+
+		window.draw(fileError);
+		window.draw(ChoseMusicText);
+		window.draw(VolMusicText);
+		window.draw(VolSounndEffectsTest);
+		window.draw(mark);
+		window.display();
+	}
+	return st::mainMenu;
 }
 Menu::~Menu()
 {

@@ -1,25 +1,38 @@
-#include "menu.h"
+#include"Settings.h"
+#include"Music.h"
+#include"menu.h"
 #include<string>
 #include<SFML/Audio.hpp>
-enum st { play = 1, settings, playOnline, quit, pause, menu } object;
+
+Settings setting;
+Music music;
 
 int main()
 {
 	std::string version = "Beta 0.1";
-	auto state = st::menu;
-	sf::RenderWindow window(sf::VideoMode(1920 , 1080 ), "Sylio " + version , sf::Style::Fullscreen);
-	Menu menu_(window, version);
-	switch(state)
-	{
-	case st::menu :
-		state = st(menu_.update());
-		break;
-	case st::quit :
-		window.close();
-		break;
-	default:
+	auto state = st::mainMenu;
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version , sf::Style::Fullscreen);
+	music.playMenuMusic();
+	Menu Menu_(window, version);
 
-		break;
+	while (true)
+	{
+		switch (state)
+		{
+		case st::mainMenu:
+			state = Menu_.mainMenuUpdate();
+			break;
+		case st::settings:
+			state = Menu_.settingsUupdate();
+			break;
+		case st::quit:
+			window.close();
+			return 0;
+			break;
+		default:
+
+			break;
+		}
 	}
 	return 0;
 }
