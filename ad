@@ -1,0 +1,1811 @@
+[33mcommit 4223568a32f3e02bf3629cf07fb528cd809f1d71[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 13 16:27:38 2019 +0200
+
+    new menu background, and style, buttons ready
+
+[1mdiff --git a/.vs/Sylio/v16/.suo b/.vs/Sylio/v16/.suo[m
+[1mindex 1b544c7..16bc752 100644[m
+Binary files a/.vs/Sylio/v16/.suo and b/.vs/Sylio/v16/.suo differ
+[1mdiff --git a/.vs/Sylio/v16/Browse.VC.db b/.vs/Sylio/v16/Browse.VC.db[m
+[1mindex 5bc3140..cc77562 100644[m
+Binary files a/.vs/Sylio/v16/Browse.VC.db and b/.vs/Sylio/v16/Browse.VC.db differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/1627b9ac39657d18/SOUNDS.ipch b/.vs/Sylio/v16/ipch/AutoPCH/1627b9ac39657d18/SOUNDS.ipch[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5180867[m
+Binary files /dev/null and b/.vs/Sylio/v16/ipch/AutoPCH/1627b9ac39657d18/SOUNDS.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/28dd09ce8393505e/BACKGROUND.ipch b/.vs/Sylio/v16/ipch/AutoPCH/28dd09ce8393505e/BACKGROUND.ipch[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e47e63c[m
+Binary files /dev/null and b/.vs/Sylio/v16/ipch/AutoPCH/28dd09ce8393505e/BACKGROUND.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/3fc518e2fda4c2cd/SETTINGS.ipch b/.vs/Sylio/v16/ipch/AutoPCH/3fc518e2fda4c2cd/SETTINGS.ipch[m
+[1mindex 246b76b..a34e393 100644[m
+Binary files a/.vs/Sylio/v16/ipch/AutoPCH/3fc518e2fda4c2cd/SETTINGS.ipch and b/.vs/Sylio/v16/ipch/AutoPCH/3fc518e2fda4c2cd/SETTINGS.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/4335d1a531f5a3e9/MUSIC.ipch b/.vs/Sylio/v16/ipch/AutoPCH/4335d1a531f5a3e9/MUSIC.ipch[m
+[1mnew file mode 100644[m
+[1mindex 0000000..568d578[m
+Binary files /dev/null and b/.vs/Sylio/v16/ipch/AutoPCH/4335d1a531f5a3e9/MUSIC.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/4efdddc47ca0301b/MAIN.ipch b/.vs/Sylio/v16/ipch/AutoPCH/4efdddc47ca0301b/MAIN.ipch[m
+[1mindex 56e7414..26a050c 100644[m
+Binary files a/.vs/Sylio/v16/ipch/AutoPCH/4efdddc47ca0301b/MAIN.ipch and b/.vs/Sylio/v16/ipch/AutoPCH/4efdddc47ca0301b/MAIN.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/67d7b2321232cf9b/MENU.ipch b/.vs/Sylio/v16/ipch/AutoPCH/67d7b2321232cf9b/MENU.ipch[m
+[1mindex aa31c8b..695c1e4 100644[m
+Binary files a/.vs/Sylio/v16/ipch/AutoPCH/67d7b2321232cf9b/MENU.ipch and b/.vs/Sylio/v16/ipch/AutoPCH/67d7b2321232cf9b/MENU.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/cfa6b9ed636c5f16/BUTTON.ipch b/.vs/Sylio/v16/ipch/AutoPCH/cfa6b9ed636c5f16/BUTTON.ipch[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f329845[m
+Binary files /dev/null and b/.vs/Sylio/v16/ipch/AutoPCH/cfa6b9ed636c5f16/BUTTON.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/e2c624b62ece66f2/LIST.ipch b/.vs/Sylio/v16/ipch/AutoPCH/e2c624b62ece66f2/LIST.ipch[m
+[1mnew file mode 100644[m
+[1mindex 0000000..61f4b54[m
+Binary files /dev/null and b/.vs/Sylio/v16/ipch/AutoPCH/e2c624b62ece66f2/LIST.ipch differ
+[1mdiff --git a/.vs/Sylio/v16/ipch/AutoPCH/ecc204813d27c56d/SLIDER.ipch b/.vs/Sylio/v16/ipch/AutoPCH/ecc204813d27c56d/SLIDER.ipch[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bd7630c[m
+Binary files /dev/null and b/.vs/Sylio/v16/ipch/AutoPCH/ecc204813d27c56d/SLIDER.ipch differ
+[1mdiff --git a/Music/Chillwave_-_Synthwave_-_Retrovawe.wav b/Music/Chillwave_-_Synthwave_-_Retrovawe.wav[m
+[1mdeleted file mode 100644[m
+[1mindex 732b14c..0000000[m
+Binary files a/Music/Chillwave_-_Synthwave_-_Retrovawe.wav and /dev/null differ
+[1mdiff --git a/Music/Stranger_Things.wav b/Music/Stranger_Things.wav[m
+[1mnew file mode 100644[m
+[1mindex 0000000..67a40b5[m
+Binary files /dev/null and b/Music/Stranger_Things.wav differ
+[1mdiff --git a/Release/Sylio.exe b/Release/Sylio.exe[m
+[1mindex 679c7a2..8b813df 100644[m
+Binary files a/Release/Sylio.exe and b/Release/Sylio.exe differ
+[1mdiff --git a/Release/Sylio.iobj b/Release/Sylio.iobj[m
+[1mindex a434182..3a68461 100644[m
+Binary files a/Release/Sylio.iobj and b/Release/Sylio.iobj differ
+[1mdiff --git a/Release/Sylio.ipdb b/Release/Sylio.ipdb[m
+[1mindex a7e1182..f2be1c6 100644[m
+Binary files a/Release/Sylio.ipdb and b/Release/Sylio.ipdb differ
+[1mdiff --git a/Release/Sylio.pdb b/Release/Sylio.pdb[m
+[1mindex 36f9452..27bd4d2 100644[m
+Binary files a/Release/Sylio.pdb and b/Release/Sylio.pdb differ
+[1mdiff --git a/Sylio/Background.cpp b/Sylio/Background.cpp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3ea4a56[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Background.cpp[m
+[36m@@ -0,0 +1,38 @@[m
+[32m+[m[32m#include "Background.h"[m
+[32m+[m[32m#define PI 3.14159265[m
+[32m+[m
+[32m+[m[32mvoid Background::draw()[m
+[32m+[m[32m{[m
+[32m+[m	[32mauto t = time.getElapsedTime();[m
+[32m+[m	[32mtime.restart();[m
+[32m+[m	[32m//angle += t.asMilliseconds() * velocity;[m
+[32m+[m	[32mBackground1.rotate(t.asMilliseconds() * velocity);[m
+[32m+[m	[32m//std::cout << Background1.getRotation() << std::endl;[m
+[32m+[m[32m/*	double y = cos(PI* Background1.getRotation() /180)*radious;[m
+[32m+[m	[32mdouble x = sin(PI* Background1.getRotation() /180)*radious;[m
+[32m+[m	[32mBackground1.setPosition(rint(x) + zeroPiont.x ,zeroPiont.y - rint(y));*/[m
+[32m+[m	[32mwindow.draw(Background1);[m
+[32m+[m	[32mwindow.draw(base);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid Background::set(sf::Texture back_,sf::Texture & base_, double r, double v)[m
+[32m+[m[32m{[m
+[32m+[m	[32mprevPos = { 0,0 };[m
+[32m+[m	[32mbase.setTexture(base_);[m
+[32m+[m	[32mback = back_;[m
+[32m+[m	[32mBackground1.setTexture(back);[m
+[32m+[m	[32mBackground2.setTexture(back);[m
+[32m+[m	[32mradious = r;[m
+[32m+[m	[32mvelocity = v;[m
+[32m+[m	[32mBackground1.setOrigin(back.getSize().x / 2, back.getSize().y/2 + r);[m
+[32m+[m	[32mangle = 0;[m
+[32m+[m	[32mBackground1.setPosition(window.getSize().x/2, window.getSize().y + r);[m
+[32m+[m	[32mzeroPiont.x = Background1.getPosition().x;[m
+[32m+[m	[32mzeroPiont.y = Background1.getPosition().y + r;[m
+[32m+[m	[32mtime.restart();[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32mBackground::~Background()[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/Background.h b/Sylio/Background.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..41632f5[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Background.h[m
+[36m@@ -0,0 +1,26 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32m#include<SFML/Graphics.hpp>[m
+[32m+[m[32m#include<SFML/System.hpp>[m
+[32m+[m[32m#include<math.h>[m
+[32m+[m[32m#include<iostream>[m
+[32m+[m[32mclass Background[m
+[32m+[m[32m{[m
+[32m+[m[32mprivate:[m
+[32m+[m	[32msf::Clock time;[m
+[32m+[m	[32msf::Texture back;[m
+[32m+[m	[32msf::Sprite base;[m
+[32m+[m	[32msf::Sprite Background1;[m
+[32m+[m	[32msf::Sprite Background2;[m
+[32m+[m	[32msf::RenderWindow& window;[m
+[32m+[m	[32mdouble radious;[m
+[32m+[m	[32mdouble velocity;[m
+[32m+[m	[32mdouble angle;[m
+[32m+[m	[32msf::Vector2i zeroPiont;[m
+[32m+[m	[32msf::Vector2i prevPos;[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mvoid draw();[m
+[32m+[m	[32mBackground(sf::RenderWindow& window_) : window(window_) {}[m
+[32m+[m	[32mvoid set(sf::Texture back_, sf::Texture & base_, double r, double v);[m
+[32m+[m	[32m~Background();[m
+[32m+[m[32m};[m
+[32m+[m
+[1mdiff --git a/Sylio/Button.cpp b/Sylio/Button.cpp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2ec7d12[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Button.cpp[m
+[36m@@ -0,0 +1,155 @@[m
+[32m+[m[32m#include "Button.h"[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mvoid Button::showMark()[m
+[32m+[m[32m{[m
+[32m+[m	[32mMark.setPosition(button.getPosition().x - 50, button.getPosition().y + 10);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid Button::hideMark()[m
+[32m+[m[32m{[m
+[32m+[m	[32mMark.setPosition(-200,-200);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid Button::clickSound()[m
+[32m+[m[32m{[m
+[32m+[m	[32mclick.play();[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid Button::switchSound()[m
+[32m+[m[32m{[m
+[32m+[m	[32mswitchS.play();[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mbool Button::buttonFunction()[m
+[32m+[m[32m{[m
+[32m+[m	[32m//std::cout << state;[m
+[32m+[m	[32mif (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn && clicked == false)[m
+[32m+[m		[32mreturn false;[m
+[32m+[m	[32melse if (positionSt == positionState::isOn && lastPositionSt == positionState::isNotOn)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mswitchS.play();[m
+[32m+[m		[32mshowMark();[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse if (clicked == false && positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)[m
+[32m+[m	[32m{[m[41m	[m
+[32m+[m		[32mclick.play();[m
+[32m+[m		[32mbutton.move(0, 4);[m
+[32m+[m		[32mtitle.move(0, 4);[m
+[32m+[m		[32mbutton.setTexture(pressed, true);[m
+[32m+[m		[32mclicked = true;[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed )[m
+[32m+[m	[32m{[m
+[32m+[m		[32mbutton.move(0, -4);[m
+[32m+[m		[32mtitle.move(0, -4);[m
+[32m+[m		[32mbutton.setTexture(released, true);[m
+[32m+[m		[32mclicked = false;[m
+[32m+[m		[32mreturn true;[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse if (clicked == true && positionSt == positionState::isNotOn && lastPositionSt == positionState::isOn)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mbutton.move(0, -4);[m
+[32m+[m		[32mtitle.move(0, -4);[m
+[32m+[m		[32mbutton.setTexture(released, true);[m
+[32m+[m		[32mclicked = false;[m
+[32m+[m		[32mhideMark();[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse if (positionSt == positionState::isNotOn && lastPositionSt == positionState::isOn)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mhideMark();[m
+[32m+[m	[32m}[m
+[32m+[m	[32mreturn false;[m
+[32m+[m[32m}[m
+[32m+[m[32mbool Button::settingsListFunction()[m
+[32m+[m[32m{[m
+[32m+[m	[32mif (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn && clicked == false)[m
+[32m+[m		[32mreturn false;[m
+[32m+[m	[32melse if (positionSt == positionState::isOn && lastPositionSt == positionState::isNotOn)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mswitchS.play();[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse if (clicked == false && positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mclick.play();[m
+[32m+[m		[32mclicked = true;[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mreturn true;[m
+[32m+[m	[32m}[m
+[32m+[m	[32mreturn false;[m
+[32m+[m[32m}[m
+[32m+[m[32mvoid Button::setTitle(std::string title_)[m
+[32m+[m[32m{[m
+[32m+[m	[32mtext = title_;[m
+[32m+[m	[32mtitle.setFont(font);[m
+[32m+[m	[32mtitle.setCharacterSize(25);[m
+[32m+[m	[32mtitle.setFillColor(sf::Color::Black);[m
+[32m+[m	[32mtitle.setString(title_);[m
+[32m+[m	[32mif (title.getGlobalBounds().width > button.getGlobalBounds().width)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mwhile (title.getGlobalBounds().width > button.getGlobalBounds().width)[m
+[32m+[m		[32m{[m
+[32m+[m			[32mtitle_.pop_back();[m
+[32m+[m			[32mtitle.setString(title_);[m
+[32m+[m		[32m}[m
+[32m+[m		[32mtitle_.pop_back();[m
+[32m+[m		[32mtitle_.pop_back();[m
+[32m+[m		[32mtitle_.pop_back();[m
+[32m+[m		[32mtitle_ += "...";[m
+[32m+[m		[32mtitle.setString(title_);[m
+[32m+[m	[32m}[m
+[32m+[m	[32mtitle.setPosition(button.getPosition().x + 20, button.getPosition().y + 8);[m
+[32m+[m[32m}[m
+[32m+[m[32mvoid Button::setPosition(int posx, int posy)[m
+[32m+[m[32m{[m
+[32m+[m	[32mbutton.setPosition(posx, posy);[m
+[32m+[m[32m}[m
+[32m+[m[32mButton::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::Sprite& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_,sf::Font &font_):[m[41m [m
+[32m+[m	[32mfont(font_),[m
+[32m+[m	[32mMark(mark_),[m[41m [m
+[32m+[m	[32mswitchS(switch_),[m
+[32m+[m	[32mclick(click_) ,[m
+[32m+[m	[32mwindow(win),[m[41m [m
+[32m+[m	[32mpressed(pres),[m[41m [m
+[32m+[m	[32mreleased(rel)[m
+[32m+[m[32m{[m
+[32m+[m	[32mswitchS.setVolume(30);[m
+[32m+[m	[32mbutton.setScale(1.8, 1);[m
+[32m+[m	[32mbutton.setTexture(rel);[m
+[32m+[m	[32mbuttonSt = buttonState::isNotPressed;[m
+[32m+[m	[32mpositionSt = positionState::isNotOn;[m
+[32m+[m	[32mlastButtonSt = buttonSt;[m
+[32m+[m	[32mlastPositionSt = positionSt;[m
+[32m+[m	[32mclicked = false;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid Button::checkState()[m
+[32m+[m[32m{[m
+[32m+[m	[32mlastButtonSt = buttonSt;[m
+[32m+[m	[32mlastPositionSt = positionSt;[m
+[32m+[m	[32mif (isOnButton())[m
+[32m+[m		[32mpositionSt = positionState::isOn;[m
+[32m+[m	[32melse[m
+[32m+[m		[32mpositionSt = positionState::isNotOn;[m
+[32m+[m	[32mif (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[32m+[m		[32mbuttonSt = buttonState::isPressed;[m
+[32m+[m	[32melse[m
+[32m+[m		[32mbuttonSt = buttonState::isNotPressed;[m
+[32m+[m[32m}[m
+[32m+[m[32mbool Button::isOnButton()[m
+[32m+[m[32m{[m
+[32m+[m	[32m//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;[m
+[32m+[m	[32m//std::cout << button.getGlobalBounds().left << " " << button.getGlobalBounds().top << " "<< button.getGlobalBounds().height << " " << button.getGlobalBounds().width << std::endl;[m
+[32m+[m	[32mif (sf::Mouse::getPosition(window).x > button.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (button.getGlobalBounds().left + button.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > button.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (button.getGlobalBounds().top + button.getGlobalBounds().height))[m
+[32m+[m	[32m{[m[41m	[m
+[32m+[m		[32mreturn true;[m
+[32m+[m	[32m}[m
+[32m+[m	[32mreturn false;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mButton::~Button()[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/Button.h b/Sylio/Button.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f9ca857[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Button.h[m
+[36m@@ -0,0 +1,46 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32m#include<SFML/Graphics.hpp>[m
+[32m+[m[32m#include"Sounds.h"[m
+[32m+[m[32m#include<iostream>[m
+[32m+[m
+[32m+[m[32mclass Button[m
+[32m+[m[32m{[m
+[32m+[m[32mprivate:[m
+[32m+[m	[32menum buttonState { isPressed, isNotPressed};[m
+[32m+[m	[32menum positionState { isOn, isNotOn};[m
+[32m+[m	[32mstatic sf::RenderWindow& w;[m
+[32m+[m	[32mstd::string text;[m
+[32m+[m	[32msf::Sprite button;[m
+[32m+[m	[32msf::Texture& pressed;[m
+[32m+[m	[32msf::Texture& released;[m
+[32m+[m	[32msf::RenderWindow& window;[m
+[32m+[m	[32msf::Sprite &Mark;[m
+[32m+[m	[32msf::Sound click;[m
+[32m+[m	[32msf::Sound switchS;[m
+[32m+[m	[32msf::Text title;[m
+[32m+[m	[32msf::Font & font;[m
+[32m+[m	[32mpositionState positionSt;[m
+[32m+[m	[32mpositionState lastPositionSt;[m
+[32m+[m	[32mbuttonState buttonSt;[m
+[32m+[m	[32mbuttonState lastButtonSt;[m
+[32m+[m	[32mbool clicked;[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mButton(sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Sprite& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_);[m
+[32m+[m	[32mvoid showMark();[m
+[32m+[m	[32mvoid hideMark();[m
+[32m+[m	[32mvoid clickSound();[m
+[32m+[m	[32mvoid switchSound();[m
+[32m+[m	[32mbool buttonFunction();//return true if clicked out[m
+[32m+[m	[32mbool settingsListFunction();[m
+[32m+[m	[32mbool empty() { return text.empty(); }[m
+[32m+[m	[32mvoid setTitle(std::string title_);[m
+[32m+[m	[32mvoid setPosition(int posx, int posy);[m
+[32m+[m	[32mvoid draw() { window.draw(button); window.draw(title); };[m
+[32m+[m	[32mvoid checkState();[m
+[32m+[m	[32mvoid setColor(sf::Color x) { title.setFillColor(x); };[m
+[32m+[m	[32mvoid setSoundVolume(double v) { switchS.setVolume(30 * v); click.setVolume(v*100); }[m
+[32m+[m	[32mstd::string& getString() { return text; }[m
+[32m+[m	[32mbool isOnButton();[m
+[32m+[m	[32m~Button();[m
+[32m+[m[32m};[m
+[32m+[m
+[1mdiff --git a/Sylio/List.cpp b/Sylio/List.cpp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..92e229c[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/List.cpp[m
+[36m@@ -0,0 +1,36 @@[m
+[32m+[m[32m#include "List.h"[m
+[32m+[m
+[32m+[m[32mvoid List::pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Sprite& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_)[m
+[32m+[m[32m{[m
+[32m+[m	[32mlist.push_back(Button(win, pres, rel, mark_, click_, switch_, font_));[m
+[32m+[m	[32mlist.back().setColor(sf::Color::Black);[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mList::List()[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mList::~List()[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid List::checkState()[m
+[32m+[m[32m{[m
+[32m+[m	[32mfor (int i = 0;i<list.size();i++)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mlist[i].checkState();[m
+[32m+[m		[32mif (list[i].settingsListFunction())[m
+[32m+[m		[32m{[m
+[32m+[m			[32mlist[i].setColor(sf::Color::Red);[m
+[32m+[m			[32mchosenFile = list[i].getString();[m
+[32m+[m			[32mfor (int j = 0; j < list.size(); j++)[m
+[32m+[m			[32m{[m
+[32m+[m				[32mif (j != i)[m
+[32m+[m					[32mlist[j].setColor(sf::Color::Black);[m
+[32m+[m			[32m}[m
+[32m+[m			[32mbreak;[m
+[32m+[m		[32m}[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/List.h b/Sylio/List.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0f09749[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/List.h[m
+[36m@@ -0,0 +1,24 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32m#include<SFML/Graphics.hpp>[m
+[32m+[m[32m#include<vector>[m
+[32m+[m[32m#include<string>[m
+[32m+[m[32m#include"Button.h"[m
+[32m+[m[32m#include"Sounds.h"[m
+[32m+[m
+[32m+[m[32mclass List[m
+[32m+[m[32m{[m
+[32m+[m[32mprivate:[m
+[32m+[m	[32mstd::vector<Button> list;[m
+[32m+[m	[32mstd::string chosenFile;[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mList();[m
+[32m+[m	[32mvoid pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Sprite& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_);[m
+[32m+[m	[32m~List();[m
+[32m+[m	[32mvoid setText(std::string text) { list.back().setTitle(text); };[m
+[32m+[m	[32mvoid checkState();[m
+[32m+[m	[32mvoid draw() { for (auto& x : list) x.draw(); }[m
+[32m+[m	[32mvoid setPosition(int x, int y) { list.back().setPosition(x, y); };[m
+[32m+[m	[32mvoid setSoundVolume(double v) { for (auto& x : list)x.setSoundVolume(v); }[m
+[32m+[m	[32mstd::string& getFileDirect() { return chosenFile; }[m
+[32m+[m[32m};[m
+[32m+[m
+[1mdiff --git a/Sylio/Music.cpp b/Sylio/Music.cpp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9eb2e58[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Music.cpp[m
+[36m@@ -0,0 +1,24 @@[m
+[32m+[m[32m#include "Music.h"[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mMusic::Music()[m
+[32m+[m[32m{[m
+[32m+[m	[32mif (!menuMusic.openFromFile("../DefaultMusic/Stranger_Things.wav"))[m
+[32m+[m		[32mexit(-1); // error[m
+[32m+[m	[32mmenuMusic.setLoop(true);[m
+[32m+[m	[32mmenuMusic.setVolume(30);[m
+[32m+[m	[32m//menuMusic.play();[m
+[32m+[m	[32mif (!gameMusic.openFromFile("../DefaultMusic/Stranger_Things.wav"))[m
+[32m+[m		[32mexit(-1); // error[m
+[32m+[m	[32mgameMusic.setLoop(true);[m
+[32m+[m	[32mgameMusic.setVolume(30);[m
+[32m+[m[32m}[m
+[32m+[m[32mbool Music::setGameMusic(std::string dir)[m
+[32m+[m[32m{[m
+[32m+[m	[32mreturn gameMusic.openFromFile("../Music/" + dir);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mMusic::~Music()[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/Music.h b/Sylio/Music.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..703549e[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Music.h[m
+[36m@@ -0,0 +1,20 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32m#include<SFML/Audio.hpp>[m
+[32m+[m[32m#include<string>[m
+[32m+[m[32mclass Music[m
+[32m+[m[32m{[m
+[32m+[m[32mprivate:[m
+[32m+[m	[32msf::Music menuMusic;[m
+[32m+[m	[32msf::Music gameMusic;[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mMusic();[m
+[32m+[m	[32mbool setGameMusic(std::string dir);[m
+[32m+[m	[32mvoid playGameMusic() { gameMusic.play(); }[m
+[32m+[m	[32mvoid playMenuMusic() { menuMusic.play(); }[m
+[32m+[m	[32mvoid stopGameMusic() { gameMusic.stop(); }[m
+[32m+[m	[32mvoid stopMenuMusic() { menuMusic.stop(); }[m
+[32m+[m	[32mvoid setVolume(double vol) { menuMusic.setVolume(vol); gameMusic.setVolume(vol); }[m
+[32m+[m	[32mdouble getVolume() { return menuMusic.getVolume(); }[m
+[32m+[m	[32m~Music();[m
+[32m+[m[32m};[m
+[32m+[m
+[1mdiff --git a/Sylio/Release/Background.obj b/Sylio/Release/Background.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..65858c0[m
+Binary files /dev/null and b/Sylio/Release/Background.obj differ
+[1mdiff --git a/Sylio/Release/Button.obj b/Sylio/Release/Button.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..96f8ac3[m
+Binary files /dev/null and b/Sylio/Release/Button.obj differ
+[1mdiff --git a/Sylio/Release/List.obj b/Sylio/Release/List.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c552373[m
+Binary files /dev/null and b/Sylio/Release/List.obj differ
+[1mdiff --git a/Sylio/Release/Music.obj b/Sylio/Release/Music.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0e478b7[m
+Binary files /dev/null and b/Sylio/Release/Music.obj differ
+[1mdiff --git a/Sylio/Release/Settings.obj b/Sylio/Release/Settings.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..58319c6[m
+Binary files /dev/null and b/Sylio/Release/Settings.obj differ
+[1mdiff --git a/Sylio/Release/Slider.obj b/Sylio/Release/Slider.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7515327[m
+Binary files /dev/null and b/Sylio/Release/Slider.obj differ
+[1mdiff --git a/Sylio/Release/Sounds.obj b/Sylio/Release/Sounds.obj[m
+[1mnew file mode 100644[m
+[1mindex 0000000..43086cc[m
+Binary files /dev/null and b/Sylio/Release/Sounds.obj differ
+[1mdiff --git a/Sylio/Release/Sylio.log b/Sylio/Release/Sylio.log[m
+[1mindex 7c0cdb5..ca7772d 100644[m
+[1m--- a/Sylio/Release/Sylio.log[m
+[1m+++ b/Sylio/Release/Sylio.log[m
+[36m@@ -1,114 +1,10 @@[m
+[31m-﻿  menu.cpp[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(43): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(65): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(84): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(85): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(85): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(93): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(94): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(94): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(102): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(103): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(103): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(111): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(112): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(112): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(324): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(325): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(325): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(326): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(327): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(327): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(330): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(331): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(331): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(333): warning C4305: "argument": obcięcie z "double" do "float"[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(334): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(334): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(363): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(363): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(364): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(364): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(365): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=unsigned int[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(365): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(408): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=float[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(410): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=float[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(411): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(414): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(437): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=float[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(439): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych[m
+[31m-          with[m
+[31m-          [[m
+[31m-              T=float[m
+[31m-          ][m
+[31m-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(440): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych[m
+[32m+[m[32m﻿  Button.cpp[m
+[32m+[m[32mC:\Users\Sylwester\source\repos\Sylio\Sylio\Button.h(41): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych[m
+[32m+[m[32mC:\Users\Sylwester\source\repos\Sylio\Sylio\Button.cpp(108): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych[m
+[32m+[m[32mC:\Users\Sylwester\source\repos\Sylio\Sylio\Button.cpp(120): warning C4305: "argument": obcięcie z "double" do "float"[m
+   Trwa generowanie kodu[m
+[31m-  1 of 402 functions ( 0.2%) were compiled, the rest were copied from previous compilation.[m
+[32m+[m[32m  3 of 546 functions ( 0.5%) were compiled, the rest were copied from previous compilation.[m
+     0 functions were new in current compilation[m
+[31m-    7 functions had inline decision re-evaluated but remain unchanged[m
+[32m+[m[32m    1 functions had inline decision re-evaluated but remain unchanged[m
+   Zakończono generowanie kodu[m
+   Sylio.vcxproj -> C:\Users\Sylwester\source\repos\Sylio\Release\Sylio.exe[m
+[1mdiff --git a/Sylio/Release/Sylio.tlog/CL.command.1.tlog b/Sylio/Release/Sylio.tlog/CL.command.1.tlog[m
+[1mindex b5e1e95..a2c2492 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/CL.command.1.tlog and b/Sylio/Release/Sylio.tlog/CL.command.1.tlog differ
+[1mdiff --git a/Sylio/Release/Sylio.tlog/CL.read.1.tlog b/Sylio/Release/Sylio.tlog/CL.read.1.tlog[m
+[1mindex 5665317..a5541a7 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/CL.read.1.tlog and b/Sylio/Release/Sylio.tlog/CL.read.1.tlog differ
+[1mdiff --git a/Sylio/Release/Sylio.tlog/CL.write.1.tlog b/Sylio/Release/Sylio.tlog/CL.write.1.tlog[m
+[1mindex c8bd64a..ad009ca 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/CL.write.1.tlog and b/Sylio/Release/Sylio.tlog/CL.write.1.tlog differ
+[1mdiff --git a/Sylio/Release/Sylio.tlog/Sylio.write.1u.tlog b/Sylio/Release/Sylio.tlog/Sylio.write.1u.tlog[m
+[1mindex d3aaa41..cdc61b8 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/Sylio.write.1u.tlog and b/Sylio/Release/Sylio.tlog/Sylio.write.1u.tlog differ
+[1mdiff --git a/Sylio/Release/Sylio.tlog/link.command.1.tlog b/Sylio/Release/Sylio.tlog/link.command.1.tlog[m
+[1mindex 7f0c062..f9bbd8b 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/link.command.1.tlog and b/Sylio/Release/Sylio.tlog/link.command.1.tlog differ
+[1mdiff --git a/Sylio/Release/Sylio.tlog/link.read.1.tlog b/Sylio/Release/Sylio.tlog/link.read.1.tlog[m
+[1mindex 274ed18..900c805 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/link.read.1.tlog and b/Sylio/Release/Sylio.tlog/link.read.1.tlog differ
+[1mdiff --git a/Sylio/Release/Sylio.tlog/link.write.1.tlog b/Sylio/Release/Sylio.tlog/link.write.1.tlog[m
+[1mindex b7e418e..4d6da4a 100644[m
+Binary files a/Sylio/Release/Sylio.tlog/link.write.1.tlog and b/Sylio/Release/Sylio.tlog/link.write.1.tlog differ
+[1mdiff --git a/Sylio/Release/main.obj b/Sylio/Release/main.obj[m
+[1mindex f177c0f..e577fa4 100644[m
+Binary files a/Sylio/Release/main.obj and b/Sylio/Release/main.obj differ
+[1mdiff --git a/Sylio/Release/menu.obj b/Sylio/Release/menu.obj[m
+[1mindex 7ce1e04..170c11a 100644[m
+Binary files a/Sylio/Release/menu.obj and b/Sylio/Release/menu.obj differ
+[1mdiff --git a/Sylio/Release/vc142.pdb b/Sylio/Release/vc142.pdb[m
+[1mindex 02c8f05..6d1b48b 100644[m
+Binary files a/Sylio/Release/vc142.pdb and b/Sylio/Release/vc142.pdb differ
+[1mdiff --git a/Sylio/Slider.cpp b/Sylio/Slider.cpp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7fb5691[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Slider.cpp[m
+[36m@@ -0,0 +1,135 @@[m
+[32m+[m[32m#include"Music.h"[m
+[32m+[m[32m#include "Slider.h"[m
+[32m+[m[32m#include<iostream>[m
+[32m+[m
+[32m+[m
+[32m+[m[32mbool Slider::isOnPointner()[m
+[32m+[m[32m{[m
+[32m+[m	[32m//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;[m
+[32m+[m	[32m//std::cout << button.getGlobalBounds().left << " " << button.getGlobalBounds().top << " "<< button.getGlobalBounds().height << " " << button.getGlobalBounds().width << std::endl;[m
+[32m+[m	[32mif (sf::Mouse::getPosition(window).x > pointner.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (pointner.getGlobalBounds().left + pointner.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > pointner.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (pointner.getGlobalBounds().top + pointner.getGlobalBounds().height))[m
+[32m+[m	[32m{[m
+[32m+[m		[32mreturn true;[m
+[32m+[m	[32m}[m
+[32m+[m	[32mreturn false;[m
+[32m+[m[32m}[m
+[32m+[m[32mvoid Slider::checkState()[m
+[32m+[m[32m{[m
+[32m+[m	[32mif (!isOnPointner()) {[m
+[32m+[m
+[32m+[m		[32mif (state == pointnerState::isPressed && sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[32m+[m		[32m{[m
+[32m+[m			[32mif (!mouseAlredyPressed)[m
+[32m+[m			[32m{[m
+[32m+[m				[32mmouseAlredyPressed = true;[m
+[32m+[m			[32m}[m
+[32m+[m			[32m// left mouse button is pressed: shoot[m
+[32m+[m			[32mstate = pointnerState::isPressed;[m
+[32m+[m		[32m}[m
+[32m+[m		[32melse {[m
+[32m+[m			[32mif (mouseAlredyPressed)[m
+[32m+[m			[32m{[m
+[32m+[m				[32mmouseAlredyPressed = false;[m
+[32m+[m				[32mstate = pointnerState::isClickedOut;[m
+[32m+[m			[32m}[m
+[32m+[m			[32melse[m
+[32m+[m				[32mstate = pointnerState::isNotPressed;[m
+[32m+[m		[32m}[m
+[32m+[m	[32m}[m
+[32m+[m	[32melse[m
+[32m+[m	[32m{[m
+[32m+[m
+[32m+[m		[32mif (!isAlredyOnButton) {[m
+[32m+[m			[32misAlredyOut = false;[m
+[32m+[m			[32misAlredyOnButton = true;[m
+[32m+[m			[32mstate = pointnerState::apperedOn;[m
+[32m+[m		[32m}[m
+[32m+[m		[32melse {[m
+[32m+[m			[32mif (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[32m+[m			[32m{[m
+[32m+[m				[32mif (!mouseAlredyPressed)[m
+[32m+[m				[32m{[m
+[32m+[m					[32mmouseAlredyPressed = true;[m
+[32m+[m					[32mstate = pointnerState::isClickedOn;[m
+[32m+[m				[32m}[m
+[32m+[m				[32m// left mouse button is pressed: shoot[m
+[32m+[m				[32melse[m
+[32m+[m					[32mstate = pointnerState::isPressed;[m
+[32m+[m			[32m}[m
+[32m+[m			[32melse {[m
+[32m+[m				[32mif (mouseAlredyPressed)[m
+[32m+[m				[32m{[m
+[32m+[m					[32mmouseAlredyPressed = false;[m
+[32m+[m					[32mstate = pointnerState::isClickedOut;[m
+[32m+[m				[32m}[m
+[32m+[m				[32melse[m
+[32m+[m					[32mstate = pointnerState::isNotPressed;[m
+[32m+[m			[32m}[m
+[32m+[m		[32m}[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[32m+[m[32mbool Slider::sliderFunction()//1-music/2-sound[m
+[32m+[m[32m{[m
+[32m+[m	[32mint x;[m
+[32m+[m	[32mdouble width, mul;[m
+[32m+[m	[32mswitch (state)[m
+[32m+[m	[32m{[m
+[32m+[m	[32mcase pointnerState::isClickedOn:[m
+[32m+[m		[32mclick.play();[m
+[32m+[m		[32mreturn true;[m
+[32m+[m		[32mbreak;[m
+[32m+[m	[32mcase pointnerState::isPressed:[m
+[32m+[m		[32mx = sf::Mouse::getPosition().x;[m
+[32m+[m		[32mif (x < line.getGlobalBounds().left)[m
+[32m+[m			[32mx = line.getGlobalBounds().left;[m
+[32m+[m		[32mif (x > line.getGlobalBounds().left + line.getGlobalBounds().width)[m
+[32m+[m			[32mx = line.getGlobalBounds().left + line.getGlobalBounds().width;[m
+[32m+[m		[32mpointner.setPosition(x, pointner.getPosition().y);[m
+[32m+[m		[32mwidth = pointner.getPosition().x - line.getPosition().x;[m
+[32m+[m		[32mmul = width / line.getGlobalBounds().width;[m
+[32m+[m		[32mif (mul != vol)[m
+[32m+[m		[32m{[m
+[32m+[m			[32mif (id == 1)[m
+[32m+[m			[32m{[m
+[32m+[m				[32mvol = mul;[m
+[32m+[m				[32mmusic.setVolume(vol*30);[m
+[32m+[m			[32m}[m
+[32m+[m			[32melse[m[41m [m
+[32m+[m			[32m{[m[41m [m
+[32m+[m				[32mvol = mul;[m
+[32m+[m				[32msetting.SoundVolume = vol;[m
+[32m+[m			[32m}[m
+[32m+[m
+[32m+[m		[32m}[m
+[32m+[m		[32mreturn true;[m
+[32m+[m		[32mbreak;[m
+[32m+[m	[32mdefault:[m
+[32m+[m			[32mbreak;[m
+[32m+[m	[32m}[m
+[32m+[m	[32mreturn false;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mSlider::Slider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_, sf::SoundBuffer &click_) :pointner(pointner_), line(line_), window(win), click(click_)[m
+[32m+[m[32m{[m
+[32m+[m	[32mstate = pointnerState::isNotOn;[m
+[32m+[m	[32misAlredyOnButton = false;[m
+[32m+[m	[32mmouseAlredyPressed = false;[m
+[32m+[m	[32misAlredyOut = false;[m
+[32m+[m	[32mvol = 1;[m
+[32m+[m[32m};[m
+[32m+[m[32mvoid Slider::setPosition(int x, int y, int id_)[m
+[32m+[m[32m{[m
+[32m+[m	[32mid = id_;[m
+[32m+[m	[32mline.setScale(1.8, 1);[m
+[32m+[m	[32mline.setPosition(x, y);[m
+[32m+[m	[32mpointner.setOrigin(14, 0);[m
+[32m+[m	[32mif (id == 1)[m
+[32m+[m		[32mpointner.setPosition(int((music.getVolume() / 30) * line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);[m
+[32m+[m	[32melse[m
+[32m+[m		[32mpointner.setPosition(int((setting.SoundVolume * line.getGlobalBounds().width) + line.getPosition().x), line.getPosition().y);[m
+[32m+[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mSlider::~Slider()[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/Slider.h b/Sylio/Slider.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..013259b[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Slider.h[m
+[36m@@ -0,0 +1,32 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32m#include"settings.h"[m
+[32m+[m[32m#include<SFML/Graphics.hpp>[m
+[32m+[m[32m#include"Sounds.h"[m
+[32m+[m[32m#include"Music.h"[m
+[32m+[m[32mextern Settings setting;[m
+[32m+[m[32mextern Music music;[m
+[32m+[m[32mclass Slider[m
+[32m+[m[32m{[m
+[32m+[m[32mprivate:[m
+[32m+[m	[32menum pointnerState { isOn = 1, isNotOn, isPressed, isNotPressed, apperedOn, isClickedOn, isClickedOut, apperedOut, notClickedOutButCoursorIsOut };[m
+[32m+[m	[32mint id;//do rozdzielenia slidera music od sound[m
+[32m+[m	[32msf::Sprite pointner;[m
+[32m+[m	[32msf::Sprite line;[m
+[32m+[m	[32msf::RenderWindow& window;[m
+[32m+[m	[32msf::Sound click;[m
+[32m+[m	[32mpointnerState state;[m
+[32m+[m	[32mbool isAlredyOnButton;[m
+[32m+[m	[32mbool mouseAlredyPressed;[m
+[32m+[m	[32mbool isAlredyOut;[m
+[32m+[m	[32mbool isOnPointner();[m
+[32m+[m	[32mdouble vol;[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mvoid checkState();[m
+[32m+[m	[32mbool sliderFunction();[m
+[32m+[m	[32mSlider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_, sf::SoundBuffer &click_);[m
+[32m+[m	[32mvoid setPosition(int x, int y, int id_);[m
+[32m+[m	[32mvoid draw() { window.draw(line); window.draw(pointner); };[m
+[32m+[m	[32mvoid setSoundVolume(double v) { click.setVolume(v*100); }[m
+[32m+[m	[32m~Slider();[m
+[32m+[m[32m};[m
+[32m+[m
+[1mdiff --git a/Sylio/Sounds.cpp b/Sylio/Sounds.cpp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..96b2a18[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Sounds.cpp[m
+[36m@@ -0,0 +1,25 @@[m
+[32m+[m[32m#include "Sounds.h"[m
+[32m+[m
+[32m+[m[32mSounds::Sounds(std::string click_, std::string switch_)[m
+[32m+[m[32m{[m
+[32m+[m	[32mif (!switchBuffer.loadFromFile("../Sounds/"+switch_))[m
+[32m+[m		[32mexit(-1);[m
+[32m+[m	[32mswitchSound.setBuffer(switchBuffer);[m
+[32m+[m	[32mswitchSound.setVolume(30);[m
+[32m+[m
+[32m+[m	[32mif (!clickBuffer.loadFromFile("../Sounds/" + click_))[m
+[32m+[m		[32mexit(-1);[m
+[32m+[m	[32mclickSound.setBuffer(clickBuffer);[m
+[32m+[m	[32mclickSound.setVolume(100);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mvoid Sounds::setVolume(float vol)[m
+[32m+[m[32m{[m
+[32m+[m	[32mswitchSound.setVolume(30 * vol);[m
+[32m+[m	[32mclickSound.setVolume(100 * vol);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mSounds::~Sounds()[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/Sounds.h b/Sylio/Sounds.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0e7b7f6[m
+[1m--- /dev/null[m
+[1m+++ b/Sylio/Sounds.h[m
+[36m@@ -0,0 +1,25 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32m#ifndef SOUNDS_H[m
+[32m+[m[32m#define SOUNDS_H[m
+[32m+[m
+[32m+[m[32m#include<string>[m
+[32m+[m[32m#include<SFML/Audio.hpp>[m
+[32m+[m
+[32m+[m[32mclass Sounds[m
+[32m+[m[32m{[m
+[32m+[m[32mprivate:[m
+[32m+[m	[32msf::SoundBuffer clickBuffer;[m
+[32m+[m	[32msf::Sound clickSound;[m
+[32m+[m	[32msf::SoundBuffer switchBuffer;[m
+[32m+[m	[32msf::Sound switchSound;[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mSounds(std::string click_, std::string switch_);[m
+[32m+[m	[32mvoid playClick() { sf::Sound(clickBuffer).play(); }[m
+[32m+[m	[32mvoid playSwitch() { sf::Sound(switchBuffer).play(); }[m
+[32m+[m	[32mvoid setVolume(float vol);[m
+[32m+[m	[32m~Sounds();[m
+[32m+[m[32m};[m
+[32m+[m
+[32m+[m
+[32m+[m[32m#endif // !SOUNDS_H[m
+[32m+[m
+[1mdiff --git a/Sylio/Sylio.vcxproj b/Sylio/Sylio.vcxproj[m
+[1mindex 8237c97..f9ffc96 100644[m
+[1m--- a/Sylio/Sylio.vcxproj[m
+[1m+++ b/Sylio/Sylio.vcxproj[m
+[36m@@ -131,11 +131,25 @@[m
+     </Link>[m
+   </ItemDefinitionGroup>[m
+   <ItemGroup>[m
+[32m+[m[32m    <ClCompile Include="Background.cpp" />[m
+[32m+[m[32m    <ClCompile Include="Button.cpp" />[m
+[32m+[m[32m    <ClCompile Include="List.cpp" />[m
+     <ClCompile Include="main.cpp" />[m
+     <ClCompile Include="menu.cpp" />[m
+[32m+[m[32m    <ClCompile Include="Music.cpp" />[m
+[32m+[m[32m    <ClCompile Include="Settings.cpp" />[m
+[32m+[m[32m    <ClCompile Include="Slider.cpp" />[m
+[32m+[m[32m    <ClCompile Include="Sounds.cpp" />[m
+   </ItemGroup>[m
+   <ItemGroup>[m
+[32m+[m[32m    <ClInclude Include="Background.h" />[m
+[32m+[m[32m    <ClInclude Include="Button.h" />[m
+[32m+[m[32m    <ClInclude Include="List.h" />[m
+     <ClInclude Include="menu.h" />[m
+[32m+[m[32m    <ClInclude Include="Music.h" />[m
+[32m+[m[32m    <ClInclude Include="Settings.h" />[m
+[32m+[m[32m    <ClInclude Include="Slider.h" />[m
+[32m+[m[32m    <ClInclude Include="Sounds.h" />[m
+   </ItemGroup>[m
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />[m
+   <ImportGroup Label="ExtensionTargets">[m
+[1mdiff --git a/Sylio/Sylio.vcxproj.filters b/Sylio/Sylio.vcxproj.filters[m
+[1mindex 8e0173c..176cea7 100644[m
+[1m--- a/Sylio/Sylio.vcxproj.filters[m
+[1m+++ b/Sylio/Sylio.vcxproj.filters[m
+[36m@@ -21,10 +21,52 @@[m
+     <ClCompile Include="menu.cpp">[m
+       <Filter>Pliki źródłowe</Filter>[m
+     </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="Button.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="List.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="Slider.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="Sounds.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="Music.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="Settings.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+[32m+[m[32m    <ClCompile Include="Background.cpp">[m
+[32m+[m[32m      <Filter>Pliki źródłowe</Filter>[m
+[32m+[m[32m    </ClCompile>[m
+   </ItemGroup>[m
+   <ItemGroup>[m
+     <ClInclude Include="menu.h">[m
+       <Filter>Pliki nagłówkowe</Filter>[m
+     </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="Button.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="List.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="Slider.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="Sounds.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="Music.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="Settings.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+[32m+[m[32m    <ClInclude Include="Background.h">[m
+[32m+[m[32m      <Filter>Pliki nagłówkowe</Filter>[m
+[32m+[m[32m    </ClInclude>[m
+   </ItemGroup>[m
+ </Project>[m
+\ No newline at end of file[m
+[1mdiff --git a/Sylio/main.cpp b/Sylio/main.cpp[m
+[1mindex 2d1c10f..d6d3f8b 100644[m
+[1m--- a/Sylio/main.cpp[m
+[1m+++ b/Sylio/main.cpp[m
+[36m@@ -1,17 +1,18 @@[m
+[32m+[m[32m#include"Settings.h"[m
+[32m+[m[32m#include"Music.h"[m
+ #include"menu.h"[m
+ #include<string>[m
+ #include<SFML/Audio.hpp>[m
+ [m
+[32m+[m[32mSettings setting;[m
+[32m+[m[32mMusic music;[m
+[32m+[m
+ int main()[m
+ {[m
+ 	std::string version = "Beta 0.1";[m
+ 	auto state = st::mainMenu;[m
+ 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version , sf::Style::Fullscreen);[m
+[31m-[m
+[31m-	sf::Music gameMusic;[m
+[31m-[m
+[31m-[m
+[31m-	std::filesystem::path directory = "../Music";[m
+[32m+[m	[32mmusic.playMenuMusic();[m
+ 	Menu Menu_(window, version);[m
+ [m
+ 	while (true)[m
+[36m@@ -34,4 +35,4 @@[m [mint main()[m
+ 		}[m
+ 	}[m
+ 	return 0;[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/Sylio/menu.cpp b/Sylio/menu.cpp[m
+[1mindex ae6f7a8..425d0af 100644[m
+[1m--- a/Sylio/menu.cpp[m
+[1m+++ b/Sylio/menu.cpp[m
+[36m@@ -1,528 +1,240 @@[m
+ #include "menu.h"[m
+ [m
+[31m-[m
+[31m-bool Menu::isOnButton(sf::Sprite & sprite)[m
+[32m+[m[32mMenu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_), background(win)[m
+ {[m
+[31m-	//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;[m
+[31m-	//std::cout << sprite.getGlobalBounds().left << " " << sprite.getGlobalBounds().top << " "<< sprite.getGlobalBounds().height << " " << sprite.getGlobalBounds().width << std::endl;[m
+[32m+[m	[32mif (!clickBuff.loadFromFile("../Sounds/click1.ogg"))[m
+[32m+[m		[32mexit(-1);[m
+ [m
+[31m-	if (sf::Mouse::getPosition(window).x > sprite.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (sprite.getGlobalBounds().left + sprite.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > sprite.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (sprite.getGlobalBounds().top + sprite.getGlobalBounds().height))[m
+[31m-		return true;[m
+[31m-	return false;[m
+[31m-}[m
+[31m-bool Menu::isOnButton(sf::Text& sprite)[m
+[31m-{[m
+[31m-	//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;[m
+[31m-	//std::cout << sprite.getGlobalBounds().left << " " << sprite.getGlobalBounds().top << " "<< sprite.getGlobalBounds().height << " " << sprite.getGlobalBounds().width << std::endl;[m
+[32m+[m	[32mif (!switchBuff.loadFromFile("../Sounds/switch2.ogg"))[m
+[32m+[m		[32mexit(-1);[m
+ [m
+[31m-	if (sf::Mouse::getPosition(window).x > sprite.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (sprite.getGlobalBounds().left + sprite.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > sprite.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (sprite.getGlobalBounds().top + sprite.getGlobalBounds().height))[m
+[31m-		return true;[m
+[31m-	return false;[m
+[31m-}[m
+[31m-bool Menu::isAlredyOnButton(sf::Sprite& sprite)[m
+[31m-{[m
+[31m-	return false;[m
+[31m-}[m
+[31m-Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_)[m
+[31m-{[m
+[31m-	[m
+ 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))[m
+ 		exit(-1);[m
+ 	[m
+ 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))[m
+ 		exit(-1);[m
+[31m-	if (!menuMusic.openFromFile("../DefaultMusic/Stranger_Things.wav"))[m
+[31m-		exit(-1); // error[m
+[31m-	menuMusic.setLoop(true);[m
+[31m-	menuMusic.setVolume(30);[m
+[31m-	menuMusic.play();[m
+ [m
+[31m-	title.setFont(font);[m
+[31m-	title.setCharacterSize(140);[m
+[31m-	title.setString("Sylio");[m
+[31m-	title.setPosition(window.getSize().x / 2 - 250, window.getSize().y / 2 - 300);[m
+[31m-	title.setFillColor(sf::Color::Black);[m
+[31m-	[m
+[31m-[m
+[31m-	[m
+[31m-	if (!buffer.loadFromFile("../Sounds/switch3.ogg"))[m
+[32m+[m	[32mif (!block.loadFromFile("../PNG/grey_button15.png"))[m
+ 		exit(-1);[m
+[31m-	switch1.setBuffer(buffer);[m
+[31m-	switch1.setVolume(30);[m
+ [m
+[31m-	if (!buffer2.loadFromFile("../Sounds/click1.ogg"))[m
+[32m+[m	[32mif (!blockPressed.loadFromFile("../PNG/grey_button00.png"))[m
+ 		exit(-1);[m
+[31m-	click.setBuffer(buffer2);[m
+[31m-	click.setVolume(150);[m
+ [m
+[31m-	if (!back.loadFromFile("../background.jpg"))[m
+[32m+[m	[32mif (!back.loadFromFile("../stars_space_sky_glitter_116409_1920x108022.jpg"))[m
+ 		exit(-1);[m
+[31m-	background.setTexture(back);[m
+ [m
+[31m-	ver.setFont(font);[m
+[31m-	ver.setCharacterSize(15);[m
+[31m-	ver.setString(version);[m
+[31m-	ver.setPosition(window.getSize().x - 100, window.getSize().y - 15);[m
+[31m-	[m
+[31m-	if (!mar.loadFromFile("../PNG/green_sliderRight.png"))[m
+[32m+[m	[32mif (!base.loadFromFile("../base3.png"))[m
+ 		exit(-1);[m
+[31m-	mark.setTexture(mar);[m
+[31m-	mark.setPosition(-200, -200);[m
+[31m-[m
+[32m+[m	[32m//background.setTexture(back);[m
+[32m+[m	[32mbackground.set(back,base, 0 , 0.002);[m
+ [m
+[31m-	if (!block.loadFromFile("../PNG/green_button00.png"))[m
+[32m+[m	[32mif (!mar.loadFromFile("../PNG/grey_sliderRight.png"))[m
+ 		exit(-1);[m
+ [m
+[31m-[m
+[31m-	if (!blockPressed.loadFromFile("../PNG/green_button05.png"))[m
+[32m+[m	[32mif (!VolumeSliderLine.loadFromFile("../PNG/grey_sliderHorizontal.png"))[m
+ 		exit(-1);[m
+ [m
+[31m-	blockNormalGame.setTexture(block);[m
+[31m-	blockSettings.setTexture(block);[m
+[31m-	blockQuit.setTexture(block);[m
+[31m-	blockMultiplayerGame.setTexture(block);[m
+[31m-	blockNormalGame.setScale(1.8, 1);[m
+[31m-	blockNormalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50);[m
+[31m-[m
+[32m+[m	[32mif (!VolumePointner.loadFromFile("../PNG/grey_sliderUp.png"))[m
+[32m+[m		[32mexit(-1);[m
+ [m
+[31m-	NormalGame.setFont(font);[m
+[31m-	NormalGame.setCharacterSize(25);[m
+[31m-	NormalGame.setString("Normal Game");[m
+[31m-	NormalGame.setPosition(blockNormalGame.getPosition().x + 20, blockNormalGame.getPosition().y + 8);[m
+[32m+[m	[32mif (!listBlock.loadFromFile("../PNG/grey_button06.png"))[m
+[32m+[m		[32mexit(-1);[m
+ [m
+[31m-	blockMultiplayerGame.setScale(1.8, 1);[m
+[31m-	blockMultiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 100);[m
+[32m+[m	[32mmark.setTexture(mar);[m
+[32m+[m	[32mmark.setPosition(-200, -200);[m
+ [m
+ [m
+[31m-	MultiplayerGame.setFont(font);[m
+[31m-	MultiplayerGame.setCharacterSize(25);[m
+[31m-	MultiplayerGame.setString("Multiplayer Game");[m
+[31m-	MultiplayerGame.setPosition(blockMultiplayerGame.getPosition().x + 20, blockMultiplayerGame.getPosition().y + 8);[m
+ [m
+[31m-	blockSettings.setScale(1.8, 1);[m
+[31m-	blockSettings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 200);[m
+[32m+[m[32m}[m
+ [m
+[32m+[m[32mst Menu::mainMenuUpdate()[m
+[32m+[m[32m{[m
+[32m+[m	[32msf::Text title;[m
+[32m+[m	[32mtitle.setFont(font);[m
+[32m+[m	[32mtitle.setCharacterSize(140);[m
+[32m+[m	[32mtitle.setString("Sylio");[m
+[32m+[m	[32mtitle.setPosition(window.getSize().x / 2 - 250, window.getSize().y / 2 - 300);[m
+[32m+[m	[32mtitle.setFillColor(sf::Color::Black);[m
+ [m
+[31m-	Settings.setFont(font);[m
+[31m-	Settings.setCharacterSize(25);[m
+[31m-	Settings.setString("Settings");[m
+[31m-	Settings.setPosition(blockSettings.getPosition().x + 20, blockSettings.getPosition().y + 8);[m
+[32m+[m	[32msf::Text ver;[m
+[32m+[m	[32mver.setFont(font);[m
+[32m+[m	[32mver.setCharacterSize(15);[m
+[32m+[m	[32mver.setString(version);[m
+[32m+[m	[32mver.setPosition(window.getSize().x - 100, window.getSize().y - 15);[m
+ [m
+[31m-	blockQuit.setScale(1.8, 1);[m
+[31m-	blockQuit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 300);[m
+[32m+[m	[32mmark.setPosition(-200, -200);[m
+ [m
+[32m+[m	[32mButton normalGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);[m
+[32m+[m	[32mnormalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 100);[m
+[32m+[m	[32mnormalGame.setTitle("normal game");[m
+[32m+[m	[32mnormalGame.setSoundVolume(setting.SoundVolume);[m
+ [m
+[31m-	Quit.setFont(font);[m
+[31m-	Quit.setCharacterSize(25);[m
+[31m-	Quit.setString("Quit");[m
+[31m-	Quit.setPosition(blockQuit.getPosition().x + 20, blockQuit.getPosition().y + 8);[m
+[32m+[m	[32mButton multiplayerGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);[m
+[32m+[m	[32mmultiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2);[m
+[32m+[m	[32mmultiplayerGame.setTitle("multipleyer game");[m
+[32m+[m	[32mmultiplayerGame.setSoundVolume(setting.SoundVolume);[m
+ [m
+[31m-}[m
+[32m+[m	[32mButton settings(window, blockPressed, block, mark, clickBuff, switchBuff, font);[m
+[32m+[m	[32msettings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);[m
+[32m+[m	[32msettings.setTitle("settings");[m
+[32m+[m	[32msettings.setSoundVolume(setting.SoundVolume);[m
+[32m+[m[41m	[m
+[32m+[m	[32mButton quit(window, blockPressed, block, mark, clickBuff, switchBuff, font);[m
+[32m+[m	[32mquit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);[m
+[32m+[m	[32mquit.setTitle("quit");[m
+[32m+[m	[32mquit.setSoundVolume(setting.SoundVolume);[m
+ [m
+[31m-st Menu::mainMenuUpdate()[m
+[31m-{[m
+[31m-	bool isAlredyOnN = false;[m
+[31m-	bool mouseAlredyPressed = false;[m
+[31m-	bool isAlredyOnD = false;[m
+ 	while (window.isOpen())[m
+ 	{[m
+ 		// check all the window's events that were triggered since the last iteration of the loop[m
+ 		sf::Event event;[m
+ 		while (window.pollEvent(event))[m
+ 		{[m
+[31m-			if (isOnButton(blockNormalGame)) {[m
+[31m-				if (!isAlredyOnN) {[m
+[31m-					mark.setPosition(blockNormalGame.getPosition().x - 50, blockNormalGame.getPosition().y + 10);[m
+[31m-					switch1.play();[m
+[31m-					isAlredyOnN = true;[m
+[31m-					isAlredyOnD = false;[m
+[31m-				}[m
+[31m-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-				{[m
+[31m-					if (!mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						blockNormalGame.setTexture(blockPressed);[m
+[31m-						mouseAlredyPressed = true;[m
+[31m-						click.play();[m
+[31m-					}[m
+[31m-					// left mouse button is pressed: shoot[m
+[31m-				}[m
+[31m-				else[m
+[31m-					if (mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						blockNormalGame.setTexture(block);[m
+[31m-						mouseAlredyPressed = false;[m
+[31m-					}[m
+[31m-			}[m
+[31m-			else if (isOnButton(blockMultiplayerGame)) {[m
+[31m-					if (!isAlredyOnN) {[m
+[31m-						mark.setPosition(blockMultiplayerGame.getPosition().x - 50, blockMultiplayerGame.getPosition().y + 10);[m
+[31m-						switch1.play();[m
+[31m-						isAlredyOnN = true;[m
+[31m-						isAlredyOnD = false;[m
+[31m-					}[m
+[31m-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-					{[m
+[31m-						if (!mouseAlredyPressed)[m
+[31m-						{[m
+[31m-							blockMultiplayerGame.setTexture(blockPressed);[m
+[31m-							mouseAlredyPressed = true;[m
+[31m-							click.play();[m
+[31m-						}[m
+[31m-						// left mouse button is pressed: shoot[m
+[31m-					}[m
+[31m-					else[m
+[31m-						if (mouseAlredyPressed)[m
+[31m-						{[m
+[31m-							blockMultiplayerGame.setTexture(block);[m
+[31m-							mouseAlredyPressed = false;[m
+[31m-						}[m
+[31m-			}[m
+[31m-			else if (isOnButton(blockSettings)) {[m
+[31m-				if (!isAlredyOnN) {[m
+[31m-					mark.setPosition(blockSettings.getPosition().x - 50, blockSettings.getPosition().y + 10);[m
+[31m-					switch1.play();[m
+[31m-					isAlredyOnN = true;[m
+[31m-					isAlredyOnD = false;[m
+[31m-				}[m
+[31m-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-				{[m
+[31m-					if (!mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						blockSettings.setTexture(blockPressed);[m
+[31m-						mouseAlredyPressed = true;[m
+[31m-						click.play();[m
+[31m-						[m
+[31m-					}[m
+[31m-					// left mouse button is pressed: shoot[m
+[31m-				}[m
+[31m-				else[m
+[31m-					if (mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						blockSettings.setTexture(block);[m
+[31m-						mouseAlredyPressed = false;[m
+[31m-						return st::settings;[m
+[31m-					}[m
+[31m-			}[m
+[31m-		    else if (isOnButton(blockQuit)) {[m
+[31m-					if (!isAlredyOnN) {[m
+[31m-						mark.setPosition(blockQuit.getPosition().x - 50, blockQuit.getPosition().y + 10);[m
+[31m-						switch1.play();[m
+[31m-						isAlredyOnN = true;[m
+[31m-						isAlredyOnD = false;[m
+[31m-					}[m
+[31m-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-					{[m
+[31m-						if (!mouseAlredyPressed)[m
+[31m-						{[m
+[31m-							blockQuit.setTexture(blockPressed);[m
+[31m-							mouseAlredyPressed = true;[m
+[31m-							click.play();[m
+[31m-						}[m
+[31m-						// left mouse button is pressed: shoot[m
+[31m-					}[m
+[31m-					else[m
+[31m-						if (mouseAlredyPressed)[m
+[31m-						{[m
+[31m-							blockQuit.setTexture(block);[m
+[31m-							mouseAlredyPressed = false;[m
+[31m-							return st::quit;[m
+[31m-						}[m
+[31m-				}[m
+[31m-				//std::cout << "dd\n";[m
+[31m-			else {[m
+[31m-				mouseAlredyPressed = false;[m
+[31m-				if (isAlredyOnD == false) {[m
+[31m-					mark.setPosition(-200, -200);[m
+[31m-					isAlredyOnN = false;[m
+[31m-					isAlredyOnD = true;[m
+[31m-				}[m
+[31m-			}[m
+[32m+[m			[32mnormalGame.checkState();[m
+[32m+[m			[32mmultiplayerGame.checkState();[m
+[32m+[m			[32msettings.checkState();[m
+[32m+[m			[32mquit.checkState();[m
+[32m+[m			[32mif (normalGame.buttonFunction());[m
+[32m+[m			[32melse if (multiplayerGame.buttonFunction());[m
+[32m+[m			[32melse if (settings.buttonFunction())[m
+[32m+[m				[32mreturn st::settings;[m
+[32m+[m			[32melse if (quit.buttonFunction())[m
+[32m+[m				[32mreturn st::quit;[m
+[32m+[m			[32melse ;[m
+ 		}[m
+ [m
+[31m-		// clear the window with black color[m
+ 		window.clear(sf::Color::Black);[m
+ [m
+[31m-		// draw everything here...[m
+[31m-		// window.draw(...);[m
+[31m-		window.draw(background);[m
+[32m+[m		[32mbackground.draw();[m
+ 		window.draw(ver);[m
+ 		window.draw(title);[m
+ [m
+[31m-		window.draw(blockNormalGame);[m
+[31m-		window.draw(NormalGame);[m
+[31m-[m
+[31m-		window.draw(blockMultiplayerGame);[m
+[31m-		window.draw(MultiplayerGame);[m
+[31m-[m
+[31m-		window.draw(blockSettings);[m
+[31m-		window.draw(Settings);[m
+[31m-[m
+[31m-		window.draw(blockQuit);[m
+[31m-		window.draw(Quit);[m
+[31m-[m
+[32m+[m		[32mnormalGame.draw();[m
+[32m+[m		[32mmultiplayerGame.draw();[m
+[32m+[m		[32msettings.draw();[m
+[32m+[m		[32mquit.draw();[m
+ 		window.draw(mark);[m
+[31m-		// end the current frame[m
+ 		window.display();[m
+ 	}[m
+ }[m
+ st Menu::settingsUupdate()[m
+ {[m
+[31m-	bool isAlredyOnN = false;[m
+[31m-	bool mouseAlredyPressed = false;[m
+[31m-	bool isAlredyOnD = false;[m
+[32m+[m	[32mmark.setPosition(-200, -200);[m
+ 	sf::Event event;[m
+[31m-	sf::Texture VolumeSliderLine;[m
+[31m-	sf::Texture VolumePointner;[m
+[31m-	sf::Texture upSlider;[m
+[31m-	sf::Texture midSlider;[m
+[31m-	sf::Texture downSlider;[m
+[31m-	sf::Sprite goBack;[m
+[31m-	sf::Sprite slider[5];[m
+[31m-	sf::Sprite VolSliderMusic;[m
+[31m-	sf::Sprite VolSliderSoundEffects;[m
+[31m-	sf::Sprite VolPointnerMusic;[m
+[31m-	sf::Sprite VolPointnerSound;[m
+[32m+[m
+[32m+[m
+ 	sf::Text VolMusicText;[m
+ 	sf::Text VolSounndEffectsTest;[m
+ 	sf::Text ChoseMusicText;[m
+[31m-	sf::Text MusicFiles[5];[m
+[31m-	sf::Text goBackText;[m
+[31m-	int i = 0;[m
+[32m+[m	[32msf::Text fileError;[m
+[32m+[m[41m	[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mint linex = window.getSize().x / 2 - 190 * 1.8 / 2;[m
+[32m+[m	[32mint liney = window.getSize().y / 2 - 50;[m
+[32m+[m[41m	[m
+[32m+[m	[32mSlider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);[m
+[32m+[m	[32mmusicSlider.setPosition(linex, liney - 300, 1);//1- music /2 -sound[m
+[32m+[m	[32mmusicSlider.setSoundVolume(setting.SoundVolume);[m
+[32m+[m
+[32m+[m	[32mSlider soundSlider(window, VolumePointner, VolumeSliderLine, clickBuff);[m
+[32m+[m	[32msoundSlider.setPosition(linex, liney - 100, 2);[m
+[32m+[m	[32msoundSlider.setSoundVolume(setting.SoundVolume);[m
+ [m
+[32m+[m	[32mList list;[m
+ 	std::filesystem::path directory = "../Music";[m
+[32m+[m
+[32m+[m	[32mint i = 0;[m
+ 	for (const auto& entry : std::filesystem::directory_iterator(directory))[m
+ 	{[m
+[31m-		//std::cout << entry.path() << std::endl;[m
+[31m-		MusicFiles[i].setString(entry.path().filename().string());[m
+[32m+[m		[32m//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;[m
+[32m+[m		[32mlist.pushBack(window, blockPressed, listBlock, mark, clickBuff, switchBuff, font);[m
+[32m+[m		[32mlist.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 50 + i * 50);[m
+[32m+[m		[32mlist.setText(entry.path().filename().generic_string());[m
+ 		i++;[m
+ 		if (i == 5)[m
+ 			break;[m
+ 	}[m
+[32m+[m	[32mlist.setSoundVolume(setting.SoundVolume);[m
+ [m
+[31m-	if (!VolumeSliderLine.loadFromFile("../PNG/grey_sliderHorizontal.png"))[m
+[31m-		exit(-1);[m
+[31m-	if (!VolumePointner.loadFromFile("../PNG/green_sliderUp.png"))[m
+[31m-		exit(-1);[m
+[31m-	if (!upSlider.loadFromFile("../PNG/dropdownTop.png"))[m
+[31m-		exit(-1);[m
+[31m-	if (!midSlider.loadFromFile("../PNG/dropdownMid.png"))[m
+[31m-		exit(-1);[m
+[31m-	if (!downSlider.loadFromFile("../PNG/dropdownBottom.png"))[m
+[31m-		exit(-1);[m
+[31m-	goBack.setTexture(block);[m
+[31m-	slider[0].setTexture(upSlider);[m
+[31m-	slider[1].setTexture(midSlider);[m
+[31m-	slider[2].setTexture(midSlider);[m
+[31m-	slider[3].setTexture(midSlider);[m
+[31m-	slider[4].setTexture(downSlider);[m
+[31m-	VolSliderMusic.setTexture(VolumeSliderLine);[m
+[31m-	VolSliderSoundEffects.setTexture(VolumeSliderLine);[m
+[31m-	VolPointnerMusic.setTexture(VolumePointner);[m
+[31m-	VolPointnerSound.setTexture(VolumePointner);[m
+[31m-[m
+[31m-	VolSliderMusic.setScale(1.8, 1);[m
+[31m-	VolSliderMusic.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 - 300);[m
+[31m-	VolSliderSoundEffects.setScale(1.8, 1);[m
+[31m-	VolSliderSoundEffects.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 - 100);[m
+[31m-	for (int i = 0; i < 5; i++)[m
+[31m-	{[m
+[31m-		slider[i].setScale(1.8, 2);[m
+[31m-		slider[i].setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 100 + i * 48);[m
+[31m-	}[m
+[31m-	goBack.setScale(1.8, 1);[m
+[31m-	goBack.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 200 + 4 * 48);[m
+[31m-	VolPointnerMusic.setOrigin(14, 0);[m
+[31m-	VolPointnerMusic.setPosition(VolSliderMusic.getGlobalBounds().left + VolSliderMusic.getGlobalBounds().width,VolSliderMusic.getPosition().y);[m
+[31m-	VolPointnerSound.setOrigin(14, 0);[m
+[31m-	VolPointnerSound.setPosition(VolSliderSoundEffects.getGlobalBounds().left + VolSliderSoundEffects.getGlobalBounds().width, VolSliderSoundEffects.getPosition().y);[m
+[32m+[m	[32mButton goBack(window, blockPressed, block, mark, clickBuff, switchBuff, font);[m
+[32m+[m	[32mgoBack.setPosition(linex, liney + 200 + 4 * 58);[m
+[32m+[m	[32mgoBack.setTitle("Back");[m
+[32m+[m	[32mgoBack.setSoundVolume(setting.SoundVolume);[m
+ [m
+[32m+[m	[32mButton musicApply(window, blockPressed, block, mark, clickBuff, switchBuff, font);[m
+[32m+[m	[32mmusicApply.setPosition(linex, liney + 100 + 4 * 58);[m
+[32m+[m	[32mmusicApply.setTitle("apply");[m
+[32m+[m	[32mmusicApply.setSoundVolume(setting.SoundVolume);[m
+ [m
+ 	VolMusicText.setString("Music Volume");[m
+ 	VolSounndEffectsTest.setString("Sound Effects Volume");[m
+ 	ChoseMusicText.setString("Chose music file");[m
+[31m-	goBackText.setString("go Back");[m
+[32m+[m	[32mfileError.setString("could not open file");[m
+ [m
+ 	VolSounndEffectsTest.setFont(font);[m
+ 	VolMusicText.setFont(font);[m
+ 	ChoseMusicText.setFont(font);[m
+[31m-	goBackText.setFont(font);[m
+[31m-	for (i = 0;i<5;i++)[m
+[31m-	{	[m
+[31m-		MusicFiles[i].setFillColor(sf::Color::Black);[m
+[31m-		MusicFiles[i].setFont(font);[m
+[31m-		MusicFiles[i].setCharacterSize(25);[m
+[31m-		MusicFiles[i].setPosition(slider[i].getPosition().x + 20, slider[i].getPosition().y + 8 + i * 48);[m
+[31m-	}[m
+[32m+[m	[32mfileError.setFont(font);[m
+[32m+[m
+[32m+[m
+ [m
+ 	VolMusicText.setCharacterSize(25);[m
+ 	VolSounndEffectsTest.setCharacterSize(25);[m
+ 	ChoseMusicText.setCharacterSize(25);[m
+[31m-	goBackText.setCharacterSize(25);[m
+[32m+[m	[32mfileError.setCharacterSize(15);[m
+ [m
+ 	VolMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 - 400 + 8);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);[m
+ 	VolSounndEffectsTest.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 - 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);[m
+[31m-	ChoseMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 +8); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);[m
+[31m-	goBackText.setPosition(goBack.getPosition().x + 20, goBack.getPosition().y + 8);[m
+[32m+[m	[32mChoseMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 100 +8); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);[m
+[32m+[m	[32mfileError.setPosition(-200,-200); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);[m
+[32m+[m	[32mfileError.setFillColor(sf::Color::Red);[m
+ [m
+ 	while (window.isOpen())[m
+ 	{[m
+ 		while (window.pollEvent(event))[m
+ 		{[m
+[31m-			if (isOnButton(goBack)) {[m
+[31m-				if (!isAlredyOnN) {[m
+[31m-					//mark.setPosition(blockNormalGame.getPosition().x - 50, blockNormalGame.getPosition().y + 10);[m
+[31m-					switch1.play();[m
+[31m-					isAlredyOnN = true;[m
+[31m-					isAlredyOnD = false;[m
+[31m-				}[m
+[31m-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-				{[m
+[31m-					if (!mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						goBack.setTexture(blockPressed);[m
+[31m-						mouseAlredyPressed = true;[m
+[31m-						click.play();[m
+[31m-					}[m
+[31m-					// left mouse button is pressed: shoot[m
+[31m-				}[m
+[31m-				else[m
+[31m-					if (mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						blockNormalGame.setTexture(block);[m
+[31m-						mouseAlredyPressed = false;[m
+[31m-						return st::mainMenu;[m
+[31m-					}[m
+[31m-			}[m
+[31m-			else if (isOnButton(VolPointnerMusic)) {[m
+[31m-				if (!isAlredyOnN) {[m
+[31m-					//mark.setPosition(blockMultiplayerGame.getPosition().x - 50, blockMultiplayerGame.getPosition().y + 10);	[m
+[31m-					//switch1.play();[m
+[31m-					isAlredyOnN = true;[m
+[31m-					isAlredyOnD = false;[m
+[31m-				}[m
+[31m-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-				{[m
+[31m-					int x = sf::Mouse::getPosition().x;[m
+[31m-					if (x < VolSliderMusic.getGlobalBounds().left)[m
+[31m-						x = VolSliderMusic.getGlobalBounds().left;[m
+[31m-					if (x > VolSliderMusic.getGlobalBounds().left + VolSliderMusic.getGlobalBounds().width)[m
+[31m-						x = VolSliderMusic.getGlobalBounds().left + VolSliderMusic.getGlobalBounds().width;[m
+[31m-					VolPointnerMusic.setPosition(x, VolPointnerMusic.getPosition().y);[m
+[31m-					double width = VolPointnerMusic.getPosition().x - VolSliderMusic.getPosition().x;[m
+[31m-					double mul = width / VolSliderMusic.getGlobalBounds().width;[m
+[31m-					menuMusic.setVolume(30 * mul);[m
+[31m-					if (!mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						mouseAlredyPressed = true;[m
+[31m-						click.play();[m
+[31m-					}[m
+[31m-					// left mouse button is pressed: shoot[m
+[31m-				}[m
+[31m-				else [m
+[31m-				{[m
+[31m-					if (mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						//blockMultiplayerGame.setTexture(block);[m
+[31m-						mouseAlredyPressed = false;[m
+[31m-					}[m
+[31m-				}[m
+[31m-			}[m
+[31m-			else if (isOnButton(VolPointnerSound)) [m
+[32m+[m
+[32m+[m			[32mgoBack.checkState();[m
+[32m+[m			[32mmusicApply.checkState();[m
+[32m+[m			[32mmusicSlider.checkState();[m
+[32m+[m			[32msoundSlider.checkState();[m
+[32m+[m			[32mlist.checkState();[m
+[32m+[m			[32mif (goBack.buttonFunction())[m
+[32m+[m				[32mreturn st::mainMenu;[m
+[32m+[m			[32melse if (musicApply.buttonFunction())[m
+ 			{[m
+[31m-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-				{[m
+[31m-					int x = sf::Mouse::getPosition().x;[m
+[31m-					if (x < VolSliderSoundEffects.getGlobalBounds().left)[m
+[31m-						x = VolSliderSoundEffects.getGlobalBounds().left;[m
+[31m-					if (x > VolSliderSoundEffects.getGlobalBounds().left + VolSliderSoundEffects.getGlobalBounds().width)[m
+[31m-						x = VolSliderSoundEffects.getGlobalBounds().left + VolSliderSoundEffects.getGlobalBounds().width;[m
+[31m-					VolPointnerSound.setPosition(x, VolPointnerSound.getPosition().y);[m
+[31m-					double width = VolPointnerSound.getPosition().x - VolSliderSoundEffects.getPosition().x;[m
+[31m-					double mul = width / VolSliderSoundEffects.getGlobalBounds().width;[m
+[31m-					//nic jeszcze[m
+[31m-					if (!mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						mouseAlredyPressed = true;[m
+[31m-						click.play();[m
+[31m-					}[m
+[31m-					// left mouse button is pressed: shoot[m
+[31m-				}[m
+[32m+[m				[32mbool try_ = music.setGameMusic(list.getFileDirect());[m
+[32m+[m				[32mif (try_)[m
+[32m+[m					[32mfileError.setPosition(-200, -200);[m
+ 				else[m
+[31m-				{[m
+[31m-					if (mouseAlredyPressed)[m
+[31m-					{[m
+[31m-						//blockMultiplayerGame.setTexture(block);[m
+[31m-						mouseAlredyPressed = false;[m
+[31m-					}[m
+[31m-				}[m
+[31m-			}[m
+[31m-			[m
+[31m-			else if (true) {[m
+[31m-				for (auto& x : MusicFiles)[m
+[31m-				{[m
+[31m-					if (isOnButton(x) && !x.getString().isEmpty())[m
+[31m-					{[m
+[31m-						/*if (!isAlredyOnN) {[m
+[31m-							mark.setPosition(blockQuit.getPosition().x - 50, blockQuit.getPosition().y + 10);[m
+[31m-							switch1.play();[m
+[31m-							isAlredyOnN = true;[m
+[31m-							isAlredyOnD = false;[m
+[31m-						}*/[m
+[31m-						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))[m
+[31m-						{[m
+[31m-							if (!mouseAlredyPressed)[m
+[31m-							{[m
+[31m-								blockQuit.setTexture(blockPressed);[m
+[31m-								mouseAlredyPressed = true;[m
+[31m-								click.play();[m
+[31m-							}[m
+[31m-							// left mouse button is pressed: shoot[m
+[31m-						}[m
+[31m-						else[m
+[31m-							if (mouseAlredyPressed)[m
+[31m-							{[m
+[31m-								x.setFillColor(sf::Color::Red);[m
+[31m-								menuMusic.stop();[m
+[31m-								[m
+[31m-								menuMusic.openFromFile("../Music/" + x.getString());[m
+[31m-								[m
+[31m-								menuMusic.play();[m
+[31m-									//blockQuit.setTexture(block);[m
+[31m-								mouseAlredyPressed = false;[m
+[31m-								//return st::quit;[m
+[31m-							}[m
+[31m-					}[m
+[31m-				}[m
+[32m+[m					[32mfileError.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 + 8);[m
+ 			}[m
+[31m-			else {[m
+[31m-				mouseAlredyPressed = false;[m
+[31m-				if (isAlredyOnD == false) {[m
+[31m-					//mark.setPosition(-200, -200);[m
+[31m-					isAlredyOnN = false;[m
+[31m-					isAlredyOnD = true;[m
+[31m-				}[m
+[32m+[m			[32melse if (musicSlider.sliderFunction());[m
+[32m+[m			[32melse if (soundSlider.sliderFunction())[m
+[32m+[m			[32m{[m
+[32m+[m				[32mmusicSlider.setSoundVolume(setting.SoundVolume);[m
+[32m+[m				[32msoundSlider.setSoundVolume(setting.SoundVolume);[m
+[32m+[m				[32mgoBack.setSoundVolume(setting.SoundVolume);[m
+[32m+[m				[32mlist.setSoundVolume(setting.SoundVolume);[m
+[32m+[m				[32mmusicApply.setSoundVolume(setting.SoundVolume);[m
+ 			}[m
+[31m-		// clear the window with black color[m
+[32m+[m			[32melse;[m
+ 		}[m
+ 		window.clear(sf::Color::Black);[m
+ [m
+[31m-		// draw everything here...[m
+[31m-		window.draw(background);[m
+[31m-		window.draw(goBack);[m
+[31m-		window.draw(VolSliderMusic);[m
+[31m-		window.draw(VolSliderSoundEffects);[m
+[31m-		window.draw(VolPointnerMusic);[m
+[31m-		window.draw(VolPointnerSound);[m
+[31m-		for (int i = 0;i<5;i++)[m
+[31m-		{[m
+[31m-			window.draw(slider[i]);[m
+[31m-			window.draw(MusicFiles[i]);[m
+[31m-		}[m
+[32m+[m		[32mbackground.draw();[m
+[32m+[m		[32mgoBack.draw();[m
+[32m+[m		[32mmusicSlider.draw();[m
+[32m+[m		[32msoundSlider.draw();[m
+[32m+[m		[32mlist.draw();[m
+[32m+[m		[32mmusicApply.draw();[m
+[32m+[m
+[32m+[m		[32mwindow.draw(fileError);[m
+ 		window.draw(ChoseMusicText);[m
+ 		window.draw(VolMusicText);[m
+ 		window.draw(VolSounndEffectsTest);[m
+[31m-		window.draw(goBackText);[m
+[32m+[m		[32mwindow.draw(mark);[m
+ 		window.display();[m
+ 	}[m
+ 	return st::mainMenu;[m
+[1mdiff --git a/Sylio/menu.h b/Sylio/menu.h[m
+[1mindex 6f84e31..c2290c6 100644[m
+[1m--- a/Sylio/menu.h[m
+[1m+++ b/Sylio/menu.h[m
+[36m@@ -1,44 +1,36 @@[m
+[31m-#include<SFML/Graphics.hpp>[m
+[32m+[m[32m#include"settings.h"[m
+[32m+[m[32m#include"Music.h"[m
+[32m+[m[32m#include"Button.h"[m
+ #include<string>[m
+ #include<iostream>[m
+ #include<filesystem>[m
+[31m-#include<SFML/Audio.hpp>[m
+[32m+[m[32m#include"list.h"[m
+[32m+[m[32m#include"Slider.h"[m
+[32m+[m[32m#include"Background.h"[m
+[32m+[m
+[32m+[m
+[32m+[m[32mextern Settings setting;[m
+ enum st { play = 1, settings, playOnline, quit, pause, mainMenu };[m
+ [m
+ class Menu[m
+ {[m
+ private:[m
+[32m+[m	[32mBackground background;[m
+ 	sf::RenderWindow& window;[m
+ 	std::string & version;[m
+[31m-	bool isOnButton(sf::Sprite&);[m
+[31m-	bool isAlredyOnButton(sf::Sprite&);[m
+[31m-	bool isOnButton(sf::Text& sprite);[m
+ 	sf::Font font;[m
+[31m-	sf::Text title;[m
+[31m-	sf::Music menuMusic;[m
+[31m-	sf::SoundBuffer buffer;[m
+[31m-	sf::Sound switch1;[m
+[31m-	sf::SoundBuffer buffer2;[m
+[31m-	sf::Sound click;[m
+[32m+[m	[32msf::SoundBuffer clickBuff;[m
+[32m+[m	[32msf::SoundBuffer switchBuff;[m
+ 	sf::Texture back;[m
+[31m-	sf::Sprite background;[m
+[31m-	sf::Text ver;[m
+[31m-	sf::Texture ex;[m
+[32m+[m	[32msf::Texture base;[m
+[32m+[m	[32m//sf::Sprite background;[m
+ 	sf::Texture mar;[m
+[31m-	sf::Sprite mark;[m
+[31m-	sf::Text NormalGame;[m
+[31m-	sf::Text MultiplayerGame;[m
+[31m-	sf::Text Settings;[m
+[31m-	sf::Text Quit;[m
+[31m-	sf::Text musicVolume;[m
+[31m-	sf::Text soundVolume;[m
+[31m-	sf::Text goBack;[m
+ 	sf::Texture block;[m
+ 	sf::Texture blockPressed;[m
+[31m-	sf::Sprite blockNormalGame;[m
+[31m-	sf::Sprite blockSettings;[m
+[31m-	sf::Sprite blockQuit;[m
+[31m-	sf::Sprite blockMultiplayerGame;[m
+[32m+[m	[32msf::Texture VolumeSliderLine;[m
+[32m+[m	[32msf::Texture VolumePointner;[m
+[32m+[m	[32msf::Texture listBlock;[m
+[32m+[m	[32msf::Sprite mark;[m
+ [m
+ public:[m
+ 	Menu(sf::RenderWindow& win, std::string& ver);[m
+[1mdiff --git a/Sylio/settings.cpp b/Sylio/settings.cpp[m
+[1mindex 7a5901b..a6119f4 100644[m
+[1m--- a/Sylio/settings.cpp[m
+[1m+++ b/Sylio/settings.cpp[m
+[36m@@ -1,16 +1,6 @@[m
+ #include "settings.h"[m
+ [m
+ [m
+[31m-[m
+[31m-Settings::Settings(sf::RenderWindow & win): window(win)[m
+[31m-{[m
+[31m-[m
+[31m-}[m
+[31m-int Settings::settings_update()[m
+[31m-{[m
+[31m-[m
+[31m-}[m
+[31m-[m
+ Settings::~Settings()[m
+ {[m
+ }[m
+[1mdiff --git a/Sylio/settings.h b/Sylio/settings.h[m
+[1mindex 8b13789..8769ff9 100644[m
+[1m--- a/Sylio/settings.h[m
+[1m+++ b/Sylio/settings.h[m
+[36m@@ -1 +1,9 @@[m
+[32m+[m[32m#pragma once[m
+[32m+[m[32mclass Settings[m
+[32m+[m[32m{[m
+[32m+[m[32mpublic:[m
+[32m+[m	[32mdouble SoundVolume;[m
+[32m+[m	[32mSettings() {SoundVolume = 1;};[m
+[32m+[m	[32m~Settings();[m
+[32m+[m[32m};[m
+ [m
+[1mdiff --git a/base3.png b/base3.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..65cb55c[m
+Binary files /dev/null and b/base3.png differ
+[1mdiff --git a/stars_space_sky_glitter_116409_1920x108022.jpg b/stars_space_sky_glitter_116409_1920x108022.jpg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a7f38ab[m
+Binary files /dev/null and b/stars_space_sky_glitter_116409_1920x108022.jpg differ
