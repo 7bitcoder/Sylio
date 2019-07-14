@@ -17,6 +17,7 @@ void Background::draw()
 
 void Background::set(sf::Texture back_,sf::Texture & base_, double r, double v)
 {
+	Background1.rotate(40);
 	prevPos = { 0,0 };
 	base.setTexture(base_);
 	back = back_;

@@ -10,7 +10,7 @@
 
 
 extern Settings setting;
-enum st { play = 1, settings, playOnline, quit, pause, mainMenu };
+enum st { play = 1, settings, playOnline, quit, pause, mainMenu , normalGame, MultiGame};
 
 class Menu
 {

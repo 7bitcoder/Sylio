@@ -26,7 +26,7 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!base.loadFromFile("../base3.png"))
 		exit(-1);
 	//background.setTexture(back);
-	background.set(back,base, 0 , 0.002);
+	background.set(back,base, 0 , 0.0015);
 
 	if (!mar.loadFromFile("../PNG/grey_sliderRight.png"))
 		exit(-1);
@@ -119,19 +119,40 @@ st Menu::mainMenuUpdate()
 }
 st Menu::settingsUupdate()
 {
+	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
+	int liney = window.getSize().y / 2 - 50;
+
 	mark.setPosition(-200, -200);
 	sf::Event event;
 
 
 	sf::Text VolMusicText;
+	VolMusicText.setString("Music Volume");
+	VolMusicText.setFont(font);
+	VolMusicText.setCharacterSize(25);
+	VolMusicText.setPosition(linex + 20, liney - 400 + 8);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
+
+
 	sf::Text VolSounndEffectsTest;
+	VolSounndEffectsTest.setString("Sound Effects Volume");
+	VolSounndEffectsTest.setFont(font);
+	VolSounndEffectsTest.setCharacterSize(25);
+	VolSounndEffectsTest.setPosition(linex + 20, liney- 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
+
+
 	sf::Text ChoseMusicText;
+	ChoseMusicText.setString("Chose music file");
+	ChoseMusicText.setFont(font);
+	ChoseMusicText.setCharacterSize(25);
+	ChoseMusicText.setPosition(linex + 20, liney - 50 + 8); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
+
+
 	sf::Text fileError;
-	
-
-
-	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
-	int liney = window.getSize().y / 2 - 50;
+	fileError.setString("could not open file");
+	fileError.setFont(font);
+	fileError.setCharacterSize(15);
+	fileError.setPosition(-200, -200); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
+	fileError.setFillColor(sf::Color::Red);
 	
 	Slider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
 	musicSlider.setPosition(linex, liney - 300, 1);//1- music /2 -sound
@@ -149,7 +170,7 @@ st Menu::settingsUupdate()
 	{
 		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
 		list.pushBack(window, blockPressed, listBlock, mark, clickBuff, switchBuff, font);
-		list.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 50 + 50 + i * 50);
+		list.setPosition(linex, liney + 50 + i * 50);
 		list.setText(entry.path().filename().generic_string());
 		i++;
 		if (i == 5)
@@ -166,29 +187,6 @@ st Menu::settingsUupdate()
 	musicApply.setPosition(linex, liney + 100 + 4 * 58);
 	musicApply.setTitle("apply");
 	musicApply.setSoundVolume(setting.SoundVolume);
-
-	VolMusicText.setString("Music Volume");
-	VolSounndEffectsTest.setString("Sound Effects Volume");
-	ChoseMusicText.setString("Chose music file");
-	fileError.setString("could not open file");
-
-	VolSounndEffectsTest.setFont(font);
-	VolMusicText.setFont(font);
-	ChoseMusicText.setFont(font);
-	fileError.setFont(font);
-
-
-
-	VolMusicText.setCharacterSize(25);
-	VolSounndEffectsTest.setCharacterSize(25);
-	ChoseMusicText.setCharacterSize(25);
-	fileError.setCharacterSize(15);
-
-	VolMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 - 400 + 8);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
-	VolSounndEffectsTest.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 - 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
-	ChoseMusicText.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 100 +8); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
-	fileError.setPosition(-200,-200); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
-	fileError.setFillColor(sf::Color::Red);
 
 	while (window.isOpen())
 	{
@@ -208,7 +206,7 @@ st Menu::settingsUupdate()
 				if (try_)
 					fileError.setPosition(-200, -200);
 				else
-					fileError.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2 + 20, window.getSize().y / 2 - 50 + 8);
+					fileError.setPosition(linex + 20, liney + 8);
 			}
 			else if (musicSlider.sliderFunction());
 			else if (soundSlider.sliderFunction())
