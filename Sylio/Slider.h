@@ -9,7 +9,6 @@ class Slider
 {
 private:
 	enum pointnerState { isOn = 1, isNotOn, isPressed, isNotPressed, apperedOn, isClickedOn, isClickedOut, apperedOut, notClickedOutButCoursorIsOut };
-	int id;//do rozdzielenia slidera music od sound
 	sf::Sprite pointner;
 	sf::Sprite line;
 	sf::RenderWindow& window;
@@ -22,9 +21,9 @@ private:
 	double vol;
 public:
 	void checkState();
-	bool sliderFunction();
+	bool sliderFunction(double & volume);
 	Slider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_, sf::SoundBuffer &click_);
-	void setPosition(int x, int y, int id_);
+	void setPosition(int x, int y, double scale);
 	void draw() { window.draw(line); window.draw(pointner); };
 	void setSoundVolume(double v) { click.setVolume(v*100); }
 	~Slider();

@@ -19,7 +19,7 @@ private:
 	sf::Vector2i prevPos;
 public:
 	void draw();
-	Background(sf::RenderWindow& window_) : window(window_) {}
+	Background(sf::RenderWindow& window_) : window(window_) { radious = 0; velocity = 0; angle = 0; }
 	void set(sf::Texture back_, sf::Texture & base_, double r, double v);
 	~Background();
 };

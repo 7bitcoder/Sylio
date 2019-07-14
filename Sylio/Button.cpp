@@ -4,7 +4,7 @@
 
 void Button::showMark()
 {
-	Mark.setPosition(button.getPosition().x - 50, button.getPosition().y + 10);
+	Mark.setPosition(this->getPosition().x - 50, this->getPosition().y + 10);
 }
 
 void Button::hideMark()
@@ -35,24 +35,24 @@ bool Button::buttonFunction()
 	else if (clicked == false && positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
 	{	
 		click.play();
-		button.move(0, 4);
+		this->move(0, 4);
 		title.move(0, 4);
-		button.setTexture(pressed, true);
+		this->setTexture(pressed, true);
 		clicked = true;
 	}
 	else if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed )
 	{
-		button.move(0, -4);
+		this->move(0, -4);
 		title.move(0, -4);
-		button.setTexture(released, true);
+		this->setTexture(released, true);
 		clicked = false;
 		return true;
 	}
 	else if (clicked == true && positionSt == positionState::isNotOn && lastPositionSt == positionState::isOn)
 	{
-		button.move(0, -4);
+		this->move(0, -4);
 		title.move(0, -4);
-		button.setTexture(released, true);
+		this->setTexture(released, true);
 		clicked = false;
 		hideMark();
 	}
@@ -88,9 +88,9 @@ void Button::setTitle(std::string title_)
 	title.setCharacterSize(25);
 	title.setFillColor(sf::Color::Black);
 	title.setString(title_);
-	if (title.getGlobalBounds().width > button.getGlobalBounds().width)
+	if (title.getGlobalBounds().width > this->getGlobalBounds().width)
 	{
-		while (title.getGlobalBounds().width > button.getGlobalBounds().width)
+		while (title.getGlobalBounds().width > this->getGlobalBounds().width)
 		{
 			title_.pop_back();
 			title.setString(title_);
@@ -101,11 +101,7 @@ void Button::setTitle(std::string title_)
 		title_ += "...";
 		title.setString(title_);
 	}
-	title.setPosition(button.getPosition().x + 20, button.getPosition().y + 8);
-}
-void Button::setPosition(int posx, int posy)
-{
-	button.setPosition(posx, posy);
+	title.setPosition(this->getPosition().x + 20, this->getPosition().y + 8);
 }
 Button::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::Sprite& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_,sf::Font &font_): 
 	font(font_),
@@ -117,8 +113,7 @@ Button::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::
 	released(rel)
 {
 	switchS.setVolume(30);
-	button.setScale(1.8, 1);
-	button.setTexture(rel);
+	this->setTexture(rel);
 	buttonSt = buttonState::isNotPressed;
 	positionSt = positionState::isNotOn;
 	lastButtonSt = buttonSt;
@@ -143,7 +138,7 @@ bool Button::isOnButton()
 {
 	//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
 	//std::cout << button.getGlobalBounds().left << " " << button.getGlobalBounds().top << " "<< button.getGlobalBounds().height << " " << button.getGlobalBounds().width << std::endl;
-	if (sf::Mouse::getPosition(window).x > button.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (button.getGlobalBounds().left + button.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > button.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (button.getGlobalBounds().top + button.getGlobalBounds().height))
+	if (sf::Mouse::getPosition(window).x > this->getGlobalBounds().left && sf::Mouse::getPosition(window).x < (this->getGlobalBounds().left + this->getGlobalBounds().width) && sf::Mouse::getPosition(window).y > this->getGlobalBounds().top && sf::Mouse::getPosition(window).y < (this->getGlobalBounds().top + this->getGlobalBounds().height))
 	{	
 		return true;
 	}

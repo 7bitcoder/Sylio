@@ -3,14 +3,12 @@
 #include"Sounds.h"
 #include<iostream>
 
-class Button
+class Button: public sf::Sprite
 {
 private:
 	enum buttonState { isPressed, isNotPressed};
 	enum positionState { isOn, isNotOn};
-	static sf::RenderWindow& w;
 	std::string text;
-	sf::Sprite button;
 	sf::Texture& pressed;
 	sf::Texture& released;
 	sf::RenderWindow& window;
@@ -34,12 +32,11 @@ public:
 	bool settingsListFunction();
 	bool empty() { return text.empty(); }
 	void setTitle(std::string title_);
-	void setPosition(int posx, int posy);
-	void draw() { window.draw(button); window.draw(title); };
 	void checkState();
 	void setColor(sf::Color x) { title.setFillColor(x); };
 	void setSoundVolume(double v) { switchS.setVolume(30 * v); click.setVolume(v*100); }
 	std::string& getString() { return text; }
+	void draw() { window.draw(*this); window.draw(title); }
 	bool isOnButton();
 	~Button();
 };

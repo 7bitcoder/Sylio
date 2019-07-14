@@ -66,23 +66,31 @@ st Menu::mainMenuUpdate()
 
 	Button normalGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);
 	normalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 100);
+	normalGame.setScale(1.8, 1);
 	normalGame.setTitle("normal game");
 	normalGame.setSoundVolume(setting.SoundVolume);
 
+
 	Button multiplayerGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);
 	multiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2);
+	multiplayerGame.setScale(1.8, 1);
 	multiplayerGame.setTitle("multipleyer game");
 	multiplayerGame.setSoundVolume(setting.SoundVolume);
 
+
 	Button settings(window, blockPressed, block, mark, clickBuff, switchBuff, font);
 	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
+	settings.setScale(1.8, 1);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
+
 	
 	Button quit(window, blockPressed, block, mark, clickBuff, switchBuff, font);
 	quit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
+	quit.setScale(1.8, 1);
 	quit.setTitle("quit");
 	quit.setSoundVolume(setting.SoundVolume);
+	
 
 	while (window.isOpen())
 	{
@@ -155,11 +163,11 @@ st Menu::settingsUupdate()
 	fileError.setFillColor(sf::Color::Red);
 	
 	Slider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
-	musicSlider.setPosition(linex, liney - 300, 1);//1- music /2 -sound
+	musicSlider.setPosition(linex, liney - 300, (music.getVolume() / 30));//1- music /2 -sound
 	musicSlider.setSoundVolume(setting.SoundVolume);
 
 	Slider soundSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
-	soundSlider.setPosition(linex, liney - 100, 2);
+	soundSlider.setPosition(linex, liney - 100, setting.SoundVolume);
 	soundSlider.setSoundVolume(setting.SoundVolume);
 
 	List list;
@@ -171,6 +179,7 @@ st Menu::settingsUupdate()
 		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
 		list.pushBack(window, blockPressed, listBlock, mark, clickBuff, switchBuff, font);
 		list.setPosition(linex, liney + 50 + i * 50);
+		list.setScale(1.8, 1);
 		list.setText(entry.path().filename().generic_string());
 		i++;
 		if (i == 5)
@@ -180,14 +189,18 @@ st Menu::settingsUupdate()
 
 	Button goBack(window, blockPressed, block, mark, clickBuff, switchBuff, font);
 	goBack.setPosition(linex, liney + 200 + 4 * 58);
+	goBack.setScale(1.8, 1);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
+
 	Button musicApply(window, blockPressed, block, mark, clickBuff, switchBuff, font);
 	musicApply.setPosition(linex, liney + 100 + 4 * 58);
+	musicApply.setScale(1.8, 1);
 	musicApply.setTitle("apply");
 	musicApply.setSoundVolume(setting.SoundVolume);
 
+	double volume;
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))
@@ -208,9 +221,13 @@ st Menu::settingsUupdate()
 				else
 					fileError.setPosition(linex + 20, liney + 8);
 			}
-			else if (musicSlider.sliderFunction());
-			else if (soundSlider.sliderFunction())
+			else if (musicSlider.sliderFunction(volume))
 			{
+				music.setVolume(volume * 30);
+			}
+			else if (soundSlider.sliderFunction(volume))
+			{
+				setting.SoundVolume = volume;
 				musicSlider.setSoundVolume(setting.SoundVolume);
 				soundSlider.setSoundVolume(setting.SoundVolume);
 				goBack.setSoundVolume(setting.SoundVolume);
