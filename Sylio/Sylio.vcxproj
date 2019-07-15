@@ -137,6 +137,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="PopAlert.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Sounds.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="PopAlert.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Slider.h" />
     <ClInclude Include="Sounds.h" />

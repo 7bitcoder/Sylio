@@ -7,7 +7,7 @@
 #include"list.h"
 #include"Slider.h"
 #include"Background.h"
-
+#include "PopAlert.h"
 
 extern Settings setting;
 enum st { play = 1, settings, playOnline, quit, pause, mainMenu , normalGame, MultiGame};
@@ -30,7 +30,8 @@ private:
 	sf::Texture VolumeSliderLine;
 	sf::Texture VolumePointner;
 	sf::Texture listBlock;
-	sf::Sprite mark;
+	sf::Texture whiteBox;
+
 
 public:
 	Menu(sf::RenderWindow& win, std::string& ver);

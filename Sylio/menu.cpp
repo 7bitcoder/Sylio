@@ -23,6 +23,9 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!back.loadFromFile("../stars_space_sky_glitter_116409_1920x108022.jpg"))
 		exit(-1);
 
+	if (!whiteBox.loadFromFile("../PNG/grey_panel.png"))
+		exit(-1);
+
 	if (!base.loadFromFile("../base3.png"))
 		exit(-1);
 	//background.setTexture(back);
@@ -39,11 +42,6 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 
 	if (!listBlock.loadFromFile("../PNG/grey_button06.png"))
 		exit(-1);
-
-	mark.setTexture(mar);
-	mark.setPosition(-200, -200);
-
-
 
 }
 
@@ -62,30 +60,28 @@ st Menu::mainMenuUpdate()
 	ver.setString(version);
 	ver.setPosition(window.getSize().x - 100, window.getSize().y - 15);
 
-	mark.setPosition(-200, -200);
-
-	Button normalGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	Button normalGame(window, blockPressed, block, mar, clickBuff, switchBuff, font);
 	normalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 100);
 	normalGame.setScale(1.8, 1);
 	normalGame.setTitle("normal game");
 	normalGame.setSoundVolume(setting.SoundVolume);
 
 
-	Button multiplayerGame(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	Button multiplayerGame(window, blockPressed, block, mar, clickBuff, switchBuff, font);
 	multiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2);
 	multiplayerGame.setScale(1.8, 1);
 	multiplayerGame.setTitle("multipleyer game");
 	multiplayerGame.setSoundVolume(setting.SoundVolume);
 
 
-	Button settings(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	Button settings(window, blockPressed, block, mar, clickBuff, switchBuff, font);
 	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
 	settings.setScale(1.8, 1);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
 
 	
-	Button quit(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	Button quit(window, blockPressed, block, mar, clickBuff, switchBuff, font);
 	quit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
 	quit.setScale(1.8, 1);
 	quit.setTitle("quit");
@@ -121,16 +117,16 @@ st Menu::mainMenuUpdate()
 		multiplayerGame.draw();
 		settings.draw();
 		quit.draw();
-		window.draw(mark);
 		window.display();
 	}
 }
 st Menu::settingsUupdate()
 {
+	PopAlert alert(window, "asdasd", whiteBox, blockPressed, block, clickBuff, switchBuff, font);
+
 	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
 	int liney = window.getSize().y / 2 - 50;
 
-	mark.setPosition(-200, -200);
 	sf::Event event;
 
 
@@ -177,7 +173,7 @@ st Menu::settingsUupdate()
 	for (const auto& entry : std::filesystem::directory_iterator(directory))
 	{
 		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
-		list.pushBack(window, blockPressed, listBlock, mark, clickBuff, switchBuff, font);
+		list.pushBack(window, blockPressed, listBlock, mar, clickBuff, switchBuff, font);
 		list.setPosition(linex, liney + 50 + i * 50);
 		list.setScale(1.8, 1);
 		list.setText(entry.path().filename().generic_string());
@@ -187,58 +183,73 @@ st Menu::settingsUupdate()
 	}
 	list.setSoundVolume(setting.SoundVolume);
 
-	Button goBack(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	Button goBack(window, blockPressed, block, mar, clickBuff, switchBuff, font);
 	goBack.setPosition(linex, liney + 200 + 4 * 58);
 	goBack.setScale(1.8, 1);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
 
-	Button musicApply(window, blockPressed, block, mark, clickBuff, switchBuff, font);
+	Button musicApply(window, blockPressed, block, mar, clickBuff, switchBuff, font);
 	musicApply.setPosition(linex, liney + 100 + 4 * 58);
 	musicApply.setScale(1.8, 1);
 	musicApply.setTitle("apply");
 	musicApply.setSoundVolume(setting.SoundVolume);
-
+	
+	bool alertFlag = false;
 	double volume;
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))
 		{
-
-			goBack.checkState();
-			musicApply.checkState();
-			musicSlider.checkState();
-			soundSlider.checkState();
-			list.checkState();
-			if (goBack.buttonFunction())
-				return st::mainMenu;
-			else if (musicApply.buttonFunction())
+			if (!alertFlag)
 			{
-				bool try_ = music.setGameMusic(list.getFileDirect());
-				if (try_)
-					fileError.setPosition(-200, -200);
-				else
-					fileError.setPosition(linex + 20, liney + 8);
+				goBack.checkState();
+				musicApply.checkState();
+				musicSlider.checkState();
+				soundSlider.checkState();
+				list.checkState();
+				if (musicApply.buttonFunction())
+				{
+					bool try_ = music.setGameMusic(list.getFileDirect());
+					if (!try_)
+					{
+						alert.setText("nie udalo sie \nodczytac pliku \nmoze uzyj \nspotify :)");
+						alertFlag = true;
+						alert.show();
+					}
+				}
+				else if (goBack.buttonFunction())
+					return st::mainMenu;
+				else if (musicSlider.sliderFunction(volume))
+				{
+					music.setVolume(volume * 30);
+				}
+				else if (soundSlider.sliderFunction(volume))
+				{
+					setting.SoundVolume = volume;
+					musicSlider.setSoundVolume(setting.SoundVolume);
+					soundSlider.setSoundVolume(setting.SoundVolume);
+					goBack.setSoundVolume(setting.SoundVolume);
+					list.setSoundVolume(setting.SoundVolume);
+					musicApply.setSoundVolume(setting.SoundVolume);
+				}
+				else;
 			}
-			else if (musicSlider.sliderFunction(volume))
+			else
 			{
-				music.setVolume(volume * 30);
+				alert.checkState();
+				if (alert.function())
+				{
+					alertFlag = false;
+					alert.hide();
+				}
 			}
-			else if (soundSlider.sliderFunction(volume))
-			{
-				setting.SoundVolume = volume;
-				musicSlider.setSoundVolume(setting.SoundVolume);
-				soundSlider.setSoundVolume(setting.SoundVolume);
-				goBack.setSoundVolume(setting.SoundVolume);
-				list.setSoundVolume(setting.SoundVolume);
-				musicApply.setSoundVolume(setting.SoundVolume);
-			}
-			else;
 		}
 		window.clear(sf::Color::Black);
 
 		background.draw();
+
 		goBack.draw();
 		musicSlider.draw();
 		soundSlider.draw();
@@ -249,7 +260,8 @@ st Menu::settingsUupdate()
 		window.draw(ChoseMusicText);
 		window.draw(VolMusicText);
 		window.draw(VolSounndEffectsTest);
-		window.draw(mark);
+		alert.draw();
+
 		window.display();
 	}
 	return st::mainMenu;

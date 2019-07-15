@@ -62,6 +62,40 @@ bool Button::buttonFunction()
 	}
 	return false;
 }
+bool Button::normalButtonFunction()
+{
+	//std::cout << state;
+	if (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn && clicked == false)
+		return false;
+	else if (positionSt == positionState::isOn && lastPositionSt == positionState::isNotOn)
+	{
+		switchS.play();
+	}
+	else if (clicked == false && positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
+	{
+		click.play();
+		this->move(0, 4);
+		title.move(0, 4);
+		this->setTexture(pressed, true);
+		clicked = true;
+	}
+	else if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed)
+	{
+		this->move(0, -4);
+		title.move(0, -4);
+		this->setTexture(released, true);
+		clicked = false;
+		return true;
+	}
+	else if (clicked == true && positionSt == positionState::isNotOn && lastPositionSt == positionState::isOn)
+	{
+		this->move(0, -4);
+		title.move(0, -4);
+		this->setTexture(released, true);
+		clicked = false;
+	}
+	return false;
+}
 bool Button::settingsListFunction()
 {
 	if (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn && clicked == false)
@@ -103,13 +137,31 @@ void Button::setTitle(std::string title_)
 	}
 	title.setPosition(this->getPosition().x + 20, this->getPosition().y + 8);
 }
-Button::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::Sprite& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_,sf::Font &font_): 
+Button::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::Texture& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_,sf::Font &font_): 
 	font(font_),
-	Mark(mark_), 
 	switchS(switch_),
 	click(click_) ,
 	window(win), 
 	pressed(pres), 
+	released(rel)
+{
+	Mark.setTexture(mark_);
+	switchS.setVolume(30);
+	this->setTexture(rel);
+	buttonSt = buttonState::isNotPressed;
+	positionSt = positionState::isNotOn;
+	lastButtonSt = buttonSt;
+	lastPositionSt = positionSt;
+	clicked = false;
+	hideMark();
+}
+Button::Button(sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::SoundBuffer& click_, sf::SoundBuffer& switch_, sf::Font& font_) :
+	font(font_),
+	switchS(switch_),
+	click(click_),
+	Mark(),
+	window(win),
+	pressed(pres),
 	released(rel)
 {
 	switchS.setVolume(30);
@@ -119,8 +171,8 @@ Button::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::
 	lastButtonSt = buttonSt;
 	lastPositionSt = positionSt;
 	clicked = false;
+	hideMark();
 }
-
 void Button::checkState()
 {
 	lastButtonSt = buttonSt;
