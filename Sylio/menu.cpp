@@ -214,8 +214,9 @@ st Menu::settingsUupdate()
 					bool try_ = music.setGameMusic(list.getFileDirect());
 					if (!try_)
 					{
-						alert.setText("nie udalo sie \nodczytac pliku \nmoze uzyj \nspotify :)");
+						alert.setText("nie udalo sie odczytac \npliku, moze uzyj spotify :)");
 						alertFlag = true;
+						musicApply.hideMark();
 						alert.show();
 					}
 				}

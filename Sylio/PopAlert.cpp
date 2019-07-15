@@ -12,11 +12,10 @@ PopAlert::PopAlert(sf::RenderWindow & win_, std::string text_, sf::Texture & box
 	text.setFillColor(sf::Color::Black);
 	drawable = false;
 	box.setTexture(box_);
-	box.setScale(3, 3);
-	box.setPosition(win_.getSize().x / 2 - 150,  win_.getSize().y / 2 - 150);
-	ok.setPosition(win_.getSize().x / 2 - 90 , win_.getSize().y / 2 + 80);
+	box.setPosition(win_.getSize().x / 2 - 200,  win_.getSize().y / 2 - 70);
+	ok.setPosition(box.getPosition().x + 110, box.getPosition().y + 135);
 	ok.setSoundVolume(setting.SoundVolume);
-	text.setPosition(win_.getSize().x / 2 - 130, win_.getSize().y / 2 - 100);
+	text.setPosition(box.getPosition().x + 20, box.getPosition().y + 20);
 	text.setLineSpacing(1);
 	ok.setTitle("ok");
 }
