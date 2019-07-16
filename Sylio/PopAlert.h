@@ -12,9 +12,9 @@ private:
 	Button ok;
 	bool drawable;
 public:
-	PopAlert(sf::RenderWindow& win_, std::string text_, sf::Texture& box_, sf::Texture& pres, sf::Texture& rel, sf::SoundBuffer& click_, sf::SoundBuffer& switch_, sf::Font& font_);
+	PopAlert(sf::RenderWindow& win_, std::string text_, sf::Texture& box_, sf::Texture& pres, sf::Texture& rel,sf::Texture& off, sf::SoundBuffer& click_, sf::SoundBuffer& switch_, sf::Font& font_);
 	void checkState() { ok.checkState(); };
-	bool function() { return ok.normalButtonFunction(); };
+	bool function() { return ok.buttonFunction(); };
 	void show() { drawable = true; }
 	void hide() { drawable = false; }
 	void draw() {

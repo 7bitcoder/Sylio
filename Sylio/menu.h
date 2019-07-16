@@ -27,6 +27,7 @@ private:
 	sf::Texture mar;
 	sf::Texture block;
 	sf::Texture blockPressed;
+	sf::Texture offButton;
 	sf::Texture VolumeSliderLine;
 	sf::Texture VolumePointner;
 	sf::Texture listBlock;

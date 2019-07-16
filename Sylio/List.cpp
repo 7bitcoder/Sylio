@@ -1,8 +1,8 @@
 #include "List.h"
 
-void List::pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Texture& mark_, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_)
+void List::pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Texture& off, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_)
 {
-	list.push_back(Button(win, pres, rel, mark_, click_, switch_, font_));
+	list.push_back(Button(win, pres, rel, off, click_, switch_, font_));
 	list.back().setColor(sf::Color::Black);
 	
 	

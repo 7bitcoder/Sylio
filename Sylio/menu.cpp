@@ -2,6 +2,7 @@
 
 Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_), background(win)
 {
+
 	if (!clickBuff.loadFromFile("../Sounds/click1.ogg"))
 		exit(-1);
 
@@ -10,14 +11,14 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
 		exit(-1);
-	
-	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
-		exit(-1);
 
 	if (!block.loadFromFile("../PNG/grey_button15.png"))
 		exit(-1);
 
 	if (!blockPressed.loadFromFile("../PNG/grey_button00.png"))
+		exit(-1);
+
+	if (!offButton.loadFromFile("../PNG/grey_button03.png"))
 		exit(-1);
 
 	if (!back.loadFromFile("../stars_space_sky_glitter_116409_1920x108022.jpg"))
@@ -60,28 +61,28 @@ st Menu::mainMenuUpdate()
 	ver.setString(version);
 	ver.setPosition(window.getSize().x - 100, window.getSize().y - 15);
 
-	Button normalGame(window, blockPressed, block, mar, clickBuff, switchBuff, font);
+	Button normalGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	normalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 100);
 	normalGame.setScale(1.8, 1);
 	normalGame.setTitle("normal game");
 	normalGame.setSoundVolume(setting.SoundVolume);
 
 
-	Button multiplayerGame(window, blockPressed, block, mar, clickBuff, switchBuff, font);
+	Button multiplayerGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	multiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2);
 	multiplayerGame.setScale(1.8, 1);
 	multiplayerGame.setTitle("multipleyer game");
 	multiplayerGame.setSoundVolume(setting.SoundVolume);
 
 
-	Button settings(window, blockPressed, block, mar, clickBuff, switchBuff, font);
+	Button settings(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
 	settings.setScale(1.8, 1);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
 
 	
-	Button quit(window, blockPressed, block, mar, clickBuff, switchBuff, font);
+	Button quit(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	quit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
 	quit.setScale(1.8, 1);
 	quit.setTitle("quit");
@@ -122,7 +123,7 @@ st Menu::mainMenuUpdate()
 }
 st Menu::settingsUupdate()
 {
-	PopAlert alert(window, "asdasd", whiteBox, blockPressed, block, clickBuff, switchBuff, font);
+	PopAlert alert(window, "asdasd", whiteBox, blockPressed, block, offButton, clickBuff, switchBuff, font);
 
 	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
 	int liney = window.getSize().y / 2 - 50;
@@ -173,7 +174,7 @@ st Menu::settingsUupdate()
 	for (const auto& entry : std::filesystem::directory_iterator(directory))
 	{
 		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
-		list.pushBack(window, blockPressed, listBlock, mar, clickBuff, switchBuff, font);
+		list.pushBack(window, blockPressed, listBlock, listBlock, clickBuff, switchBuff, font);
 		list.setPosition(linex, liney + 50 + i * 50);
 		list.setScale(1.8, 1);
 		list.setText(entry.path().filename().generic_string());
@@ -183,14 +184,14 @@ st Menu::settingsUupdate()
 	}
 	list.setSoundVolume(setting.SoundVolume);
 
-	Button goBack(window, blockPressed, block, mar, clickBuff, switchBuff, font);
+	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	goBack.setPosition(linex, liney + 200 + 4 * 58);
 	goBack.setScale(1.8, 1);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
 
-	Button musicApply(window, blockPressed, block, mar, clickBuff, switchBuff, font);
+	Button musicApply(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	musicApply.setPosition(linex, liney + 100 + 4 * 58);
 	musicApply.setScale(1.8, 1);
 	musicApply.setTitle("apply");
@@ -216,7 +217,7 @@ st Menu::settingsUupdate()
 					{
 						alert.setText("nie udalo sie odczytac \npliku, moze uzyj spotify :)");
 						alertFlag = true;
-						musicApply.hideMark();
+						musicApply.normalization();
 						alert.show();
 					}
 				}

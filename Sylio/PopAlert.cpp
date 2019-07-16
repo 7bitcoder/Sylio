@@ -2,9 +2,9 @@
 
 
 
-PopAlert::PopAlert(sf::RenderWindow & win_, std::string text_, sf::Texture & box_, sf::Texture& pres, sf::Texture& rel, sf::SoundBuffer& click_, sf::SoundBuffer& switch_, sf::Font& font_):
+PopAlert::PopAlert(sf::RenderWindow & win_, std::string text_, sf::Texture & box_, sf::Texture& pres, sf::Texture& rel,sf::Texture& off, sf::SoundBuffer& click_, sf::SoundBuffer& switch_, sf::Font& font_):
 	window(win_),
-	ok(win_, pres, rel, click_, switch_, font_)
+	ok(win_, pres, rel, off, click_, switch_, font_)
 {
 	text.setFont(font_);
 	text.setString(text_);
