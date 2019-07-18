@@ -8,6 +8,7 @@
 #include"Slider.h"
 #include"Background.h"
 #include "PopAlert.h"
+#include "inputText.h"
 
 extern Settings setting;
 enum st { play = 1, settings, playOnline, quit, pause, mainMenu , normalGame, MultiGame};
@@ -38,6 +39,7 @@ public:
 	Menu(sf::RenderWindow& win, std::string& ver);
 	st mainMenuUpdate();
 	st settingsUupdate();
+	st normalGameUpdate();
 	~Menu();
 };
 

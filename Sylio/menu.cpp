@@ -99,7 +99,8 @@ st Menu::mainMenuUpdate()
 			multiplayerGame.checkState();
 			settings.checkState();
 			quit.checkState();
-			if (normalGame.buttonFunction());
+			if (normalGame.buttonFunction())
+				return st::normalGame;
 			else if (multiplayerGame.buttonFunction());
 			else if (settings.buttonFunction())
 				return st::settings;
@@ -267,6 +268,82 @@ st Menu::settingsUupdate()
 		window.display();
 	}
 	return st::mainMenu;
+}
+st Menu::normalGameUpdate()
+{
+	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
+	int liney = window.getSize().y / 2 - 50;
+
+	sf::Event event;
+
+
+	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
+	goBack.setPosition(linex, liney + 200 + 4 * 58);
+	goBack.setScale(1.8, 1);
+	goBack.setTitle("Back");
+	goBack.setSoundVolume(setting.SoundVolume);
+
+
+	Button play(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
+	play.setPosition(linex, liney + 100 + 4 * 58);
+	play.setScale(1.8, 1);
+	play.setTitle("play");
+	play.setSoundVolume(setting.SoundVolume);
+
+	inputText text(window, block, clickBuff);
+	text.setSize(30);
+	text.setColor(sf::Color::Black);
+	text.setFont(font);
+	text.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	text.defaultString("nickname");
+
+	inputText text2(window, block, clickBuff);
+	text2.setSize(30);
+	text2.setColor(sf::Color::Black);
+	text2.setFont(font);
+	text2.setPosition(window.getSize().x / 2 - 500, window.getSize().y / 2);
+	text2.defaultString("nickname");
+
+	inputText* activated = &text;
+	while (window.isOpen())
+	{
+		while (window.pollEvent(event))
+		{
+			text.checkState();
+			text2.checkState();
+			goBack.checkState();
+			play.checkState();
+			if (inputText::getFocus() && event.type == sf::Event::TextEntered)
+			{
+				activated->setChar(static_cast<char>(event.text.unicode));
+			}
+				if (goBack.buttonFunction())
+					return st::mainMenu;
+				else if (play.buttonFunction())
+				{
+					;
+				}
+				else if (text.function())
+				{
+					activated = &text;
+				}
+				else if (text2.function())
+				{
+					activated = &text2;
+				}
+
+		}
+		window.clear(sf::Color::Black);
+
+		background.draw();
+
+		goBack.draw();
+		play.draw();
+		text.draw();
+		text2.draw();
+
+		window.display();
+	}
 }
 Menu::~Menu()
 {

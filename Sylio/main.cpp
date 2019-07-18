@@ -25,6 +25,9 @@ int main()
 		case st::settings:
 			state = Menu_.settingsUupdate();
 			break;
+		case st::normalGame:
+			state = Menu_.normalGameUpdate();
+			break;
 		case st::quit:
 			window.close();
 			return 0;
