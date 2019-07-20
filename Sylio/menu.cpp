@@ -162,7 +162,7 @@ st Menu::settingsUupdate()
 	
 	Slider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
 	musicSlider.setPosition(linex, liney - 300, (music.getVolume() / 30));//1- music /2 -sound
-	musicSlider.setSoundVolume(setting.SoundVolume);
+	musicSlider.setSoundVolume(setting.MusicVolume);
 
 	Slider soundSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
 	soundSlider.setPosition(linex, liney - 100, setting.SoundVolume);
@@ -226,6 +226,7 @@ st Menu::settingsUupdate()
 					return st::mainMenu;
 				else if (musicSlider.sliderFunction(volume))
 				{
+					setting.MusicVolume = volume;
 					music.setVolume(volume * 30);
 				}
 				else if (soundSlider.sliderFunction(volume))

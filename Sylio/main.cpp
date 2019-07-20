@@ -3,6 +3,7 @@
 #include"menu.h"
 #include<string>
 #include<SFML/Audio.hpp>
+#include <filesystem>
 
 Settings setting;
 Music music;
@@ -29,6 +30,7 @@ int main()
 			state = Menu_.normalGameUpdate();
 			break;
 		case st::quit:
+			setting.save();
 			window.close();
 			return 0;
 			break;

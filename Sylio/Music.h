@@ -1,6 +1,9 @@
 #pragma once
 #include<SFML/Audio.hpp>
 #include<string>
+#include "Settings.h"
+
+extern Settings setting;
 class Music
 {
 private:

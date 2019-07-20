@@ -4,8 +4,6 @@ void List::pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel,
 {
 	list.push_back(Button(win, pres, rel, off, click_, switch_, font_));
 	list.back().setColor(sf::Color::Black);
-	
-	
 }
 
 List::List()
@@ -23,6 +21,7 @@ void List::checkState()
 		list[i].checkState();
 		if (list[i].settingsListFunction())
 		{
+			setting.posDefaultMusic = i;
 			list[i].setColor(sf::Color::Red);
 			chosenFile = list[i].getString();
 			for (int j = 0; j < list.size(); j++)

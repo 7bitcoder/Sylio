@@ -4,7 +4,11 @@
 #include<string>
 #include"Button.h"
 #include"Sounds.h"
+#include"Settings.h"
+#include "Music.h"
 
+extern Settings setting;
+extern Music music;
 class List
 {
 private:
@@ -14,6 +18,7 @@ private:
 	List();
 	void pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Texture& off, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_);
 	~List();
+	void chooseDefault() {}
 	void setText(std::string text) { list.back().setTitle(text); };
 	void checkState();
 	void draw() { for (auto& x : list) x.draw(); }

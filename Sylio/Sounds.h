@@ -1,10 +1,10 @@
 #pragma once
 #ifndef SOUNDS_H
 #define SOUNDS_H
-
+#include "Settings.h"
 #include<string>
 #include<SFML/Audio.hpp>
-
+extern Settings setting;
 class Sounds
 {
 private:
