@@ -16,70 +16,67 @@
     <Filter Include="Pliki nagłówkowe\global">
       <UniqueIdentifier>{a3138076-15bf-4169-9383-3a5824d34d88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\global">
+      <UniqueIdentifier>{5357963d-a82e-4513-a54b-1fad1a4af9d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\gui elements">
+      <UniqueIdentifier>{f681c7bb-e311-43ed-8652-9b35b8d37893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\gui elements">
+      <UniqueIdentifier>{8ed12c1f-97ea-42f3-9021-58a1c918801e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\menu">
+      <UniqueIdentifier>{9cfce8aa-ca12-44e5-8c78-824c0a7c8d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\menu">
+      <UniqueIdentifier>{99d04193-be27-425c-b3e5-665aff07ba04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="List.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Slider.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Sounds.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Music.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="PopAlert.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="inputText.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="setPlayer.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Pliki źródłowe\global</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Pliki źródłowe\global</Filter>
+    </ClCompile>
+    <ClCompile Include="Sounds.cpp">
+      <Filter>Pliki źródłowe\global</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
+    </ClCompile>
     <ClCompile Include="CheckBox.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
+    </ClCompile>
+    <ClCompile Include="inputText.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
+    </ClCompile>
+    <ClCompile Include="PopAlert.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Pliki źródłowe\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Pliki źródłowe\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Rounds.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="menu.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Slider.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="PopAlert.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="inputText.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Music.h">
       <Filter>Pliki nagłówkowe\global</Filter>
     </ClInclude>
@@ -92,7 +89,31 @@
     <ClInclude Include="setPlayer.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
+    </ClInclude>
     <ClInclude Include="CheckBox.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
+    </ClInclude>
+    <ClInclude Include="inputText.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
+    </ClInclude>
+    <ClInclude Include="PopAlert.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Pliki nagłówkowe\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Pliki nagłówkowe\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Rounds.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,59 +5,90 @@
 
 bool setPlayer::focused = false;
 std::vector<sf::Keyboard::Key> setPlayer::forbidden = {};
-setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff, sf::Texture& controlsOn, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font &font)
+setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff, sf::Texture& controlsOn, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font &font, std::string string)
 	:window(win),  left(win, controlsOn, controlsOff, click),
 	right(win, controlsOn, controlsOff,click),
 	nickname(win, box_,boxOff, click),
 	checkBox(win, checkOn, checkOff, click)
 {
+	checkBox.setAlpha(100);
+
 	leftKey = sf::Keyboard::Unknown;
 	rightKey = sf::Keyboard::Unknown;
 	focused = false;
 	activated = 1;
-	nickname.setSize(30);
+	nickname.setSize(40);
 	nickname.setColor(sf::Color::Black);
 	nickname.setFont(font);
-	nickname.setString("nickname");
-	nickname.setScale(1.8, 1);
+	nickname.setString(string);
+	nickname.setScale(1.8, 1.4);
+	nickname.setAlpha(100);
 
-	right.setSize(30);
+	right.setSize(45);
 	right.setColor(sf::Color::Black);
 	right.setFont(font);
-	right.setString("right");
-	right.setScale(2, 2);
+	right.setString("R");
+	right.setScale(1.4, 1.4);
+	right.setAlpha(100);
 
-	left.setSize(30);
+	left.setSize(45);
 	left.setColor(sf::Color::Black);
 	left.setFont(font);
-	left.setString("left");
-	left.setScale(2, 2);
+	left.setString("L");
+	left.setScale(1.4, 1.4);
+	left.setAlpha(100);
 }
-
+ 
 bool setPlayer::function()
 {
 	focused = true;
 	if (nickname.function())
 	{
+		nickname.setAlpha(255);
+		left.setAlpha(255);
+		right.setAlpha(255);
+		checkBox.setAlpha(255);
 		checkBox.setActivate();
 		return true;
 	}
 	else if (left.function(true))
 	{
 		checkBox.setActivate();
+		left.setAlpha(255);
+		right.setAlpha(255);
+		nickname.setAlpha(255);
+		checkBox.setAlpha(255);
 		return true;
 	}
 	else if (right.function(true))
 	{
 		checkBox.setActivate();
-		return true;
-	}
-	else if (checkBox.buttonFunction())
-	{
+		right.setAlpha(255);
+		left.setAlpha(255);
+		nickname.setAlpha(255);
+		checkBox.setAlpha(255);
 		return true;
 	}
 	else
 	{
+		int t = checkBox.buttonFunction();
+		if (t == 1)
+		{
+			nickname.setAlpha(255);
+			left.setAlpha(255);
+			right.setAlpha(255);
+			checkBox.setAlpha(255);
+			return true;
+			
+		}
+		else if (t == -1)
+		{
+			nickname.setAlpha(100);
+			left.setAlpha(100);
+			right.setAlpha(100);
+			checkBox.setAlpha(100);
+			return true;
+		}
 		focused = false;
 		return false;
 	}	//activated = 0;
@@ -157,15 +188,18 @@ void setPlayer::checkState()
 void setPlayer::setPosition(int x, int y)
 {
 	nickname.setPosition(x, y);
-	left.setPosition(x, y + 80);
-	right.setPosition(x + 49*2, y + 80);
-	checkBox.setPosition(x - 50, y);
+	nickname.setTextPosition(x + 15, y + 10);
+
+	left.setPosition(x + 190 * 1.8 + 40, y);
+	left.setTextPosition(x + 190 * 1.8 + 40 + 20, y + 5);
+	
+	right.setPosition(x + 49 * 1.5 + 80 + 190 * 1.8, y);
+	right.setTextPosition(x + 49 * 1.5 + 80 + 190 * 1.8 + 20, y + 5);
+	
+	checkBox.setPosition(x - 50, y + 20);
 }
 std::string setPlayer::getNickname() {
-	auto n = nickname.getText();
-	if (n == "nickname")
-		return "";
-	return n;
+	return nickname.getText();
 }
 
 sf::Keyboard::Key setPlayer::getLeftKey()
@@ -258,11 +292,11 @@ std::string setPlayer::translate(sf::Keyboard::Key key)
 	case sf::Keyboard::Key::Divide:
 		return "/";
 	case sf::Keyboard::Key::Down:
-		return "I\nv";
+		return "v";
 	case sf::Keyboard::Key::Equal:
 		return "=";
 	case sf::Keyboard::Key::Left:
-		return "<-";
+		return "<";
 	case sf::Keyboard::Key::Multiply:
 		return "*";
 	case sf::Keyboard::Key::Num0:
@@ -306,11 +340,11 @@ std::string setPlayer::translate(sf::Keyboard::Key key)
 	case sf::Keyboard::Key::Numpad9:
 		return "9";
 	case sf::Keyboard::Key::Right:
-		return "->";
+		return ">";
 	case sf::Keyboard::Key::Slash:
 		return "/";
 	case sf::Keyboard::Key::Up:
-		return "^\nI";
+		return "^";
 	case sf::Keyboard::Key::Tilde:
 		return "~";
 	case sf::Keyboard::Key::Quote:

@@ -12,11 +12,11 @@ CheckBox::CheckBox(sf::RenderWindow& win, sf::Texture& activated_, sf::Texture& 
 	activate = false;
 }
 
-bool CheckBox::buttonFunction()
+int CheckBox::buttonFunction()
 {
 	//std::cout << state;
 	if (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn)
-		return false;
+		return 0;
 	else if ( positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
 	{
 		click.play();
@@ -29,14 +29,15 @@ bool CheckBox::buttonFunction()
 		if (activate)
 		{
 			box.setTexture(activated, true);
+			return 1;
 		}
 		else
 		{
 			box.setTexture(disActivated, true);
+			return -1;
 		}
-		return true;
 	}
-	return false;
+	return 0;
 }
 
 void CheckBox::checkState()

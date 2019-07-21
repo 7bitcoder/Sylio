@@ -61,7 +61,7 @@ bool inputText::addChar(char t)//event.text.unicode)
 		return false;
 	text += t;
 	textOutput.setString(text);
-	if (textOutput.getGlobalBounds().width > spriteBox.getGlobalBounds().width)
+	if (textOutput.getGlobalBounds().width > spriteBox.getGlobalBounds().width - 20)
 	{
 		text.pop_back();
 		textOutput.setString(text);
@@ -96,7 +96,22 @@ bool inputText::isOnButton()
 void inputText::setPosition(int x, int y)
 {
 	spriteBox.setPosition(x, y);
-	textOutput.setPosition(x + 5, y + 10);
+}
+bool inputText::addNumber(char t)
+{
+	if (t == 8)
+	{
+		if (text.empty())
+			return false;
+		text.pop_back();
+		textOutput.setString(text);
+		return 0;
+	}
+	if (t < 48 || t >57 || text.size() == 2)
+		return 0;
+	text += t;
+	textOutput.setString(text);
+	return false;
 }
 inputText::~inputText()
 {

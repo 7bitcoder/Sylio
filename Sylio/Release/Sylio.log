@@ -1,29 +1,15 @@
-﻿  main.cpp
+﻿  menu.cpp
 C:\Users\Sylwester\source\repos\Sylio\Sylio\Music.h(19): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\Button.h(35): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\list.h(25): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\list.h(26): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Slider.h(28): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(43): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Slider.h(30): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(34): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(44): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(45): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(24): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(28): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-  menu.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Music.h(19): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Button.h(35): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\list.h(25): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\list.h(26): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Slider.h(28): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(43): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(44): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(24): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(28): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(124): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-          with
-          [
-              T=unsigned int
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(131): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(127): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=unsigned int
@@ -33,52 +19,53 @@ C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(134): warning C4244: "argum
           [
               T=unsigned int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(134): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(135): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(141): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(137): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=unsigned int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(141): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(142): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(148): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(137): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(138): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(144): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=unsigned int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(148): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(149): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(155): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(144): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(145): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(151): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=unsigned int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(155): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(156): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(198): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(208): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(215): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(222): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(259): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(260): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(266): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(267): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(345): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(352): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(353): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(359): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(360): warning C4305: "argument": obcięcie z "double" do "float"
-  setPlayer.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(43): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(44): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(24): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(28): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\setPlayer.cpp(22): warning C4244: "argument": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(151): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(152): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(158): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(158): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(159): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(201): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(211): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(218): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(225): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(262): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(263): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(269): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(270): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(275): warning C4101: "volume": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(348): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(355): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(356): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(362): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(363): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(494): warning C4390: ";": znaleziono kontrolowaną pustą instrukcję; czy to było zamierzone?
   Trwa generowanie kodu
-C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(494): warning C4715: "Menu::normalGameUpdate”: niewszystkie ścieżki kodu zwracają wartość
-  3 of 781 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
+C:\Users\Sylwester\source\repos\Sylio\Sylio\menu.cpp(518): warning C4715: "Menu::normalGameUpdate”: niewszystkie ścieżki kodu zwracają wartość
+  1 of 809 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   Sylio.vcxproj -> C:\Users\Sylwester\source\repos\Sylio\Release\Sylio.exe

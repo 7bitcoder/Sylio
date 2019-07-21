@@ -68,10 +68,10 @@ void Slider::checkState()
 		}
 	}
 }
-bool Slider::sliderFunction(double & volume)//1-music/2-sound
+bool Slider::sliderFunction()//1-music/2-sound
 {
 	int x;
-	double width, mul;
+	double width;
 	switch (state)
 	{
 	case pointnerState::isClickedOn:
@@ -85,10 +85,10 @@ bool Slider::sliderFunction(double & volume)//1-music/2-sound
 			x = line.getGlobalBounds().left + line.getGlobalBounds().width;
 		pointner.setPosition(x, pointner.getPosition().y);
 		width = pointner.getPosition().x - line.getPosition().x;
-		mul = width / line.getGlobalBounds().width;
-		if (mul != vol)
+		actualval= width / line.getGlobalBounds().width;
+		if (actualval != oldVal)
 		{
-			volume = mul;
+			oldVal = actualval;
 			return true;
 		}
 		break;
@@ -104,7 +104,8 @@ Slider::Slider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_
 	isAlredyOnButton = false;
 	mouseAlredyPressed = false;
 	isAlredyOut = false;
-	vol = 1;
+	actualval = oldVal = 1;
+
 };
 void Slider::setPosition(int x, int y, double scale)
 {
@@ -112,6 +113,12 @@ void Slider::setPosition(int x, int y, double scale)
 	line.setPosition(x, y);
 	pointner.setOrigin(14, 0);
 	pointner.setPosition(int(scale* line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);
+}
+
+void Slider::setSlider(double x)
+{
+	pointner.setPosition(int(x * line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);
+
 }
 
 Slider::~Slider()

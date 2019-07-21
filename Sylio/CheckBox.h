@@ -19,13 +19,14 @@ private:
 	bool activate;
 public:
 	CheckBox(sf::RenderWindow& win, sf::Texture& activated, sf::Texture& disactivated, sf::SoundBuffer& click_ );
-	bool buttonFunction();//return true if clicked out
+	int buttonFunction();//return true if clicked out
 	void checkState();
 	void setSoundVolume(double v) { click.setVolume(v * 100); }
 	void draw() { window.draw(box); }
 	bool getActivate() { return activate; }
 	void setActivate() { activate = true; box.setTexture(activated); }
 	void setPosition(int x, int y) { box.setPosition(x, y); }
+	void setAlpha(int a) { box.setColor(sf::Color(255, 255, 255, a)); }
 	bool isOnButton();
 	~CheckBox();
 };

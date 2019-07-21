@@ -20,7 +20,7 @@ private:
 	std::string translate(sf::Keyboard::Key key);
 	static bool focused;
 public:
-	setPlayer(sf::RenderWindow& win, sf::Texture& boxOn_,sf::Texture & boxOff, sf::Texture & controls, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font& font);
+	setPlayer(sf::RenderWindow& win, sf::Texture& boxOn_,sf::Texture & boxOff, sf::Texture & controls, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font& font, std::string string);
 	bool function();
 	bool setChar(sf::Keyboard::Key key);
 	void checkState();

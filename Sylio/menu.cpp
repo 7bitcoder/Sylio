@@ -9,6 +9,9 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!switchBuff.loadFromFile("../Sounds/switch2.ogg"))
 		exit(-1);
 
+	if (!font2.loadFromFile("../Font/kenvector_future_thin.ttf"))
+		exit(-1);
+
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
 		exit(-1);
 
@@ -294,14 +297,14 @@ st Menu::settingsUupdate()
 				}
 				else if (goBack.buttonFunction())
 					return st::mainMenu;
-				else if (musicSlider.sliderFunction(volume))
+				else if (musicSlider.sliderFunction())
 				{
-					setting.MusicVolume = volume;
-					music.setVolume(volume * 30);
+					setting.MusicVolume = musicSlider.getValue();
+					music.setVolume(musicSlider.getValue() * 30);
 				}
-				else if (soundSlider.sliderFunction(volume))
+				else if (soundSlider.sliderFunction())
 				{
-					setting.SoundVolume = volume;
+					setting.SoundVolume = soundSlider.getValue();
 					musicSlider.setSoundVolume(setting.SoundVolume);
 					soundSlider.setSoundVolume(setting.SoundVolume);
 					goBack.setSoundVolume(setting.SoundVolume);
@@ -349,59 +352,67 @@ st Menu::normalGameUpdate()
 
 
 	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	goBack.setPosition(linex, liney + 200 + 4 * 58);
+	goBack.setPosition(linex, liney + 300);
 	goBack.setScale(1.8, 1);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
 
 	Button play(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	play.setPosition(linex, liney + 100 + 4 * 58);
+	play.setPosition(linex, liney + 200);
 	play.setScale(1.8, 1);
 	play.setTitle("play");
 	play.setSoundVolume(setting.SoundVolume);
-
-	/*inputText text(window, block, clickBuff);
-	text.setSize(30);
-	text.setColor(sf::Color::Black);
-	text.setFont(font);
-	text.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-	text.setScale(1.8, 1);
-	text.defaultString("nickname");
-	*/
-
-	setPlayer::clearForbidden();
 	
-	setPlayer player1(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff,clickBuff, font);
-	player1.setPosition(200, 200);
+	Rounds rounds(window, controlOnBlue, controlOffBlue, VolumePointner, VolumeSliderLine, clickBuff);
+	rounds.setFont(font);
+	rounds.setBoxPosition(linex+100, 300);
+	rounds.setSliderPosition(linex , 500 - 30);
+	rounds.setScale(2.5, 2.5);
+	rounds.setSize(60);
+	rounds.setTextPosition(linex + 120, 300 + 20);
+	rounds.setSoundVolume(setting.SoundVolume);
+	rounds.setString("");
+	rounds.addNumber('2');
+	rounds.addNumber('0');
+	rounds.setColor(sf::Color::Black);
+
+	std::cout << rounds.addNumber(10);
+	
+	setPlayer::clearForbidden();
+	int row = 90 ;
+	int off = 100;
+	int col = 150;
+	setPlayer player1(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff,clickBuff, font2, "player1");
+	player1.setPosition(col, row + off);
 	player1.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player2(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font);
-	player2.setPosition(500, 200);
+	setPlayer player2(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player2");
+	player2.setPosition(col, row*2 + off);
 	player2.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player3(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font);
-	player3.setPosition(800, 200);
+	setPlayer player3(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player3");
+	player3.setPosition(col, row*3 + off);
 	player3.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player4(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font);
-	player4.setPosition(1100, 200);
+	setPlayer player4(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player4");
+	player4.setPosition(col, row*4 + off);
 	player4.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player5(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font);
-	player5.setPosition(200, 500);
+	setPlayer player5(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player5");
+	player5.setPosition(col, row*5 + off);
 	player5.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player6(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font);
-	player6.setPosition(500, 500);
+	setPlayer player6(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player6");
+	player6.setPosition(col, row*6 + off);
 	player6.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player7(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font);
-	player7.setPosition(800, 500);
+	setPlayer player7(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player7");
+	player7.setPosition(col, row*7 + off);
 	player7.setSoundVolume(setting.SoundVolume);
 
-	setPlayer player8(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font);
-	player8.setPosition(1100, 500);
+	setPlayer player8(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player8");
+	player8.setPosition(col, row*8 + off);
 	player8.setSoundVolume(setting.SoundVolume);
 
 	setPlayer* activated = &player1;
@@ -421,52 +432,66 @@ st Menu::normalGameUpdate()
 			player6.checkState();
 			player7.checkState();
 			player8.checkState();
+			rounds.checkState();
 			if (setPlayer::getFocus() && event.type == sf::Event::KeyPressed)
 			{
 				activated->setChar(event.key.code);
 			}
-			//else if (text2.getFocuse() && event.type == sf::Event::TextEntered)
+			if (rounds.getFocuse())
+			{
+				if (event.type == sf::Event::TextEntered)
+				{
+					rounds.addNumber(static_cast<char>(event.text.unicode));
+				}
+				else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
+				{
+					rounds.updateText();
+					rounds.disActivate();
+					//std::cout << rounds.getNumber() << std::endl;
+				}
+			}
+				//else if (text2.getFocuse() && event.type == sf::Event::TextEntered)
 				//text2.addChar(event.text.unicode);
 
-				if (goBack.buttonFunction())
-					return st::mainMenu;
-				else if (play.buttonFunction())
-				{
-					;
-				}
-				else if (player1.function())
-				{
-					activated = &player1;
-				}
-				else if (player2.function())
-				{
-					activated = &player2;
-				}
-				else if (player3.function())
-				{
-					activated = &player3;
-				}
-				else if (player4.function())
-				{
-					activated = &player4;
-				}
-				else if (player5.function())
-				{
-					activated = &player5;
-				}
-				else if (player6.function())
-				{
-					activated = &player6;
-				}
-				else if (player7.function())
-				{
-					activated = &player7;
-				}
-				else if (player8.function())
-				{
-					activated = &player8;
-				}
-				
+			if (goBack.buttonFunction())
+				return st::mainMenu;
+			else if (play.buttonFunction())
+			{
+				;
+			}
+			else if (player1.function())
+			{
+				activated = &player1;
+			}
+			else if (player2.function())
+			{
+				activated = &player2;
+			}
+			else if (player3.function())
+			{
+				activated = &player3;
+			}
+			else if (player4.function())
+			{
+				activated = &player4;
+			}
+			else if (player5.function())
+			{
+				activated = &player5;
+			}
+			else if (player6.function())
+			{
+				activated = &player6;
+			}
+			else if (player7.function())
+			{
+				activated = &player7;
+			}
+			else if (player8.function())
+			{
+				activated = &player8;
+			}
+			else if(rounds.function());
 				//else if (text2.function())
 				//{
 				//	activatedt = &text2;
@@ -479,8 +504,6 @@ st Menu::normalGameUpdate()
 
 		goBack.draw();
 		play.draw();
-		//text.draw();
-		//text2.draw();
 		player1.draw();
 		player2.draw();
 		player3.draw();
@@ -489,6 +512,7 @@ st Menu::normalGameUpdate()
 		player6.draw();
 		player7.draw();
 		player8.draw();
+		rounds.draw();
 		window.display();
 	}
 }

@@ -10,6 +10,7 @@
 #include "PopAlert.h"
 #include "inputText.h"
 #include "setPlayer.h"
+#include "Rounds.h"
 
 extern Settings setting;
 enum st { play = 1, settings, playOnline, quit, pause, mainMenu , normalGame, MultiGame};
@@ -21,6 +22,7 @@ private:
 	sf::RenderWindow& window;
 	std::string & version;
 	sf::Font font;
+	sf::Font font2;
 	sf::SoundBuffer clickBuff;
 	sf::SoundBuffer switchBuff;
 	sf::Texture back;
