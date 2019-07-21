@@ -9,6 +9,7 @@
 #include"Background.h"
 #include "PopAlert.h"
 #include "inputText.h"
+#include "setPlayer.h"
 
 extern Settings setting;
 enum st { play = 1, settings, playOnline, quit, pause, mainMenu , normalGame, MultiGame};
@@ -33,6 +34,32 @@ private:
 	sf::Texture VolumePointner;
 	sf::Texture listBlock;
 	sf::Texture whiteBox;
+	sf::Texture checkOff;
+
+	sf::Texture nickNameOffGreen;
+	sf::Texture nickNameOnGreen;
+	sf::Texture controlOnGreen;
+	sf::Texture controlOffGreen;
+	sf::Texture checkOnGreen;
+
+	sf::Texture nickNameOffBlue;
+	sf::Texture nickNameOnBlue;
+	sf::Texture controlOnBlue;
+	sf::Texture controlOffBlue;
+	sf::Texture checkOnBlue;
+
+	sf::Texture nickNameOffYellow;
+	sf::Texture nickNameOnYellow;
+	sf::Texture controlOnYellow;
+	sf::Texture controlOffYellow;
+	sf::Texture checkOnYellow;
+
+	sf::Texture nickNameOffRed;
+	sf::Texture nickNameOnRed;
+	sf::Texture controlOnRed;
+	sf::Texture controlOffRed;
+	sf::Texture checkOnRed;
+
 
 
 public:

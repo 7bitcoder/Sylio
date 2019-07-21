@@ -5,11 +5,12 @@
 class inputText
 {
 private:
-	static bool focused;
 	sf::Text textOutput;
 	enum buttonState { isPressed, isNotPressed };
 	enum positionState { isOn, isNotOn };
-	sf::Sprite box;
+	sf::Texture& boxOn;
+	sf::Texture& boxOff;
+	sf::Sprite spriteBox;
 	sf::RenderWindow& window;
 	positionState positionSt;
 	positionState lastPositionSt;
@@ -18,23 +19,29 @@ private:
 	sf::Sound click;
 	bool clicked;
 	bool activated;
+	bool focuse;
 	std::string text;
 	bool isOnButton();
 	
 public:
-	inputText(sf::RenderWindow & win, sf::Texture & box_, sf::SoundBuffer & click);
-	bool function();
-	bool setChar(char t);
+	inputText(sf::RenderWindow & win, sf::Texture & box_, sf::Texture & boxOff_, sf::SoundBuffer & click);
+	bool function(bool clear = false);
+	bool addChar(char t);
+	void setString(std::string y) { text = y; textOutput.setString(y); }
 	void checkState();
-	void draw() { window.draw(box); window.draw(textOutput); }
+	void draw() { window.draw(spriteBox); window.draw(textOutput); }
 	void setPosition(int x, int y);
 	void setColor(sf::Color x) { textOutput.setFillColor(x); }
 	void setFont(sf::Font& x) { textOutput.setFont(x); }
 	void setSize(int x) { textOutput.setCharacterSize(x); }
-	void defaultString(std::string x);
-	bool isActivated() { return isOn; }
-	static bool getFocus() { return focused; }
+	bool empty() { return !activated; }
+	void activate() { activated = true;  focuse = true;  spriteBox.setTexture(boxOn); };
+	bool getFocuse() { return focuse; }
+	void disActivate() { focuse = false;  spriteBox.setTexture(boxOff); };
 	std::string& getText() { return text; }
+	void clear() { text.clear(); textOutput.setString(""); }
+	void setScale(int x, int y) { spriteBox.setScale(x,y); }
+	void setSoundVolume(double vol) { click.setVolume(vol * 100); }
 	~inputText();
 };
 

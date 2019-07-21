@@ -12,6 +12,75 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
 		exit(-1);
 
+	if (!checkOff.loadFromFile("../PNG/grey_box.png"))
+		exit(-1);
+
+	
+	if (!checkOnBlue.loadFromFile("../PNG/blue_boxCheckmark.png"))
+		exit(-1);
+	
+	if (!controlOnBlue.loadFromFile("../PNG/blue_button06.png"))
+		exit(-1);
+
+	if (!controlOffBlue.loadFromFile("../PNG/blue_button11.png"))
+		exit(-1);
+
+	if (!nickNameOnBlue.loadFromFile("../PNG/blue_button13.png"))
+		exit(-1);
+
+	if (!nickNameOffBlue.loadFromFile("../PNG/blue_button04.png"))
+		exit(-1);
+
+	
+	if (!checkOnGreen.loadFromFile("../PNG/green_boxCheckmark.png"))
+		exit(-1);
+
+	if (!controlOnGreen.loadFromFile("../PNG/green_button06.png"))
+		exit(-1);
+
+	if (!controlOffGreen.loadFromFile("../PNG/green_button11.png"))
+		exit(-1);
+
+	if (!nickNameOnGreen.loadFromFile("../PNG/green_button13.png"))
+		exit(-1);
+
+	if (!nickNameOffGreen.loadFromFile("../PNG/green_button04.png"))
+		exit(-1);
+
+	
+	if (!checkOnYellow.loadFromFile("../PNG/yellow_boxCheckmark.png"))
+		exit(-1);
+
+	if (!controlOnYellow.loadFromFile("../PNG/yellow_button06.png"))
+		exit(-1);
+
+	if (!controlOffYellow.loadFromFile("../PNG/yellow_button11.png"))
+		exit(-1);
+
+	if (!nickNameOnYellow.loadFromFile("../PNG/yellow_button13.png"))
+		exit(-1);
+
+	if (!nickNameOffYellow.loadFromFile("../PNG/yellow_button04.png"))
+		exit(-1);
+
+
+	if (!checkOnRed.loadFromFile("../PNG/red_boxCheckmark.png"))
+		exit(-1);
+
+	if (!controlOnRed.loadFromFile("../PNG/red_button03.png"))
+		exit(-1);
+
+	if (!controlOffRed.loadFromFile("../PNG/red_button08.png"))
+		exit(-1);
+
+	if (!nickNameOnRed.loadFromFile("../PNG/red_button10.png"))
+		exit(-1);
+
+	if (!nickNameOffRed.loadFromFile("../PNG/red_button01.png"))
+		exit(-1);
+
+
+
 	if (!block.loadFromFile("../PNG/grey_button15.png"))
 		exit(-1);
 
@@ -30,7 +99,7 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!base.loadFromFile("../base3.png"))
 		exit(-1);
 	//background.setTexture(back);
-	background.set(back,base, 0 , 0.0015);
+	background.set(back,base, 0 , 0.002);
 
 	if (!mar.loadFromFile("../PNG/grey_sliderRight.png"))
 		exit(-1);
@@ -53,7 +122,7 @@ st Menu::mainMenuUpdate()
 	title.setCharacterSize(140);
 	title.setString("Sylio");
 	title.setPosition(window.getSize().x / 2 - 250, window.getSize().y / 2 - 300);
-	title.setFillColor(sf::Color::Black);
+	title.setFillColor(sf::Color::White);
 
 	sf::Text ver;
 	ver.setFont(font);
@@ -184,6 +253,7 @@ st Menu::settingsUupdate()
 			break;
 	}
 	list.setSoundVolume(setting.SoundVolume);
+	list.chooseDefault();
 
 	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	goBack.setPosition(linex, liney + 200 + 4 * 58);
@@ -291,47 +361,116 @@ st Menu::normalGameUpdate()
 	play.setTitle("play");
 	play.setSoundVolume(setting.SoundVolume);
 
-	inputText text(window, block, clickBuff);
+	/*inputText text(window, block, clickBuff);
 	text.setSize(30);
 	text.setColor(sf::Color::Black);
 	text.setFont(font);
 	text.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	text.setScale(1.8, 1);
 	text.defaultString("nickname");
+	*/
 
-	inputText text2(window, block, clickBuff);
-	text2.setSize(30);
-	text2.setColor(sf::Color::Black);
-	text2.setFont(font);
-	text2.setPosition(window.getSize().x / 2 - 500, window.getSize().y / 2);
-	text2.defaultString("nickname");
+	setPlayer::clearForbidden();
+	
+	setPlayer player1(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff,clickBuff, font);
+	player1.setPosition(200, 200);
+	player1.setSoundVolume(setting.SoundVolume);
 
-	inputText* activated = &text;
+	setPlayer player2(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font);
+	player2.setPosition(500, 200);
+	player2.setSoundVolume(setting.SoundVolume);
+
+	setPlayer player3(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font);
+	player3.setPosition(800, 200);
+	player3.setSoundVolume(setting.SoundVolume);
+
+	setPlayer player4(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font);
+	player4.setPosition(1100, 200);
+	player4.setSoundVolume(setting.SoundVolume);
+
+	setPlayer player5(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font);
+	player5.setPosition(200, 500);
+	player5.setSoundVolume(setting.SoundVolume);
+
+	setPlayer player6(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font);
+	player6.setPosition(500, 500);
+	player6.setSoundVolume(setting.SoundVolume);
+
+	setPlayer player7(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font);
+	player7.setPosition(800, 500);
+	player7.setSoundVolume(setting.SoundVolume);
+
+	setPlayer player8(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font);
+	player8.setPosition(1100, 500);
+	player8.setSoundVolume(setting.SoundVolume);
+
+	setPlayer* activated = &player1;
+
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))
 		{
-			text.checkState();
-			text2.checkState();
+			//text.checkState();
 			goBack.checkState();
 			play.checkState();
-			if (inputText::getFocus() && event.type == sf::Event::TextEntered)
+			player1.checkState();
+			player2.checkState();
+			player3.checkState();
+			player4.checkState();
+			player5.checkState();
+			player6.checkState();
+			player7.checkState();
+			player8.checkState();
+			if (setPlayer::getFocus() && event.type == sf::Event::KeyPressed)
 			{
-				activated->setChar(static_cast<char>(event.text.unicode));
+				activated->setChar(event.key.code);
 			}
+			//else if (text2.getFocuse() && event.type == sf::Event::TextEntered)
+				//text2.addChar(event.text.unicode);
+
 				if (goBack.buttonFunction())
 					return st::mainMenu;
 				else if (play.buttonFunction())
 				{
 					;
 				}
-				else if (text.function())
+				else if (player1.function())
 				{
-					activated = &text;
+					activated = &player1;
 				}
-				else if (text2.function())
+				else if (player2.function())
 				{
-					activated = &text2;
+					activated = &player2;
 				}
+				else if (player3.function())
+				{
+					activated = &player3;
+				}
+				else if (player4.function())
+				{
+					activated = &player4;
+				}
+				else if (player5.function())
+				{
+					activated = &player5;
+				}
+				else if (player6.function())
+				{
+					activated = &player6;
+				}
+				else if (player7.function())
+				{
+					activated = &player7;
+				}
+				else if (player8.function())
+				{
+					activated = &player8;
+				}
+				
+				//else if (text2.function())
+				//{
+				//	activatedt = &text2;
+				//}
 
 		}
 		window.clear(sf::Color::Black);
@@ -340,9 +479,16 @@ st Menu::normalGameUpdate()
 
 		goBack.draw();
 		play.draw();
-		text.draw();
-		text2.draw();
-
+		//text.draw();
+		//text2.draw();
+		player1.draw();
+		player2.draw();
+		player3.draw();
+		player4.draw();
+		player5.draw();
+		player6.draw();
+		player7.draw();
+		player8.draw();
 		window.display();
 	}
 }

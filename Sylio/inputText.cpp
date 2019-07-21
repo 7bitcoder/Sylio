@@ -1,40 +1,47 @@
 #include "inputText.h"
+#include <iostream>
 
 
-bool inputText::focused = false;
-inputText::inputText(sf::RenderWindow& win, sf::Texture& box_, sf::SoundBuffer& click_) : window(win), box(box_),  click(click_)
+inputText::inputText(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff_, sf::SoundBuffer& click_) : window(win), boxOn(box_),boxOff(boxOff_),  click(click_)
 {
 	buttonSt = buttonState::isNotPressed;
 	positionSt = positionState::isNotOn;
+	spriteBox.setTexture(boxOff);
 	lastButtonSt = buttonSt;
 	lastPositionSt = positionSt;
 	clicked = false;
 	activated = false;
+	focuse = false;
 }
-bool inputText::function()
+bool inputText::function(bool clear)
 {
-	if (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn && clicked == false)
-		return false;
+	if (positionSt == positionState::isNotOn && buttonSt == buttonState::isPressed)
+	{
+		spriteBox.setTexture(boxOff);
+		focuse = false;
+	}
 	else if (clicked == false && positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
 	{
 		click.play();
 		clicked = true;
+		if (clear)
+			this->clear();
 	}
 	else if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed)
 	{
-		focused = true;
 		clicked = false;
+		focuse = true;
+		spriteBox.setTexture(boxOn);
 		if (!activated)
 		{
 			activated = true;
 			text.clear();
 			textOutput.setString("");
 		}
-		return true;
 	}
-	return false;
+	return focuse;
 }
-bool inputText::setChar(char t)//event.text.unicode)
+bool inputText::addChar(char t)//event.text.unicode)
 {
 	if (t == 8)
 	{
@@ -44,16 +51,17 @@ bool inputText::setChar(char t)//event.text.unicode)
 		textOutput.setString(text);
 		return false;
 	}
-	if (t == 13)
+	if (t == 10)
 	{
-		focused = false;
+		focuse = false;
+		spriteBox.setTexture(boxOff);
 		return true;
 	}
 	if (t < 20 || t >126)
 		return false;
 	text += t;
 	textOutput.setString(text);
-	if (textOutput.getGlobalBounds().width > box.getGlobalBounds().width)
+	if (textOutput.getGlobalBounds().width > spriteBox.getGlobalBounds().width)
 	{
 		text.pop_back();
 		textOutput.setString(text);
@@ -79,21 +87,15 @@ bool inputText::isOnButton()
 {
 	//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
 	//std::cout << button.getGlobalBounds().left << " " << button.getGlobalBounds().top << " "<< button.getGlobalBounds().height << " " << button.getGlobalBounds().width << std::endl;
-	if (sf::Mouse::getPosition(window).x > box.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (box.getGlobalBounds().left + box.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > box.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (box.getGlobalBounds().top + box.getGlobalBounds().height))
+	if (sf::Mouse::getPosition(window).x > spriteBox.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (spriteBox.getGlobalBounds().left + spriteBox.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > spriteBox.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (spriteBox.getGlobalBounds().top + spriteBox.getGlobalBounds().height))
 	{
 		return true;
 	}
 	return false;
 }
-void inputText::defaultString(std::string x)
-{
-	text = x;
-	textOutput.setString(x);
-}
 void inputText::setPosition(int x, int y)
 {
-	box.setPosition(x, y);
-	box.setScale(1.8, 1);
+	spriteBox.setPosition(x, y);
 	textOutput.setPosition(x + 5, y + 10);
 }
 inputText::~inputText()

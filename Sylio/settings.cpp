@@ -23,7 +23,6 @@ Settings::Settings()
 		infile.read((char*)& posDefaultMusic, sizeof(int));
 		infile.close();
 	}
-	std::cout << SoundVolume << std::endl << MusicVolume << std::endl;
 
 }
 
@@ -36,7 +35,6 @@ void Settings::save()
 	ofile.write((char*)& MusicVolume, sizeof(double));
 	ofile.write((char*)& posDefaultMusic, sizeof(int));
 	ofile.close();
-	std::cout << SoundVolume << std::endl << MusicVolume << std::endl;
 }
 
 Settings::~Settings()

@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
+    <ClCompile Include="setPlayer.cpp" />
     <ClCompile Include="inputText.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
@@ -146,6 +148,8 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckBox.h" />
+    <ClInclude Include="setPlayer.h" />
     <ClInclude Include="inputText.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="menu.h" />

@@ -14,11 +14,11 @@ class List
 private:
 	std::vector<Button> list;
 	std::string chosenFile;
-	public:
+public:
 	List();
 	void pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Texture& off, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_);
 	~List();
-	void chooseDefault() {}
+	void chooseDefault() { music.setGameMusic(list[setting.posDefaultMusic].getString()); }
 	void setText(std::string text) { list.back().setTitle(text); };
 	void checkState();
 	void draw() { for (auto& x : list) x.draw(); }
