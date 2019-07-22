@@ -95,6 +95,7 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 
 	if (!back.loadFromFile("../stars_space_sky_glitter_116409_1920x108022.jpg"))
 		exit(-1);
+	//back.setSmooth(true);
 
 	if (!whiteBox.loadFromFile("../PNG/grey_panel.png"))
 		exit(-1);
@@ -421,7 +422,6 @@ st Menu::normalGameUpdate()
 	{
 		while (window.pollEvent(event))
 		{
-			//text.checkState();
 			goBack.checkState();
 			play.checkState();
 			player1.checkState();
@@ -447,12 +447,8 @@ st Menu::normalGameUpdate()
 				{
 					rounds.updateText();
 					rounds.disActivate();
-					//std::cout << rounds.getNumber() << std::endl;
 				}
 			}
-				//else if (text2.getFocuse() && event.type == sf::Event::TextEntered)
-				//text2.addChar(event.text.unicode);
-
 			if (goBack.buttonFunction())
 				return st::mainMenu;
 			else if (play.buttonFunction())
@@ -492,11 +488,6 @@ st Menu::normalGameUpdate()
 				activated = &player8;
 			}
 			else if(rounds.function());
-				//else if (text2.function())
-				//{
-				//	activatedt = &text2;
-				//}
-
 		}
 		window.clear(sf::Color::Black);
 
@@ -513,6 +504,7 @@ st Menu::normalGameUpdate()
 		player7.draw();
 		player8.draw();
 		rounds.draw();
+
 		window.display();
 	}
 }

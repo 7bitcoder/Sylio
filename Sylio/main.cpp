@@ -15,7 +15,13 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version , sf::Style::Fullscreen);
 	music.playMenuMusic();
 	Menu Menu_(window, version);
-
+	sf::Image pointnerIm;
+	if(!pointnerIm.loadFromFile("../PNG/pointner.png"))
+		std::cout << "error\n";
+	sf::Cursor pointner;
+	if(!pointner.loadFromPixels(pointnerIm.getPixelsPtr(), sf::Vector2u(30,30), sf::Vector2u(4,4)))
+		exit(-1);
+	window.setMouseCursor(pointner);
 	while (true)
 	{
 		switch (state)
