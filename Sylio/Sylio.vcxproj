@@ -134,6 +134,8 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CheckBox.cpp" />
+    <ClCompile Include="gameBoard.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rounds.cpp" />
     <ClCompile Include="setPlayer.cpp" />
     <ClCompile Include="inputText.cpp" />
@@ -150,6 +152,8 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CheckBox.h" />
+    <ClInclude Include="gameBoard.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Rounds.h" />
     <ClInclude Include="setPlayer.h" />
     <ClInclude Include="inputText.h" />

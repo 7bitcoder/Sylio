@@ -13,7 +13,7 @@
 #include "Rounds.h"
 
 extern Settings setting;
-enum st { play = 1, settings, playOnline, quit, pause, mainMenu , normalGame, MultiGame};
+
 
 class Menu
 {
@@ -37,6 +37,7 @@ private:
 	sf::Texture listBlock;
 	sf::Texture whiteBox;
 	sf::Texture checkOff;
+	sf::Shader backgroundShader;
 
 	sf::Texture nickNameOffGreen;
 	sf::Texture nickNameOnGreen;

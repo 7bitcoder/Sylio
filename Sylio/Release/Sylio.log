@@ -10,7 +10,7 @@ C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(45): warning C4244: "arg
 C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(24): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(28): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Trwa generowanie kodu
-  1 of 816 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 1039 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu

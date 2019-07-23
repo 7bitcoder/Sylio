@@ -11,7 +11,7 @@ void Background::draw()
 /*	double y = cos(PI* Background1.getRotation() /180)*radious;
 	double x = sin(PI* Background1.getRotation() /180)*radious;
 	Background1.setPosition(rint(x) + zeroPiont.x ,zeroPiont.y - rint(y));*/
-	window.draw(Background1);
+	window.draw(Background1);// , shader);
 	window.draw(base);
 }
 
