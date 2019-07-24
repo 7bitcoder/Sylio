@@ -11,9 +11,12 @@ Music music;
 
 int main()
 {
+	sf::ContextSettings set;
+	set.antialiasingLevel = 8;
 	std::string version = "Beta 0.1";
 	auto state = st::mainMenu;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version , sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version , sf::Style::Fullscreen, set);
+	window.clear(sf::Color::Black);
 	music.playMenuMusic();
 	Menu Menu_(window, version);
 	sf::Image pointnerIm;

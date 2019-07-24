@@ -6,6 +6,10 @@ extern Settings setting;
 class gameBoard
 {
 private:
+	int xmax;
+	int xmin;
+	int ymin;
+	int ymax;
 	sf::RenderWindow& window;
 	sf::RenderTexture board;
 public:
