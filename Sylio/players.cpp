@@ -8,16 +8,14 @@ players::players(sf::RenderWindow& win, int ymax_, int ymin_, int xmax_, int xmi
 	int i = 0;
 	/*for (auto& x : setting.playersSettings)
 	{
-		Players.push_back(std::move(Player(window, 0, 5, 1.5, 100, x.color, x.left, x.right, ymax, ymin, xmax, xmin, board)));
-		Players.back().setPosition(600 + i * 200, 100);
+		Players.push_back(std::move(Player(window, 0, 5, 1.5, 100, x.color, x.left, x.right)));
+		Players.back().setPosition(300 + i * 200, 100);
 		Players.back().setNick(x.nickname);
 		i++;
-		Players.back().setGapBounds(9, 100,100, 3600);
 	}*/
-	Players.push_back(std::move(Player(window, 0 , 5, 1.5, 100, sf::Color::Red, sf::Keyboard::Key::S, sf::Keyboard::Key::D, ymax, ymin, xmax, xmin, board)));
+	Players.push_back(std::move(Player(window, 0, 5, 1.5, 100, sf::Color::Red, sf::Keyboard::Key::S, sf::Keyboard::Key::D, ymax, ymin, xmax, xmin, board)));
 	Players.back().setPosition(700 , 100);
 	Players.back().setNick("sylwek");
-	Players.back().setGapBounds(10, 400, 400, 1000);
 }
 
 void players::setBounds(int ymax_, int ymin_, int xmax_, int xmin_)

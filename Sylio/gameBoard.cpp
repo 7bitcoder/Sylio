@@ -42,10 +42,10 @@ st gameBoard::update()
 	{
 		Players.update();
 		cnt++;
-		if(cnt == 200)
+		if(timer.getElapsedTime().asMilliseconds() > 1000)
 		{
-			fps.setString(std::to_string(int(cnt/timer.getElapsedTime().asSeconds())));
 			timer.restart();
+			fps.setString(std::to_string(cnt));
 			cnt = 0;
 		}
 

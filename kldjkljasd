@@ -1,0 +1,131 @@
+[33mcommit d9408e6f689bcc46f823aec3b1ec67015b86c6ca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 27 15:02:20 2019 +0200
+
+    Big  bug
+
+[33mcommit 987c70f7a34e43f5ecf25355c1a3f062d7e1717c[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Thu Jul 25 23:49:07 2019 +0200
+
+    player basic trace is ready
+
+[33mcommit afd6f0439c3459bfe4c51ade3a32ede30967be3d[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Wed Jul 24 21:05:25 2019 +0200
+
+    bounds added to game
+
+[33mcommit 6c5e995db2f1e915daffa6c355f0ed80348c3f3e[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Tue Jul 23 21:45:52 2019 +0200
+
+    basic - single game mode
+
+[33mcommit 484867defdd3c1f93405121652ddd846169e3271[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Mon Jul 22 20:06:51 2019 +0200
+
+    new mouse pointner
+
+[33mcommit 814034921ca76f364c4922229080a49c989f7bfa[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sun Jul 21 23:11:01 2019 +0200
+
+    new features to single game added
+
+[33mcommit a5d61171140b88d6de0564337039222ad70f75a2[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sun Jul 21 14:08:43 2019 +0200
+
+    single player ui upgraded
+
+[33mcommit 6a4e0bd900d8c48237d4208265491b624d334c3d[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 20 12:14:18 2019 +0200
+
+    save settings added
+
+[33mcommit 45242da604134d8d86f03a6cef8d7fb2febb220a[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Thu Jul 18 21:45:30 2019 +0200
+
+    added input strings to gui
+
+[33mcommit 1a73b1ea250c34ba6ec457d672273501911bbf50[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Tue Jul 16 19:42:58 2019 +0200
+
+    new buttons
+
+[33mcommit 1bc3266e0e515441b09548fd46eadd4d0a858d28[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Mon Jul 15 21:20:11 2019 +0200
+
+    hot fix
+
+[33mcommit 6e8f32c32db7c2e4a028bafbbcf8cf7ffa7c2487[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Mon Jul 15 20:56:59 2019 +0200
+
+    popAlerts added
+
+[33mcommit 929eaa958073079dda2d80c03bc6b8bbb2f0bd4e[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sun Jul 14 22:12:18 2019 +0200
+
+    code refactorization
+
+[33mcommit 9433b25388f0677382fc62fad01ed0b6c95dcff6[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sun Jul 14 12:06:00 2019 +0200
+
+    hot fix
+
+[33mcommit 0d9f1da8985ea62135ee46ad65b6ac409a91634c[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 13 19:59:43 2019 +0200
+
+    rest
+
+[33mcommit 401d2e4d4a990b060ef3fbaadf69f166f8ec3e63[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 13 19:58:15 2019 +0200
+
+    aditional files
+
+[33mcommit f9af9055245ec0ba3129762fbcef8498fa5a3169[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 13 19:56:35 2019 +0200
+
+    Sylio/library update
+
+[33mcommit 4e67942b57a57a6be14f2337839070759d97019a[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 13 19:50:44 2019 +0200
+
+    rev
+
+[33mcommit 62c631bae376f28f20d1fb18f3730b30f52e9e05[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Sat Jul 6 15:46:31 2019 +0200
+
+    menu is ready
+
+[33mcommit b205d62abb44f19f8ce664257d1197cd29927ff7[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Fri Jul 5 22:55:34 2019 +0200
+
+    x
+
+[33mcommit 7673e6b0ae1ab6748ecb2a89eeedb11dd662fd77[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Fri Jul 5 20:58:51 2019 +0200
+
+    sec
+
+[33mcommit 319386a7c9000369876557e895f8fdfa6eed8e1a[m
+Author: Sylwester Dawida <Sylwo103@interia.pl>
+Date:   Fri Jul 5 20:53:18 2019 +0200
+
+    first
