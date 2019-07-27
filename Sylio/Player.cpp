@@ -1,8 +1,8 @@
 #include "Player.h"
 #include <cmath>
 #include <iostream>
+//kat zmniejsza sie zgodnie z wsk zegara
 
-#define NINETY_DEG 1.57079633
 
 void Player::update()
 {
@@ -15,26 +15,35 @@ void Player::update()
 			angle += angleVelocity * t.asSeconds();
 		else if (sf::Keyboard::isKeyPressed(right))
 			angle -= angleVelocity * t.asSeconds();
+		//std::cout << pointx << "    " << pointy << "\n";
 		position.x += r * sin(angle);
 		position.y += r * cos(angle);
-		head.setPosition(position);
 
-		//std::cout << pointx << "    " << pointy << "\n";
-		if ((oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y) > 10)
+		int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
+		if (diff > 10)
 		{
-			float pointlx = headR * sin(angle + NINETY_DEG);
-			float pointly = headR * cos(angle + NINETY_DEG);
-
-			float pointrx = headR * sin(angle - NINETY_DEG);
-			float pointry = headR * cos(angle - NINETY_DEG);
-			sf::Vertex tmp[2] = { sf::Vertex(sf::Vector2f(pointrx, pointry) + position, color) , sf::Vertex(sf::Vector2f(pointlx, pointly) + position, color) };
-			trace.push_back(tmp[0]);
-			trace.push_back(tmp[1]);
-			oldPosition = position;
-			/*if (traceBuff.update(&tmp[0],2,trace.size()-3)){
-				//std::cout << "tak";
-			}*/
+			head.setPosition(position);
 			//std::cout << traceBuff.getVertexCount() <<"  "<< trace.size()<< std::endl;
+			//actualGap += diff;
+			oldPosition = position;
+			/*if (trace.getState() && actualGap > nextGap)
+			{
+				trace.stop();
+				actualGap = 0;
+				//std::cout <<nextGap<< " stop\n";
+			}
+			if (!trace.getState() && actualGap > gapSize)
+			{
+				trace.start();
+				actualGap = 0;
+				setNewGap();
+				//updateTrace();
+				//std::cout <<gapSize<< " start\n";
+			}*/
+			//if (trace.getState()) {
+				//updateTrace();
+				//std::cout << angle << std::endl;
+			//}
 		}
 	}
 }
@@ -45,18 +54,11 @@ Player::Player(sf::RenderWindow& win, double angle_, double R, double angvel, do
 	xmin(xmin_),
 	ymax(ymax_),
 	ymin(ymin_),
-	board(board_),
-	traceBuff(sf::TrianglesStrip, sf::VertexBuffer::Usage::Stream)
+	board(board_)
+	//trace(win, col, 80000, 10000)
 {
-	trace.reserve(8000000);
-	std::cout << "rozmiar :" << trace.capacity()*sizeof(sf::Vertex)/(8*1000*1000) <<" MB"<< std::endl;
 	dead = false;
-	if (!sf::VertexBuffer::isAvailable())
-		exit(-1);
-	if (!traceBuff.create(100000))
-		exit(-1);
 	//std::cout << "rozmiar :" << traceBuff.getUsage() * sizeof(sf::Vertex) / (8 * 1000 * 1000) << " MB" << std::endl;
-
 	angle = angle_;
 	velocity = vel;
 	angleVelocity = angvel;
@@ -71,8 +73,22 @@ Player::Player(sf::RenderWindow& win, double angle_, double R, double angvel, do
 	left = l;
 	right = r;
 	headR = R;
+	actualGap = 0;
+	srand(std::time(0));
+}
+
+void Player::setPosition(int x, int y)
+{
+	 position = sf::Vector2f(x, y); head.setPosition(position);	oldPosition = position; 
+	 //updateTrace();
 }
 
 Player::~Player()
 {
+}
+
+void Player::setNewGap()
+{
+	gapSize = gapBounds.x +  rand() % (gapBounds.y - gapBounds.x);
+	nextGap = NextGapounds.x + rand() % (NextGapounds.y - NextGapounds.x);
 }
