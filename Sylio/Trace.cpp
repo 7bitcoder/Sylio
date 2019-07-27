@@ -19,7 +19,7 @@ void Trace::update(sf::Vector2f&& left, sf::Vector2f&& right)
 {
 		cpuMem.push_back(sf::Vertex(left, color));
 		cpuMem.push_back(sf::Vertex(right, color));
-		std::cout << cpuMem.size() << std::endl;
+		//std::cout << cpuMem.size() << std::endl;
 	/*if (!(cpuMem.size() % gpuTreshold))
 	{
 		gpuMem.push_back(sf::VertexBuffer(sf::TrianglesStrip, sf::VertexBuffer::Usage::Static));
