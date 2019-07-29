@@ -4,6 +4,7 @@
 //kat zmniejsza sie zgodnie z wsk zegara
 
 std::array<std::array<int, 1080>, 1920> Player::hitbox = { 0 };
+int Player::rScan = 20;
 void Player::update()
 {
 	if (!dead)
@@ -25,15 +26,10 @@ void Player::update()
 		{
 
 			//std::cout << traceBuff.getVertexCount() <<"  "<< trace.size()<< std::endl;
-			actualGap += diff;
-			oldPosition = position;
-			for (auto& x : hitbox)
-				for (auto& y : x)
-					y = 0;
 			if (trace.getState() && actualGap > nextGap)
 			{
 				actualGap = 0;
-				drawLineOnHitBox(round(trace.getLastPos().x), round(trace.getLastPos().y), round(trace.getLastLastPos().x), round(trace.getLastLastPos().y));
+				drawLineOnHitBox(round(position.x), round(position.y), round(oldPosition.x), round(oldPosition.y));
 				trace.stop();
 				//std::cout <<nextGap<< " stop\n";
 			}
@@ -47,7 +43,6 @@ void Player::update()
 				sf::Vector2f pointx(position.x + pointlx, position.y + pointly);
 				sf::Vector2f pointy(position.x - pointlx, position.y - pointly);
 				trace.update(pointx, pointy);
-				drawLineOnHitBox(pointx.x, pointx.y, pointy.x, pointy.y);
 
 				//std::cout <<gapSize<< " start\n";
 			}
@@ -56,20 +51,13 @@ void Player::update()
 				float pointly = headR * cos(angle + NINETY_DEG);
 				sf::Vector2f pointx(position.x + pointlx, position.y + pointly);
 				sf::Vector2f pointy(position.x - pointlx, position.y - pointly);
-				drawLineOnHitBox(round(trace.getLastPos().x), round(trace.getLastPos().y),pointy.x, pointy.y);
-				drawLineOnHitBox(round(trace.getLastLastPos().x), round(trace.getLastLastPos().y), pointx.x, pointx.y);
-
 				trace.update(pointx, pointy);
 				//std::cout << angle << std::endl;
-				float offset = NINETY_DEG / 5;
-				for (int i = 1; i < 10; i++)
-				{
-					pointy.x = position.x + 0.95*headR * sin(angle + NINETY_DEG + i * offset);
-					pointy.y = position.y + 0.95*headR * cos(angle + NINETY_DEG + i * offset);
-					drawLineOnHitBox(round(pointx.x), round(pointx.y), pointy.x, pointy.y);
-					pointx = pointy;
-				}
+				Scan(pointy, pointx);
+				drawLineOnHitBox(round(position.x), round(position.y), round(oldPosition.x), round(oldPosition.y));
 			}
+			actualGap += diff;
+			oldPosition = position;
 		}
 	}
 }
@@ -120,7 +108,7 @@ void Player::setNewGap()
  void Player::drawLineOnHitBox(int x0, int y0, int x1, int y1)
 {
 int val = playerId << 28;
- val |= trace.getIndex();
+ val |= int(round(headR));
 
 int dx = abs(x1 - x0);
 int sx = x0 < x1 ? 1 : -1;
@@ -136,46 +124,57 @@ while (true)   /* loop */
 		err += dy; /* e_xy+e_x > 0 */
 		x0 += sx;
 	}
-	else if (e2 <= dx) /* e_xy+e_y < 0 */
+	if (e2 <= dx) /* e_xy+e_y < 0 */
 	{
 		err += dx;
 		y0 += sy;
 	}
-	if (hitbox[y0][x0]) {
-		int hitboxVal = hitbox[y0][x0];
-		int id = hitboxVal >> 28;
-		int index = hitboxVal & 0xFFFFF;
-		computeSafety();
-		if (id == playerId && index > trace.getIndex()-safety)
-		{
-			;
-		}
-		else//ew warunek immortal
-		{
-			die();
-		}
-	}
-	else
-	{
-		hitbox[y0][x0] = val;
-	}
+	hitbox[y0][x0] = val;
 }
 }
-
- bool Player::computeSafety()
+ void Player::Scan(sf::Vector2f L, sf::Vector2f R)
  {
-	 if (!trace.getState())
-	 {
-		 safety = 0;
-		 return true;
-	 }
-	 else
-	 {
-		 safety = int(100.0*angleVelocity * headR / velocity);
+	 int lx = round(L.x);
+	 int ly = round(L.y);
+	 int rx = round(R.x);
+	 int ry = round(R.y);
+	 int B = lx - rx;//-dx
+	 int A = ry - ly;//dy
+	 int C = ly*(-B) - lx *(A);
 
-		 int diff = trace.getIndex() - trace.getBegin();
-		 if (safety > diff)
-			 safety = diff;
-		 std::cout << safety << std::endl;
-	 }
+	int r = round(rScan);
+	int centx = round(position.x);
+	int centy = round(position.y);
+	int begx = centx - r;
+	int begy = centy - r;
+	int endx = centx + r;
+	int endy = centy + r;
+	
+	for (int x = begx; x <= endx; x++)
+	{
+		for (int y = begy; y <= endy; y++)
+		{
+			if (A * x + B * y + C <= 0)
+			{
+				//std::cout << 'x';
+				if (!hitbox[y][x])
+					continue;
+				else
+				{
+					int hitboxVal = hitbox[y][x];
+					int id = hitboxVal >> 28;
+					int R = hitboxVal & 0xFFFFF;
+					if ((R + headR)*(R + headR) > (centx - x)*(centx - x) + (centy - y)*(centy - y)  )
+					{
+						die();
+					}
+					else//ew warunek immortal
+					{
+						;
+					}
+				}
+			}
+		}
+		//std::cout << std::endl;
+	}
  }
