@@ -6,6 +6,7 @@ Trace::Trace(sf::RenderWindow& win, sf::Color col, int aloc, int gpuT)
 {
 	gpuTreshold = gpuT;
 	cpuMem.reserve(aloc);
+	std::cout << cpuMem.capacity();
 	begin = 0;
 	color = col;
 	drawing = true;
@@ -15,18 +16,11 @@ Trace::~Trace()
 {
 }
 
-void Trace::update(sf::Vector2f&& left, sf::Vector2f&& right)
+void Trace::update(sf::Vector2f& left, sf::Vector2f& right)
 {
 		cpuMem.push_back(sf::Vertex(left, color));
 		cpuMem.push_back(sf::Vertex(right, color));
 		//std::cout << cpuMem.size() << std::endl;
-	/*if (!(cpuMem.size() % gpuTreshold))
-	{
-		gpuMem.push_back(sf::VertexBuffer(sf::TrianglesStrip, sf::VertexBuffer::Usage::Static));
-		gpuMem.back().create(gpuTreshold);
-		gpuMem.back().update(&cpuMem[start], gpuTreshold, 0);
-		start += gpuTreshold;
-	}*/
 }
 
 void Trace::stop()

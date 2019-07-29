@@ -3,7 +3,7 @@
 #include <iostream>
 //kat zmniejsza sie zgodnie z wsk zegara
 
-
+std::array<std::array<int, 1080>, 1920> Player::hitbox = { 0 };
 void Player::update()
 {
 	if (!dead)
@@ -27,10 +27,14 @@ void Player::update()
 			//std::cout << traceBuff.getVertexCount() <<"  "<< trace.size()<< std::endl;
 			actualGap += diff;
 			oldPosition = position;
+			for (auto& x : hitbox)
+				for (auto& y : x)
+					y = 0;
 			if (trace.getState() && actualGap > nextGap)
 			{
-				trace.stop();
 				actualGap = 0;
+				drawLineOnHitBox(round(trace.getLastPos().x), round(trace.getLastPos().y), round(trace.getLastLastPos().x), round(trace.getLastLastPos().y));
+				trace.stop();
 				//std::cout <<nextGap<< " stop\n";
 			}
 			if (!trace.getState() && actualGap > gapSize)
@@ -38,28 +42,50 @@ void Player::update()
 				trace.start();
 				actualGap = 0;
 				setNewGap();
-				updateTrace();
+				float pointlx = headR * sin(angle + NINETY_DEG);
+				float pointly = headR * cos(angle + NINETY_DEG);
+				sf::Vector2f pointx(position.x + pointlx, position.y + pointly);
+				sf::Vector2f pointy(position.x - pointlx, position.y - pointly);
+				trace.update(pointx, pointy);
+				drawLineOnHitBox(pointx.x, pointx.y, pointy.x, pointy.y);
+
 				//std::cout <<gapSize<< " start\n";
 			}
 			if (trace.getState()) {
-				updateTrace();
+				float pointlx = headR * sin(angle + NINETY_DEG);
+				float pointly = headR * cos(angle + NINETY_DEG);
+				sf::Vector2f pointx(position.x + pointlx, position.y + pointly);
+				sf::Vector2f pointy(position.x - pointlx, position.y - pointly);
+				drawLineOnHitBox(round(trace.getLastPos().x), round(trace.getLastPos().y),pointy.x, pointy.y);
+				drawLineOnHitBox(round(trace.getLastLastPos().x), round(trace.getLastLastPos().y), pointx.x, pointx.y);
+
+				trace.update(pointx, pointy);
 				//std::cout << angle << std::endl;
+				float offset = NINETY_DEG / 5;
+				for (int i = 1; i < 10; i++)
+				{
+					pointy.x = position.x + 0.95*headR * sin(angle + NINETY_DEG + i * offset);
+					pointy.y = position.y + 0.95*headR * cos(angle + NINETY_DEG + i * offset);
+					drawLineOnHitBox(round(pointx.x), round(pointx.y), pointy.x, pointy.y);
+					pointx = pointy;
+				}
 			}
 		}
 	}
 }
 
-Player::Player(sf::RenderWindow& win, double angle_, double R, double angvel, double vel, sf::Color col, sf::Keyboard::Key l, sf::Keyboard::Key r, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
+Player::Player(int id,sf::RenderWindow& win, double angle_, double R, double angvel, double vel, sf::Color col, sf::Keyboard::Key l, sf::Keyboard::Key r, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
 	window(win),
 	xmax(xmax_),
 	xmin(xmin_),
 	ymax(ymax_),
 	ymin(ymin_),
 	board(board_),
-	trace(win, col, 80000, 10000)
+	trace(win, col, 8000000, 10000)
 {
+	playerId = id;
 	dead = false;
-	//std::cout << "rozmiar :" << traceBuff.getUsage() * sizeof(sf::Vertex) / (8 * 1000 * 1000) << " MB" << std::endl;
+	std::cout << "rozmiar :" << sizeof(sf::Vertex)  << std::endl;
 	angle = angle_;
 	velocity = vel;
 	angleVelocity = angvel;
@@ -76,6 +102,10 @@ Player::Player(sf::RenderWindow& win, double angle_, double R, double angvel, do
 	headR = R;
 	actualGap = 0;
 	srand(std::time(0));
+	safety = 2;
+	for (auto& x : hitbox)
+		for (auto& y : x)
+			y = 0;
 }
 
 Player::~Player()
@@ -87,3 +117,65 @@ void Player::setNewGap()
 	gapSize = gapBounds.x +  rand() % (gapBounds.y - gapBounds.x);
 	nextGap = NextGapounds.x + rand() % (NextGapounds.y - NextGapounds.x);
 }
+ void Player::drawLineOnHitBox(int x0, int y0, int x1, int y1)
+{
+int val = playerId << 28;
+ val |= trace.getIndex();
+
+int dx = abs(x1 - x0);
+int sx = x0 < x1 ? 1 : -1;
+int dy = -abs(y1 - y0);
+int sy = y0 < y1 ? 1 : -1;
+int err = dx + dy;  /* error value e_xy */
+while (true)   /* loop */
+{
+	if (x0 == x1 && y0 == y1) break;
+	int e2 = 2 * err;
+	if (e2 >= dy)
+	{
+		err += dy; /* e_xy+e_x > 0 */
+		x0 += sx;
+	}
+	else if (e2 <= dx) /* e_xy+e_y < 0 */
+	{
+		err += dx;
+		y0 += sy;
+	}
+	if (hitbox[y0][x0]) {
+		int hitboxVal = hitbox[y0][x0];
+		int id = hitboxVal >> 28;
+		int index = hitboxVal & 0xFFFFF;
+		computeSafety();
+		if (id == playerId && index > trace.getIndex()-safety)
+		{
+			;
+		}
+		else//ew warunek immortal
+		{
+			die();
+		}
+	}
+	else
+	{
+		hitbox[y0][x0] = val;
+	}
+}
+}
+
+ bool Player::computeSafety()
+ {
+	 if (!trace.getState())
+	 {
+		 safety = 0;
+		 return true;
+	 }
+	 else
+	 {
+		 safety = int(100.0*angleVelocity * headR / velocity);
+
+		 int diff = trace.getIndex() - trace.getBegin();
+		 if (safety > diff)
+			 safety = diff;
+		 std::cout << safety << std::endl;
+	 }
+ }

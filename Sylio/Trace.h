@@ -16,22 +16,19 @@ public:
 
 	Trace(sf::RenderWindow& win, sf::Color col,int aloc, int gpuT);
 	~Trace();
-	void update(sf::Vector2f&& left, sf::Vector2f&& right);
+	void update(sf::Vector2f& left, sf::Vector2f& right);
 	inline void draw() { 
-		try {//0123456789
 			for (auto& x : gpuMem) 
 				window.draw(x); 
 			if(drawing)
 				window.draw(&cpuMem[begin], cpuMem.size() - begin, sf::TrianglesStrip);
-		}
-		catch (...)
-		{
-			std::cout << "blad dostepu pamieci traceh \n";
-			exit(-1);
-		}
 	}
 	void stop();
 	void start();
+	sf::Vector2f & getLastPos() { return cpuMem.back().position; }
+	sf::Vector2f & getLastLastPos() { return cpuMem[cpuMem.size() - 2].position; }
 	bool getState() { return drawing; }
+	int getIndex() { return cpuMem.size(); }
+	int getBegin() { return begin; }
 };
 

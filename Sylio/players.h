@@ -2,12 +2,14 @@
 #include"Player.h"
 #include "Settings.h"
 #include <iostream>
+#include <array>
 
 extern Settings setting;
 
 class players
 {
 private:
+
 	sf::RenderTexture& board;
 	sf::Vertex bounds[4][4];
 	sf::RenderWindow& window;
