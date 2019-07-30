@@ -23,10 +23,11 @@ void Trace::update(sf::Vector2f& left, sf::Vector2f& right)
 		//std::cout << cpuMem.size() << std::endl;
 }
 
-void Trace::stop()
+void Trace::stop(double r, double angle)
 {
 	try {
 		gpuMem.push_back(sf::VertexBuffer(sf::TrianglesStrip, sf::VertexBuffer::Usage::Static));
+		edge(false, r,angle);
 		int diff = cpuMem.size() - begin;//0123456789
 		if (!gpuMem.back().create(diff))
 		{
@@ -48,7 +49,37 @@ void Trace::stop()
 	drawing = false;
 }
 
-void Trace::start()
+void Trace::start(double r, double angle)
 {
+	edge(true, r, angle);
 	drawing = true;
+}
+void Trace::edge(bool beg, double R, double angle)
+{
+	sf::Vector2f& right = cpuMem.back().position;
+	sf::Vector2f& left = cpuMem[cpuMem.size() - 2].position;
+	sf::Vector2f cent((right.x + left.x) / 2, (right.y + left.y) / 2);
+	double ang = NINETY_DEG / 5;
+	if (beg)
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			sf::Vector2f point(R * sin(angle + 2.0 * NINETY_DEG - i * ang) + cent.x, R * cos(angle + 2 * NINETY_DEG - i * ang) + cent.y);
+			cpuMem.push_back(sf::Vertex(point, color));
+			point.x = R * sin(angle + 2 * NINETY_DEG + i * ang) + cent.x;
+			point.y = R * cos(angle + 2 * NINETY_DEG + i * ang) + cent.y;
+			cpuMem.push_back(sf::Vertex(point, color));
+		}
+	}
+	else
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			sf::Vector2f point(R * sin(angle + NINETY_DEG - i * ang) + cent.x, R * cos(angle + NINETY_DEG - i * ang) + cent.y);
+			cpuMem.push_back(sf::Vertex(point, color));
+			point.x = R * sin(angle - NINETY_DEG + i * ang) + cent.x;
+			point.y = R * cos(angle - NINETY_DEG + i * ang) + cent.y;
+			cpuMem.push_back(sf::Vertex(point, color));
+		}
+	}
 }

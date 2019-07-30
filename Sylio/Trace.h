@@ -2,6 +2,9 @@
 #include<vector>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
+#define NINETY_DEG 1.57079633
+
 class Trace
 {
 private:
@@ -9,6 +12,9 @@ private:
 	std::vector<sf::VertexBuffer> gpuMem;
 	sf::Color color;
 	sf::RenderWindow& window;
+	sf::Vector2f center;
+	double R;
+	double angle;
 	int gpuTreshold;
 	int begin;
 	bool drawing;
@@ -23,8 +29,9 @@ public:
 			if(drawing)
 				window.draw(&cpuMem[begin], cpuMem.size() - begin, sf::TrianglesStrip);
 	}
-	void stop();
-	void start();
+	void stop(double r, double angle);
+	void start(double r, double angle);
+	void edge(bool beg, double r, double angle);
 	sf::Vector2f & getLastPos() { return cpuMem.back().position; }
 	sf::Vector2f & getLastLastPos() { return cpuMem[cpuMem.size() - 2].position; }
 	bool getState() { return drawing; }

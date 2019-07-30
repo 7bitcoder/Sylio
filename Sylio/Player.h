@@ -4,7 +4,7 @@
 #include<random>
 #include <array>
 
-#define NINETY_DEG 1.57079633
+
 
 class Player
 {
@@ -12,7 +12,7 @@ private:
 	static int rScan;
 	int safety;
 	int playerId;
-	static std::array<std::array<int, 1080>, 1920> hitbox;
+	static std::array<std::array<int, 1920>, 1080> hitbox;
 	sf::RenderWindow& window;
 	sf::Clock time;
 	sf::CircleShape head;
@@ -49,17 +49,18 @@ public:
 		sf::Vector2f xx(position.x + pointlx, position.y + pointly);
 		sf::Vector2f yy(position.x - pointlx, position.y - pointly);
 		trace.update(xx, yy);
-
+		trace.start(headR, angle);
 	}
 	void setNick(std::string str) { nickname = str; }
 	void draw() { trace.draw();	window.draw(head); }
 	sf::Vector2f& getPos() { return position; }
 	void die(bool x = true) { dead = true; }
-	void checkBounds() { if (position.x < xmin || position.x > xmax || position.y > ymax || position.y < ymin) die(); }
+	void checkBounds() { if (position.x  - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
 	~Player();
 	void setNewGap();
 	void drawLineOnHitBox(int x0, int y0, int x1, int y1);
 	void Scan(sf::Vector2f l, sf::Vector2f r);
+	void log();
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
 };
 

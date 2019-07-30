@@ -8,7 +8,10 @@
 
 Settings setting;
 Music music;
+/*
+pamietaj ze przy krawedzi hitboxa jest odstep i 
 
+*/
 int main()
 {
 	sf::ContextSettings set;

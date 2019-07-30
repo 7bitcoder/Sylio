@@ -1,10 +1,11 @@
 #include "Player.h"
 #include <cmath>
 #include <iostream>
+#include <fstream>
 //kat zmniejsza sie zgodnie z wsk zegara
 
-std::array<std::array<int, 1080>, 1920> Player::hitbox = { 0 };
-int Player::rScan = 20;
+std::array<std::array<int, 1920>, 1080> Player::hitbox = { 0 };
+int Player::rScan = 40;
 void Player::update()
 {
 	if (!dead)
@@ -22,20 +23,16 @@ void Player::update()
 		head.setPosition(position);
 
 		int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
-		if (diff > 10)
+		if (diff > 9)
 		{
 
-			//std::cout << traceBuff.getVertexCount() <<"  "<< trace.size()<< std::endl;
 			if (trace.getState() && actualGap > nextGap)
 			{
 				actualGap = 0;
-				drawLineOnHitBox(round(position.x), round(position.y), round(oldPosition.x), round(oldPosition.y));
-				trace.stop();
-				//std::cout <<nextGap<< " stop\n";
+				trace.stop(headR, angle);
 			}
-			if (!trace.getState() && actualGap > gapSize)
+			else if (!trace.getState() && actualGap > gapSize)
 			{
-				trace.start();
 				actualGap = 0;
 				setNewGap();
 				float pointlx = headR * sin(angle + NINETY_DEG);
@@ -43,16 +40,14 @@ void Player::update()
 				sf::Vector2f pointx(position.x + pointlx, position.y + pointly);
 				sf::Vector2f pointy(position.x - pointlx, position.y - pointly);
 				trace.update(pointx, pointy);
-
-				//std::cout <<gapSize<< " start\n";
+				trace.start(headR, angle);
 			}
-			if (trace.getState()) {
+			else if (trace.getState()) {
 				float pointlx = headR * sin(angle + NINETY_DEG);
 				float pointly = headR * cos(angle + NINETY_DEG);
 				sf::Vector2f pointx(position.x + pointlx, position.y + pointly);
 				sf::Vector2f pointy(position.x - pointlx, position.y - pointly);
 				trace.update(pointx, pointy);
-				//std::cout << angle << std::endl;
 				Scan(pointy, pointx);
 				drawLineOnHitBox(round(position.x), round(position.y), round(oldPosition.x), round(oldPosition.y));
 			}
@@ -69,6 +64,7 @@ Player::Player(int id,sf::RenderWindow& win, double angle_, double R, double ang
 	ymax(ymax_),
 	ymin(ymin_),
 	board(board_),
+	headR(R),
 	trace(win, col, 8000000, 10000)
 {
 	playerId = id;
@@ -94,6 +90,7 @@ Player::Player(int id,sf::RenderWindow& win, double angle_, double R, double ang
 	for (auto& x : hitbox)
 		for (auto& y : x)
 			y = 0;
+
 }
 
 Player::~Player()
@@ -145,10 +142,19 @@ while (true)   /* loop */
 	int r = round(rScan);
 	int centx = round(position.x);
 	int centy = round(position.y);
+
 	int begx = centx - r;
+	if (begx < xmin)
+		begx = xmin;
 	int begy = centy - r;
+	if (begy < ymin)
+		begy = ymin;
 	int endx = centx + r;
+	if (endx > xmax)
+		endx = xmax;
 	int endy = centy + r;
+	if (endy > ymax)
+		endy = ymax;
 	
 	for (int x = begx; x <= endx; x++)
 	{
@@ -164,9 +170,30 @@ while (true)   /* loop */
 					int hitboxVal = hitbox[y][x];
 					int id = hitboxVal >> 28;
 					int R = hitboxVal & 0xFFFFF;
-					if ((R + headR)*(R + headR) > (centx - x)*(centx - x) + (centy - y)*(centy - y)  )
+					if ((R + headR) * (R + headR) > (centx - x) * (centx - x) + (centy - y) * (centy - y))
 					{
 						die();
+						std::ofstream myfile("example.txt");
+						for (int i = begy; i <= endy;i++)
+						{	
+							for (int j = begx; j <= endx; j++)
+							{
+								if(!hitbox[i][j])
+									myfile << '_';
+								else
+								{
+									if (j == centx&& i == centy)
+										myfile << 'O';
+									else if (j == x && i == y)
+										myfile << '8';
+									else
+										myfile << 'X';
+								}
+							}
+							myfile << std::endl;
+						}
+						myfile.close();
+
 					}
 					else//ew warunek immortal
 					{
@@ -177,4 +204,8 @@ while (true)   /* loop */
 		}
 		//std::cout << std::endl;
 	}
+ }
+ void Player::log()
+ {
+	 ;
  }
