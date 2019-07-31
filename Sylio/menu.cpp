@@ -164,6 +164,7 @@ st Menu::mainMenuUpdate()
 	quit.setTitle("quit");
 	quit.setSoundVolume(setting.SoundVolume);
 	
+	
 
 	while (window.isOpen())
 	{
@@ -176,7 +177,7 @@ st Menu::mainMenuUpdate()
 			settings.checkState();
 			quit.checkState();
 			if (normalGame.buttonFunction())
-				return st::playNormalGame;
+				return st::normalGame;
 			else if (multiplayerGame.buttonFunction());
 			else if (settings.buttonFunction())
 				return st::settings;
@@ -349,6 +350,8 @@ st Menu::settingsUupdate()
 }
 st Menu::normalGameUpdate()
 {
+	setting.playersSettings.clear();
+
 	PopAlert alert(window, "asdasd", whiteBox, blockPressed, block, offButton, clickBuff, switchBuff, font2);
 
 	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
@@ -394,22 +397,22 @@ st Menu::normalGameUpdate()
 	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player1")));
 	players.back().setPosition(col, row + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(53,186,243,255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player2")));
 	players.back().setPosition(col, row*2 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(136,224,96,255));
 
 	players.push_back(std::move(setPlayer (window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player3")));
 	players.back().setPosition(col, row*3 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(255,217,72,255));
 
 	players.push_back(std::move(setPlayer (window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player4")));
 	players.back().setPosition(col, row*4 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(250,129,50,255));
 
 	players.push_back(std::move(setPlayer (window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player5")));
 	players.back().setPosition(col, row*5 + off);

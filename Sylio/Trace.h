@@ -29,9 +29,9 @@ public:
 			if(drawing)
 				window.draw(&cpuMem[begin], cpuMem.size() - begin, sf::TrianglesStrip);
 	}
-	void stop(double r, double angle);
-	void start(double r, double angle);
-	void edge(bool beg, double r, double angle);
+	void stop(double & r, double & angle);
+	void start(double & r, double & angle);
+	void edge(bool beg, double & r, double & angle);
 	sf::Vector2f & getLastPos() { return cpuMem.back().position; }
 	sf::Vector2f & getLastLastPos() { return cpuMem[cpuMem.size() - 2].position; }
 	bool getState() { return drawing; }

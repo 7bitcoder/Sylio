@@ -4,7 +4,7 @@
 #include <fstream>
 //kat zmniejsza sie zgodnie z wsk zegara
 
-std::array<std::array<int, 1920>, 1080> Player::hitbox = { 0 };
+
 int Player::rScan = 40;
 void Player::update()
 {
@@ -14,6 +14,8 @@ void Player::update()
 		time.restart();
 		double r = velocity * t.asSeconds();
 		if (sf::Keyboard::isKeyPressed(left))
+			if (sf::Keyboard::isKeyPressed(right));
+			else
 			angle += angleVelocity * t.asSeconds();
 		else if (sf::Keyboard::isKeyPressed(right))
 			angle -= angleVelocity * t.asSeconds();
@@ -57,40 +59,26 @@ void Player::update()
 	}
 }
 
-Player::Player(int id,sf::RenderWindow& win, double angle_, double R, double angvel, double vel, sf::Color col, sf::Keyboard::Key l, sf::Keyboard::Key r, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
+Player::Player(std::array<std::array<int, 1920>, 1080>& hitbox_,sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
 	window(win),
 	xmax(xmax_),
 	xmin(xmin_),
 	ymax(ymax_),
 	ymin(ymin_),
 	board(board_),
-	headR(R),
+	hitbox(hitbox_),
+	headR(0),
+	angle(0),
 	trace(win, col, 8000000, 10000)
 {
-	playerId = id;
 	dead = false;
 	std::cout << "rozmiar :" << sizeof(sf::Vertex)  << std::endl;
-	angle = angle_;
-	velocity = vel;
-	angleVelocity = angvel;
 	time.restart();
 	color = col;
 	head.setFillColor(color);
-	position = { 1000, 1000 };
-	oldPosition = position;
-	head.setPosition(position);
-	head.setRadius(R);
-	head.setOrigin(R, R);
-	left = l;
-	right = r;
-	headR = R;
 	actualGap = 0;
 	srand(std::time(0));
 	safety = 2;
-	for (auto& x : hitbox)
-		for (auto& y : x)
-			y = 0;
-
 }
 
 Player::~Player()
@@ -173,7 +161,7 @@ while (true)   /* loop */
 					if ((R + headR) * (R + headR) > (centx - x) * (centx - x) + (centy - y) * (centy - y))
 					{
 						die();
-						std::ofstream myfile("example.txt");
+						/*std::ofstream myfile("example.txt");
 						for (int i = begy; i <= endy;i++)
 						{	
 							for (int j = begx; j <= endx; j++)
@@ -193,7 +181,7 @@ while (true)   /* loop */
 							myfile << std::endl;
 						}
 						myfile.close();
-
+						*/
 					}
 					else//ew warunek immortal
 					{
@@ -204,8 +192,4 @@ while (true)   /* loop */
 		}
 		//std::cout << std::endl;
 	}
- }
- void Player::log()
- {
-	 ;
  }

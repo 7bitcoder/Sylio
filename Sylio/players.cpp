@@ -1,53 +1,42 @@
 #include "players.h"
 
-players::players(sf::RenderWindow& win, int ymax_, int ymin_, int xmax_, int xmin_, sf::RenderTexture& board_) : window(win), board(board_)
+players::players(std::array<std::array<int, 1920>, 1080>& hitbox_,sf::RenderWindow& win, int & ymax_, int & ymin_, int & xmax_, int & xmin_, int& thicc_, sf::RenderTexture& board_)
+	:window(win), 
+	hitbox(hitbox_),
+	board(board_),
+	ymax(ymax_),
+	xmax(xmax_),
+	xmin(xmin_),
+	ymin(ymin_),
+	thicc(thicc_)
 {
 
 	thicc = 5;
-	setBounds(ymax_, ymin_, xmax_, xmin_);
 	int i = 1;
-	/*for (auto& x : setting.playersSettings)
+	 for(auto& x : setting.playersSettings)
 	{
-		Players.push_back(std::move(Player( i,window, 0, 5, 1.5, 100, x.color, x.left, x.right, ymax, ymin, xmax, xmin, board)));
+		Players.push_back(std::move(Player(hitbox ,window, x.color, ymax, ymin, xmax, xmin, board)));
+		Players.back().setParams(0, 2, 2.5, 100);
+		Players.back().setId(i);
+		Players.back().setControls(x.left, x.right);
 		Players.back().setPosition(600 + i * 200, 100);
 		Players.back().setNick(x.nickname);
 		i++;
-		Players.back().setGapBounds(9, 100,100, 3600);
-	}*/
-	Players.push_back(std::move(Player(1,window, 0 , 5, 2.9, 100, sf::Color::Red, sf::Keyboard::Key::S, sf::Keyboard::Key::D, ymax, ymin, xmax, xmin, board)));
-	Players.back().setPosition(700 , 100);
-	Players.back().setNick("sylwek");
-	Players.back().setGapBounds(10, 400, 400, 1000);
+		Players.back().setGapBounds(40, 300, 500, 1000);
+	}
+	/*
+		Players.push_back(std::move(Player(hitbox ,window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
+		Players.back().setParams(0, 25, 2.5, 100);
+		Players.back().setId(i);
+		Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
+		Players.back().setPosition(600 + i * 200, 100);
+		Players.back().setNick("sylwow");
+		i++;
+		allHeadRadious.push_back(5);
+		Players.back().setGapBounds(40, 300, 500, 1000);*/
 }
 
-void players::setBounds(int ymax_, int ymin_, int xmax_, int xmin_)
-{
-	xmax = xmax_;
-	xmin = xmin_;
-	ymin = ymin_;
-	ymax = ymax_;
 
-	bounds[0][0] = sf::Vertex(sf::Vector2f(xmax + thicc, ymin - thicc), sf::Color::Yellow);
-	bounds[0][1] = sf::Vertex(sf::Vector2f(xmax, ymin), sf::Color::Yellow);
-	bounds[0][2] = sf::Vertex(sf::Vector2f(xmax, ymax), sf::Color::Yellow);
-	bounds[0][3] = sf::Vertex(sf::Vector2f(xmax + thicc, ymax + thicc), sf::Color::Yellow);
-
-	bounds[1][0] = sf::Vertex(sf::Vector2f(xmax + thicc, ymax + thicc), sf::Color::Yellow);
-	bounds[1][1] = sf::Vertex(sf::Vector2f(xmax, ymax), sf::Color::Yellow);
-	bounds[1][2] = sf::Vertex(sf::Vector2f(xmin, ymax), sf::Color::Yellow);
-	bounds[1][3] = sf::Vertex(sf::Vector2f(xmin - thicc, ymax + thicc), sf::Color::Yellow);
-
-	bounds[2][0] = sf::Vertex(sf::Vector2f(xmin - thicc, ymax + thicc), sf::Color::Yellow);
-	bounds[2][1] = sf::Vertex(sf::Vector2f(xmin, ymax), sf::Color::Yellow);
-	bounds[2][2] = sf::Vertex(sf::Vector2f(xmin, ymin), sf::Color::Yellow);
-	bounds[2][3] = sf::Vertex(sf::Vector2f(xmin - thicc, ymin - thicc), sf::Color::Yellow);
-
-	bounds[3][0] = sf::Vertex(sf::Vector2f(xmin - thicc, ymin - thicc), sf::Color::Yellow);
-	bounds[3][1] = sf::Vertex(sf::Vector2f(xmin, ymin), sf::Color::Yellow);
-	bounds[3][2] = sf::Vertex(sf::Vector2f(xmax, ymin), sf::Color::Yellow);
-	bounds[3][3] = sf::Vertex(sf::Vector2f(xmax + thicc, ymin - thicc), sf::Color::Yellow);
-
-}
 
 players::~players()
 {

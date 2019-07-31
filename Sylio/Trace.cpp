@@ -23,7 +23,7 @@ void Trace::update(sf::Vector2f& left, sf::Vector2f& right)
 		//std::cout << cpuMem.size() << std::endl;
 }
 
-void Trace::stop(double r, double angle)
+void Trace::stop(double & r, double & angle)
 {
 	try {
 		gpuMem.push_back(sf::VertexBuffer(sf::TrianglesStrip, sf::VertexBuffer::Usage::Static));
@@ -49,12 +49,12 @@ void Trace::stop(double r, double angle)
 	drawing = false;
 }
 
-void Trace::start(double r, double angle)
+void Trace::start(double & r, double & angle)
 {
 	edge(true, r, angle);
 	drawing = true;
 }
-void Trace::edge(bool beg, double R, double angle)
+void Trace::edge(bool beg, double & R, double & angle)
 {
 	sf::Vector2f& right = cpuMem.back().position;
 	sf::Vector2f& left = cpuMem[cpuMem.size() - 2].position;
@@ -62,7 +62,7 @@ void Trace::edge(bool beg, double R, double angle)
 	double ang = NINETY_DEG / 5;
 	if (beg)
 	{
-		for (int i = 1; i < 6; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			sf::Vector2f point(R * sin(angle + 2.0 * NINETY_DEG - i * ang) + cent.x, R * cos(angle + 2 * NINETY_DEG - i * ang) + cent.y);
 			cpuMem.push_back(sf::Vertex(point, color));
