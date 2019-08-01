@@ -15,7 +15,7 @@ void Background::draw()
 	window.draw(base);
 }
 
-void Background::set(sf::Texture back_,sf::Texture & base_, double r, double v)
+void Background::set(sf::Texture back_, sf::Texture& base_, double r, double v)
 {
 	Background1.rotate(40);
 	prevPos = { 0,0 };
@@ -25,9 +25,9 @@ void Background::set(sf::Texture back_,sf::Texture & base_, double r, double v)
 	Background2.setTexture(back);
 	radious = r;
 	velocity = v;
-	Background1.setOrigin(back.getSize().x / 2, back.getSize().y/2 + r);
+	Background1.setOrigin(back.getSize().x / 2, back.getSize().y / 2 + r);
 	angle = 0;
-	Background1.setPosition(window.getSize().x/2, window.getSize().y + r);
+	Background1.setPosition(window.getSize().x / 2, window.getSize().y + r);
 	zeroPiont.x = Background1.getPosition().x;
 	zeroPiont.y = Background1.getPosition().y + r;
 	time.restart();

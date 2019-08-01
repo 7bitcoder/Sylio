@@ -5,10 +5,10 @@
 
 bool setPlayer::focused = false;
 std::vector<sf::Keyboard::Key> setPlayer::forbidden = {};
-setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff, sf::Texture& controlsOn, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font &font, std::string string)
-	:window(win),  left(win, controlsOn, controlsOff, click),
-	right(win, controlsOn, controlsOff,click),
-	nickname(win, box_,boxOff, click),
+setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff, sf::Texture& controlsOn, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font& font, std::string string)
+	:window(win), left(win, controlsOn, controlsOff, click),
+	right(win, controlsOn, controlsOff, click),
+	nickname(win, box_, boxOff, click),
 	checkBox(win, checkOn, checkOff, click)
 {
 	checkBox.setAlpha(100);
@@ -38,7 +38,7 @@ setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxO
 	left.setScale(1.4, 1.4);
 	left.setAlpha(100);
 }
- 
+
 bool setPlayer::function()
 {
 	focused = true;
@@ -79,7 +79,7 @@ bool setPlayer::function()
 			right.setAlpha(255);
 			checkBox.setAlpha(255);
 			return true;
-			
+
 		}
 		else if (t == -1)
 		{
@@ -93,7 +93,7 @@ bool setPlayer::function()
 		return false;
 	}	//activated = 0;
 		//focused = false;
-	
+
 }
 
 bool setPlayer::setChar(sf::Keyboard::Key key)
@@ -112,7 +112,7 @@ bool setPlayer::setChar(sf::Keyboard::Key key)
 	}
 	else if (left.getFocuse() && str != "" && str != "\n")
 	{
-		
+
 		if (!forbidden.empty())
 		{
 			auto ptr = std::find(forbidden.begin(), forbidden.end(), key);
@@ -144,11 +144,11 @@ bool setPlayer::setChar(sf::Keyboard::Key key)
 	}
 	else if (right.getFocuse() && str != "" && str != "\n")
 	{
-		
+
 		if (!forbidden.empty())
 		{
 			auto ptr = std::find(forbidden.begin(), forbidden.end(), key);
-			if (ptr != forbidden.end()  && rightKey != key)
+			if (ptr != forbidden.end() && rightKey != key)
 			{
 				return false;
 			}
@@ -192,10 +192,10 @@ void setPlayer::setPosition(int x, int y)
 
 	left.setPosition(x + 190 * 1.8 + 40, y);
 	left.setTextPosition(x + 190 * 1.8 + 40 + 20, y + 5);
-	
+
 	right.setPosition(x + 49 * 1.5 + 80 + 190 * 1.8, y);
 	right.setTextPosition(x + 49 * 1.5 + 80 + 190 * 1.8 + 20, y + 5);
-	
+
 	checkBox.setPosition(x - 50, y + 20);
 }
 std::string setPlayer::getNickname() {
@@ -225,7 +225,7 @@ std::string setPlayer::translate(sf::Keyboard::Key key)
 {
 	switch (key)
 	{
-	case sf::Keyboard::Key::A :
+	case sf::Keyboard::Key::A:
 		return "a";
 	case sf::Keyboard::Key::B:
 		return "b";

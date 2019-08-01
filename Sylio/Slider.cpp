@@ -85,7 +85,7 @@ bool Slider::sliderFunction()//1-music/2-sound
 			x = line.getGlobalBounds().left + line.getGlobalBounds().width;
 		pointner.setPosition(x, pointner.getPosition().y);
 		width = pointner.getPosition().x - line.getPosition().x;
-		actualval= width / line.getGlobalBounds().width;
+		actualval = width / line.getGlobalBounds().width;
 		if (actualval != oldVal)
 		{
 			oldVal = actualval;
@@ -93,12 +93,12 @@ bool Slider::sliderFunction()//1-music/2-sound
 		}
 		break;
 	default:
-			break;
+		break;
 	}
 	return false;
 }
 
-Slider::Slider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_, sf::SoundBuffer &click_) :pointner(pointner_), line(line_), window(win), click(click_)
+Slider::Slider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_, sf::SoundBuffer& click_) :pointner(pointner_), line(line_), window(win), click(click_)
 {
 	state = pointnerState::isNotOn;
 	isAlredyOnButton = false;
@@ -112,7 +112,7 @@ void Slider::setPosition(int x, int y, double scale)
 	line.setScale(1.8, 1);
 	line.setPosition(x, y);
 	pointner.setOrigin(14, 0);
-	pointner.setPosition(int(scale* line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);
+	pointner.setPosition(int(scale * line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);
 }
 
 void Slider::setSlider(double x)

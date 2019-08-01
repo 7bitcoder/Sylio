@@ -18,16 +18,16 @@ Trace::~Trace()
 
 void Trace::update(sf::Vector2f& left, sf::Vector2f& right)
 {
-		cpuMem.push_back(sf::Vertex(left, color));
-		cpuMem.push_back(sf::Vertex(right, color));
-		//std::cout << cpuMem.size() << std::endl;
+	cpuMem.push_back(sf::Vertex(left, color));
+	cpuMem.push_back(sf::Vertex(right, color));
+	//std::cout << cpuMem.size() << std::endl;
 }
 
-void Trace::stop(double & r, double & angle)
+void Trace::stop(double& r, double& angle)
 {
 	try {
 		gpuMem.push_back(sf::VertexBuffer(sf::TrianglesStrip, sf::VertexBuffer::Usage::Static));
-		edge(false, r,angle);
+		edge(false, r, angle);
 		int diff = cpuMem.size() - begin;//0123456789
 		if (!gpuMem.back().create(diff))
 		{
@@ -49,12 +49,12 @@ void Trace::stop(double & r, double & angle)
 	drawing = false;
 }
 
-void Trace::start(double & r, double & angle)
+void Trace::start(double& r, double& angle)
 {
 	edge(true, r, angle);
 	drawing = true;
 }
-void Trace::edge(bool beg, double & R, double & angle)
+void Trace::edge(bool beg, double& R, double& angle)
 {
 	sf::Vector2f& right = cpuMem.back().position;
 	sf::Vector2f& left = cpuMem[cpuMem.size() - 2].position;

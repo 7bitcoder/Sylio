@@ -27,7 +27,7 @@ private:
 	int& ymax;
 	int& ymin;
 
-	std::array<std::array<int, 1920>, 1080> & hitbox;
+	std::array<std::array<int, 1920>, 1080>& hitbox;
 	sf::RenderWindow& window;
 	sf::Clock time;
 	sf::CircleShape head;
@@ -40,27 +40,30 @@ private:
 	sf::RenderTarget& board;
 	sf::Vector2i gapBounds;
 	sf::Vector2i NextGapounds;
-	
+	sf::Vector2i roundPosition;
+	std::vector<double>& headVec;
 	Trace trace;
 public:
 	void update();
 	void draw() { trace.draw();	window.draw(head); }
 
-	Player(std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col,  int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
+	Player(std::vector<double>& headVec, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
-	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; headR = R; angleVelocity = angvel; velocity = vel;	head.setRadius(R);head.setOrigin(R, R);}
+	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_,changeRadious(R); angleVelocity = angvel; velocity = vel;	 }
 	void setNick(std::string str) { nickname = str; }
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
-	void setColor(sf::Color col) { color = col; head.setFillColor(color);}
+	void setColor(sf::Color col) { color = col; head.setFillColor(color); }
 
 	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
 
 	void die(bool x = true) { dead = true; }
 	void setNewGap();
-	void drawLineOnHitBox(int x0, int y0, int x1, int y1);
-	void Scan(sf::Vector2f l, sf::Vector2f r);
-
+	void drawLineOnHitBox(int x1, int y1);
+	void Scan();
+	void updateTrace();
+	void roundPos() { roundPosition.x = round(position.x); roundPosition.y = round(position.y); }
+	void changeRadious(double R);
 	sf::Vector2f& getPos() { return position; }
 
 	inline void setPosition(int x, int y) {

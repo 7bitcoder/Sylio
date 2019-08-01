@@ -10,7 +10,7 @@ private:
 	static std::vector<sf::Keyboard::Key> forbidden;
 	sf::Keyboard::Key leftKey;
 	sf::Keyboard::Key rightKey;
-	sf::RenderWindow &window;
+	sf::RenderWindow& window;
 	inputText nickname;
 	inputText left;
 	inputText right;
@@ -21,7 +21,7 @@ private:
 	sf::Color playerColor;
 	static bool focused;
 public:
-	setPlayer(sf::RenderWindow& win, sf::Texture& boxOn_,sf::Texture & boxOff, sf::Texture & controls, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font& font, std::string string);
+	setPlayer(sf::RenderWindow& win, sf::Texture& boxOn_, sf::Texture& boxOff, sf::Texture& controls, sf::Texture& controlsOff, sf::Texture& checkOn, sf::Texture& checkOff, sf::SoundBuffer& click, sf::Font& font, std::string string);
 	bool function();
 	void setColor(sf::Color x) { playerColor = x; }
 	sf::Color getColor() { return playerColor; }

@@ -3,8 +3,8 @@
 
 
 Rounds::Rounds(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff_, sf::Texture& pointner_, sf::Texture& line_, sf::SoundBuffer& click_)
-:inputText(win, box_, boxOff_, click_),
-Slider(win, pointner_, line_, click_)
+	:inputText(win, box_, boxOff_, click_),
+	Slider(win, pointner_, line_, click_)
 {
 	min = 1;
 	max = 99;
@@ -28,7 +28,7 @@ bool Rounds::function()
 	if (inputText::function(true));
 	if (sliderFunction())
 	{
-		number = min + getValue() * (max-min);
+		number = min + getValue() * (max - min);
 		this->setString(std::to_string(number));
 	}
 	return false;
@@ -43,7 +43,7 @@ void Rounds::updateText()
 		number = min;
 		setString(std::to_string(number));
 	}
-	setSlider( double(number - min) / double(max - min));
+	setSlider(double(number - min) / double(max - min));
 }
 
 Rounds::~Rounds()

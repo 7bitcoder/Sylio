@@ -9,7 +9,7 @@
 Settings setting;
 Music music;
 /*
-pamietaj ze przy krawedzi hitboxa jest odstep i 
+pamietaj ze przy krawedzi hitboxa jest odstep i
 
 */
 int main()
@@ -18,15 +18,15 @@ int main()
 	set.antialiasingLevel = 8;
 	std::string version = "Beta 0.1";
 	auto state = st::mainMenu;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version , sf::Style::Fullscreen, set);
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version, sf::Style::Fullscreen, set);
 	window.clear(sf::Color::Black);
 	music.playMenuMusic();
 	Menu Menu_(window, version);
 	sf::Image pointnerIm;
-	if(!pointnerIm.loadFromFile("../PNG/pointner2.png"))
+	if (!pointnerIm.loadFromFile("../PNG/pointner2.png"))
 		std::cout << "error\n";
 	sf::Cursor pointner;
-	if(!pointner.loadFromPixels(pointnerIm.getPixelsPtr(), sf::Vector2u(30,31), sf::Vector2u(6,1)))
+	if (!pointner.loadFromPixels(pointnerIm.getPixelsPtr(), sf::Vector2u(30, 31), sf::Vector2u(6, 1)))
 		exit(-1);
 	window.setMouseCursor(pointner);
 	gameBoard board(window);

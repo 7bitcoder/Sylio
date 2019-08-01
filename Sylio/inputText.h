@@ -22,9 +22,9 @@ private:
 	bool focuse;
 	std::string text;
 	bool isOnButton();
-	
+
 public:
-	inputText(sf::RenderWindow & win, sf::Texture & box_, sf::Texture & boxOff_, sf::SoundBuffer & click);
+	inputText(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff_, sf::SoundBuffer& click);
 	bool function(bool clear = false);
 	bool addChar(char t);
 	void setString(std::string y) { text = y; textOutput.setString(y); }
@@ -41,7 +41,7 @@ public:
 	void disActivate() { focuse = false;  spriteBox.setTexture(boxOff); };
 	std::string& getText() { return text; }
 	void clear() { text.clear(); textOutput.setString(""); }
-	void setScale(double x, double y) { spriteBox.setScale(x,y); }
+	void setScale(double x, double y) { spriteBox.setScale(x, y); }
 	void setSoundVolume(double vol) { click.setVolume(vol * 100); }
 	void setAlpha(int a) { spriteBox.setColor(sf::Color(255, 255, 255, a)); }
 	bool addNumber(char t);

@@ -1,6 +1,6 @@
 #include "menu.h"
 
-Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_), background(win)
+Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_), background(win)
 {
 
 	if (!clickBuff.loadFromFile("../Sounds/click1.ogg"))
@@ -17,10 +17,10 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 
 	if (!checkOff.loadFromFile("../PNG/grey_box.png"))
 		exit(-1);
-	
+
 	if (!checkOnBlue.loadFromFile("../PNG/blue_boxCheckmark.png"))
 		exit(-1);
-	
+
 	if (!controlOnBlue.loadFromFile("../PNG/blue_button06.png"))
 		exit(-1);
 
@@ -33,7 +33,7 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!nickNameOffBlue.loadFromFile("../PNG/blue_button04.png"))
 		exit(-1);
 
-	
+
 	if (!checkOnGreen.loadFromFile("../PNG/green_boxCheckmark.png"))
 		exit(-1);
 
@@ -49,7 +49,7 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_): window(win), version(ver_)
 	if (!nickNameOffGreen.loadFromFile("../PNG/green_button04.png"))
 		exit(-1);
 
-	
+
 	if (!checkOnYellow.loadFromFile("../PNG/yellow_boxCheckmark.png"))
 		exit(-1);
 
@@ -157,14 +157,14 @@ st Menu::mainMenuUpdate()
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
 
-	
+
 	Button quit(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
 	quit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
 	quit.setScale(1.8, 1);
 	quit.setTitle("quit");
 	quit.setSoundVolume(setting.SoundVolume);
-	
-	
+
+
 
 	while (window.isOpen())
 	{
@@ -177,13 +177,13 @@ st Menu::mainMenuUpdate()
 			settings.checkState();
 			quit.checkState();
 			if (normalGame.buttonFunction())
-				return st::normalGame;
+				return st::playNormalGame;
 			else if (multiplayerGame.buttonFunction());
 			else if (settings.buttonFunction())
 				return st::settings;
 			else if (quit.buttonFunction())
 				return st::quit;
-			else ;
+			else;
 		}
 
 		window.clear(sf::Color::Black);
@@ -220,7 +220,7 @@ st Menu::settingsUupdate()
 	VolSounndEffectsTest.setString("Sound Effects Volume");
 	VolSounndEffectsTest.setFont(font);
 	VolSounndEffectsTest.setCharacterSize(25);
-	VolSounndEffectsTest.setPosition(linex + 20, liney- 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
+	VolSounndEffectsTest.setPosition(linex + 20, liney - 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
 
 
 	sf::Text ChoseMusicText;
@@ -236,7 +236,7 @@ st Menu::settingsUupdate()
 	fileError.setCharacterSize(15);
 	fileError.setPosition(-200, -200); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
 	fileError.setFillColor(sf::Color::Red);
-	
+
 	Slider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
 	musicSlider.setPosition(linex, liney - 300, (music.getVolume() / 30));//1- music /2 -sound
 	musicSlider.setSoundVolume(setting.MusicVolume);
@@ -275,7 +275,7 @@ st Menu::settingsUupdate()
 	musicApply.setScale(1.8, 1);
 	musicApply.setTitle("apply");
 	musicApply.setSoundVolume(setting.SoundVolume);
-	
+
 	bool alertFlag = false;
 	double volume;
 	while (window.isOpen())
@@ -372,11 +372,11 @@ st Menu::normalGameUpdate()
 	play.setScale(1.8, 1);
 	play.setTitle("play");
 	play.setSoundVolume(setting.SoundVolume);
-	
+
 	Rounds rounds(window, controlOnBlue, controlOffBlue, VolumePointner, VolumeSliderLine, clickBuff);
 	rounds.setFont(font);
-	rounds.setBoxPosition(linex+100, 300);
-	rounds.setSliderPosition(linex , 500 - 30);
+	rounds.setBoxPosition(linex + 100, 300);
+	rounds.setSliderPosition(linex, 500 - 30);
 	rounds.setScale(2.5, 2.5);
 	rounds.setSize(60);
 	rounds.setTextPosition(linex + 120, 300 + 20);
@@ -387,9 +387,9 @@ st Menu::normalGameUpdate()
 	rounds.setColor(sf::Color::Black);
 
 	std::cout << rounds.addNumber(10);
-	
+
 	setPlayer::clearForbidden();
-	int row = 90 ;
+	int row = 90;
 	int off = 100;
 	int col = 150;
 
@@ -397,44 +397,44 @@ st Menu::normalGameUpdate()
 	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player1")));
 	players.back().setPosition(col, row + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color(53,186,243,255));
+	players.back().setColor(sf::Color(53, 186, 243, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player2")));
-	players.back().setPosition(col, row*2 + off);
+	players.back().setPosition(col, row * 2 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color(136,224,96,255));
+	players.back().setColor(sf::Color(136, 224, 96, 255));
 
-	players.push_back(std::move(setPlayer (window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player3")));
-	players.back().setPosition(col, row*3 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player3")));
+	players.back().setPosition(col, row * 3 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color(255,217,72,255));
+	players.back().setColor(sf::Color(255, 217, 72, 255));
 
-	players.push_back(std::move(setPlayer (window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player4")));
-	players.back().setPosition(col, row*4 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player4")));
+	players.back().setPosition(col, row * 4 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color(250,129,50,255));
+	players.back().setColor(sf::Color(250, 129, 50, 255));
 
-	players.push_back(std::move(setPlayer (window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player5")));
-	players.back().setPosition(col, row*5 + off);
-	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
-
-	players.push_back(std::move(setPlayer (window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player6")));
-	players.back().setPosition(col, row*6 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player5")));
+	players.back().setPosition(col, row * 5 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 
-	players.push_back(std::move(setPlayer (window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player7")));
-	players.back().setPosition(col, row*7 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player6")));
+	players.back().setPosition(col, row * 6 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 
-	players.push_back(std::move(setPlayer (window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player8")));
-	players.back().setPosition(col, row*8 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player7")));
+	players.back().setPosition(col, row * 7 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 
-	setPlayer* activated = &players[0];
+	players.push_back(std::move(setPlayer(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player8")));
+	players.back().setPosition(col, row * 8 + off);
+	players.back().setSoundVolume(setting.SoundVolume);
+	players.back().setColor(sf::Color::Red);
+
+	setPlayer * activated = &players[0];
 	bool alertFlag = false;
 
 	while (window.isOpen())
@@ -499,7 +499,7 @@ st Menu::normalGameUpdate()
 					{
 						std::string msg;
 						if (setting.playersSettings.size() < 2) msg += "minimum two players required \nto start the game\n";
-						if(empty)  msg += "you didn't choose your nickname\n";
+						if (empty)  msg += "you didn't choose your nickname\n";
 						if (emptyControlls) msg += "you didn't choose your controls\n";
 						alert.setText(msg);
 						alertFlag = true;
@@ -508,11 +508,11 @@ st Menu::normalGameUpdate()
 					}
 					else
 						return st::playNormalGame;
-						/*for (auto& x : setting.playersSettings)
-					{
-						std::cout << x.nickname << "  hh " << int(x.left) << "  hh " << int(x.right) << "\n\n";
-					}*/
-					
+					/*for (auto& x : setting.playersSettings)
+				{
+					std::cout << x.nickname << "  hh " << int(x.left) << "  hh " << int(x.right) << "\n\n";
+				}*/
+
 				}
 				else if (players[1].function())
 				{

@@ -22,7 +22,7 @@ public:
 	void draw();
 	Background(sf::RenderWindow& window_) : window(window_) { radious = 0; velocity = 0; angle = 0; }
 	void setShader(sf::Shader& sh) { shader = &sh; }
-	void set(sf::Texture back_, sf::Texture & base_, double r, double v);
+	void set(sf::Texture back_, sf::Texture& base_, double r, double v);
 	~Background();
 };
 

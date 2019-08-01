@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-inputText::inputText(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff_, sf::SoundBuffer& click_) : window(win), boxOn(box_),boxOff(boxOff_),  click(click_)
+inputText::inputText(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff_, sf::SoundBuffer& click_) : window(win), boxOn(box_), boxOff(boxOff_), click(click_)
 {
 	buttonSt = buttonState::isNotPressed;
 	positionSt = positionState::isNotOn;

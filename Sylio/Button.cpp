@@ -21,14 +21,14 @@ bool Button::buttonFunction()
 		this->setTexture(released, true);
 	}
 	else if (clicked == false && positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
-	{	
+	{
 		click.play();
 		this->move(0, 4);
 		title.move(0, 4);
 		this->setTexture(pressed, true);
 		clicked = true;
 	}
-	else if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed )
+	else if (clicked == true && positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed)
 	{
 		this->move(0, -4);
 		title.move(0, -4);
@@ -91,12 +91,12 @@ void Button::setTitle(std::string title_)
 	}
 	title.setPosition(this->getPosition().x + 20, this->getPosition().y + 8);
 }
-Button::Button(sf::RenderWindow & win, sf::Texture& pres, sf::Texture& rel, sf::Texture& off, sf::SoundBuffer &click_, sf::SoundBuffer &switch_,sf::Font &font_): 
+Button::Button(sf::RenderWindow & win, sf::Texture & pres, sf::Texture & rel, sf::Texture & off, sf::SoundBuffer & click_, sf::SoundBuffer & switch_, sf::Font & font_) :
 	font(font_),
 	switchS(switch_),
-	click(click_) ,
-	window(win), 
-	pressed(pres), 
+	click(click_),
+	window(win),
+	pressed(pres),
 	released(rel),
 	offButton(off)
 {
@@ -126,7 +126,7 @@ bool Button::isOnButton()
 	//std::cout << sf::Mouse::getPosition(window).x << " " << sf::Mouse::getPosition(window).y << std::endl;
 	//std::cout << button.getGlobalBounds().left << " " << button.getGlobalBounds().top << " "<< button.getGlobalBounds().height << " " << button.getGlobalBounds().width << std::endl;
 	if (sf::Mouse::getPosition(window).x > this->getGlobalBounds().left && sf::Mouse::getPosition(window).x < (this->getGlobalBounds().left + this->getGlobalBounds().width) && sf::Mouse::getPosition(window).y > this->getGlobalBounds().top && sf::Mouse::getPosition(window).y < (this->getGlobalBounds().top + this->getGlobalBounds().height))
-	{	
+	{
 		return true;
 	}
 	return false;

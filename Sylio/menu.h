@@ -20,7 +20,7 @@ class Menu
 private:
 	Background background;
 	sf::RenderWindow& window;
-	std::string & version;
+	std::string& version;
 	sf::Font font;
 	sf::Font font2;
 	sf::SoundBuffer clickBuff;

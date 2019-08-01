@@ -16,7 +16,7 @@ private:
 	std::string chosenFile;
 public:
 	List();
-	void pushBack( sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Texture& off, sf::SoundBuffer &click_, sf::SoundBuffer &switch_, sf::Font& font_);
+	void pushBack(sf::RenderWindow& win, sf::Texture& pres, sf::Texture& rel, sf::Texture& off, sf::SoundBuffer& click_, sf::SoundBuffer& switch_, sf::Font& font_);
 	~List();
 	void chooseDefault() { music.setGameMusic(list[setting.posDefaultMusic].getString()); }
 	void setText(std::string text) { list.back().setTitle(text); };

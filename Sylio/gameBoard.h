@@ -16,7 +16,7 @@ private:
 	sf::RenderWindow& window;
 	sf::RenderTexture board;
 public:
-	gameBoard(sf::RenderWindow &win);
+	gameBoard(sf::RenderWindow& win);
 	st update();
 	~gameBoard();
 	void setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc);

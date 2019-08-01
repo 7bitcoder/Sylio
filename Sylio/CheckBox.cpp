@@ -17,12 +17,12 @@ int CheckBox::buttonFunction()
 	//std::cout << state;
 	if (positionSt == positionState::isNotOn && lastPositionSt == positionState::isNotOn)
 		return 0;
-	else if ( positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
+	else if (positionSt == positionState::isOn && buttonSt == buttonState::isPressed && lastButtonSt == buttonState::isNotPressed)
 	{
 		click.play();
 
 	}
-	else if ( positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed)
+	else if (positionSt == positionState::isOn && buttonSt == buttonState::isNotPressed && lastButtonSt == buttonState::isPressed)
 	{
 
 		activate = !activate;

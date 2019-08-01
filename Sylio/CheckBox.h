@@ -18,7 +18,7 @@ private:
 	buttonState lastButtonSt;
 	bool activate;
 public:
-	CheckBox(sf::RenderWindow& win, sf::Texture& activated, sf::Texture& disactivated, sf::SoundBuffer& click_ );
+	CheckBox(sf::RenderWindow& win, sf::Texture& activated, sf::Texture& disactivated, sf::SoundBuffer& click_);
 	int buttonFunction();//return true if clicked out
 	void checkState();
 	void setSoundVolume(double v) { click.setVolume(v * 100); }

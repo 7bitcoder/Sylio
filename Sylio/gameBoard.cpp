@@ -28,7 +28,7 @@ st gameBoard::update()
 	fps.setFillColor(sf::Color::White);
 	sf::Clock timer;
 
-	players Players(hitbox,window, ymax, ymin, xmax, xmin,thicc, board);
+	players Players(hitbox, window, ymax, ymin, xmax, xmin, thicc, board);
 	sf::Event event;
 
 	int cnt = 0;
@@ -37,14 +37,14 @@ st gameBoard::update()
 	{
 		Players.update();
 		cnt++;
-		if(cnt == 200)
+		if (cnt == 200)
 		{
-			fps.setString(std::to_string(int(cnt/timer.getElapsedTime().asSeconds())));
+			fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
 			timer.restart();
 			cnt = 0;
 		}
 
-		window.clear(sf::Color::Black); 
+		window.clear(sf::Color::Black);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			return st::mainMenu;
 
@@ -91,7 +91,7 @@ void gameBoard::setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc_
 
 void gameBoard::clearHitbox()
 {
-		for (auto& x : hitbox)
-			for (auto& y : x)
-				y = 0;
+	for (auto& x : hitbox)
+		for (auto& y : x)
+			y = 0;
 }
