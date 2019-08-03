@@ -4,10 +4,13 @@
 #include <fstream>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
+
 enum st { play = 1, settings, playOnline, quit, pause, mainMenu, normalGame, MultiGame, playNormalGame };
 class Settings
 {
 public:
+	bool TimeStop = false;
 	struct playerStats
 	{
 		sf::Color color;

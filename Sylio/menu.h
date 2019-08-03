@@ -12,7 +12,6 @@
 #include "setPlayer.h"
 #include "Rounds.h"
 
-extern Settings setting;
 
 
 class Menu

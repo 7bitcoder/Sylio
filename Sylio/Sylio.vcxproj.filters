@@ -31,12 +31,15 @@
     <Filter Include="Pliki źródłowe\menu">
       <UniqueIdentifier>{99d04193-be27-425c-b3e5-665aff07ba04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\game">
+      <UniqueIdentifier>{dbe5aae4-41bf-4fa2-86ca-b979a2e6ef65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\game">
+      <UniqueIdentifier>{64451666-b0e3-4469-8177-e712070bf824}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="setPlayer.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Music.cpp">
@@ -73,19 +76,25 @@
       <Filter>Pliki źródłowe\menu</Filter>
     </ClCompile>
     <ClCompile Include="Rounds.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\gui elements</Filter>
     </ClCompile>
     <ClCompile Include="gameBoard.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="setPlayer.cpp">
+      <Filter>Pliki źródłowe\gui elements</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\game</Filter>
     </ClCompile>
     <ClCompile Include="players.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\game</Filter>
     </ClCompile>
     <ClCompile Include="Trace.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost.cpp">
+      <Filter>Pliki źródłowe\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="Sounds.h">
       <Filter>Pliki nagłówkowe\global</Filter>
-    </ClInclude>
-    <ClInclude Include="setPlayer.h">
-      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Pliki nagłówkowe\gui elements</Filter>
@@ -125,20 +131,26 @@
     <ClInclude Include="menu.h">
       <Filter>Pliki nagłówkowe\menu</Filter>
     </ClInclude>
-    <ClInclude Include="Rounds.h">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="setPlayer.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
     </ClInclude>
-    <ClInclude Include="gameBoard.h">
-      <Filter>Pliki nagłówkowe</Filter>
+    <ClInclude Include="Rounds.h">
+      <Filter>Pliki nagłówkowe\gui elements</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\game</Filter>
     </ClInclude>
     <ClInclude Include="players.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\game</Filter>
     </ClInclude>
     <ClInclude Include="Trace.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\game</Filter>
+    </ClInclude>
+    <ClInclude Include="gameBoard.h">
+      <Filter>Pliki nagłówkowe\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost.h">
+      <Filter>Pliki nagłówkowe\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,49 +5,54 @@
 //kat zmniejsza sie zgodnie z wsk zegara
 
 
-int Player::rScan = 40;
+double Player::rScan = 40;
 void Player::update()
 {
 	if (!dead)
 	{
 		sf::Time t = time.getElapsedTime();
 		time.restart();
-		double r = velocity * t.asSeconds();
-		if (sf::Keyboard::isKeyPressed(left))
-			if (sf::Keyboard::isKeyPressed(right));
-			else
-				angle += angleVelocity * t.asSeconds();
-		else if (sf::Keyboard::isKeyPressed(right))
-			angle -= angleVelocity * t.asSeconds();
-		//std::cout << pointx << "    " << pointy << "\n";
-		position.x += r * sin(angle);
-		position.y += r * cos(angle);
-		head.setPosition(position);
-
-		int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
-		if (diff > 4)
+		if (!setting.TimeStop)
 		{
+			double r = velocity * t.asSeconds();
+			if (sf::Keyboard::isKeyPressed(left))
+				if (sf::Keyboard::isKeyPressed(right));
+				else
+					angle += angleVelocity * t.asSeconds();
+			else if (sf::Keyboard::isKeyPressed(right))
+				angle -= angleVelocity * t.asSeconds();
+			//std::cout << pointx << "    " << pointy << "\n";
+			if (angle > 4 * NINETY_DEG)
+				angle -= 4 * NINETY_DEG;
+			position.x += r * sin(angle);
+			position.y += r * cos(angle);
+			head.setPosition(position);
 
-			if (trace.getState() && actualGap > nextGap)
+			int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
+			if (diff > 4)
 			{
-				actualGap = 0;
-				trace.stop(headR, angle);
+
+				if (trace.getState() && actualGap > nextGap)
+				{
+					actualGap = 0;
+					trace.stop(headR, angle);
+				}
+				else if (!trace.getState() && actualGap > gapSize)
+				{
+					actualGap = 0;
+					setNewGap();
+					updateTrace();
+					trace.start(headR, angle);
+				}
+				else if (trace.getState()) {
+					updateTrace();
+					roundPos();
+					Scan();
+					drawLineOnHitBox(round(oldPosition.x), round(oldPosition.y));
+				}
+				actualGap += diff;
+				oldPosition = position;
 			}
-			else if (!trace.getState() && actualGap > gapSize)
-			{
-				actualGap = 0;
-				setNewGap();
-				updateTrace();
-				trace.start(headR, angle);
-			}
-			else if (trace.getState()) {
-				updateTrace();
-				roundPos();
-				Scan();
-				drawLineOnHitBox(round(oldPosition.x), round(oldPosition.y));
-			}
-			actualGap += diff;
-			oldPosition = position;
 		}
 	}
 }
@@ -228,5 +233,5 @@ void Player::changeRadious(double R)
 		if (x > max)
 			max = x;
 	}
-	rScan = max;
+	rScan = max + 3;
 }

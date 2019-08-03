@@ -1,15 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Trace.h"
+#include "settings.h"
 #include<random>
 #include <array>
+#include "Boost.h"
 
 
-
+extern Settings setting;
 class Player
 {
 private:
-	static int rScan;
+	friend class SpeedUp;
+	static double rScan;
 	int safety;
 	int playerId;
 	int nextGap;

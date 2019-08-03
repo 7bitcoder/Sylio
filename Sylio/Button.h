@@ -3,6 +3,8 @@
 #include"Sounds.h"
 #include<iostream>
 
+extern Settings setting;
+
 class Button : public sf::Sprite
 {
 private:

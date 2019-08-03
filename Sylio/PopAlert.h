@@ -2,7 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include"Button.h"
 #include"settings.h"
-extern Settings setting;
+
 class PopAlert
 {
 private:

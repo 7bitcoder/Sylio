@@ -1,9 +1,6 @@
 #include "gameBoard.h"
-#include "Player.h"
-#include "players.h"
-#include "Settings.h"
 
-extern Settings setting;
+
 std::array<std::array<int, 1920>, 1080> gameBoard::hitbox = { 0 };
 gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 {
@@ -28,14 +25,14 @@ st gameBoard::update()
 	fps.setFillColor(sf::Color::White);
 	sf::Clock timer;
 
-	players Players(hitbox, window, ymax, ymin, xmax, xmin, thicc, board);
+	createPlayers();
 	sf::Event event;
 
 	int cnt = 0;
 	timer.restart();
 	while (window.isOpen())
 	{
-		Players.update();
+		updatePlayers();
 		cnt++;
 		if (cnt == 200)
 		{
@@ -43,14 +40,14 @@ st gameBoard::update()
 			timer.restart();
 			cnt = 0;
 		}
-
+		if (isF4Pressed())
+			setting.TimeStop = !setting.TimeStop;
 		window.clear(sf::Color::Black);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			return st::mainMenu;
 
-		//Players.draw();
 		drawBounds();
-		Players.draw();
+		drawPlayers();
 		window.draw(fps);
 		window.display();
 	}
@@ -94,4 +91,52 @@ void gameBoard::clearHitbox()
 	for (auto& x : hitbox)
 		for (auto& y : x)
 			y = 0;
+}
+
+void gameBoard::createPlayers()
+{
+	thicc = 5;
+	int i = 1;
+	/*for (auto& x : setting.playersSettings)
+	{
+		Players.push_back(std::move(Player(allHeadRadious,hitbox, window, x.color, ymax, ymin, xmax, xmin, board)));
+		Players.back().setId(i);
+		allHeadRadious.push_back(5);
+		Players.back().setParams(0, 5, 2.5, 100);
+		Players.back().setControls(x.left, x.right);
+		Players.back().setPosition(600 + i * 200, 100);
+		Players.back().setNick(x.nickname);
+		i++;
+		Players.back().setGapBounds(40, 300, 500, 1000);
+
+	}*/
+
+	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
+	Players.back().setId(i);
+	allHeadRadious.push_back(5);
+	Players.back().setParams(0, 5, 2.5, 100);
+	Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
+	Players.back().setPosition(600 + i * 200, 100);
+	Players.back().setNick("sylwow");
+	i++;
+	Players.back().setGapBounds(40, 300, 500, 1000);
+}
+
+bool gameBoard::isF4Pressed()
+{
+	static bool isPressed = false;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F4))
+	{
+		if (!isPressed)
+		{
+			isPressed = true;
+			return true;
+		}
+		return false;
+	}
+	else 
+	{
+		isPressed = false;
+		return false;
+	}
 }

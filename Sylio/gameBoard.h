@@ -1,8 +1,9 @@
 #pragma once
 #include "Settings.h"
+#include "Boost.h"
+#include "Player.h"
 
 extern Settings setting;
-
 class gameBoard
 {
 private:
@@ -13,6 +14,8 @@ private:
 	int ymax;
 	int thicc;
 	sf::Vertex bounds[4][4];
+	std::vector<Player> Players;
+	std::vector<double> allHeadRadious;
 	sf::RenderWindow& window;
 	sf::RenderTexture board;
 public:
@@ -26,6 +29,21 @@ public:
 		window.draw(bounds[2], 4, sf::Quads);
 		window.draw(bounds[3], 4, sf::Quads);
 	}
+	void updatePlayers() 
+	{
+		for (auto& player : Players)
+		{
+			player.update();
+			player.checkBounds();
+		}
+	}
+	void drawPlayers()
+	{
+		for (auto& player : Players)
+			player.draw();
+	}
 	void clearHitbox();
+	void createPlayers();
+	bool isF4Pressed();
 };
 
