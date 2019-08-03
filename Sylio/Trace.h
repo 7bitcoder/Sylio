@@ -37,6 +37,7 @@ public:
 	sf::Vector2f& getLastLastPos() { return cpuMem[cpuMem.size() - 2].position; }
 	bool getState() { return drawing; }
 	int getIndex() { return cpuMem.size(); }
+	int getFragmentsSize() { return gpuMem.size(); }
 	int getBegin() { return begin; }
 };
 

@@ -82,6 +82,29 @@ Player::Player(std::vector<double>& headVec_,std::array<std::array<int, 1920>, 1
 
 Player::~Player()
 {
+	for (auto &  x : boosts)
+		delete x;
+	std::cout << "size of tail :" << trace.getIndex() << std::endl << "fragments Size :" << trace.getFragmentsSize() <<std::endl;
+}
+
+void Player::checkBoosts()
+{
+	std::vector<Boost *>::iterator it;
+	bool found = false;
+	for (auto itt = boosts.begin(); itt != boosts.end() ; itt++)
+	{
+		if ((*itt)->check())
+		{
+			found = true;
+			it = itt;
+			(*itt)->clearBoost(*this);
+			delete (*itt);
+			std::cout << "del :" << velocity << std::endl;
+			break;
+		}
+	}
+	if(found)
+		boosts.erase(it);
 }
 
 void Player::setNewGap()

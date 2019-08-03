@@ -5,13 +5,13 @@ class Boost
 {
 protected:
 	float duration;
+	bool timeFlag = false;
 	sf::Clock clock;
-	sf::Vector2i position;
 public:
 	Boost();
-	virtual void setBoost(Player& player) = 0;
-	virtual void clearBoost(Player& player) = 0;
-	virtual bool check() = 0;
+	virtual void setBoost(Player& player) {};
+	virtual void clearBoost(Player& player) {};
+	virtual bool check();
 	virtual ~Boost();
 };
 
@@ -20,9 +20,18 @@ class SpeedUp: public Boost
 private:
 	float multVel;
 public:
-	SpeedUp(sf::Vector2i pos) { duration = 5; clock.restart(); position = pos; multVel = 1.2; }
+	SpeedUp(float dur = 5) { duration = dur; clock.restart(); multVel = 1.2; }
 	virtual void setBoost(Player& player);
 	virtual void clearBoost(Player& player);
-	virtual bool check();
-	virtual ~SpeedUp();
+	virtual ~SpeedUp() {};
+};
+class SlowDown : public Boost
+{
+private:
+	float multVel;
+public:
+	SlowDown(float dur = 5) { duration = dur; clock.restart(); multVel = 0.8; }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual ~SlowDown() {};
 };

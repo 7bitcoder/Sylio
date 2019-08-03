@@ -34,6 +34,7 @@ public:
 		for (auto& player : Players)
 		{
 			player.update();
+			player.checkBoosts();
 			player.checkBounds();
 		}
 	}
@@ -45,5 +46,7 @@ public:
 	void clearHitbox();
 	void createPlayers();
 	bool isF4Pressed();
+	bool isF2Pressed();
+	bool isF3Pressed();
 };
 

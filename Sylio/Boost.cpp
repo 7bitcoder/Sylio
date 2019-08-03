@@ -1,5 +1,8 @@
 #include "Boost.h"
 #include "Player.h"
+#include "Settings.h"
+
+extern Settings setting;
 
 struct limitations
 {
@@ -13,26 +16,72 @@ Boost::Boost()
 }
 
 
+bool Boost::check()
+{
+	if (setting.TimeStop)
+	{
+		if (!timeFlag)
+		{
+			timeFlag = true;
+			duration -= clock.getElapsedTime().asSeconds();
+		}
+		clock.restart();
+		return false;
+	}
+	else
+		timeFlag = false;
+	return clock.getElapsedTime().asSeconds() > duration;
+}
+
 Boost::~Boost()
 {
 }
 
 void SpeedUp::setBoost(Player& player)
 {
-	player.velocity *= multVel;
-	if (player.velocity > limits.maxVel)
+	std::cout << player.velocity << " to ";
+	player.hiddenVelocity *= multVel;
+	if (player.hiddenVelocity < limits.minVel)
+		player.velocity = limits.minVel;
+	else if (player.hiddenVelocity > limits.maxVel)
 		player.velocity = limits.maxVel;
+	else
+		player.velocity = player.hiddenVelocity;
+	std::cout << player.velocity << std::endl;
 }
 
 void SpeedUp::clearBoost(Player& player)
 {
-	player.velocity /= multVel;
-	if (player.velocity < limits.minVel)
+	player.hiddenVelocity /= multVel;
+	if (player.hiddenVelocity < limits.minVel)
 		player.velocity = limits.minVel;
+	else if (player.hiddenVelocity > limits.maxVel)
+		player.velocity = limits.maxVel;
+	else
+		player.velocity = player.hiddenVelocity;
 }
 
-bool SpeedUp::check()
+
+void SlowDown::setBoost(Player& player)
 {
-	return clock.getElapsedTime().asSeconds() > duration;
+	std::cout << player.velocity << " to ";
+	player.hiddenVelocity *= multVel;
+	if (player.hiddenVelocity < limits.minVel)
+		player.velocity = limits.minVel;
+	else if(player.hiddenVelocity > limits.maxVel)
+		player.velocity = limits.maxVel;
+	else
+		player.velocity = player.hiddenVelocity;
+	std::cout << player.velocity << std::endl;
 }
 
+void SlowDown::clearBoost(Player& player)
+{
+	player.hiddenVelocity /= multVel;
+	if (player.hiddenVelocity > limits.maxVel)
+		player.velocity = limits.maxVel;
+	else if (player.hiddenVelocity < limits.minVel)
+		player.velocity = limits.minVel;
+	else
+		player.velocity = player.hiddenVelocity;
+}

@@ -42,6 +42,18 @@ st gameBoard::update()
 		}
 		if (isF4Pressed())
 			setting.TimeStop = !setting.TimeStop;
+		if (isF2Pressed())
+		{
+			Boost* tmp = new SlowDown;
+			std::cout << "slow down :";
+			Players.back().addBoost(tmp);
+		}
+		if (isF3Pressed())
+		{
+			std::cout << "speed up :";
+			Boost* tmp = new SpeedUp;
+			Players.back().addBoost(tmp);
+		}
 		window.clear(sf::Color::Black);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			return st::mainMenu;
@@ -95,6 +107,7 @@ void gameBoard::clearHitbox()
 
 void gameBoard::createPlayers()
 {
+	Players.clear();
 	thicc = 5;
 	int i = 1;
 	/*for (auto& x : setting.playersSettings)
@@ -135,6 +148,42 @@ bool gameBoard::isF4Pressed()
 		return false;
 	}
 	else 
+	{
+		isPressed = false;
+		return false;
+	}
+}
+bool gameBoard::isF2Pressed()
+{
+	static bool isPressed = false;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
+	{
+		if (!isPressed)
+		{
+			isPressed = true;
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		isPressed = false;
+		return false;
+	}
+}
+bool gameBoard::isF3Pressed()
+{
+	static bool isPressed = false;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
+	{
+		if (!isPressed)
+		{
+			isPressed = true;
+			return true;
+		}
+		return false;
+	}
+	else
 	{
 		isPressed = false;
 		return false;

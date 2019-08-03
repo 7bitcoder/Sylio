@@ -12,6 +12,7 @@ class Player
 {
 private:
 	friend class SpeedUp;
+	friend class SlowDown;
 	static double rScan;
 	int safety;
 	int playerId;
@@ -22,6 +23,7 @@ private:
 	double angle;
 	double angleVelocity;
 	double velocity;
+	double hiddenVelocity;
 	double headR;
 
 	bool dead;
@@ -29,6 +31,8 @@ private:
 	int& xmin;
 	int& ymax;
 	int& ymin;
+
+	std::vector<Boost *> boosts;
 
 	std::array<std::array<int, 1920>, 1080>& hitbox;
 	sf::RenderWindow& window;
@@ -52,13 +56,15 @@ public:
 
 	Player(std::vector<double>& headVec, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
-	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_,changeRadious(R); angleVelocity = angvel; velocity = vel;	 }
+	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_, changeRadious(R); angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
 	void setColor(sf::Color col) { color = col; head.setFillColor(color); }
 
 	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
+	void addBoost(Boost * bost_) { boosts.push_back(bost_); boosts.back()->setBoost(*this); }
+	void checkBoosts();
 
 	void die(bool x = true) { dead = true; }
 	void setNewGap();
