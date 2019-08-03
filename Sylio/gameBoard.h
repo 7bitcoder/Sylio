@@ -13,6 +13,7 @@ private:
 	int ymin;
 	int ymax;
 	int thicc;
+	std::vector<sf::Vector2i> map;
 	sf::Vertex bounds[4][4];
 	std::vector<Player> Players;
 	std::vector<double> allHeadRadious;
@@ -50,5 +51,8 @@ public:
 	bool isF3Pressed();
 	bool isF5Pressed();
 	bool isF6Pressed();
+	void generateMap();
+	sf::Vector2i generatePositions();
+	double generteAngle();
 };
 

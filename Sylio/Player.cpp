@@ -76,7 +76,6 @@ Player::Player(std::vector<double>& headVec_, std::array<std::array<int, 1920>, 
 	color = col;
 	head.setFillColor(color);
 	actualGap = 0;
-	srand(std::time(0));
 	safety = 2;
 }
 
@@ -250,18 +249,18 @@ bool Player::changeRadious(double R)
 	headR = R;
 	head.setRadius(R); 
 	head.setOrigin(R, R);
-	headVec[playerId - 1] = R;
+	headVec[playerId] = R;
 	for (auto& x : headVec)
 	{
 		if (x > rScan - 3)
 			rScan = x + 3;
 	}
-	if (trace.getState()) 
+	/*if (trace.getState()) 
 	{
 		if (R > headR)
 			trace.edge(false, headR, angle, position);
 		else
 			trace.edge(false, headR, angle, position);
-	}
+	}*/
 	return true;
 }

@@ -7,7 +7,7 @@ gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 	setBounds(1075, 5, 1915, 300, 5);
 	board.create(window.getSize().x, window.getSize().y);
 	board.clear(sf::Color::Black);
-
+	srand(std::time(0));
 }
 
 st gameBoard::update()
@@ -121,30 +121,32 @@ void gameBoard::createPlayers()
 {
 	Players.clear();
 	thicc = 5;
-	int i = 1;
-	/*for (auto& x : setting.playersSettings)
+	int i = 0;
+	generateMap();
+	for (auto& x : setting.playersSettings)
 	{
 		Players.push_back(std::move(Player(allHeadRadious,hitbox, window, x.color, ymax, ymin, xmax, xmin, board)));
 		Players.back().setId(i);
 		allHeadRadious.push_back(5);
-		Players.back().setParams(0, 5, 2.5, 100);
+		Players.back().setParams(generteAngle(), 6, 2.5, 100);
+		Players.back().setPosition(generatePositions());
 		Players.back().setControls(x.left, x.right);
-		Players.back().setPosition(600 + i * 200, 100);
 		Players.back().setNick(x.nickname);
 		i++;
 		Players.back().setGapBounds(40, 300, 500, 1000);
 
-	}*/
+	}
 
-	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
+	/*Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
 	Players.back().setId(i);
 	allHeadRadious.push_back(5);
-	Players.back().setPosition(600 + i * 200, 100);
-	Players.back().setParams(0, 6, 2.5, 100);
+	Players.back().setParams(generteAngle(), 6, 2.5, 100);
+	Players.back().setPosition(generatePositions());
 	Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
 	Players.back().setNick("sylwow");
 	i++;
 	Players.back().setGapBounds(40, 300, 500, 1000);
+*/
 }
 
 bool gameBoard::isF4Pressed()
@@ -236,4 +238,38 @@ bool gameBoard::isF6Pressed()
 		isPressed = false;
 		return false;
 	}
+}
+void gameBoard::generateMap()
+{
+	map.clear();
+	int divx = 10;
+	int divy = 10;
+	int widex = xmax - xmin;
+	widex /= divx;
+	int widey = ymax - ymin;
+	widey /= divy;
+	int offx = rand() % widex;
+	int offy = rand() % widey;
+	divx--;
+	divy--;
+	for (int i = 1; i < divx; i++)
+	{
+		for (int j = 1; j < divy; j++)
+		{
+			map.push_back({ offx + xmin + i * widex, offy + ymin + j * widey });
+		}
+	}
+	divx++;
+}
+sf::Vector2i gameBoard::generatePositions()
+{
+	int i = rand() % map.size();
+	auto it = map.begin() + i;
+	sf::Vector2i tmp = *it;
+	map.erase(it);
+	return tmp;
+}
+double gameBoard::generteAngle()
+{
+	return double(rand() % 360)* 0.0174532925;
 }

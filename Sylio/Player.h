@@ -78,14 +78,17 @@ public:
 	bool changeRadious(double R);
 	sf::Vector2f& getPos() { return position; }
 
-	inline void setPosition(int x, int y) {
-		position = sf::Vector2f(x, y); head.setPosition(position);	oldPosition = position;
+	inline void setPosition(sf::Vector2i pos) {
+		position.x = pos.x;
+		position.y = pos.y;
+		head.setPosition(position);	
+		oldPosition = position;
 		float pointlx = headR * sin(angle + NINETY_DEG);
 		float pointly = headR * cos(angle + NINETY_DEG);
 		sf::Vector2f xx(position.x + pointlx, position.y + pointly);
 		sf::Vector2f yy(position.x - pointlx, position.y - pointly);
 		trace.update(xx, yy);
-		//trace.start(headR, angle, position);
+		trace.start(headR, angle, position);
 	}
 	~Player();
 };

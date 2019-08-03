@@ -177,7 +177,7 @@ st Menu::mainMenuUpdate()
 			settings.checkState();
 			quit.checkState();
 			if (normalGame.buttonFunction())
-				return st::playNormalGame;
+				return st::normalGame;
 			else if (multiplayerGame.buttonFunction());
 			else if (settings.buttonFunction())
 				return st::settings;
