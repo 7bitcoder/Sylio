@@ -13,6 +13,8 @@ class Player
 private:
 	friend class SpeedUp;
 	friend class SlowDown;
+	friend class GrowUp;
+	friend class Shrink;
 	static double rScan;
 	int safety;
 	int playerId;
@@ -25,6 +27,7 @@ private:
 	double velocity;
 	double hiddenVelocity;
 	double headR;
+	double hiddenHeadR;
 
 	bool dead;
 	int& xmax;
@@ -56,7 +59,7 @@ public:
 
 	Player(std::vector<double>& headVec, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
-	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_, changeRadious(R); angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
+	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
@@ -65,14 +68,14 @@ public:
 	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
 	void addBoost(Boost * bost_) { boosts.push_back(bost_); boosts.back()->setBoost(*this); }
 	void checkBoosts();
-
-	void die(bool x = true) { dead = true; }
+	void die(bool x = true) { dead = true; clearBoosts(); }
+	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); }
 	void setNewGap();
 	void drawLineOnHitBox(int x1, int y1);
 	void Scan();
 	void updateTrace();
 	void roundPos() { roundPosition.x = round(position.x); roundPosition.y = round(position.y); }
-	void changeRadious(double R);
+	bool changeRadious(double R);
 	sf::Vector2f& getPos() { return position; }
 
 	inline void setPosition(int x, int y) {
@@ -82,7 +85,7 @@ public:
 		sf::Vector2f xx(position.x + pointlx, position.y + pointly);
 		sf::Vector2f yy(position.x - pointlx, position.y - pointly);
 		trace.update(xx, yy);
-		trace.start(headR, angle);
+		//trace.start(headR, angle, position);
 	}
 	~Player();
 };

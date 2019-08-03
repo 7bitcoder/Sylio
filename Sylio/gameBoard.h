@@ -48,5 +48,7 @@ public:
 	bool isF4Pressed();
 	bool isF2Pressed();
 	bool isF3Pressed();
+	bool isF5Pressed();
+	bool isF6Pressed();
 };
 

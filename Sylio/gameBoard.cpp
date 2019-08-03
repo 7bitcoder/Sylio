@@ -40,18 +40,30 @@ st gameBoard::update()
 			timer.restart();
 			cnt = 0;
 		}
-		if (isF4Pressed())
+		else if (isF4Pressed())
 			setting.TimeStop = !setting.TimeStop;
-		if (isF2Pressed())
+		else if (isF2Pressed())
 		{
 			Boost* tmp = new SlowDown;
 			std::cout << "slow down :";
 			Players.back().addBoost(tmp);
 		}
-		if (isF3Pressed())
+		else if (isF3Pressed())
 		{
 			std::cout << "speed up :";
 			Boost* tmp = new SpeedUp;
+			Players.back().addBoost(tmp);
+		}
+		else if (isF5Pressed())
+		{
+			std::cout << "shrink up :";
+			Boost* tmp = new Shrink;
+			Players.back().addBoost(tmp);
+		}
+		else if (isF6Pressed())
+		{
+			std::cout << "grow up :";
+			Boost* tmp = new GrowUp;
 			Players.back().addBoost(tmp);
 		}
 		window.clear(sf::Color::Black);
@@ -127,9 +139,9 @@ void gameBoard::createPlayers()
 	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
 	Players.back().setId(i);
 	allHeadRadious.push_back(5);
-	Players.back().setParams(0, 5, 2.5, 100);
-	Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
 	Players.back().setPosition(600 + i * 200, 100);
+	Players.back().setParams(0, 6, 2.5, 100);
+	Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
 	Players.back().setNick("sylwow");
 	i++;
 	Players.back().setGapBounds(40, 300, 500, 1000);
@@ -175,6 +187,42 @@ bool gameBoard::isF3Pressed()
 {
 	static bool isPressed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
+	{
+		if (!isPressed)
+		{
+			isPressed = true;
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		isPressed = false;
+		return false;
+	}
+}
+bool gameBoard::isF5Pressed()
+{
+	static bool isPressed = false;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
+	{
+		if (!isPressed)
+		{
+			isPressed = true;
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		isPressed = false;
+		return false;
+	}
+}
+bool gameBoard::isF6Pressed()
+{
+	static bool isPressed = false;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F6))
 	{
 		if (!isPressed)
 		{

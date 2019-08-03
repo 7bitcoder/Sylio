@@ -35,14 +35,14 @@ void Player::update()
 				if (trace.getState() && actualGap > nextGap)
 				{
 					actualGap = 0;
-					trace.stop(headR, angle);
+					trace.stop(headR, angle, position);
 				}
 				else if (!trace.getState() && actualGap > gapSize)
 				{
 					actualGap = 0;
 					setNewGap();
 					updateTrace();
-					trace.start(headR, angle);
+					trace.start(headR, angle,position);
 				}
 				else if (trace.getState()) {
 					updateTrace();
@@ -57,7 +57,7 @@ void Player::update()
 	}
 }
 
-Player::Player(std::vector<double>& headVec_,std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
+Player::Player(std::vector<double>& headVec_, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
 	window(win),
 	xmax(xmax_),
 	xmin(xmin_),
@@ -82,8 +82,7 @@ Player::Player(std::vector<double>& headVec_,std::array<std::array<int, 1920>, 1
 
 Player::~Player()
 {
-	for (auto &  x : boosts)
-		delete x;
+	clearBoosts();
 	std::cout << "size of tail :" << trace.getIndex() << std::endl << "fragments Size :" << trace.getFragmentsSize() <<std::endl;
 }
 
@@ -99,7 +98,7 @@ void Player::checkBoosts()
 			it = itt;
 			(*itt)->clearBoost(*this);
 			delete (*itt);
-			std::cout << "del :" << velocity << std::endl;
+			std::cout << "del :" << velocity << "  R :" << headR << std::endl;
 			break;
 		}
 	}
@@ -244,17 +243,25 @@ inline void Player::updateTrace()
 	trace.update(pointx, pointy);
 }
 
-void Player::changeRadious(double R)
+bool Player::changeRadious(double R)
 {
+	if (R == headR)
+		return true;
 	headR = R;
 	head.setRadius(R); 
 	head.setOrigin(R, R);
 	headVec[playerId - 1] = R;
-	double max = 0;
 	for (auto& x : headVec)
 	{
-		if (x > max)
-			max = x;
+		if (x > rScan - 3)
+			rScan = x + 3;
 	}
-	rScan = max + 3;
+	if (trace.getState()) 
+	{
+		if (R > headR)
+			trace.edge(false, headR, angle, position);
+		else
+			trace.edge(false, headR, angle, position);
+	}
+	return true;
 }

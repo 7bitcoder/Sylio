@@ -35,3 +35,24 @@ public:
 	virtual void clearBoost(Player& player);
 	virtual ~SlowDown() {};
 };
+class GrowUp : public Boost
+{
+private:
+	float multSize;
+public:
+	GrowUp(float dur = 5) { duration = dur; clock.restart(); multSize = 3; }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual ~GrowUp() {};
+};
+class Shrink : public Boost
+{
+private:
+	float multSize;
+public:
+	Shrink(float dur = 5) { duration = dur; clock.restart(); multSize = 0.2; }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual ~Shrink() {};
+};
+
