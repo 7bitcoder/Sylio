@@ -44,27 +44,28 @@ st gameBoard::update()
 			setting.TimeStop = !setting.TimeStop;
 		else if (isF2Pressed())
 		{
-			Boost* tmp = new SlowDown;
+			Boost* tmp = new LockRight;
 			std::cout << "slow down :";
 			Players.back().addBoost(tmp);
 		}
 		else if (isF3Pressed())
 		{
 			std::cout << "speed up :";
-			Boost* tmp = new SpeedUp;
+			Boost* tmp = new LockLeft;
 			Players.back().addBoost(tmp);
 		}
 		else if (isF5Pressed())
 		{
 			std::cout << "shrink up :";
-			Boost* tmp = new Shrink;
+			Boost* tmp = new Freeze;
 			Players.back().addBoost(tmp);
 		}
 		else if (isF6Pressed())
 		{
-			std::cout << "grow up :";
-			Boost* tmp = new GrowUp;
-			Players.back().addBoost(tmp);
+			EriseAll();
+			/*std::cout << "grow up :";
+			Boost* tmp = new Blind;
+			Players.back().addBoost(tmp);*/
 		}
 		window.clear(sf::Color::Black);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -123,7 +124,7 @@ void gameBoard::createPlayers()
 	thicc = 5;
 	int i = 0;
 	generateMap();
-	for (auto& x : setting.playersSettings)
+	/*for (auto& x : setting.playersSettings)
 	{
 		Players.push_back(std::move(Player(allHeadRadious,hitbox, window, x.color, ymax, ymin, xmax, xmin, board)));
 		Players.back().setId(i);
@@ -135,9 +136,9 @@ void gameBoard::createPlayers()
 		i++;
 		Players.back().setGapBounds(40, 300, 500, 1000);
 
-	}
+	}*/
 
-	/*Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
+	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
 	Players.back().setId(i);
 	allHeadRadious.push_back(5);
 	Players.back().setParams(generteAngle(), 6, 2.5, 100);
@@ -146,7 +147,7 @@ void gameBoard::createPlayers()
 	Players.back().setNick("sylwow");
 	i++;
 	Players.back().setGapBounds(40, 300, 500, 1000);
-*/
+
 }
 
 bool gameBoard::isF4Pressed()
@@ -261,15 +262,49 @@ void gameBoard::generateMap()
 	}
 	divx++;
 }
-sf::Vector2i gameBoard::generatePositions()
+sf::Vector2f gameBoard::generatePositions()
 {
 	int i = rand() % map.size();
 	auto it = map.begin() + i;
-	sf::Vector2i tmp = *it;
+	sf::Vector2f tmp;
+	tmp.x= it->x;
+	tmp.y = it->y;
 	map.erase(it);
 	return tmp;
 }
 double gameBoard::generteAngle()
 {
 	return double(rand() % 360)* 0.0174532925;
+}
+
+void gameBoard::EriseId(int id)
+{
+	Players[id].erise();
+	for (int i = 0; i < 1920; i++)
+	{
+		for (int j = 0; j < 1080; j++)
+		{
+			if (!hitbox[j][i])
+				continue;
+			else
+			{
+				int id_ = hitbox[j][i] >> 28;
+				if (id_ == id)
+					hitbox[j][i] = 0;
+			}
+		}
+	}
+}
+
+void gameBoard::EriseAll()
+{
+	for (auto& x : Players)
+		x.erise();
+	for (int i = 0; i < 1920; i++)
+	{
+		for (int j = 0; j < 1080; j++)
+		{
+				hitbox[j][i] = 0;
+		}
+	}
 }

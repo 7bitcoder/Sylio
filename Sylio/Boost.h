@@ -11,7 +11,10 @@ public:
 	Boost();
 	virtual void setBoost(Player& player) {};
 	virtual void clearBoost(Player& player) {};
-	virtual bool check();
+	virtual bool check(Player& player);
+	virtual bool stack() { return false; };
+	virtual float getDuration() { return duration; }
+	virtual void addDuration(float dur) { duration += dur; }
 	virtual ~Boost();
 };
 
@@ -55,4 +58,54 @@ public:
 	virtual void clearBoost(Player& player);
 	virtual ~Shrink() {};
 };
-
+class LockLeft : public Boost
+{
+private:
+public:
+	LockLeft(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~LockLeft() {};
+};
+class LockRight : public Boost
+{
+private:
+public:
+	LockRight(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~LockRight() {};
+};
+class Freeze : public Boost
+{
+private:
+public:
+	Freeze(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool check(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~Freeze() {};
+};
+class SwitchControls : public Boost
+{
+private:
+public:
+	SwitchControls(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~SwitchControls() {};
+};
+class Blind : public Boost
+{
+private:
+public:
+	Blind(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~Blind() {};
+};

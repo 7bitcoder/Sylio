@@ -18,9 +18,9 @@ Boost::Boost()
 }
 
 
-bool Boost::check()
+bool Boost::check(Player & player)
 {
-	if (setting.TimeStop)
+	if (setting.TimeStop || player.freeze)
 	{
 		if (!timeFlag)
 		{
@@ -135,4 +135,71 @@ void Shrink::clearBoost(Player& player)
 	else
 		player.changeRadious(player.hiddenHeadR);
 
+}
+
+void LockLeft::setBoost(Player& player)
+{
+	player.lockLeft = true;
+}
+
+void LockLeft::clearBoost(Player& player)
+{
+	player.lockLeft = false;
+}
+
+void LockRight::setBoost(Player& player)
+{
+	player.lockRight = true;
+}
+
+void LockRight::clearBoost(Player& player)
+{
+	player.lockRight = false;
+}
+
+void Freeze::setBoost(Player& player)
+{
+	player.freeze = true;
+}
+
+void Freeze::clearBoost(Player& player)
+{
+	player.freeze = false;
+}
+
+bool Freeze::check(Player& player)
+{
+	if (setting.TimeStop)
+	{
+		if (!timeFlag)
+		{
+			timeFlag = true;
+			duration -= clock.getElapsedTime().asSeconds();
+		}
+		clock.restart();
+		return false;
+	}
+	else
+		timeFlag = false;
+	return clock.getElapsedTime().asSeconds() > duration;
+}
+
+void SwitchControls::setBoost(Player& player)
+{
+	std::swap(player.left, player.right);
+}
+
+void SwitchControls::clearBoost(Player& player)
+{
+	std::swap(player.left, player.right);
+}
+
+void Blind::setBoost(Player& player)
+{
+	player.visible = false;
+}
+
+void Blind::clearBoost(Player& player)
+{
+	player.visible = true;
 }

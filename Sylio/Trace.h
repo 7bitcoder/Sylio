@@ -40,5 +40,6 @@ public:
 	int getIndex() { return cpuMem.size(); }
 	int getFragmentsSize() { return gpuMem.size(); }
 	int getBegin() { return begin; }
+	void erise() { cpuMem.clear(); gpuMem.clear(); begin = 0; }
 };
 

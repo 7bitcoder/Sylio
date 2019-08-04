@@ -30,13 +30,16 @@ public:
 		window.draw(bounds[2], 4, sf::Quads);
 		window.draw(bounds[3], 4, sf::Quads);
 	}
-	void updatePlayers() 
+	void updatePlayers()
 	{
 		for (auto& player : Players)
 		{
-			player.update();
-			player.checkBoosts();
-			player.checkBounds();
+			if (!player.getState())
+			{
+				player.update();
+				player.checkBoosts();
+				player.checkBounds();
+			}
 		}
 	}
 	void drawPlayers()
@@ -52,7 +55,9 @@ public:
 	bool isF5Pressed();
 	bool isF6Pressed();
 	void generateMap();
-	sf::Vector2i generatePositions();
+	sf::Vector2f generatePositions();
 	double generteAngle();
+	void EriseId(int id);
+	void EriseAll();
 };
 

@@ -12,14 +12,14 @@ void Player::update()
 	{
 		sf::Time t = time.getElapsedTime();
 		time.restart();
-		if (!setting.TimeStop)
+		if (!setting.TimeStop && !freeze)
 		{
 			double r = velocity * t.asSeconds();
-			if (sf::Keyboard::isKeyPressed(left))
-				if (sf::Keyboard::isKeyPressed(right));
+			if (sf::Keyboard::isKeyPressed(left) && !lockLeft)
+				if (sf::Keyboard::isKeyPressed(right) && !lockRight);
 				else
 					angle += angleVelocity * t.asSeconds();
-			else if (sf::Keyboard::isKeyPressed(right))
+			else if (sf::Keyboard::isKeyPressed(right) && !lockRight)
 				angle -= angleVelocity * t.asSeconds();
 			//std::cout << pointx << "    " << pointy << "\n";
 			if (angle > 4 * NINETY_DEG)
@@ -27,7 +27,12 @@ void Player::update()
 			position.x += r * sin(angle);
 			position.y += r * cos(angle);
 			head.setPosition(position);
-
+			if (activeBoost)
+			{
+				boostHeadTime += t.asSeconds() * boostTimeVel;
+				boosthead.setFillColor(sf::Color(255, 255, 255, (0.3 * sin(boostHeadTime) + 0.7) * 255));
+				boosthead.setPosition(position);
+			}
 			int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
 			if (diff > 4)
 			{
@@ -70,7 +75,13 @@ Player::Player(std::vector<double>& headVec_, std::array<std::array<int, 1920>, 
 	headVec(headVec_),
 	trace(win, col, 8000000, 10000)
 {
+	boostHeadTime = 0;
+	activeBoost = false;
+	visible = true;
+	freeze = false;
 	dead = false;
+	lockLeft = false;
+	lockRight = false;
 	std::cout << "rozmiar :" << sizeof(sf::Vertex) << std::endl;
 	time.restart();
 	color = col;
@@ -85,13 +96,51 @@ Player::~Player()
 	std::cout << "size of tail :" << trace.getIndex() << std::endl << "fragments Size :" << trace.getFragmentsSize() <<std::endl;
 }
 
+void Player::addBoost(Boost* bost_)
+{
+	std::vector<Boost*>::iterator it;
+	for (it = boosts.begin(); it != boosts.end(); it++)
+	{
+		if (typeid(*bost_) == typeid(*(*it)))
+		{
+			break;
+		}
+	}
+	if (it != boosts.end())
+	{
+		if (bost_->stack())
+		{
+			(*it)->addDuration(bost_->getDuration());
+			delete bost_;
+		}
+		else
+		{
+			boosts.push_back(bost_);
+			boosts.back()->setBoost(*this);
+		}
+	}
+	else
+	{
+		boosts.push_back(bost_);
+		boosts.back()->setBoost(*this);
+	}
+	if (boosts.size() > 0)
+	{
+		if (!activeBoost)
+		{
+			activeBoost = true;
+			boostHeadTime = 0;
+		}
+	}
+}
+
 void Player::checkBoosts()
 {
-	std::vector<Boost *>::iterator it;
+	std::vector<Boost*>::iterator it;
 	bool found = false;
-	for (auto itt = boosts.begin(); itt != boosts.end() ; itt++)
+	for (auto itt = boosts.begin(); itt != boosts.end(); itt++)
 	{
-		if ((*itt)->check())
+		if ((*itt)->check(*this))
 		{
 			found = true;
 			it = itt;
@@ -101,8 +150,12 @@ void Player::checkBoosts()
 			break;
 		}
 	}
-	if(found)
+	if (found)
+	{
 		boosts.erase(it);
+		if (!boosts.size())
+			activeBoost = false;
+	}
 }
 
 void Player::setNewGap()
@@ -242,6 +295,14 @@ inline void Player::updateTrace()
 	trace.update(pointx, pointy);
 }
 
+void Player::erise()
+{
+	trace.erise();
+	setPosition(position);
+	actualGap = 0;
+	setNewGap();
+}
+
 bool Player::changeRadious(double R)
 {
 	if (R == headR)
@@ -249,6 +310,8 @@ bool Player::changeRadious(double R)
 	headR = R;
 	head.setRadius(R); 
 	head.setOrigin(R, R);
+	boosthead.setRadius(R);
+	boosthead.setOrigin(R, R);
 	headVec[playerId] = R;
 	for (auto& x : headVec)
 	{
