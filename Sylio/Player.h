@@ -35,7 +35,7 @@ private:
 	double headR;
 	double hiddenHeadR;
 	double boostHeadTime;
-	double boostTimeVel = 6;
+	double boostTimeVel;
 
 	bool dead;
 	bool lockLeft;
@@ -51,6 +51,7 @@ private:
 
 	std::vector<Boost *> boosts;
 
+	sf::Color blendColor;
 	std::array<std::array<int, 1920>, 1080>& hitbox;
 	sf::RenderWindow& window;
 	sf::Clock time;
@@ -70,7 +71,7 @@ private:
 	Trace trace;
 public:
 	void update();
-	void draw() { if (visible) trace.draw();	window.draw(head); if (activeBoost) window.draw(boosthead); }
+	void draw() { if (visible) trace.draw();	window.draw(head); /*if (activeBoost) window.draw(boosthead);*/ }
 
 	Player(std::vector<double>& headVec, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }

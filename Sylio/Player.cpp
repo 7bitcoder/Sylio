@@ -30,8 +30,11 @@ void Player::update()
 			if (activeBoost)
 			{
 				boostHeadTime += t.asSeconds() * boostTimeVel;
-				boosthead.setFillColor(sf::Color(255, 255, 255, (0.3 * sin(boostHeadTime) + 0.7) * 255));
-				boosthead.setPosition(position);
+				double p = (0.2 * sin(boostHeadTime) + 0.8);
+				double q = 1 - p;
+				head.setFillColor(sf::Color(blendColor.r * p + color.r * q, blendColor.g * p + color.g * q, blendColor.b * p + color.b * q));
+				//boosthead.setFillColor(sf::Color(255, 255, 255, (0.3 * sin(boostHeadTime) + 0.7) * 255));
+				//boosthead.setPosition(position);
 			}
 			int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
 			if (diff > 4)
@@ -75,6 +78,8 @@ Player::Player(std::vector<double>& headVec_, std::array<std::array<int, 1920>, 
 	headVec(headVec_),
 	trace(win, col, 8000000, 10000)
 {
+	boostTimeVel = 6;
+	blendColor = sf::Color::White;
 	boostHeadTime = 0;
 	activeBoost = false;
 	visible = true;
@@ -154,7 +159,10 @@ void Player::checkBoosts()
 	{
 		boosts.erase(it);
 		if (!boosts.size())
+		{
 			activeBoost = false;
+			head.setFillColor(color);
+		}
 	}
 }
 
