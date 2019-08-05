@@ -70,6 +70,7 @@ private:
 	std::vector<double>& headVec;
 	Trace trace;
 public:
+	static double getRScan() { return rScan; }
 	void update();
 	void draw() { if (visible) trace.draw();	window.draw(head); /*if (activeBoost) window.draw(boosthead);*/ }
 

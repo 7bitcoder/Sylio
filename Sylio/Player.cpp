@@ -12,6 +12,15 @@ void Player::update()
 	{
 		sf::Time t = time.getElapsedTime();
 		time.restart();
+		if (activeBoost)
+		{
+			boostHeadTime += t.asSeconds() * boostTimeVel;
+			double p = (0.2 * sin(boostHeadTime) + 0.8);
+			double q = 1 - p;
+			head.setFillColor(sf::Color(blendColor.r * p + color.r * q, blendColor.g * p + color.g * q, blendColor.b * p + color.b * q));
+			//boosthead.setFillColor(sf::Color(255, 255, 255, (0.3 * sin(boostHeadTime) + 0.7) * 255));
+			//boosthead.setPosition(position);
+		}
 		if (!setting.TimeStop && !freeze)
 		{
 			double r = velocity * t.asSeconds();
@@ -27,16 +36,7 @@ void Player::update()
 			position.x += r * sin(angle);
 			position.y += r * cos(angle);
 			head.setPosition(position);
-			if (activeBoost)
-			{
-				boostHeadTime += t.asSeconds() * boostTimeVel;
-				double p = (0.2 * sin(boostHeadTime) + 0.8);
-				double q = 1 - p;
-				head.setFillColor(sf::Color(blendColor.r * p + color.r * q, blendColor.g * p + color.g * q, blendColor.b * p + color.b * q));
-				//boosthead.setFillColor(sf::Color(255, 255, 255, (0.3 * sin(boostHeadTime) + 0.7) * 255));
-				//boosthead.setPosition(position);
-			}
-			int diff = (oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y);
+			int diff = round((oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y));
 			if (diff > 4)
 			{
 

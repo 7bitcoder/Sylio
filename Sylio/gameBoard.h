@@ -13,9 +13,12 @@ private:
 	int ymin;
 	int ymax;
 	int thicc;
+	sf::Vector2i boostPosition;
+	double boostR;
 	std::vector<sf::Vector2i> map;
 	sf::Vertex bounds[4][4];
 	std::vector<Player> Players;
+	std::vector<sf::CircleShape> boostsPos;
 	std::vector<double> allHeadRadious;
 	sf::RenderWindow& window;
 	sf::RenderTexture board;
@@ -59,5 +62,9 @@ public:
 	double generteAngle();
 	void EriseId(int id);
 	void EriseAll();
+	bool getBoostPosition();
+	bool isInCircle(sf::Vector2f cent, sf::Vector2f point, double R) { return (cent.x - point.x) * (cent.x - point.x) + (cent.y - point.y) * (cent.y - point.y) < R * R; }
+	bool isInCircle(sf::Vector2i cent, sf::Vector2i point, double R) { return (cent.x - point.x) * (cent.x - point.x) + (cent.y - point.y) * (cent.y - point.y) < R * R; }
+	bool scan(int x, int y, int r);
 };
 

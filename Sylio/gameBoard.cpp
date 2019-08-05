@@ -8,6 +8,7 @@ gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 	board.create(window.getSize().x, window.getSize().y);
 	board.clear(sf::Color::Black);
 	srand(std::time(0));
+	boostR = 10;
 }
 
 st gameBoard::update()
@@ -39,6 +40,13 @@ st gameBoard::update()
 			fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
 			timer.restart();
 			cnt = 0;
+			if (getBoostPosition()) {
+				std::cout << boostPosition.x << " : " << boostPosition.y << std::endl;
+				//boostsPos.push_back(sf::CircleShape(10));
+				//boostsPos.back().setFillColor(sf::Color::Green);
+				//boostsPos.back().setOrigin(10, 10);
+				//boostsPos.back().setPosition(boostPosition.x, boostPosition.y);
+			}
 		}
 		else if (isF4Pressed())
 			setting.TimeStop = !setting.TimeStop;
@@ -74,7 +82,10 @@ st gameBoard::update()
 		drawBounds();
 		drawPlayers();
 		window.draw(fps);
+		for (auto& aa : boostsPos)
+			window.draw(aa);
 		window.display();
+		
 	}
 }
 
@@ -308,3 +319,131 @@ void gameBoard::EriseAll()
 		}
 	}
 }
+
+bool gameBoard::getBoostPosition()
+{
+	int X = 1000;// xmin + int(boostR) + rand() % (xmax - xmin - int(boostR));
+	int Y = 1000;//ymin + int(boostR) + rand() % (ymax - ymin - int(boostR));
+	int lowestRint = 1920;
+	int boundRX = 1920 + X;
+	int boundRY = 1920 + Y;
+	sf::Vector2i point;
+	double r = Player::getRScan();
+	int R = r > boostR ? round(r) : round(boostR);
+	int Ymax = ymax - R;
+	int Xmax = xmax - R;
+	int Ymin = ymax + R;
+	int Xmin = xmax + R;
+	double actualR;
+	for (int x = X; x < Xmax || x < boundRX; x++)
+	{
+		for (int y = Y; y < Ymax || y < boundRY; y++)
+		{
+			if (true)//scan(x, y, R))
+			{
+				int r_ = round((X - x) * (X - x) + (Y - y) * (Y - y));
+				if (r_ < lowestRint)
+				{
+					lowestRint = r_;
+					boundRX = lowestRint + X;
+					boundRY = lowestRint + Y;
+					boostPosition = { x,y };
+				}
+			}
+			else
+				continue;
+		}
+	}
+	/*for (int x = X; x < Xmax || x < lowestRint; x++)
+	{
+		for (int y = Y; y > Ymin || y > lowestRint; y--)
+		{
+			if (scan(x, y, R))
+			{
+				int r_ = round((X - x) * (X - x) + (Y - y) * (Y - y));
+				if (r_ < lowestRint)
+				{
+					lowestRint = r_;
+					boostPosition = { x,y };
+				}
+			}
+			else
+				continue;
+		}
+	}
+	for (int x = X; x > Xmin || x > lowestRint; x--)
+	{
+		for (int y = Y; y < Ymax || y < lowestRint; y++)
+		{
+			if (scan(x, y, R))
+			{
+				int r_ = round((X - x) * (X - x) + (Y - y) * (Y - y));
+				if (r_ < lowestRint)
+				{
+					lowestRint = r_;
+					boostPosition = { x,y };
+				}
+			}
+			else
+				continue;
+		}
+	}
+	for (int x = X; x > Xmin || x > lowestRint; x--)
+	{
+		for (int y = Y; y > Ymin || y > lowestRint; y--)
+		{
+			if (scan(x, y, R))
+			{
+				int r_ = round((X - x) * (X - x) + (Y - y) * (Y - y));
+				if (r_ < lowestRint)
+				{
+					lowestRint = r_;
+					boostPosition = { x,y };
+				}
+			}
+			else
+				continue;
+		}
+	}*/
+	if (lowestRint == 1980)
+		return false;
+	else
+		return true;
+}
+
+bool gameBoard::scan(int x, int y, int r)
+{
+	int begx = x - r;
+	if (begx < xmin)
+		begx = xmin;
+	int begy = y - r;
+	if (begy < ymin)
+		begy = ymin;
+	int endx = x + r;
+	if (endx > xmax)
+		endx = xmax;
+	int endy = y + r;
+	if (endy > ymax)
+		endy = ymax;
+	for (int x = begx; x <= endx; x++)
+	{
+		for (int y = begy; y <= endy; y++)
+		{
+			if (hitbox[y][x])
+				return false;
+
+		}
+	}
+	for (auto& b : boostsPos) 
+	{
+		if (isInCircle(b.getPosition(),sf::Vector2f(x, y), 2 * boostR))
+			return false;
+	}
+	for (auto& b : Players)
+	{
+		if (isInCircle(b.getPos(),sf::Vector2f(x, y) , 400))//??20
+			return false;
+	}
+	return true;
+}
+			
