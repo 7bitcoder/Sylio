@@ -4,7 +4,20 @@
 #include <fstream>
 //kat zmniejsza sie zgodnie z wsk zegara
 
-
+/*
+long long 64 
+koding hitbox
+7 (255) - rest
+8 (255) - actual velocity
+9 (512) - actual angle
+17 (131 000) - id globalnego
+12 (4 000) - id fragment 
+4 (255) - radious
+4 (255) - id player            
+1 (1) - background for boost      
+1 (1) - tmp range of player head  
+1 (1) - boost Position     
+*/
 double Player::rScan = 40;
 void Player::update()
 {
@@ -57,6 +70,7 @@ void Player::update()
 					roundPos();
 					Scan();
 					drawLineOnHitBox(round(oldPosition.x), round(oldPosition.y));
+					fullFillForBoost();
 				}
 				actualGap += diff;
 				oldPosition = position;
@@ -65,7 +79,7 @@ void Player::update()
 	}
 }
 
-Player::Player(std::vector<double>& headVec_, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
+Player::Player(std::vector<double>& headVec_, std::array<std::array<long long int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_) :
 	window(win),
 	xmax(xmax_),
 	xmin(xmin_),
@@ -251,12 +265,14 @@ void Player::Scan()
 				//std::cout << 'x';
 				if (!hitbox[y][x])
 					continue;
+				else if (hitbox[y][x] >> 61)
+					continue;
 				else
 				{
 					int hitboxVal = hitbox[y][x];
 					int id = hitboxVal >> 28;
 					int R = hitboxVal & 0xFFFFF;
-					if ((R + headR) * (R + headR) > (double(roundPosition.x) - x) * (double(roundPosition.x) - x) + (double(roundPosition.y) - y) * (double(roundPosition.y) - y))
+					if (double((R + r) * (R + r)) > (double(roundPosition.x) - x) * (double(roundPosition.x) - x) + (double(roundPosition.y) - y) * (double(roundPosition.y) - y))
 					{
 						die();
 						std::ofstream myfile("example.txt");
@@ -264,8 +280,10 @@ void Player::Scan()
 						{
 							for (int j = begx; j <= endx; j++)
 							{
-								if(!hitbox[i][j])
+								if (!hitbox[i][j])
 									myfile << '_';
+								else if (hitbox[i][j] >> 61)
+									myfile << '|';
 								else
 								{
 									if (j == roundPosition.x && i == roundPosition.y)
@@ -334,4 +352,58 @@ bool Player::changeRadious(double R)
 			trace.edge(false, headR, angle, position);
 	}*/
 	return true;
+}
+bool Player::triangleTest(sf::Vector2i s, sf::Vector2i a, sf::Vector2i b, sf::Vector2i c)
+{
+	int AB_A, AC_A, CB_A, AB_C, AC_C, CB_C, AB_B, AC_B, CB_B;
+	AB_A = a.y - b.y;//max1000
+	AB_B = b.x - a.x;//max1000
+	AB_C = a.x * (b.y - a.y) - a.y * (b.x - a.x);//max1 000 000
+
+	AC_A = a.y - c.y;
+	AC_B = c.x - a.x;
+	AC_C = a.x * (c.y - a.y) - a.y * (c.x - a.x);
+
+	CB_A = c.y - b.y;
+	CB_B = b.x - c.x;
+	CB_C = c.x * (b.y - c.y) - c.y * (b.x - c.x);
+
+	if ((AB_A * s.x + AB_B * s.y + AB_C) * (AB_A * c.x + AB_B * c.y + AB_C) < 0 ||
+		(AC_A * s.x + AC_B * s.y + AC_C) * (AC_A * b.x + AC_B * b.y + AC_C) < 0 ||
+		(CB_A * s.x + CB_B * s.y + CB_C) * (CB_A * a.x + CB_B * a.y + CB_C) < 0)
+		return false;
+	else if ((AB_A * s.x + AB_B * s.y + AB_C) * (AB_A * c.x + AB_B * c.y + AB_C) == 0 ||
+		(AC_A * s.x + AC_B * s.y + AC_C) * (AC_A * b.x + AC_B * b.y + AC_C) == 0 ||
+		(CB_A * s.x + CB_B * s.y + CB_C) * (CB_A * a.x + CB_B * a.y + CB_C) == 0)
+		;
+	return true;
+}
+void Player::fullFillForBoost()
+{
+
+	long long int info;
+	info = long long int(1) << 61;
+	info |= long long int(playerId) << 57;
+	sf::Vector2i tactualRight(round(trace.getLastPos().x), round(trace.getLastPos().y));
+	sf::Vector2i tactualLeft(round(trace.getLastLastPos().x), round(trace.getLastLastPos().y));
+	sf::Vector2i tlastRight(round(trace.getLastDPos().x), round(trace.getLastDPos().y));
+	sf::Vector2i tlastLeft(round(trace.getLastLastDPos().x), round(trace.getLastLastDPos().y));
+	int minx = std::min(std::min(tactualLeft.x, tactualRight.x), std::min(tlastLeft.x, tlastRight.x));
+	int maxx = std::max(std::max(tactualLeft.x, tactualRight.x), std::max(tlastLeft.x, tlastRight.x));
+	int miny = std::min(std::min(tactualLeft.y, tactualRight.y), std::min(tlastLeft.y, tlastRight.y));
+	int maxy = std::max(std::max(tactualLeft.y, tactualRight.y), std::max(tlastLeft.y, tlastRight.y));
+	for (int x = minx; x <= maxx; x++)
+	{
+		for (int y = miny; y <= maxy; y++)
+		{
+			if (hitbox[y][x])
+				continue;
+			else
+			{
+				if (triangleTest({ x,y }, tlastLeft, tlastRight, tactualRight) || triangleTest({ x,y }, tactualLeft, tactualRight, tlastLeft)) {
+					hitbox[y][x] = info;
+				}
+			}
+		}
+	}
 }

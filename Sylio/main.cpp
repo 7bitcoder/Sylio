@@ -14,6 +14,7 @@ pamietaj ze przy krawedzi hitboxa jest odstep i
 */
 int main()
 {
+	std::cout << sizeof(long long int) << std::endl;
 	sf::ContextSettings set;
 	set.antialiasingLevel = 8;
 	std::string version = "Beta 0.1";

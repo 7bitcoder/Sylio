@@ -52,7 +52,7 @@ private:
 	std::vector<Boost *> boosts;
 
 	sf::Color blendColor;
-	std::array<std::array<int, 1920>, 1080>& hitbox;
+	std::array<std::array<long long int, 1920>, 1080>& hitbox;
 	sf::RenderWindow& window;
 	sf::Clock time;
 	sf::CircleShape head;
@@ -74,7 +74,7 @@ public:
 	void update();
 	void draw() { if (visible) trace.draw();	window.draw(head); /*if (activeBoost) window.draw(boosthead);*/ }
 
-	Player(std::vector<double>& headVec, std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
+	Player(std::vector<double>& headVec, std::array<std::array<long long int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
 	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
@@ -95,6 +95,8 @@ public:
 	void erise();
 	void roundPos() { roundPosition.x = round(position.x); roundPosition.y = round(position.y); }
 	bool changeRadious(double R);
+	bool triangleTest(sf::Vector2i s, sf::Vector2i a, sf::Vector2i b, sf::Vector2i c);
+	void fullFillForBoost();
 	sf::Vector2f& getPos() { return position; }
 
 	inline void setPosition(sf::Vector2f pos) {

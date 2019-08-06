@@ -7,7 +7,7 @@ extern Settings setting;
 class gameBoard
 {
 private:
-	static std::array<std::array<int, 1920>, 1080> hitbox;
+	static std::array<std::array<long long int, 1920>, 1080> hitbox;
 	int xmax;
 	int xmin;
 	int ymin;

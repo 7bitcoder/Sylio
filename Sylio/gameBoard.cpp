@@ -1,7 +1,7 @@
 #include "gameBoard.h"
 
 
-std::array<std::array<int, 1920>, 1080> gameBoard::hitbox = { 0 };
+std::array<std::array<long long int, 1920>, 1080> gameBoard::hitbox = { 0 };
 gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 {
 	setBounds(1075, 5, 1915, 300, 5);
@@ -40,19 +40,19 @@ st gameBoard::update()
 			fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
 			timer.restart();
 			cnt = 0;
-			if (getBoostPosition()) {
+			/*if (getBoostPosition()) {
 				std::cout << boostPosition.x << " : " << boostPosition.y << std::endl;
 				//boostsPos.push_back(sf::CircleShape(10));
 				//boostsPos.back().setFillColor(sf::Color::Green);
 				//boostsPos.back().setOrigin(10, 10);
 				//boostsPos.back().setPosition(boostPosition.x, boostPosition.y);
-			}
+			}*/
 		}
 		else if (isF4Pressed())
 			setting.TimeStop = !setting.TimeStop;
 		else if (isF2Pressed())
 		{
-			Boost* tmp = new LockRight;
+			Boost* tmp = new GrowUp;
 			std::cout << "slow down :";
 			Players.back().addBoost(tmp);
 		}
