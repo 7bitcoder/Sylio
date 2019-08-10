@@ -138,6 +138,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="gameBoard.cpp" />
+    <ClCompile Include="loadingScreen.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="players.cpp" />
     <ClCompile Include="Rounds.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CheckBox.h" />
     <ClInclude Include="gameBoard.h" />
+    <ClInclude Include="loadingScreen.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="players.h" />
     <ClInclude Include="Rounds.h" />

@@ -18,7 +18,7 @@ public:
 	virtual ~Boost();
 };
 
-class SpeedUp: public Boost
+class SpeedUp : public Boost
 {
 private:
 	float multVel;

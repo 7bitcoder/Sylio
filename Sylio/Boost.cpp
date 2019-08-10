@@ -18,7 +18,7 @@ Boost::Boost()
 }
 
 
-bool Boost::check(Player & player)
+bool Boost::check(Player& player)
 {
 	if (setting.TimeStop || player.freeze)
 	{
@@ -70,7 +70,7 @@ void SlowDown::setBoost(Player& player)
 	player.hiddenVelocity *= multVel;
 	if (player.hiddenVelocity < limits.minVel)
 		player.velocity = limits.minVel;
-	else if(player.hiddenVelocity > limits.maxVel)
+	else if (player.hiddenVelocity > limits.maxVel)
 		player.velocity = limits.maxVel;
 	else
 		player.velocity = player.hiddenVelocity;

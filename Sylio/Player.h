@@ -49,7 +49,7 @@ private:
 	int& ymax;
 	int& ymin;
 
-	std::vector<Boost *> boosts;
+	std::vector<Boost*> boosts;
 
 	sf::Color blendColor;
 	std::array<std::array<long long int, 1920>, 1080>& hitbox;
@@ -63,7 +63,6 @@ private:
 	sf::Keyboard::Key right;
 	sf::Vector2f position;
 	sf::Vector2f oldPosition;
-	sf::RenderTarget& board;
 	sf::Vector2i gapBounds;
 	sf::Vector2i NextGapounds;
 	sf::Vector2i roundPosition;
@@ -74,34 +73,35 @@ public:
 	void update();
 	void draw() { if (visible) trace.draw();	window.draw(head); /*if (activeBoost) window.draw(boosthead);*/ }
 
-	Player(std::vector<double>& headVec, std::array<std::array<long long int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_, sf::RenderTexture& board_);
+	Player(std::vector<double>& headVec, std::array<std::array<long long int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_);
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
-	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
+	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; headR = 0; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
 	void setColor(sf::Color col) { color = col; head.setFillColor(color); boosthead.setFillColor(sf::Color::White); }
 
 	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
-	void addBoost(Boost* bost_); 
+	void addBoost(Boost * bost_);
 	void checkBoosts();
 	void die(bool x = true) { dead = true; clearBoosts(); }
-	bool getState() { return dead; }
 	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); }
 	void setNewGap();
 	void drawLineOnHitBox(int x1, int y1);
+	void fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f lasR, sf::Vector2f lasL);
+	void fullFillResizeR(bool res = false);
 	void Scan();
 	void updateTrace();
 	void erise();
 	void roundPos() { roundPosition.x = round(position.x); roundPosition.y = round(position.y); }
 	bool changeRadious(double R);
+	bool getState() { return dead; }
 	bool triangleTest(sf::Vector2i s, sf::Vector2i a, sf::Vector2i b, sf::Vector2i c);
-	void fullFillForBoost();
 	sf::Vector2f& getPos() { return position; }
 
 	inline void setPosition(sf::Vector2f pos) {
 		position = pos;
-		head.setPosition(position);	
+		head.setPosition(position);
 		boosthead.setPosition(position);
 		oldPosition = position;
 		float pointlx = headR * sin(angle + NINETY_DEG);
@@ -109,7 +109,9 @@ public:
 		sf::Vector2f xx(position.x + pointlx, position.y + pointly);
 		sf::Vector2f yy(position.x - pointlx, position.y - pointly);
 		trace.update(xx, yy);
-		trace.start(headR, angle, position);
+		trace.edge(true, headR, angle, position);
+		fullFillResizeR(true);
+		trace.start();
 	}
 	~Player();
 };

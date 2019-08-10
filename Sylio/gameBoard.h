@@ -21,12 +21,25 @@ private:
 	std::vector<sf::CircleShape> boostsPos;
 	std::vector<double> allHeadRadious;
 	sf::RenderWindow& window;
-	sf::RenderTexture board;
 public:
 	gameBoard(sf::RenderWindow& win);
 	st update();
 	~gameBoard();
 	void setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc);
+	void clearHitbox();
+	void createPlayers();
+	bool isF4Pressed();
+	bool isF2Pressed();
+	bool isF3Pressed();
+	bool isF5Pressed();
+	bool isF6Pressed();
+	void generateMap();
+	sf::Vector2f generatePositions();
+	double generteAngle();
+	void EriseId(int id);
+	void EriseAll();
+	bool getBoostPosition();
+
 	void drawBounds() {
 		window.draw(bounds[0], 4, sf::Quads);
 		window.draw(bounds[1], 4, sf::Quads);
@@ -50,21 +63,6 @@ public:
 		for (auto& player : Players)
 			player.draw();
 	}
-	void clearHitbox();
-	void createPlayers();
-	bool isF4Pressed();
-	bool isF2Pressed();
-	bool isF3Pressed();
-	bool isF5Pressed();
-	bool isF6Pressed();
-	void generateMap();
-	sf::Vector2f generatePositions();
-	double generteAngle();
-	void EriseId(int id);
-	void EriseAll();
-	bool getBoostPosition();
-	bool isInCircle(sf::Vector2f cent, sf::Vector2f point, double R) { return (cent.x - point.x) * (cent.x - point.x) + (cent.y - point.y) * (cent.y - point.y) < R * R; }
-	bool isInCircle(sf::Vector2i cent, sf::Vector2i point, double R) { return (cent.x - point.x) * (cent.x - point.x) + (cent.y - point.y) * (cent.y - point.y) < R * R; }
-	bool scan(int x, int y, int r);
+
 };
 

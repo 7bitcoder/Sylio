@@ -30,14 +30,14 @@ public:
 		if (drawing)
 			window.draw(&cpuMem[begin], cpuMem.size() - begin, sf::TrianglesStrip);
 	}
-	void stop(double& r, double& angle, sf::Vector2f& pos);
-	void start(double& r, double& angle, sf::Vector2f& pos);
-	void edge(bool beg, double& r, double& angle, sf::Vector2f& pos);
-	void changeRadious(bool bigger, double& r, double& angle, sf::Vector2f& pos);
+	void stop();
+	void start();
+	void edge(bool beg, double& r, double& angle, sf::Vector2f & pos);
 	sf::Vector2f& getLastPos() { return cpuMem.back().position; }
 	sf::Vector2f& getLastLastPos() { return cpuMem[cpuMem.size() - 2].position; }
 	sf::Vector2f& getLastDPos() { return cpuMem[cpuMem.size() - 3].position; }
 	sf::Vector2f& getLastLastDPos() { return cpuMem[cpuMem.size() - 4].position; }
+	std::vector<sf::Vertex>& getVec() { return cpuMem; }
 	bool getState() { return drawing; }
 	int getIndex() { return cpuMem.size(); }
 	int getFragmentsSize() { return gpuMem.size(); }

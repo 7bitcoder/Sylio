@@ -5,8 +5,6 @@ std::array<std::array<long long int, 1920>, 1080> gameBoard::hitbox = { 0 };
 gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 {
 	setBounds(1075, 5, 1915, 300, 5);
-	board.create(window.getSize().x, window.getSize().y);
-	board.clear(sf::Color::Black);
 	srand(std::time(0));
 	boostR = 10;
 }
@@ -85,7 +83,7 @@ st gameBoard::update()
 		for (auto& aa : boostsPos)
 			window.draw(aa);
 		window.display();
-		
+
 	}
 }
 
@@ -149,7 +147,7 @@ void gameBoard::createPlayers()
 
 	}*/
 
-	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin, board)));
+	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin)));
 	Players.back().setId(i);
 	allHeadRadious.push_back(5);
 	Players.back().setParams(generteAngle(), 6, 2.5, 100);
@@ -173,7 +171,7 @@ bool gameBoard::isF4Pressed()
 		}
 		return false;
 	}
-	else 
+	else
 	{
 		isPressed = false;
 		return false;
@@ -278,7 +276,7 @@ sf::Vector2f gameBoard::generatePositions()
 	int i = rand() % map.size();
 	auto it = map.begin() + i;
 	sf::Vector2f tmp;
-	tmp.x= it->x;
+	tmp.x = it->x;
 	tmp.y = it->y;
 	map.erase(it);
 	return tmp;
@@ -315,7 +313,7 @@ void gameBoard::EriseAll()
 	{
 		for (int j = 0; j < 1080; j++)
 		{
-				hitbox[j][i] = 0;
+			hitbox[j][i] = 0;
 		}
 	}
 }
@@ -411,39 +409,4 @@ bool gameBoard::getBoostPosition()
 		return true;
 }
 
-bool gameBoard::scan(int x, int y, int r)
-{
-	int begx = x - r;
-	if (begx < xmin)
-		begx = xmin;
-	int begy = y - r;
-	if (begy < ymin)
-		begy = ymin;
-	int endx = x + r;
-	if (endx > xmax)
-		endx = xmax;
-	int endy = y + r;
-	if (endy > ymax)
-		endy = ymax;
-	for (int x = begx; x <= endx; x++)
-	{
-		for (int y = begy; y <= endy; y++)
-		{
-			if (hitbox[y][x])
-				return false;
 
-		}
-	}
-	for (auto& b : boostsPos) 
-	{
-		if (isInCircle(b.getPosition(),sf::Vector2f(x, y), 2 * boostR))
-			return false;
-	}
-	for (auto& b : Players)
-	{
-		if (isInCircle(b.getPos(),sf::Vector2f(x, y) , 400))//??20
-			return false;
-	}
-	return true;
-}
-			

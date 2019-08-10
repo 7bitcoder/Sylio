@@ -11,7 +11,7 @@ players::players(std::array<std::array<int, 1920>, 1080>& hitbox_, sf::RenderWin
 	thicc(thicc_)
 {
 
-	
+
 }
 
 
