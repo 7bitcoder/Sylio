@@ -30,7 +30,7 @@ void Player::update()
 			boostHeadTime += t.asSeconds() * boostTimeVel;
 			double p = (0.2 * sin(boostHeadTime) + 0.8);
 			double q = 1 - p;
-			head.setFillColor(sf::Color(blendColor.r * p + color.r * q, blendColor.g * p + color.g * q, blendColor.b * p + color.b * q));
+			head.setFillColor(sf::Color(blendColor.r * p + headCol.r * q, blendColor.g * p + headCol.g * q, blendColor.b * p + headCol.b * q));
 		}
 		if (!setting.TimeStop && !freeze)
 		{
@@ -55,7 +55,7 @@ void Player::update()
 				{
 					actualGap = 0;
 					trace.edge(false, headR, angle, position);
-					fullFillResizeR(false);
+					fullFillResizeR(headR);
 					trace.stop();
 				}
 				else if (!trace.getState() && actualGap > gapSize)
@@ -64,7 +64,7 @@ void Player::update()
 					setNewGap();
 					updateTrace();
 					trace.edge(true, headR, angle, position);
-					fullFillResizeR(true);
+					fullFillResizeR(headR);
 					trace.start();
 				}
 				else if (trace.getState()) {
@@ -72,7 +72,12 @@ void Player::update()
 					roundPos();
 					Scan();
 					drawLineOnHitBox(round(oldPosition.x), round(oldPosition.y));
-					fullFillForBoost(trace.getLastPos(), trace.getLastLastPos(), trace.getLastDPos(),trace.getLastLastDPos());
+					fullFillForBoost(trace.getLastPos(), trace.getLastLastPos(), trace.getLastDPos(), trace.getLastLastDPos());
+				}
+				if (resize)
+				{
+					changeRadious(waitingR);
+					resize = false;
 				}
 				actualGap += diff;
 				oldPosition = position;
@@ -104,10 +109,10 @@ Player::Player(std::vector<double> & headVec_, std::array<std::array<long long i
 	lockRight = false;
 	std::cout << "rozmiar :" << sizeof(sf::Vertex) << std::endl;
 	time.restart();
-	color = col;
-	head.setFillColor(color);
+	setColor(col);
 	actualGap = 0;
 	safety = 2;
+	resize = false;
 }
 
 Player::~Player()
@@ -176,7 +181,7 @@ void Player::checkBoosts()
 		if (!boosts.size())
 		{
 			activeBoost = false;
-			head.setFillColor(color);
+			head.setFillColor(headCol);
 		}
 	}
 }
@@ -339,14 +344,14 @@ bool Player::changeRadious(double R)
 		if (R > headR) {
 			trace.edge(true, R, angle, position);
 			std::cout << "bigger\n";
-			fullFillResizeR(true);
+			fullFillResizeR(R);
 		}
 		else {
 			trace.edge(false, headR, angle, position);
 			std::cout << "smaller\n";
-			fullFillResizeR(false);
+			fullFillResizeR(headR);
 		}
-		
+
 	}
 	headR = R;
 	head.setRadius(R);
@@ -416,17 +421,38 @@ void Player::fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f
 	}
 }
 
-void Player::fullFillResizeR(bool beg)
+void Player::fullFillResizeR(double R)
 {
-	auto& vec = trace.getVec();
-	int size = vec.size();
-	int m = 5;
-	if (beg)
-		m = 4;
-	for (int i = 0; i < m; i++)
+	int begx = round(position.x - R);
+	if (begx < xmin)
+		begx = xmin;
+	int begy = round(position.y - R);
+	if (begy < ymin)
+		begy = ymin;
+	int endx = round(position.x + R);
+	if (endx > xmax)
+		endx = xmax;
+	int endy = round(position.y + R);
+	if (endy > ymax)
+		endy = ymax;
+
+	long long int info;
+	info = long long int(1) << 61;
+	info |= long long int(playerId) << 57;
+
+	for (int x = begx; x <= endx; x++)
 	{
-		if (size - 3 - i * 2 < 0 || size - 4 - 2 * i < 0)
-			break;
-		fullFillForBoost(vec[size - i * 2 -1].position, vec[size - 2 - i * 2].position, vec[size - 3 - i * 2].position, vec[size - 4 - i * 2].position);
+		for (int y = begy; y <= endy; y++)
+		{
+			if (hitbox[y][x])
+				continue;
+			else
+			{
+				if (((x - position.x) * (x - position.x) + (y - position.y) * (y - position.y)) < R * R)
+				{
+					hitbox[y][x] = info;
+				}
+			}
+		}
 	}
 }

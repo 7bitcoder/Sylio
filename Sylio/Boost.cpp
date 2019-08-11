@@ -93,11 +93,11 @@ void GrowUp::setBoost(Player& player)
 	std::cout << player.headR << " to ";
 	player.hiddenHeadR *= multSize;
 	if (player.hiddenHeadR < limits.minRadious)
-		player.changeRadious(limits.minRadious);
+		player.setWaitingR(limits.minRadious);
 	else if (player.hiddenHeadR > limits.maxRadious)
-		player.changeRadious(limits.maxRadious);
+		player.setWaitingR(limits.maxRadious);
 	else
-		player.changeRadious(player.hiddenHeadR);
+		player.setWaitingR(player.hiddenHeadR);
 	std::cout << player.headR << std::endl;
 }
 
@@ -105,11 +105,11 @@ void GrowUp::clearBoost(Player& player)
 {
 	player.hiddenHeadR /= multSize;
 	if (player.hiddenHeadR < limits.minRadious)
-		player.changeRadious(limits.minRadious);
+		player.setWaitingR(limits.minRadious);
 	else if (player.hiddenHeadR > limits.maxRadious)
-		player.changeRadious(limits.maxRadious);
+		player.setWaitingR(limits.maxRadious);
 	else
-		player.changeRadious(player.hiddenHeadR);
+		player.setWaitingR(player.hiddenHeadR);
 }
 
 void Shrink::setBoost(Player& player)
@@ -117,11 +117,11 @@ void Shrink::setBoost(Player& player)
 	std::cout << player.headR << " to ";
 	player.hiddenHeadR *= multSize;
 	if (player.hiddenHeadR < limits.minRadious)
-		player.changeRadious(limits.minRadious);
+		player.setWaitingR(limits.minRadious);
 	else if (player.hiddenHeadR > limits.maxRadious)
-		player.changeRadious(limits.maxRadious);
+		player.setWaitingR(limits.maxRadious);
 	else
-		player.changeRadious(player.hiddenHeadR);
+		player.setWaitingR(player.hiddenHeadR);
 	std::cout << player.headR << std::endl;
 }
 
@@ -129,11 +129,11 @@ void Shrink::clearBoost(Player& player)
 {
 	player.hiddenHeadR /= multSize;
 	if (player.hiddenHeadR < limits.minRadious)
-		player.changeRadious(limits.minRadious);
+		player.setWaitingR(limits.minRadious);
 	else if (player.hiddenHeadR > limits.maxRadious)
-		player.changeRadious(limits.maxRadious);
+		player.setWaitingR(limits.maxRadious);
 	else
-		player.changeRadious(player.hiddenHeadR);
+		player.setWaitingR(player.hiddenHeadR);
 
 }
 

@@ -34,8 +34,10 @@ private:
 	double hiddenVelocity;
 	double headR;
 	double hiddenHeadR;
+	double waitingR;
 	double boostHeadTime;
 	double boostTimeVel;
+	bool resize;
 
 	bool dead;
 	bool lockLeft;
@@ -59,6 +61,7 @@ private:
 	sf::CircleShape boosthead;
 	std::string nickname;
 	sf::Color color;
+	sf::Color headCol;
 	sf::Keyboard::Key left;
 	sf::Keyboard::Key right;
 	sf::Vector2f position;
@@ -79,8 +82,7 @@ public:
 	void setNick(std::string str) { nickname = str; }
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
-	void setColor(sf::Color col) { color = col; head.setFillColor(color); boosthead.setFillColor(sf::Color::White); }
-
+	void setColor(sf::Color col) { color = col; 	headCol = col; headCol.r *= 0.8; headCol.g *= 0.8; headCol.b *= 0.8; head.setFillColor(headCol);  boosthead.setFillColor(sf::Color::White); }
 	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
 	void addBoost(Boost * bost_);
 	void checkBoosts();
@@ -89,10 +91,11 @@ public:
 	void setNewGap();
 	void drawLineOnHitBox(int x1, int y1);
 	void fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f lasR, sf::Vector2f lasL);
-	void fullFillResizeR(bool res = false);
+	void fullFillResizeR(double R);
 	void Scan();
 	void updateTrace();
 	void erise();
+	void setWaitingR(double r) { waitingR = r; resize = true; }
 	void roundPos() { roundPosition.x = round(position.x); roundPosition.y = round(position.y); }
 	bool changeRadious(double R);
 	bool getState() { return dead; }
@@ -110,7 +113,7 @@ public:
 		sf::Vector2f yy(position.x - pointlx, position.y - pointly);
 		trace.update(xx, yy);
 		trace.edge(true, headR, angle, position);
-		fullFillResizeR(true);
+		fullFillResizeR(headR);
 		trace.start();
 	}
 	~Player();
