@@ -13,6 +13,7 @@ private:
 	int ymin;
 	int ymax;
 	int thicc;
+	double dontSetBoostR;
 	sf::Vector2i boostPosition;
 	double boostR;
 	std::vector<sf::Vector2i> map;
@@ -21,6 +22,24 @@ private:
 	std::vector<sf::CircleShape> boostsPos;
 	std::vector<double> allHeadRadious;
 	sf::RenderWindow& window;
+	sf::Texture blind;
+	sf::Texture boundsShrink;
+	sf::Texture brokenWalls;
+	sf::Texture clearAll;
+	sf::Texture freeze;
+	sf::Texture growUp;
+	sf::Texture hydra;
+	sf::Texture immortal;
+	sf::Texture longerGaps;
+	sf::Texture moreOftenHoles;
+	sf::Texture lockLeft;
+	sf::Texture lockRight;
+	sf::Texture shrink;
+	sf::Texture slowDown;
+	sf::Texture speedUp;
+	sf::Texture stop;
+	sf::Texture switchControls;
+	sf::Texture switchHeads;
 public:
 	gameBoard(sf::RenderWindow& win);
 	st update();
@@ -39,7 +58,10 @@ public:
 	void EriseId(int id);
 	void EriseAll();
 	bool getBoostPosition();
-
+	void drawOnHitTmp();
+	void clearOnHitTmp();
+	void markBoostPosOnHit(sf::Vector2i boostPosition);
+	void clearBoostPosOnHit(sf::Vector2i boostPosition);
 	void drawBounds() {
 		window.draw(bounds[0], 4, sf::Quads);
 		window.draw(bounds[1], 4, sf::Quads);

@@ -84,6 +84,7 @@ public:
 	void setId(int id) { playerId = id; }
 	void setColor(sf::Color col) { color = col; 	headCol = col; headCol.r *= 0.8; headCol.g *= 0.8; headCol.b *= 0.8; head.setFillColor(headCol);  boosthead.setFillColor(sf::Color::White); }
 	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
+	
 	void addBoost(Boost * bost_);
 	void checkBoosts();
 	void die(bool x = true) { dead = true; clearBoosts(); }

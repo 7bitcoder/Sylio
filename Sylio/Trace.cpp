@@ -59,13 +59,13 @@ void Trace::edge(bool beg, double& R, double& angle, sf::Vector2f & position)
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			std::cout << position.x << " :pos: " << position.y << std::endl;
+			//std::cout << position.x << " :pos: " << position.y << std::endl;
 			sf::Vector2f point(R * sin(angle + 2.0 * NINETY_DEG - i * ang) + position.x, R * cos(angle + 2 * NINETY_DEG - i * ang) + position.y);
 			cpuMem.push_back(sf::Vertex(point, color));
-			std::cout << point.x << " :: " << point.y << std::endl;
+			//std::cout << point.x << " :: " << point.y << std::endl;
 			point.x = R * sin(angle + 2 * NINETY_DEG + i * ang) + position.x;
 			point.y = R * cos(angle + 2 * NINETY_DEG + i * ang) + position.y;
-			std::cout << point.x << " :: " << point.y << std::endl;
+			//std::cout << point.x << " :: " << point.y << std::endl;
 			cpuMem.push_back(sf::Vertex(point, color));
 		}
 	}

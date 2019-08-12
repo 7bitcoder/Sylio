@@ -99,6 +99,9 @@
     <ClCompile Include="loadingScreen.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="BoostOnBoard.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Music.h">
@@ -156,6 +159,9 @@
       <Filter>Pliki nagłówkowe\game</Filter>
     </ClInclude>
     <ClInclude Include="loadingScreen.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="BoostOnBoard.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>

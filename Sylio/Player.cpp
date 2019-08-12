@@ -391,6 +391,7 @@ bool Player::triangleTest(sf::Vector2i s, sf::Vector2i a, sf::Vector2i b, sf::Ve
 		;
 	return true;
 }
+
 void Player::fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f lasR, sf::Vector2f lasL)
 {
 
