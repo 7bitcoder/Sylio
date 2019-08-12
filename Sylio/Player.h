@@ -22,7 +22,8 @@ private:
 	friend class SwitchControls;
 	friend class Blind;
 	static double rScan;
-	int safety;
+
+	int points;
 	int playerId;
 	int nextGap;
 	int gapSize;
@@ -73,10 +74,12 @@ private:
 	Trace trace;
 public:
 	static double getRScan() { return rScan; }
-	void update();
+	bool update();
 	void draw() { if (visible) trace.draw();	window.draw(head); /*if (activeBoost) window.draw(boosthead);*/ }
+	void addPoints(int p) { points += p + trace.getFragmentsSize(); }
 
 	Player(std::vector<double>& headVec, std::array<std::array<long long int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_);
+	void reset();
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
 	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; headR = 0; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
@@ -102,6 +105,8 @@ public:
 	bool getState() { return dead; }
 	bool triangleTest(sf::Vector2i s, sf::Vector2i a, sf::Vector2i b, sf::Vector2i c);
 	sf::Vector2f& getPos() { return position; }
+	double getRadious() { return headR; }
+	int getPoints() { return points; }
 
 	inline void setPosition(sf::Vector2f pos) {
 		position = pos;

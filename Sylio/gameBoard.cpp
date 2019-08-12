@@ -6,8 +6,11 @@ gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 {
 	setBounds(1075, 5, 1915, 300, 5);
 	srand(std::time(0));
-	boostR = 20;
+	boostR = 40;
 	dontSetBoostR = 50;
+	minBoostTime = 5;
+	maxBoostTime = 10;
+	boostTime = getTimeBoost();
 	if (!blind.loadFromFile("../boost_icons/blind.png"))
 		exit(-1);
 	if (!boundsShrink.loadFromFile("../boost_icons/bounds.png"))
@@ -48,6 +51,7 @@ gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
 st gameBoard::update()
 {
 	clearHitbox();
+	clearBoosts();
 
 	sf::Font font;
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
@@ -59,71 +63,93 @@ st gameBoard::update()
 	fps.setPosition(20, 20);
 	fps.setFillColor(sf::Color::White);
 	sf::Clock timer;
+	sf::Clock boostTImer;
 
 	createPlayers();
 	sf::Event event;
-
+	int rounds = 3;// setting.rounds;
 	int cnt = 0;
-	timer.restart();
-	while (window.isOpen())
+
+	while (rounds)
 	{
-		updatePlayers();
-		cnt++;
-		if (cnt == 200)
+		timer.restart();
+		boostTImer.restart();
+		poolPoints = Players.size();
+		while (window.isOpen())
 		{
-			fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
-			timer.restart();
-			cnt = 0;
-			getBoostPosition();
-			markBoostPosOnHit(boostPosition);
-			std::cout << "los boost pos :" << boostPosition.x << "  " << boostPosition.y << std::endl;
+			//runda na srodku
+			//odliczanie czasu
+			if (poolPoints == 0)
+			{
+				rounds--;
+				restart();
+				break;
+			}
+			updatePlayers();
+			checkBoostsColission();
+			cnt++;
+			if (cnt == 200)
+			{
+				fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
+				timer.restart();
+				cnt = 0;
+			}
+			if (boostTImer.getElapsedTime().asSeconds() > boostTime)
+			{
+				boostTImer.restart();
+				boostTime = getTimeBoost();
+				if (boostsOnBoard.size() < 21) {
+					drawOnHitTmp();
+					if (getBoostPosition())
+					{
+						markBoostPosOnHit(boostPosition);
+						getRandomBoost();
+						//dodaj boost;
+					}
+					clearOnHitTmp();
+				}
+				//else nie ma miejsca
+			}
+			if (isF4Pressed())
+				setting.TimeStop = !setting.TimeStop;
+			else if (isF2Pressed())
+			{
+				Boost* tmp = new GrowUp;
+				std::cout << "slow down :";
+				Players.back().addBoost(tmp);
+			}
+			else if (isF3Pressed())
+			{
+				std::cout << "speed up :";
+				Boost* tmp = new LockLeft;
+				Players.back().addBoost(tmp);
+			}
+			else if (isF5Pressed())
+			{
+				std::cout << "shrink up :";
+				Boost* tmp = new Freeze;
+				Players.back().addBoost(tmp);
+			}
+			else if (isF6Pressed())
+			{
+				EriseAll();
+				/*std::cout << "grow up :";
+				Boost* tmp = new Blind;
+				Players.back().addBoost(tmp);*/
+			}
+			window.clear(sf::Color::Black);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+				return st::mainMenu;
 
-			std::cout << boostPosition.x << " : " << boostPosition.y << std::endl;
-			boostsPos.push_back(sf::CircleShape(10));
-			boostsPos.back().setFillColor(sf::Color::Green);
-			boostsPos.back().setOrigin(10, 10);
-			boostsPos.back().setPosition(boostPosition.x, boostPosition.y);
-
-		}
-		else if (isF4Pressed())
-			setting.TimeStop = !setting.TimeStop;
-		else if (isF2Pressed())
-		{
-			Boost* tmp = new GrowUp;
-			std::cout << "slow down :";
-			Players.back().addBoost(tmp);
-		}
-		else if (isF3Pressed())
-		{
-			std::cout << "speed up :";
-			Boost* tmp = new LockLeft;
-			Players.back().addBoost(tmp);
-		}
-		else if (isF5Pressed())
-		{
-			std::cout << "shrink up :";
-			Boost* tmp = new Freeze;
-			Players.back().addBoost(tmp);
-		}
-		else if (isF6Pressed())
-		{
-			EriseAll();
-			/*std::cout << "grow up :";
-			Boost* tmp = new Blind;
-			Players.back().addBoost(tmp);*/
-		}
-		window.clear(sf::Color::Black);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			return st::mainMenu;
-
-		drawBounds();
-		drawPlayers();
-		window.draw(fps);
-		for (auto& aa : boostsPos)
-			window.draw(aa);
-		window.display();
-
+			drawBounds();
+			drawPlayers();
+			window.draw(fps);
+			for (auto& aa : boostsOnBoard)
+				window.draw(aa);
+			window.display();
+		}	
 	}
+	return st::mainMenu;
 }
 
 
@@ -359,8 +385,8 @@ void gameBoard::EriseAll()
 
 bool gameBoard::getBoostPosition()
 {
-	int X = 800;// xmin + int(boostR) + rand() % (xmax - xmin - int(boostR));
-	int Y = 500;//ymin + int(boostR) + rand() % (ymax - ymin - int(boostR));
+	int X = xmin + int(boostR) + rand() % (xmax - xmin - int(boostR));
+	int Y = ymin + int(boostR) + rand() % (ymax - ymin - int(boostR));
 	int lowestRint = 2500;
 	int lowestRintPow = 2500 * 2500;;
 	int boundRX = 1920 + X;
@@ -507,12 +533,67 @@ void gameBoard::clearOnHitTmp()
 {
 	for (int x = 0; x < 1920; x++)
 	{
-		for (int y = 0; y <= 1080; y++)
+		for (int y = 0; y < 1080; y++)
 		{
 			if (hitbox[y][x] >> 63)
 				hitbox[y][x] = 0;
 		}
 	}
+}
+
+void gameBoard::getRandomBoost()
+{
+	int N = 9;
+	int choice = rand() % N;
+	boostsOnBoard.push_back(BoostOnBoard());
+	Boost* wsk;
+	switch (choice)
+	{
+	case 0:
+		wsk = new GrowUp;
+		boostsOnBoard.back().setTexture(growUp);
+		break;
+	case 1:
+		wsk = new Shrink;
+		boostsOnBoard.back().setTexture(shrink);
+		break;
+	case 2:
+		wsk = new SpeedUp;
+		boostsOnBoard.back().setTexture(speedUp);
+		break;
+	case 3:
+		wsk = new SlowDown;
+		boostsOnBoard.back().setTexture(slowDown);
+		break;
+	case 4:
+		wsk = new LockLeft;
+		boostsOnBoard.back().setTexture(lockLeft);
+		break;
+	case 5:
+		wsk = new LockRight;
+		boostsOnBoard.back().setTexture(lockRight);
+		break;
+	case 6:
+		wsk = new Freeze;
+		boostsOnBoard.back().setTexture(freeze);
+		break;
+	case 7:
+		wsk = new SwitchControls;
+		boostsOnBoard.back().setTexture(switchControls);
+		break;
+	case 8:
+		wsk = new Blind;
+		boostsOnBoard.back().setTexture(blind);
+		break;
+	default:
+		wsk = new Blind;
+		boostsOnBoard.back().setTexture(blind);
+		break;
+	}
+	boostsOnBoard.back().setBoost(wsk);
+	boostsOnBoard.back().setScale(0.1, 0.1);
+	boostsOnBoard.back().setOrigin(32, 32);
+	boostsOnBoard.back().setPosition(boostPosition.x, boostPosition.y);
 }
 
 void gameBoard::markBoostPosOnHit(sf::Vector2i boostPosition)
@@ -549,7 +630,7 @@ void gameBoard::markBoostPosOnHit(sf::Vector2i boostPosition)
 		}
 	}
 }
-void gameBoard::clearBoostPosOnHit(sf::Vector2i boostPosition)
+void gameBoard::clearBoostPosOnHit(sf::Vector2f boostPosition)
 {
 	int begx = round(boostPosition.x - boostR);
 	if (begx < xmin)
@@ -575,5 +656,54 @@ void gameBoard::clearBoostPosOnHit(sf::Vector2i boostPosition)
 				hitbox[y][x] = 0;
 		}
 	}
+}
+
+void gameBoard::checkBoostsColission()
+{
+	std::vector<BoostOnBoard>::iterator it;
+	bool found;
+	for (auto& player : Players)
+	{
+		found = false;
+		sf::Vector2f playertPos = player.getPos();
+		for (it = boostsOnBoard.begin(); it != boostsOnBoard.end(); it++)
+		{
+			sf::Vector2f boostPos = it->getPosition();
+			if (((double(playertPos.x) - boostPos.x) * (double(playertPos.x) - boostPos.x) + (double(playertPos.y) - boostPos.y) * (double(playertPos.y) - boostPos.y)) < (player.getRadious() + boostR) * (player.getRadious() + boostR))
+			{
+				found = true;
+				player.addBoost(it->getBoost());
+				clearBoostPosOnHit(it->getPosition());
+				break;
+			}
+		}
+		if (found)
+			boostsOnBoard.erase(it);
+	}
+}
+
+void gameBoard::clearBoosts()
+{
+	for (auto& x : boostsOnBoard)
+	{
+		delete x.getBoost();
+	}
+	boostsOnBoard.clear();
+}
+
+void gameBoard::restart()
+{
+	boostTime = getTimeBoost();
+	clearHitbox();
+	clearBoosts();
+	/*for (auto& player : Players) 
+	{
+		player.setParams(generteAngle(), 6, 2.5, 100);
+		player.setPosition(generatePositions());
+		player.reset();
+	}*/
+	Players.back().setParams(generteAngle(), 6, 2.5, 100);
+	Players.back().setPosition(generatePositions());
+	Players.back().reset();
 }
 

@@ -476,6 +476,7 @@ st Menu::normalGameUpdate()
 				{
 					bool empty = false;
 					bool emptyControlls = false;
+					setting.rounds = rounds.getNumber();
 					for (auto& player : players)
 					{
 						if (player.getActive())

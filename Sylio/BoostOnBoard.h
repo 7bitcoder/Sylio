@@ -1,11 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-class BoostOnBoard
+#include "Boost.h"
+class BoostOnBoard: public sf::Sprite
 {
 private:
-	sf::Vector2i position;
-	sf::Sprite icon;
+	Boost* boost;
+
 public:
+	void setBoost(Boost* b) { boost = b; }
+	Boost* getBoost() { boost->resetClock(); return boost; }
 	BoostOnBoard();
 	~BoostOnBoard();
 };

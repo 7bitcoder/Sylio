@@ -19,7 +19,7 @@ koding hitbox
 1 (1) - boost Position
 */
 double Player::rScan = 40;
-void Player::update()
+bool Player::update()
 {
 	if (!dead)
 	{
@@ -84,6 +84,7 @@ void Player::update()
 			}
 		}
 	}
+	return dead;
 }
 
 Player::Player(std::vector<double> & headVec_, std::array<std::array<long long int, 1920>, 1080> & hitbox_, sf::RenderWindow & win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_) :
@@ -111,10 +112,21 @@ Player::Player(std::vector<double> & headVec_, std::array<std::array<long long i
 	time.restart();
 	setColor(col);
 	actualGap = 0;
-	safety = 2;
 	resize = false;
+	points = 0;
 }
-
+void Player::reset()
+{
+	activeBoost = false;
+	visible = true;
+	freeze = false;
+	dead = false;
+	lockLeft = false;
+	lockRight = false;
+	time.restart();
+	resize = false;
+	erise();
+}
 Player::~Player()
 {
 	clearBoosts();
@@ -124,6 +136,7 @@ Player::~Player()
 void Player::addBoost(Boost * bost_)
 {
 	std::vector<Boost*>::iterator it;
+	std::cout << typeid(*bost_).name() << std::endl;
 	for (it = boosts.begin(); it != boosts.end(); it++)
 	{
 		if (typeid(*bost_) == typeid(*(*it)))
@@ -171,7 +184,7 @@ void Player::checkBoosts()
 			it = itt;
 			(*itt)->clearBoost(*this);
 			delete (*itt);
-			std::cout << "del :" << velocity << "  R :" << headR << std::endl;
+			std::cout << "del :\n";
 			break;
 		}
 	}

@@ -2,6 +2,7 @@
 #include "Settings.h"
 #include "Boost.h"
 #include "Player.h"
+#include "BoostOnBoard.h"
 
 extern Settings setting;
 class gameBoard
@@ -13,13 +14,17 @@ private:
 	int ymin;
 	int ymax;
 	int thicc;
-	double dontSetBoostR;
+	int poolPoints;
+	int minBoostTime;
+	int maxBoostTime;
+	double boostTime;
+	double dontSetBoostR;//normalbooostR*2
 	sf::Vector2i boostPosition;
 	double boostR;
 	std::vector<sf::Vector2i> map;
 	sf::Vertex bounds[4][4];
 	std::vector<Player> Players;
-	std::vector<sf::CircleShape> boostsPos;
+	std::vector<BoostOnBoard> boostsOnBoard;
 	std::vector<double> allHeadRadious;
 	sf::RenderWindow& window;
 	sf::Texture blind;
@@ -60,8 +65,11 @@ public:
 	bool getBoostPosition();
 	void drawOnHitTmp();
 	void clearOnHitTmp();
+	void getRandomBoost();
 	void markBoostPosOnHit(sf::Vector2i boostPosition);
-	void clearBoostPosOnHit(sf::Vector2i boostPosition);
+	void clearBoostPosOnHit(sf::Vector2f boostPosition);
+	void checkBoostsColission();
+	float getTimeBoost() { return minBoostTime + rand() % (maxBoostTime - minBoostTime); }
 	void drawBounds() {
 		window.draw(bounds[0], 4, sf::Quads);
 		window.draw(bounds[1], 4, sf::Quads);
@@ -74,7 +82,11 @@ public:
 		{
 			if (!player.getState())
 			{
-				player.update();
+				if(player.update())
+				{
+					player.addPoints(poolPoints);
+					poolPoints--;
+				}
 				player.checkBoosts();
 				player.checkBounds();
 			}
@@ -85,6 +97,7 @@ public:
 		for (auto& player : Players)
 			player.draw();
 	}
-
+	void clearBoosts();
+	void restart();
 };
 

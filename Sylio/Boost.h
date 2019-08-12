@@ -15,6 +15,7 @@ public:
 	virtual bool stack() { return false; };
 	virtual float getDuration() { return duration; }
 	virtual void addDuration(float dur) { duration += dur; }
+	void resetClock() { clock.restart(); }
 	virtual ~Boost();
 };
 
