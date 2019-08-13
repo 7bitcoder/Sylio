@@ -118,6 +118,7 @@ Player::Player(std::vector<double> & headVec_, std::array<std::array<long long i
 }
 void Player::reset()
 {
+	head.setFillColor(headCol);
 	activeBoost = false;
 	visible = true;
 	freeze = false;

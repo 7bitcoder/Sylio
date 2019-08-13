@@ -89,8 +89,8 @@ public:
 
 	void addBoost(Boost * bost_);
 	void checkBoosts();
-	void die(bool x = true) { dead = true; std::cout << "before" + std::to_string(playerId) << std::endl; clearBoosts(); }
-	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); std::cout<<"after\n"; }
+	void die(bool x = true) { dead = true; clearBoosts(); }
+	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); }
 	void setNewGap();
 	void drawLineOnHitBox(int x1, int y1);
 	void fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f lasR, sf::Vector2f lasL);
@@ -106,6 +106,7 @@ public:
 	sf::Vector2f& getPos() { return position; }
 	double getRadious() { return headR; }
 	int getPoints() { return points; }
+	std::string getNickname() { return nickname; }
 
 	inline void setPosition(sf::Vector2f pos) {
 		position = pos;

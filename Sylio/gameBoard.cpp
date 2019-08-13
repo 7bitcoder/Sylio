@@ -2,7 +2,7 @@
 
 
 std::array<std::array<long long int, 1920>, 1080> gameBoard::hitbox = { 0 };
-gameBoard::gameBoard(sf::RenderWindow& win) :window(win)
+gameBoard::gameBoard(sf::RenderWindow& win, Background & back) :window(win), background(back)
 {
 	setBounds(1075, 5, 1915, 300, 5);
 	srand(std::time(0));
@@ -65,9 +65,15 @@ st gameBoard::update()
 	
 	sf::Text startUpText;
 	startUpText.setFont(font);
-	startUpText.setCharacterSize(90);
+	startUpText.setCharacterSize(80);
 	startUpText.setFillColor(sf::Color::White);
 	startUpText.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
+	
+	sf::Text Winner;
+	Winner.setFont(font);
+	Winner.setCharacterSize(80);
+	Winner.setFillColor(sf::Color::White);
+	Winner.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
 
 	sf::Clock timer;
 	sf::Clock boostTImer;
@@ -77,14 +83,15 @@ st gameBoard::update()
 	int AllRounds = setting.rounds;
 	int rounds = AllRounds;
 	int cnt = 0;
-
+	bool end;
 	bool start;
 	while (rounds)
 	{
+		end = false;
 		start = true;
 		timer.restart();
 		boostTImer.restart();
-		poolPoints = Players.size();
+		poolPoints = 0;
 		setting.TimeStop = true;
 		int sec = 3;
 		startUpText.setString("round " + std::to_string(AllRounds - rounds + 1));
@@ -108,24 +115,41 @@ st gameBoard::update()
 				}
 				
 			}
-			//runda na srodku
-			//odliczanie czasu
+			else if (end)
+			{
+				if (boostTImer.getElapsedTime().asSeconds() > 3)
+				{
+					rounds--;
+					restart();
+					break;
+				}
+			}
 			if (cnt == 200)
 			{
 				fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
 				timer.restart();
 				cnt = 0;
 			}
-			if (poolPoints == 0)
+			if (poolPoints == Players.size() - 1)
 			{
-				rounds--;
-				restart();
-				break;
+				poolPoints++;
+				for (auto& winner : Players)
+				{
+					if (!winner.getState())
+					{
+						end = true;
+						winner.die();
+						Winner.setString("Round winner :" + winner.getNickname());
+						Winner.setOrigin(Winner.getGlobalBounds().width / 2, Winner.getGlobalBounds().height / 2);
+						boostTImer.restart();
+					}
+				}
+				
 			}
 			updatePlayers();
 			checkBoostsColission();
 			cnt++;
-			if (!start && boostTImer.getElapsedTime().asSeconds() > boostTime)
+			if (!start && !end && boostTImer.getElapsedTime().asSeconds() > boostTime)
 			{
 				boostTImer.restart();
 				boostTime = getTimeBoost();
@@ -141,37 +165,11 @@ st gameBoard::update()
 				}
 				//else nie ma miejsca
 			}
-			if (isF4Pressed())
-				setting.TimeStop = !setting.TimeStop;
-			else if (isF2Pressed())
-			{
-				Boost* tmp = new GrowUp;
-				std::cout << "slow down :";
-				Players.back().addBoost(tmp);
-			}
-			else if (isF3Pressed())
-			{
-				std::cout << "speed up :";
-				Boost* tmp = new LockLeft;
-				Players.back().addBoost(tmp);
-			}
-			else if (isF5Pressed())
-			{
-				std::cout << "shrink up :";
-				Boost* tmp = new Freeze;
-				Players.back().addBoost(tmp);
-			}
-			else if (isF6Pressed())
-			{
-				EriseAll();
-				/*std::cout << "grow up :";
-				Boost* tmp = new Blind;
-				Players.back().addBoost(tmp);*/
-			}
 			window.clear(sf::Color::Black);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				return st::mainMenu;
 
+			//background.draw();
 			drawBounds();
 			drawPlayers();
 			window.draw(fps);
@@ -179,6 +177,8 @@ st gameBoard::update()
 				window.draw(aa);
 			if (start)
 				window.draw(startUpText);
+			else if (end)
+				window.draw(Winner);
 			window.display();
 		}	
 	}

@@ -42,7 +42,7 @@ int main()
 	window.setMouseCursor(pointner);
 	window.setMouseCursorVisible(false);
 
-	gameBoard board(window);
+	gameBoard board(window, Menu_.getBack());
 	
 	endThread.clear();
 	thd.join();

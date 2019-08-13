@@ -69,6 +69,7 @@ public:
 	st mainMenuUpdate();
 	st settingsUupdate();
 	st normalGameUpdate();
+	Background& getBack() { return background; }
 	~Menu();
 };
 

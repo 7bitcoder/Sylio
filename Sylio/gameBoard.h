@@ -3,12 +3,14 @@
 #include "Boost.h"
 #include "Player.h"
 #include "BoostOnBoard.h"
+#include "Background.h"
 
 extern Settings setting;
 class gameBoard
 {
 private:
 	static std::array<std::array<long long int, 1920>, 1080> hitbox;
+	Background& background;
 	int xmax;
 	int xmin;
 	int ymin;
@@ -46,7 +48,7 @@ private:
 	sf::Texture switchControls;
 	sf::Texture switchHeads;
 public:
-	gameBoard(sf::RenderWindow& win);
+	gameBoard(sf::RenderWindow& win, Background & back);
 	st update();
 	~gameBoard();
 	void setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc);
@@ -85,7 +87,7 @@ public:
 				if(player.update() || player.checkBounds())
 				{
 					player.addPoints(poolPoints);
-					poolPoints--;
+					poolPoints++;
 					std::cout << "dead :points" << std::to_string(poolPoints) << std::endl;
 				}
 				else

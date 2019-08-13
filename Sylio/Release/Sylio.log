@@ -8,12 +8,13 @@ C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(102): warning C4244: "=": k
           [
               T=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(115): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(116): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.h(72): warning C4244: "return": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(117): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.h(74): warning C4244: "return": konwersja z "int" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(8): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(70): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(76): warning C4101: "event": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(76): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(82): warning C4101: "event": lokalna zmienna, do której nie istnieje odwołanie
 C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(200): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
@@ -146,7 +147,7 @@ C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(671): warning C4244: "
 C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(674): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(677): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
   Trwa generowanie kodu
-  4 of 1688 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 1684 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
