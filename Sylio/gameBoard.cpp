@@ -62,23 +62,60 @@ st gameBoard::update()
 	fps.setCharacterSize(40);
 	fps.setPosition(20, 20);
 	fps.setFillColor(sf::Color::White);
+	
+	sf::Text startUpText;
+	startUpText.setFont(font);
+	startUpText.setCharacterSize(90);
+	startUpText.setFillColor(sf::Color::White);
+	startUpText.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
+
 	sf::Clock timer;
 	sf::Clock boostTImer;
 
 	createPlayers();
 	sf::Event event;
-	int rounds = 3;// setting.rounds;
+	int AllRounds = setting.rounds;
+	int rounds = AllRounds;
 	int cnt = 0;
 
+	bool start;
 	while (rounds)
 	{
+		start = true;
 		timer.restart();
 		boostTImer.restart();
 		poolPoints = Players.size();
+		setting.TimeStop = true;
+		int sec = 3;
+		startUpText.setString("round " + std::to_string(AllRounds - rounds + 1));
+		startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
 		while (window.isOpen())
 		{
+			if (start)
+			{
+				if (boostTImer.getElapsedTime().asSeconds() > 1)
+				{
+					startUpText.setString(std::to_string(sec));
+					startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
+					boostTImer.restart();
+					if (sec == 0)
+					{
+						start = false;
+						setting.TimeStop = false;
+						continue;
+					}
+					sec--;
+				}
+				
+			}
 			//runda na srodku
 			//odliczanie czasu
+			if (cnt == 200)
+			{
+				fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
+				timer.restart();
+				cnt = 0;
+			}
 			if (poolPoints == 0)
 			{
 				rounds--;
@@ -88,13 +125,7 @@ st gameBoard::update()
 			updatePlayers();
 			checkBoostsColission();
 			cnt++;
-			if (cnt == 200)
-			{
-				fps.setString(std::to_string(int(cnt / timer.getElapsedTime().asSeconds())));
-				timer.restart();
-				cnt = 0;
-			}
-			if (boostTImer.getElapsedTime().asSeconds() > boostTime)
+			if (!start && boostTImer.getElapsedTime().asSeconds() > boostTime)
 			{
 				boostTImer.restart();
 				boostTime = getTimeBoost();
@@ -146,9 +177,12 @@ st gameBoard::update()
 			window.draw(fps);
 			for (auto& aa : boostsOnBoard)
 				window.draw(aa);
+			if (start)
+				window.draw(startUpText);
 			window.display();
 		}	
 	}
+	//podsumowanie ranking itp
 	return st::mainMenu;
 }
 
@@ -198,9 +232,9 @@ void gameBoard::createPlayers()
 	thicc = 5;
 	int i = 0;
 	generateMap();
-	/*for (auto& x : setting.playersSettings)
+	for (auto& x : setting.playersSettings)
 	{
-		Players.push_back(std::move(Player(allHeadRadious,hitbox, window, x.color, ymax, ymin, xmax, xmin, board)));
+		Players.push_back(std::move(Player(allHeadRadious,hitbox, window, x.color, ymax, ymin, xmax, xmin)));
 		Players.back().setId(i);
 		allHeadRadious.push_back(5);
 		Players.back().setParams(generteAngle(), 6, 2.5, 100);
@@ -210,9 +244,9 @@ void gameBoard::createPlayers()
 		i++;
 		Players.back().setGapBounds(40, 300, 500, 1000);
 
-	}*/
+	}
 
-	Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin)));
+	/*Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin)));
 	Players.back().setId(i);
 	allHeadRadious.push_back(5);
 	Players.back().setParams(generteAngle(), 6, 2.5, 100);
@@ -221,7 +255,7 @@ void gameBoard::createPlayers()
 	Players.back().setNick("sylwow");
 	i++;
 	Players.back().setGapBounds(40, 300, 500, 1000);
-
+	*/
 }
 
 bool gameBoard::isF4Pressed()
@@ -334,7 +368,6 @@ void gameBoard::generateMap()
 			map.push_back({ offx + xmin + i * widex, offy + ymin + j * widey });
 		}
 	}
-	divx++;
 }
 sf::Vector2f gameBoard::generatePositions()
 {
@@ -693,17 +726,19 @@ void gameBoard::clearBoosts()
 
 void gameBoard::restart()
 {
+	generateMap();
 	boostTime = getTimeBoost();
 	clearHitbox();
 	clearBoosts();
-	/*for (auto& player : Players) 
+	for (auto& player : Players) 
 	{
 		player.setParams(generteAngle(), 6, 2.5, 100);
 		player.setPosition(generatePositions());
 		player.reset();
-	}*/
-	Players.back().setParams(generteAngle(), 6, 2.5, 100);
+	}
+	/*Players.back().setParams(generteAngle(), 6, 2.5, 100);
 	Players.back().setPosition(generatePositions());
 	Players.back().reset();
+	*/
 }
 

@@ -86,17 +86,16 @@ public:
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
 	void setColor(sf::Color col) { color = col; 	headCol = col; headCol.r *= 0.8; headCol.g *= 0.8; headCol.b *= 0.8; head.setFillColor(headCol);  boosthead.setFillColor(sf::Color::White); }
-	void checkBounds() { if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) die(); }
-	
+
 	void addBoost(Boost * bost_);
 	void checkBoosts();
-	void die(bool x = true) { dead = true; clearBoosts(); }
-	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); }
+	void die(bool x = true) { dead = true; std::cout << "before" + std::to_string(playerId) << std::endl; clearBoosts(); }
+	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); std::cout<<"after\n"; }
 	void setNewGap();
 	void drawLineOnHitBox(int x1, int y1);
 	void fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f lasR, sf::Vector2f lasL);
 	void fullFillResizeR(double R);
-	void Scan();
+	bool Scan();
 	void updateTrace();
 	void erise();
 	void setWaitingR(double r) { waitingR = r; resize = true; }
@@ -122,6 +121,14 @@ public:
 		fullFillResizeR(headR);
 		trace.start();
 	}
+	bool checkBounds() {
+		if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) { 
+			die(); 
+			return true; 
+		} 
+		return false;
+	}
+
 	~Player();
 };
 

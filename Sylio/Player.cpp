@@ -70,7 +70,8 @@ bool Player::update()
 				else if (trace.getState()) {
 					updateTrace();
 					roundPos();
-					Scan();
+					if (!Scan())
+						return true;
 					drawLineOnHitBox(round(oldPosition.x), round(oldPosition.y));
 					fullFillForBoost(trace.getLastPos(), trace.getLastLastPos(), trace.getLastDPos(), trace.getLastLastDPos());
 				}
@@ -84,7 +85,7 @@ bool Player::update()
 			}
 		}
 	}
-	return dead;
+	return false;
 }
 
 Player::Player(std::vector<double> & headVec_, std::array<std::array<long long int, 1920>, 1080> & hitbox_, sf::RenderWindow & win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_) :
@@ -233,7 +234,7 @@ void Player::drawLineOnHitBox(int x1, int y1)
 		hitbox[y0][x0] = val;
 	}
 }
-void Player::Scan()
+bool Player::Scan()
 {
 	int leftpointx = round(headR * sin(angle + SEE_RANGE) + position.x);
 	int leftpointy = round(headR * cos(angle + SEE_RANGE) + position.y);
@@ -294,7 +295,7 @@ void Player::Scan()
 					if (double((R + headR) * (R + headR)) > (double(roundPosition.x) - x) * (double(roundPosition.x) - x) + (double(roundPosition.y) - y) * (double(roundPosition.y) - y))
 					{
 						die();
-						sf::Image im;
+						/*sf::Image im;
 						im.create(1920, 1080, sf::Color::Black);
 						for (int i = 1; i < 1080; i++)
 						{
@@ -315,8 +316,8 @@ void Player::Scan()
 								}
 							}
 						}
-						im.saveToFile("hitbox.png");
-
+						im.saveToFile("hitbox.png");*/
+						return false;
 					}
 					else//ew warunek immortal
 					{
@@ -328,6 +329,7 @@ void Player::Scan()
 		}
 		//std::cout << std::endl;
 	}
+	return true;
 	//std::cout << std::endl;
 }
 

@@ -82,13 +82,14 @@ public:
 		{
 			if (!player.getState())
 			{
-				if(player.update())
+				if(player.update() || player.checkBounds())
 				{
 					player.addPoints(poolPoints);
 					poolPoints--;
+					std::cout << "dead :points" << std::to_string(poolPoints) << std::endl;
 				}
-				player.checkBoosts();
-				player.checkBounds();
+				else
+					player.checkBoosts();
 			}
 		}
 	}
