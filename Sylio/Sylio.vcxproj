@@ -143,6 +143,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="players.cpp" />
     <ClCompile Include="Rounds.cpp" />
+    <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="setPlayer.cpp" />
     <ClCompile Include="inputText.cpp" />
     <ClCompile Include="List.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="players.h" />
     <ClInclude Include="Rounds.h" />
+    <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="setPlayer.h" />
     <ClInclude Include="inputText.h" />
     <ClInclude Include="List.h" />

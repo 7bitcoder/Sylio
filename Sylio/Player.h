@@ -107,7 +107,8 @@ public:
 	double getRadious() { return headR; }
 	int getPoints() { return points; }
 	std::string getNickname() { return nickname; }
-
+	sf::Color getColor() { return color; }
+	int getId() { return playerId; }
 	inline void setPosition(sf::Vector2f pos) {
 		position = pos;
 		head.setPosition(position);

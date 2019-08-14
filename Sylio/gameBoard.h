@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "BoostOnBoard.h"
 #include "Background.h"
+#include "ScoreBoard.h"
 
 extern Settings setting;
 class gameBoard
@@ -47,6 +48,7 @@ private:
 	sf::Texture stop;
 	sf::Texture switchControls;
 	sf::Texture switchHeads;
+	ScoreBoard scoreBoard;
 public:
 	gameBoard(sf::RenderWindow& win, Background & back);
 	st update();
@@ -54,7 +56,6 @@ public:
 	void setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc);
 	void clearHitbox();
 	void createPlayers();
-	bool isF4Pressed();
 	bool isF2Pressed();
 	bool isF3Pressed();
 	bool isF5Pressed();
@@ -88,7 +89,7 @@ public:
 				{
 					player.addPoints(poolPoints);
 					poolPoints++;
-					std::cout << "dead :points" << std::to_string(poolPoints) << std::endl;
+					scoreBoard.updateScore(player.getId(), player);
 				}
 				else
 					player.checkBoosts();

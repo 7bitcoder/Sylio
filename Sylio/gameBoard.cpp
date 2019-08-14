@@ -1,8 +1,13 @@
 #include "gameBoard.h"
 
 
+
 std::array<std::array<long long int, 1920>, 1080> gameBoard::hitbox = { 0 };
-gameBoard::gameBoard(sf::RenderWindow& win, Background & back) :window(win), background(back)
+gameBoard::gameBoard(sf::RenderWindow& win, Background & back) :
+	window(win), 
+	background(back), 
+	Players(), 
+	scoreBoard(window, 30, 50)
 {
 	setBounds(1075, 5, 1915, 300, 5);
 	srand(std::time(0));
@@ -79,12 +84,16 @@ st gameBoard::update()
 	sf::Clock boostTImer;
 
 	createPlayers();
+
+	
+	scoreBoard.setPosition(20, 400,Players);
 	sf::Event event;
 	int AllRounds = setting.rounds;
 	int rounds = AllRounds;
 	int cnt = 0;
 	bool end;
 	bool start;
+	bool spacePressed;
 	while (rounds)
 	{
 		end = false;
@@ -93,14 +102,25 @@ st gameBoard::update()
 		boostTImer.restart();
 		poolPoints = 0;
 		setting.TimeStop = true;
+		spacePressed = false;
 		int sec = 3;
-		startUpText.setString("round " + std::to_string(AllRounds - rounds + 1));
+		startUpText.setString("press space to start");
 		startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
 		while (window.isOpen())
 		{
 			if (start)
 			{
-				if (boostTImer.getElapsedTime().asSeconds() > 1)
+				if (!spacePressed)
+				{
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+					{
+						spacePressed = true;
+						startUpText.setString("round " + std::to_string(AllRounds - rounds + 1));
+						startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
+						boostTImer.restart();
+					}
+				}
+				else if (boostTImer.getElapsedTime().asSeconds() > 1)
 				{
 					startUpText.setString(std::to_string(sec));
 					startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
@@ -139,6 +159,7 @@ st gameBoard::update()
 					{
 						end = true;
 						winner.die();
+						scoreBoard.updateScore(winner.getId(), winner);
 						Winner.setString("Round winner :" + winner.getNickname());
 						Winner.setOrigin(Winner.getGlobalBounds().width / 2, Winner.getGlobalBounds().height / 2);
 						boostTImer.restart();
@@ -147,6 +168,7 @@ st gameBoard::update()
 				
 			}
 			updatePlayers();
+			scoreBoard.update();
 			checkBoostsColission();
 			cnt++;
 			if (!start && !end && boostTImer.getElapsedTime().asSeconds() > boostTime)
@@ -179,6 +201,7 @@ st gameBoard::update()
 				window.draw(startUpText);
 			else if (end)
 				window.draw(Winner);
+			scoreBoard.draw();
 			window.display();
 		}	
 	}
@@ -258,24 +281,6 @@ void gameBoard::createPlayers()
 	*/
 }
 
-bool gameBoard::isF4Pressed()
-{
-	static bool isPressed = false;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F4))
-	{
-		if (!isPressed)
-		{
-			isPressed = true;
-			return true;
-		}
-		return false;
-	}
-	else
-	{
-		isPressed = false;
-		return false;
-	}
-}
 bool gameBoard::isF2Pressed()
 {
 	static bool isPressed = false;
