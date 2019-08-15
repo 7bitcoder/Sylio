@@ -86,7 +86,7 @@ st gameBoard::update()
 	createPlayers();
 
 	
-	scoreBoard.setPosition(20, 400,Players);
+	scoreBoard.setPosition(20, 400, Players, font);
 	sf::Event event;
 	int AllRounds = setting.rounds;
 	int rounds = AllRounds;

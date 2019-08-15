@@ -35,7 +35,7 @@ void ScoreBoard::updateScore(int id, Player & players)
 
 	dates[id].score = players.getPoints();
 	dates[id].text.setString(dates[id].nickname + std::to_string(dates[id].score));
-	dates[id].dest = findPosition(id);
+	findPosition(id);
 	que.push(id);
 }
 
@@ -110,26 +110,33 @@ void ScoreBoard::checkColide()
 	}
 }
 
-void ScoreBoard::setPosition(int x, int y, std::vector<Player>& players)
+void ScoreBoard::setPosition(int x, int y, std::vector<Player>& players, sf::Font & font)
 {
 	updating = false;
 	posx = x;
+	dates.clear();
+	positions.clear();
+	rank.clear();
+	while (!que.empty())
+		que.pop();
 	for (auto& player : players)
 	{
 		dates.push_back(std::move(data{ 0,player.getNickname() + " ",false,0,false,0, true, }));
 		dates.back().text.setFillColor(player.getColor());
 		dates.back().text.setCharacterSize(charSize);
 		dates.back().text.setString(dates.back().nickname + std::to_string(dates.back().score));
+		dates.back().text.setFont(font);
 	}
 	for (int i = 0; i < dates.size(); i++)
 	{
-		positions.push_back(y + i * (charSize) * 1.2);
+		positions.push_back(y + int(i * (charSize) * 1.2));
 		dates[i].text.setPosition(x, positions.back());
 		dates[i].position = i;
 		rank.push_back(i);
 	}
+	std::cout << "score size :" << dates.size() << std::endl;
 }
-int ScoreBoard::findPosition(int id)
+void ScoreBoard::findPosition(int id)
 {
 	int score = dates[id].score;
 	for (int i = id; i >= 0; i--)
@@ -141,7 +148,6 @@ int ScoreBoard::findPosition(int id)
 				dates[id].up = true;
 			}
 	}
-	return 0;
 }
 
 ScoreBoard::ScoreBoard( sf::RenderWindow & win, int size, float vel_) :

@@ -1,190 +1,134 @@
-﻿  Boost.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(26): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(36): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(56): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(85): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(100): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+﻿  ScoreBoard.cpp
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(27): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(37): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(57): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(88): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(102): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
           with
           [
               T=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(112): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(113): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-  BoostOnBoard.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(26): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(36): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(56): warning C4305: "=": obcięcie z "double" do "float"
-  Player.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(26): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(36): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(56): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(85): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(100): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(117): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(118): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(11): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(46): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(65): warning C4244: "argument": konwersja z "_Ty" do "float", możliwa utrata danych
           with
           [
-              T=int
+              _Ty=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(112): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(113): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(33): warning C4244: "argument": konwersja z "double" do "sf::Uint8", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(47): warning C4244: "+=": konwersja z "double" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(65): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(83): warning C4244: "argument": konwersja z "_Ty" do "float", możliwa utrata danych
           with
           [
-              T=float
+              _Ty=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(48): warning C4244: "+=": konwersja z "double" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(83): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(130): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(133): warning C4244: "argument": konwersja z "_Ty" do "float", możliwa utrata danych
           with
           [
-              T=float
+              _Ty=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(50): warning C4244: "inicjowanie": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(74): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(225): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(226): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(228): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(229): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(250): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(278): warning C4244: "inicjowanie": konwersja z "_Ty" do "int", możliwa utrata danych
-          with
-          [
-              _Ty=__int64
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(323): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(324): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(357): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(358): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(359): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(360): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(391): warning C4390: ";": znaleziono kontrolowaną pustą instrukcję; czy to było zamierzone?
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(401): warning C4244: "argument": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(402): warning C4244: "argument": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(403): warning C4244: "argument": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(404): warning C4244: "argument": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(427): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(430): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(433): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.cpp(436): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\ScoreBoard.cpp(133): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   gameBoard.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(26): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(36): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(56): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(85): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(100): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(27): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(37): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(57): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(88): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(102): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
           with
           [
               T=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(112): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(113): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.h(71): warning C4244: "return": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(8): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(68): warning C4101: "event": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(152): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(117): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(118): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.h(75): warning C4244: "return": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(13): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(75): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(81): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(90): warning C4101: "event": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(223): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(153): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(224): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(154): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(225): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(155): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(226): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(157): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(228): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(158): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(229): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(159): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(230): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(160): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(231): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(162): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(233): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(163): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(234): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(164): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(235): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(165): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(236): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(167): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(238): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(168): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(239): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(169): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(240): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(170): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(241): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
           with
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(330): warning C4244: "=": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(331): warning C4244: "=": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(382): warning C4244: "=": konwersja z "T" do "T", możliwa utrata danych
           with
           [
               T=int
@@ -193,39 +137,48 @@ C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(331): warning C4244: "
           [
               T=float
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(351): warning C4244: "inicjowanie": konwersja z "_Ty" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(383): warning C4244: "=": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(403): warning C4244: "inicjowanie": konwersja z "_Ty" do "int", możliwa utrata danych
           with
           [
               _Ty=__int64
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(381): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(393): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(397): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(415): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(419): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(437): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(441): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(459): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(463): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(386): warning C4101: "actualR": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(484): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(487): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(490): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(493): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(551): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(553): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(433): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(445): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(449): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(467): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(471): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(489): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(493): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(511): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(515): warning C4244: "=": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(438): warning C4101: "actualR": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(536): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(539): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(542): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(545): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(632): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(634): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(558): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(561): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(564): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(567): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(592): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(595): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(598): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(601): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(639): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(642): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(645): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(648): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(673): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(676): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(679): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(682): warning C4244: "inicjowanie": konwersja z "double" do "int", możliwa utrata danych
   main.cpp
 C:\Users\Sylwester\source\repos\Sylio\Sylio\Music.h(18): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\Button.h(37): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
@@ -237,30 +190,17 @@ C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(44): warning C4244: "arg
 C:\Users\Sylwester\source\repos\Sylio\Sylio\inputText.h(45): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(24): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
 C:\Users\Sylwester\source\repos\Sylio\Sylio\CheckBox.h(28): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(26): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(36): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(56): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(85): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(100): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(27): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(37): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(57): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(88): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(102): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
           with
           [
               T=int
           ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(112): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(113): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.h(71): warning C4244: "return": konwersja z "int" do "float", możliwa utrata danych
-  players.cpp
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(26): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(36): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Boost.h(56): warning C4305: "=": obcięcie z "double" do "float"
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(85): warning C4244: "*=": konwersja z "double" do "sf::Uint8", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(100): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(112): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
-C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(113): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(117): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\Player.h(118): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.h(75): warning C4244: "return": konwersja z "int" do "float", możliwa utrata danych
   Generowanie kodu...
-C:\Users\Sylwester\source\repos\Sylio\Sylio\gameBoard.cpp(139): warning C4715: "gameBoard::update”: niewszystkie ścieżki kodu zwracają wartość
   Sylio.vcxproj -> C:\Users\Sylwester\source\repos\Sylio\Debug\Sylio.exe

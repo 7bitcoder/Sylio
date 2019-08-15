@@ -34,8 +34,8 @@ public:
 	void draw();
 	void move(int id);
 	void checkColide();
-	void setPosition(int x, int y, std::vector<Player>& players);
-	int findPosition(int id);
+	void setPosition(int x, int y, std::vector<Player>& players, sf::Font& font);
+	void findPosition(int id);
 	ScoreBoard( sf::RenderWindow& win, int size, float vel_);
 	~ScoreBoard();
 };
