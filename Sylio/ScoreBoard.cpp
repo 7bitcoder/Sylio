@@ -1,127 +1,102 @@
 #include "ScoreBoard.h"
-
+#include <algorithm>
 
 void ScoreBoard::update()
 {
 	if (updating)
 	{
-		move(main);
-		checkColide();
-		bool moving = false;
+		bool flag = true;
+		for (int i = 0; i < rank.size(); i++)
+		{
+			if (states.front()[i]->activte)
+			{
+				move(i);
+				flag = false;
+			}
+		}
+		if (flag)
+		{
+			updating = false;
+			main.pop();
+		}
+	}
+	else if (!main.empty())
+	{
+		updating = true;
+		states.pop();
 		for (int i = 0; i < dates.size(); i++)
 		{
-			if (dates[i].moving && i != main)
+			if (states.front()[i]->text.getPosition().y != positions[i])
 			{
-				moving = true;
-				move(i);
+				states.front()[i]->activte = true;
+				states.front()[i]->timer.restart();
 			}
+			else
+				states.front()[i]->activte = false;
+
 		}
-		if (!moving && !dates[main].moving)
-			updating = false;
 	}
-	else if (!que.empty())
-	{
-		main = que.front();
-		que.pop();
-		updating = true;
-		dates[main].main = true;
-		dates[main].moving = true;
-		dates[main].timer.restart();
-	}
+
 }
 
-void ScoreBoard::updateScore(int id, Player & players)
+void ScoreBoard::updateScore(int id, Player& players)
 {
-
 	dates[id].score = players.getPoints();
 	dates[id].text.setString(dates[id].nickname + std::to_string(dates[id].score));
-	findPosition(id);
-	que.push(id);
+	states.push(states.back());
+	std::sort(states.back().begin(), states.back().end(), [](std::vector<data>::iterator i, std::vector<data>::iterator j) { return (i->score > j->score); });
+	main.push(id);
 }
-
 void ScoreBoard::draw()
 {
-	if (main != -1)
-		window.draw(dates[main].text);
 	for (int i = 0; i < dates.size(); i++)
 	{
-		if (i != main)
+		if (main.empty() || i != main.front())//if updating??
 			window.draw(dates[i].text);
 	}
+	if (!main.empty())
+		window.draw(dates[main.front()].text);
 }
 
-void ScoreBoard::move(int id)
+void ScoreBoard::move(int ra)
 {
-	float ymove = dates[id].timer.getElapsedTime().asSeconds() * vel;
-	dates[id].timer.restart();
-	if (dates[id].up)
+	float ymove = states.front()[ra]->timer.getElapsedTime().asSeconds() * vel;
+	states.front()[ra]->timer.restart();
+	if (states.front()[ra]->text.getPosition().y > positions[ra])
 	{
-		dates[id].text.move(0, -ymove);
-		if (dates[id].text.getPosition().y < positions[dates[id].position - 1])
+		states.front()[ra]->text.move(0, -ymove);
+		if (states.front()[ra]->text.getPosition().y <= positions[ra])
 		{
-			dates[id].position--;
-			if (dates[id].position == dates[id].dest)
-			{
-				dates[id].text.setPosition(posx, positions[dates[id].position]);
-				dates[id].moving = false;
-				if (dates[id].main)
-				{
-					dates[id].main = false;
-					main = -1;
-				}
-			}
+			states.front()[ra]->activte = false;
+			states.front()[ra]->text.setPosition(posx, positions[ra]);
 		}
 	}
-	else
+	else if (states.front()[ra]->text.getPosition().y < positions[ra])
 	{
-		dates[id].text.move(0, ymove);
-		if (dates[id].text.getPosition().y > positions[dates[id].position + 1])
+		states.front()[ra]->text.move(0, ymove);
+		if (states.front()[ra]->text.getPosition().y >= positions[ra])
 		{
-			dates[id].position++;
-			if (dates[id].position == dates[id].dest)
-			{
-				dates[id].text.setPosition(posx, positions[dates[id].position]);
-				dates[id].moving = false;
-				if (dates[id].main)
-					dates[id].main = false;
-			}
+			states.front()[ra]->activte = false;
+			states.front()[ra]->text.setPosition(posx, positions[ra]);
 		}
 	}
 }
 
-void ScoreBoard::checkColide()
-{
-	if (positions[dates[main].position] != main)
-	{
-		int id = positions[dates[main].position];
-		dates[id].moving = true;
-		dates[id].up = !dates[main].up;
-		dates[id].timer.restart();
-		if (dates[id].up)
-		{
-			dates[id].dest = dates[id].position - 1;
-			std::swap(positions[dates[main].position], positions[dates[main].position - 1]);
-		}
-		else
-		{
-			dates[id].dest = dates[id].position + 1;
-			std::swap(positions[dates[main].position], positions[dates[main].position + 1]);
-		}
-	}
-}
 
-void ScoreBoard::setPosition(int x, int y, std::vector<Player>& players, sf::Font & font)
+void ScoreBoard::setPosition(int x, int y, std::vector<Player> & players, sf::Font & font)
 {
 	updating = false;
 	posx = x;
 	dates.clear();
 	positions.clear();
 	rank.clear();
-	while (!que.empty())
-		que.pop();
+	while (!states.empty())
+		states.pop();
+	while (!main.empty())
+		main.pop();
 	for (auto& player : players)
 	{
-		dates.push_back(std::move(data{ 0,player.getNickname() + " ",false,0,false,0, true, }));
+		dates.push_back(std::move(data{ 0,player.getNickname() + " ",false, }));
 		dates.back().text.setFillColor(player.getColor());
 		dates.back().text.setCharacterSize(charSize);
 		dates.back().text.setString(dates.back().nickname + std::to_string(dates.back().score));
@@ -129,28 +104,15 @@ void ScoreBoard::setPosition(int x, int y, std::vector<Player>& players, sf::Fon
 	}
 	for (int i = 0; i < dates.size(); i++)
 	{
-		positions.push_back(y + int(i * (charSize) * 1.2));
+		positions.push_back(y + int(i * (charSize) * 1.5));
 		dates[i].text.setPosition(x, positions.back());
-		dates[i].position = i;
-		rank.push_back(i);
+		rank.push_back(dates.begin() + i);
 	}
-	std::cout << "score size :" << dates.size() << std::endl;
-}
-void ScoreBoard::findPosition(int id)
-{
-	int score = dates[id].score;
-	for (int i = id; i >= 0; i--)
-	{
-		if (i != id)
-			if (dates[i].score <= score)
-			{
-				dates[id].dest = dates[i].position;
-				dates[id].up = true;
-			}
-	}
+	diff = (positions[1] - positions[0] - charSize) / 2;
+	states.push(std::move(std::vector<std::vector<data>::iterator>(rank.begin(), rank.end())));
 }
 
-ScoreBoard::ScoreBoard( sf::RenderWindow & win, int size, float vel_) :
+ScoreBoard::ScoreBoard(sf::RenderWindow & win, int size, float vel_) :
 	window(win)
 {
 	vel = vel_;

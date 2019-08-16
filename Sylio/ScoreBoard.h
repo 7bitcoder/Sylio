@@ -7,11 +7,7 @@ struct data
 {
 	int score;
 	std::string nickname;
-	bool moving;
-	int dest;
-	bool main;
-	int position;
-	bool up;
+	bool activte;
 	sf::Text text;
 	sf::Clock timer;
 };
@@ -19,13 +15,14 @@ class ScoreBoard
 {
 private:
 	std::vector<int> positions;
+	float diff;
 	int posx;
 	int charSize;
 	sf::RenderWindow& window;
 	std::vector<data> dates;
-	std::vector<int> rank;
-	std::queue<int> que;
-	int main;
+	std::vector<std::vector<data>::iterator> rank;
+	std::queue<std::vector<std::vector<data>::iterator>> states;
+	std::queue<int> main;
 	float vel;
 	bool updating;
 public:
@@ -33,9 +30,7 @@ public:
 	void updateScore(int id, Player& players);
 	void draw();
 	void move(int id);
-	void checkColide();
 	void setPosition(int x, int y, std::vector<Player>& players, sf::Font& font);
-	void findPosition(int id);
 	ScoreBoard( sf::RenderWindow& win, int size, float vel_);
 	~ScoreBoard();
 };

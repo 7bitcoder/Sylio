@@ -7,9 +7,9 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background & back) :
 	window(win), 
 	background(back), 
 	Players(), 
-	scoreBoard(window, 30, 50)
+	scoreBoard(window, 30, 500)
 {
-	setBounds(1075, 5, 1915, 300, 5);
+	setBounds(1075, 5, 1915, 400, 5);
 	srand(std::time(0));
 	boostR = 40;
 	dontSetBoostR = 50;
@@ -59,7 +59,7 @@ st gameBoard::update()
 	clearBoosts();
 
 	sf::Font font;
-	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
+	if (!font.loadFromFile("../Font/kenvector_future_thin.ttf"))
 		exit(-1);
 
 	sf::Text fps;
@@ -100,7 +100,7 @@ st gameBoard::update()
 		start = true;
 		timer.restart();
 		boostTImer.restart();
-		poolPoints = 0;
+		poolPoints = 1;
 		setting.TimeStop = true;
 		spacePressed = false;
 		int sec = 3;
@@ -150,7 +150,7 @@ st gameBoard::update()
 				timer.restart();
 				cnt = 0;
 			}
-			if (poolPoints == Players.size() - 1)
+			if (poolPoints == Players.size())
 			{
 				poolPoints++;
 				for (auto& winner : Players)
@@ -159,6 +159,7 @@ st gameBoard::update()
 					{
 						end = true;
 						winner.die();
+						winner.addPoints(poolPoints);
 						scoreBoard.updateScore(winner.getId(), winner);
 						Winner.setString("Round winner :" + winner.getNickname());
 						Winner.setOrigin(Winner.getGlobalBounds().width / 2, Winner.getGlobalBounds().height / 2);
@@ -190,6 +191,8 @@ st gameBoard::update()
 			window.clear(sf::Color::Black);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				return st::mainMenu;
+			else if (isF6Pressed())
+				setting.TimeStop = !setting.TimeStop;
 
 			//background.draw();
 			drawBounds();
