@@ -5,12 +5,12 @@
 Music::Music()
 {
 	if (!menuMusic.openFromFile("../DefaultMusic/Stranger_Things.wav"))
-		exit(-1); // error
+		throw std::exception("music file missing");
 	menuMusic.setLoop(true);
 	menuMusic.setVolume(30 * setting.MusicVolume);
 	//menuMusic.play();
 	if (!gameMusic.openFromFile("../DefaultMusic/Stranger_Things.wav"))
-		exit(-1); // error
+		throw std::exception("music file missing");
 	gameMusic.setLoop(true);
 	gameMusic.setVolume(30 * setting.MusicVolume);
 }

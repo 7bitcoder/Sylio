@@ -37,7 +37,6 @@ bool Rounds::function()
 void Rounds::updateText()
 {
 	getNumber();
-	std::cout << number << std::endl;
 	if (number < min)
 	{
 		number = min;

@@ -7,7 +7,7 @@
 loadingScreen::loadingScreen(sf::RenderWindow& win, std::atomic_flag& fl): window(win), flag(fl)
 {
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
-		exit(-1);
+		throw std::exception("font file missing");
 	loading.setFillColor(sf::Color::White);
 	loading.setString("Loading ...");
 	loading.setCharacterSize(80);

@@ -3,10 +3,10 @@
 
 
 std::array<std::array<long long int, 1920>, 1080> gameBoard::hitbox = { 0 };
-gameBoard::gameBoard(sf::RenderWindow& win, Background & back) :
-	window(win), 
-	background(back), 
-	Players(), 
+gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
+	window(win),
+	background(back),
+	Players(),
 	scoreBoard(window, 30, 500)
 {
 	setBounds(1075, 5, 1915, 400, 5);
@@ -17,39 +17,39 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background & back) :
 	maxBoostTime = 10;
 	boostTime = getTimeBoost();
 	if (!blind.loadFromFile("../boost_icons/blind.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!boundsShrink.loadFromFile("../boost_icons/bounds.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!brokenWalls.loadFromFile("../boost_icons/broken_walls.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!clearAll.loadFromFile("../boost_icons/clean_board.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!freeze.loadFromFile("../boost_icons/freeze.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!growUp.loadFromFile("../boost_icons/grow_up.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!hydra.loadFromFile("../boost_icons/hydra.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!immortal.loadFromFile("../boost_icons/immortal.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!longerGaps.loadFromFile("../boost_icons/longer_gaps.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!moreOftenHoles.loadFromFile("../boost_icons/more_often_holes.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!lockLeft.loadFromFile("../boost_icons/only_left2.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!shrink.loadFromFile("../boost_icons/shrink.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!slowDown.loadFromFile("../boost_icons/slow_down.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!speedUp.loadFromFile("../boost_icons/speed_up.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!stop.loadFromFile("../boost_icons/stop_freeze.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!switchControls.loadFromFile("../boost_icons/switch_controls.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 	if (!switchHeads.loadFromFile("../boost_icons/switch_head.png"))
-		exit(-1);
+		throw std::exception("boost icon missing");
 
 }
 
@@ -60,20 +60,20 @@ st gameBoard::update()
 
 	sf::Font font;
 	if (!font.loadFromFile("../Font/kenvector_future_thin.ttf"))
-		exit(-1);
+		throw std::exception("font file missing");
 
 	sf::Text fps;
 	fps.setFont(font);
 	fps.setCharacterSize(40);
 	fps.setPosition(20, 20);
 	fps.setFillColor(sf::Color::White);
-	
+
 	sf::Text startUpText;
 	startUpText.setFont(font);
 	startUpText.setCharacterSize(80);
 	startUpText.setFillColor(sf::Color::White);
 	startUpText.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
-	
+
 	sf::Text Winner;
 	Winner.setFont(font);
 	Winner.setCharacterSize(80);
@@ -85,7 +85,7 @@ st gameBoard::update()
 
 	createPlayers();
 
-	
+
 	scoreBoard.setPosition(20, 400, Players, font);
 	sf::Event event;
 	int AllRounds = setting.rounds;
@@ -133,7 +133,7 @@ st gameBoard::update()
 					}
 					sec--;
 				}
-				
+
 			}
 			else if (end)
 			{
@@ -166,7 +166,7 @@ st gameBoard::update()
 						boostTImer.restart();
 					}
 				}
-				
+
 			}
 			updatePlayers();
 			scoreBoard.update();
@@ -175,16 +175,19 @@ st gameBoard::update()
 			if (!start && !end && boostTImer.getElapsedTime().asSeconds() > boostTime)
 			{
 				boostTImer.restart();
-				boostTime = getTimeBoost();
-				if (boostsOnBoard.size() < 21) {
-					drawOnHitTmp();
-					if (getBoostPosition())
-					{
-						markBoostPosOnHit(boostPosition);
-						getRandomBoost();
-						//dodaj boost;
+				if (!setting.TimeStop)
+				{
+					boostTime = getTimeBoost();
+					if (boostsOnBoard.size() < 21) {
+						drawOnHitTmp();
+						if (getBoostPosition())
+						{
+							markBoostPosOnHit(boostPosition);
+							getRandomBoost();
+							//dodaj boost;
+						}
+						clearOnHitTmp();
 					}
-					clearOnHitTmp();
 				}
 				//else nie ma miejsca
 			}
@@ -206,7 +209,7 @@ st gameBoard::update()
 				window.draw(Winner);
 			scoreBoard.draw();
 			window.display();
-		}	
+		}
 	}
 	//podsumowanie ranking itp
 	return st::mainMenu;
@@ -260,7 +263,7 @@ void gameBoard::createPlayers()
 	generateMap();
 	for (auto& x : setting.playersSettings)
 	{
-		Players.push_back(std::move(Player(allHeadRadious,hitbox, window, x.color, ymax, ymin, xmax, xmin)));
+		Players.push_back(std::move(Player(allHeadRadious, hitbox, window, x.color, ymax, ymin, xmax, xmin)));
 		Players.back().setId(i);
 		allHeadRadious.push_back(5);
 		Players.back().setParams(generteAngle(), 6, 2.5, 100);
@@ -738,7 +741,7 @@ void gameBoard::restart()
 	boostTime = getTimeBoost();
 	clearHitbox();
 	clearBoosts();
-	for (auto& player : Players) 
+	for (auto& player : Players)
 	{
 		player.setParams(generteAngle(), 6, 2.5, 100);
 		player.setPosition(generatePositions());
@@ -748,5 +751,10 @@ void gameBoard::restart()
 	Players.back().setPosition(generatePositions());
 	Players.back().reset();
 	*/
+}
+
+bool gameBoard::pause()
+{
+	return false;
 }
 

@@ -109,7 +109,6 @@ Player::Player(std::vector<double> & headVec_, std::array<std::array<long long i
 	dead = false;
 	lockLeft = false;
 	lockRight = false;
-	std::cout << "rozmiar :" << sizeof(sf::Vertex) << std::endl;
 	time.restart();
 	setColor(col);
 	actualGap = 0;
@@ -132,13 +131,11 @@ void Player::reset()
 Player::~Player()
 {
 	clearBoosts();
-	std::cout << "size of tail :" << trace.getIndex() << std::endl << "fragments Size :" << trace.getFragmentsSize() << std::endl;
 }
 
 void Player::addBoost(Boost * bost_)
 {
 	std::vector<Boost*>::iterator it;
-	std::cout << typeid(*bost_).name() << std::endl;
 	for (it = boosts.begin(); it != boosts.end(); it++)
 	{
 		if (typeid(*bost_) == typeid(*(*it)))
@@ -186,7 +183,6 @@ void Player::checkBoosts()
 			it = itt;
 			(*itt)->clearBoost(*this);
 			delete (*itt);
-			std::cout << "del :\n";
 			break;
 		}
 	}
@@ -359,12 +355,10 @@ bool Player::changeRadious(double R)
 	{
 		if (R > headR) {
 			trace.edge(true, R, angle, position);
-			std::cout << "bigger\n";
 			fullFillResizeR(R);
 		}
 		else {
 			trace.edge(false, headR, angle, position);
-			std::cout << "smaller\n";
 			fullFillResizeR(headR);
 		}
 

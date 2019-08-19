@@ -3,12 +3,12 @@
 Sounds::Sounds(std::string click_, std::string switch_)
 {
 	if (!switchBuffer.loadFromFile("../Sounds/"+switch_))
-		exit(-1);
+		throw std::exception("sound file missing sound.h");
 	switchSound.setBuffer(switchBuffer);
 	switchSound.setVolume(30 * setting.SoundVolume);
 
 	if (!clickBuffer.loadFromFile("../Sounds/" + click_))
-		exit(-1);
+		throw std::exception("sound file missing sound.h");
 	clickSound.setBuffer(clickBuffer);
 	clickSound.setVolume(100 * setting.SoundVolume);
 }

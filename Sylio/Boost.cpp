@@ -41,7 +41,6 @@ Boost::~Boost()
 
 void SpeedUp::setBoost(Player& player)
 {
-	std::cout << player.velocity << " to ";
 	player.hiddenVelocity *= multVel;
 	if (player.hiddenVelocity < limits.minVel)
 		player.velocity = limits.minVel;
@@ -49,7 +48,6 @@ void SpeedUp::setBoost(Player& player)
 		player.velocity = limits.maxVel;
 	else
 		player.velocity = player.hiddenVelocity;
-	std::cout << player.velocity << std::endl;
 }
 
 void SpeedUp::clearBoost(Player& player)
@@ -66,7 +64,6 @@ void SpeedUp::clearBoost(Player& player)
 
 void SlowDown::setBoost(Player& player)
 {
-	std::cout << player.velocity << " to ";
 	player.hiddenVelocity *= multVel;
 	if (player.hiddenVelocity < limits.minVel)
 		player.velocity = limits.minVel;
@@ -74,7 +71,6 @@ void SlowDown::setBoost(Player& player)
 		player.velocity = limits.maxVel;
 	else
 		player.velocity = player.hiddenVelocity;
-	std::cout << player.velocity << std::endl;
 }
 
 void SlowDown::clearBoost(Player& player)
@@ -90,7 +86,6 @@ void SlowDown::clearBoost(Player& player)
 
 void GrowUp::setBoost(Player& player)
 {
-	std::cout << player.headR << " to ";
 	player.hiddenHeadR *= multSize;
 	if (player.hiddenHeadR < limits.minRadious)
 		player.setWaitingR(limits.minRadious);
@@ -98,7 +93,6 @@ void GrowUp::setBoost(Player& player)
 		player.setWaitingR(limits.maxRadious);
 	else
 		player.setWaitingR(player.hiddenHeadR);
-	std::cout << player.headR << std::endl;
 }
 
 void GrowUp::clearBoost(Player& player)
@@ -114,7 +108,6 @@ void GrowUp::clearBoost(Player& player)
 
 void Shrink::setBoost(Player& player)
 {
-	std::cout << player.headR << " to ";
 	player.hiddenHeadR *= multSize;
 	if (player.hiddenHeadR < limits.minRadious)
 		player.setWaitingR(limits.minRadious);
@@ -122,7 +115,6 @@ void Shrink::setBoost(Player& player)
 		player.setWaitingR(limits.maxRadious);
 	else
 		player.setWaitingR(player.hiddenHeadR);
-	std::cout << player.headR << std::endl;
 }
 
 void Shrink::clearBoost(Player& player)

@@ -4,118 +4,117 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_
 {
 
 	if (!clickBuff.loadFromFile("../Sounds/click1.ogg"))
-		exit(-1);
+		throw std::exception("Sound file missing");
 
 	if (!switchBuff.loadFromFile("../Sounds/switch2.ogg"))
-		exit(-1);
+		throw std::exception("Sound file missing");
 
 	if (!font2.loadFromFile("../Font/kenvector_future_thin.ttf"))
-		exit(-1);
+		throw std::exception("font file missing");
 
 	if (!font.loadFromFile("../Font/kenvector_future.ttf"))
-		exit(-1);
+		throw std::exception("font file missing");
 
 	if (!checkOff.loadFromFile("../PNG/grey_box.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!checkOnBlue.loadFromFile("../PNG/blue_boxCheckmark.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOnBlue.loadFromFile("../PNG/blue_button06.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOffBlue.loadFromFile("../PNG/blue_button11.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOnBlue.loadFromFile("../PNG/blue_button13.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOffBlue.loadFromFile("../PNG/blue_button04.png"))
-		exit(-1);
-
+		throw std::exception("png file missing");
 
 	if (!checkOnGreen.loadFromFile("../PNG/green_boxCheckmark.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOnGreen.loadFromFile("../PNG/green_button06.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOffGreen.loadFromFile("../PNG/green_button11.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOnGreen.loadFromFile("../PNG/green_button13.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOffGreen.loadFromFile("../PNG/green_button04.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 
 	if (!checkOnYellow.loadFromFile("../PNG/yellow_boxCheckmark.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOnYellow.loadFromFile("../PNG/yellow_button06.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOffYellow.loadFromFile("../PNG/yellow_button11.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOnYellow.loadFromFile("../PNG/yellow_button13.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOffYellow.loadFromFile("../PNG/yellow_button04.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 
 	if (!checkOnRed.loadFromFile("../PNG/red_boxCheckmark.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOnRed.loadFromFile("../PNG/red_button03.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!controlOffRed.loadFromFile("../PNG/red_button08.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOnRed.loadFromFile("../PNG/red_button10.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!nickNameOffRed.loadFromFile("../PNG/red_button01.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 
 
 	if (!block.loadFromFile("../PNG/grey_button15.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!blockPressed.loadFromFile("../PNG/grey_button00.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!offButton.loadFromFile("../PNG/grey_button03.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!back.loadFromFile("../stars_space_sky_glitter_116409_1920x108022.jpg"))
-		exit(-1);
+		throw std::exception("png background file missing");
 	//back.setSmooth(true);
 
 	if (!whiteBox.loadFromFile("../PNG/grey_panel.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!base.loadFromFile("../base3.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!mar.loadFromFile("../PNG/grey_sliderRight.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!VolumeSliderLine.loadFromFile("../PNG/grey_sliderHorizontal.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!VolumePointner.loadFromFile("../PNG/grey_sliderUp.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!listBlock.loadFromFile("../PNG/grey_button06.png"))
-		exit(-1);
+		throw std::exception("png file missing");
 
 	if (!backgroundShader.loadFromFile("../shaders/shaders/fragment/material-specular.frag", sf::Shader::Fragment))
-		exit(-1);
+		throw std::exception("shader file missing");
 
 	background.setShader(backgroundShader);
 	background.set(back, base, 0, 0.002);
@@ -386,7 +385,6 @@ st Menu::normalGameUpdate()
 	rounds.addNumber('0');
 	rounds.setColor(sf::Color::Black);
 
-	std::cout << rounds.addNumber(10);
 
 	setPlayer::clearForbidden();
 	int row = 90;

@@ -103,5 +103,6 @@ public:
 	}
 	void clearBoosts();
 	void restart();
+	bool pause();
 };
 
