@@ -300,7 +300,12 @@ st Menu::settingsUupdate()
 					}
 				}
 				else if (goBack.buttonFunction())
-					return st::mainMenu;
+				{
+					if (setting.pause)
+						return st::pause;
+					else
+						return st::mainMenu;
+				}
 				else if (musicSlider.sliderFunction())
 				{
 					setting.MusicVolume = musicSlider.getValue();
@@ -346,6 +351,71 @@ st Menu::settingsUupdate()
 		window.display();
 	}
 	return st::mainMenu;
+}
+st Menu::pauseUpdate()
+{
+	sf::Text title;
+	title.setFont(font);
+	title.setCharacterSize(50);
+	title.setString("Pause");
+	title.setPosition(window.getSize().x / 2 - 150, window.getSize().y / 2 - 100);
+	title.setFillColor(sf::Color::White);
+
+	Button playGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
+	playGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 );
+	playGame.setScale(1.8, 1);
+	playGame.setTitle("play");
+	playGame.setSoundVolume(setting.SoundVolume);
+
+
+	Button settings(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
+	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
+	settings.setScale(1.8, 1);
+	settings.setTitle("settings");
+	settings.setSoundVolume(setting.SoundVolume);
+
+
+	Button mainMenu(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
+	mainMenu.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
+	mainMenu.setScale(1.8, 1);
+	mainMenu.setTitle("main menu");
+	mainMenu.setSoundVolume(setting.SoundVolume);
+
+
+
+	while (window.isOpen())
+	{
+		// check all the window's events that were triggered since the last iteration of the loop
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			playGame.checkState();
+			settings.checkState();
+			mainMenu.checkState();
+			if (playGame.buttonFunction())
+			{
+				return st::playNormalGame;
+			}
+			else if (settings.buttonFunction())
+				return st::settings;
+			else if (mainMenu.buttonFunction())
+			{
+				setting.pause = false;
+				return st::mainMenu;
+			}
+			else;
+		}
+
+		window.clear(sf::Color::Black);
+
+		background.draw();
+		window.draw(title);
+
+		playGame.draw();
+		settings.draw();
+		mainMenu.draw();
+		window.display();
+	}
 }
 st Menu::normalGameUpdate()
 {

@@ -1,5 +1,7 @@
 #include "ScoreBoard.h"
 #include <algorithm>
+#include "Settings.h"
+extern Settings setting;
 
 void ScoreBoard::update()
 {
@@ -62,22 +64,25 @@ void ScoreBoard::move(int ra)
 {
 	float ymove = states.front()[ra]->timer.getElapsedTime().asSeconds() * vel;
 	states.front()[ra]->timer.restart();
-	if (states.front()[ra]->text.getPosition().y > positions[ra])
+	if (!setting.TimeStop)
 	{
-		states.front()[ra]->text.move(0, -ymove);
-		if (states.front()[ra]->text.getPosition().y <= positions[ra])
+		if (states.front()[ra]->text.getPosition().y > positions[ra])
 		{
-			states.front()[ra]->activte = false;
-			states.front()[ra]->text.setPosition(posx, positions[ra]);
+			states.front()[ra]->text.move(0, -ymove);
+			if (states.front()[ra]->text.getPosition().y <= positions[ra])
+			{
+				states.front()[ra]->activte = false;
+				states.front()[ra]->text.setPosition(posx, positions[ra]);
+			}
 		}
-	}
-	else if (states.front()[ra]->text.getPosition().y < positions[ra])
-	{
-		states.front()[ra]->text.move(0, ymove);
-		if (states.front()[ra]->text.getPosition().y >= positions[ra])
+		else if (states.front()[ra]->text.getPosition().y < positions[ra])
 		{
-			states.front()[ra]->activte = false;
-			states.front()[ra]->text.setPosition(posx, positions[ra]);
+			states.front()[ra]->text.move(0, ymove);
+			if (states.front()[ra]->text.getPosition().y >= positions[ra])
+			{
+				states.front()[ra]->activte = false;
+				states.front()[ra]->text.setPosition(posx, positions[ra]);
+			}
 		}
 	}
 }

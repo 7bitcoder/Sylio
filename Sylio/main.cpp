@@ -70,6 +70,10 @@ int main()
 				window.setMouseCursorVisible(false);
 				state = board.update();
 				break;
+			case st::pause:
+				window.setMouseCursorVisible(true);
+				state = Menu_.pauseUpdate();
+				break;
 			case st::quit:
 				setting.save();
 				window.close();

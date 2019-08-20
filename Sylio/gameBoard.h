@@ -21,6 +21,16 @@ private:
 	int minBoostTime;
 	int maxBoostTime;
 	double boostTime;
+	bool pause;
+	int AllRounds;
+	int rounds;
+	bool end;
+	bool start;
+	bool spacePressed;
+	int sec;
+	sf::Text startUpText;
+	sf::Text Winner;
+	sf::Font font;
 	double dontSetBoostR;//normalbooostR*2
 	sf::Vector2i boostPosition;
 	double boostR;
@@ -103,6 +113,5 @@ public:
 	}
 	void clearBoosts();
 	void restart();
-	bool pause();
 };
 

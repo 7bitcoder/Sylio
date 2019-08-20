@@ -68,6 +68,7 @@ public:
 	Menu(sf::RenderWindow& win, std::string& ver);
 	st mainMenuUpdate();
 	st settingsUupdate();
+	st pauseUpdate();
 	st normalGameUpdate();
 	Background& getBack() { return background; }
 	~Menu();

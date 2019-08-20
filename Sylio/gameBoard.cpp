@@ -9,6 +9,7 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
 	Players(),
 	scoreBoard(window, 30, 500)
 {
+	this->pause = false;
 	setBounds(1075, 5, 1915, 400, 5);
 	srand(std::time(0));
 	boostR = 40;
@@ -50,17 +51,23 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
 		throw std::exception("boost icon missing");
 	if (!switchHeads.loadFromFile("../boost_icons/switch_head.png"))
 		throw std::exception("boost icon missing");
+	if (!font.loadFromFile("../Font/kenvector_future_thin.ttf"))
+		throw std::exception("font file missing");
+
+	startUpText.setFont(font);
+	startUpText.setCharacterSize(80);
+	startUpText.setFillColor(sf::Color::White);
+	startUpText.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
+
+	Winner.setFont(font);
+	Winner.setCharacterSize(80);
+	Winner.setFillColor(sf::Color::White);
+	Winner.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
 
 }
 
 st gameBoard::update()
 {
-	clearHitbox();
-	clearBoosts();
-
-	sf::Font font;
-	if (!font.loadFromFile("../Font/kenvector_future_thin.ttf"))
-		throw std::exception("font file missing");
 
 	sf::Text fps;
 	fps.setFont(font);
@@ -68,44 +75,36 @@ st gameBoard::update()
 	fps.setPosition(20, 20);
 	fps.setFillColor(sf::Color::White);
 
-	sf::Text startUpText;
-	startUpText.setFont(font);
-	startUpText.setCharacterSize(80);
-	startUpText.setFillColor(sf::Color::White);
-	startUpText.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
-
-	sf::Text Winner;
-	Winner.setFont(font);
-	Winner.setCharacterSize(80);
-	Winner.setFillColor(sf::Color::White);
-	Winner.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
-
 	sf::Clock timer;
 	sf::Clock boostTImer;
 
-	createPlayers();
-
-
-	scoreBoard.setPosition(20, 400, Players, font);
-	sf::Event event;
-	int AllRounds = setting.rounds;
-	int rounds = AllRounds;
+	if (!setting.pause)
+	{
+		clearHitbox();
+		clearBoosts();
+		createPlayers();
+		scoreBoard.setPosition(20, 400, Players, font);
+		AllRounds = setting.rounds;
+		rounds = AllRounds;
+	}
 	int cnt = 0;
-	bool end;
-	bool start;
-	bool spacePressed;
+	sf::Event event;
+
 	while (rounds)
 	{
-		end = false;
-		start = true;
 		timer.restart();
 		boostTImer.restart();
-		poolPoints = 1;
-		setting.TimeStop = true;
-		spacePressed = false;
-		int sec = 3;
-		startUpText.setString("press space to start");
-		startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
+		if (!setting.pause)
+		{
+			end = false;
+			start = true;
+			poolPoints = 1;
+			setting.TimeStop = true;
+			spacePressed = false;
+			sec = 3;
+			startUpText.setString("press space to start");
+			startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
+		}
 		while (window.isOpen())
 		{
 			if (start)
@@ -193,7 +192,11 @@ st gameBoard::update()
 			}
 			window.clear(sf::Color::Black);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-				return st::mainMenu;
+			{
+				setting.pause = true;
+				setting.TimeStop = true;
+				return st::pause;
+			}
 			else if (isF6Pressed())
 				setting.TimeStop = !setting.TimeStop;
 
@@ -209,6 +212,12 @@ st gameBoard::update()
 				window.draw(Winner);
 			scoreBoard.draw();
 			window.display();
+			if (setting.pause)
+			{
+				setting.pause = false;
+				if(!start)
+					setting.TimeStop = false;
+			}
 		}
 	}
 	//podsumowanie ranking itp
@@ -753,8 +762,4 @@ void gameBoard::restart()
 	*/
 }
 
-bool gameBoard::pause()
-{
-	return false;
-}
 
