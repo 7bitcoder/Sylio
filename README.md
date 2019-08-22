@@ -8,7 +8,8 @@ Currently application works only on windows and the best screen resolution is fu
 Any bugs 
 
 ## Screenshots
-
+![main menu](https://github.com/sylwow/Sylio/ScreenShots/mainMenu.png)
+![gameplay](https://github.com/sylwow/Sylio/ScreenShots/inGame.png)
 ## Instalator
 
 
