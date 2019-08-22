@@ -9,7 +9,7 @@ Any bugs
 
 ## Screenshots
 ![main menu](ScreenShots/mainMenu.png)
-![gameplay](https://github.com/sylwow/Sylio/ScreenShots/inGame.png)
+![gameplay](ScreenShots/inGame.png)
 ## Instalator
 
 
@@ -26,5 +26,5 @@ Add additional notes about how to deploy this on a live system
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](license.txt) file for details
 
