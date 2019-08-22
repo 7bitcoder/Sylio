@@ -5,16 +5,20 @@ Sylio is simple multiplayer game, up to eight players controls snail and tries t
 ## Getting Started
 
 Currently application works only on windows and the best screen resolution is fullHd
-Any bugs 
+If you find any bugs leave feedback
 
 ## Screenshots
 ![main menu](ScreenShots/mainMenu.png)
+![setup game](ScreenShots/setUpGame.png)
 ![gameplay](ScreenShots/inGame.png)
+![gameplay2](ScreenShots/inGame3.jpg)
+![gameplay3](ScreenShots/inGame4.jpg)
 ## Instalator
 
+link to instalator :
+https://drive.google.com/drive/folders/1VCkCfbHeYCj8A6g9C8OCWWS_vs863Ih-?usp=sharing
 
-
-Add additional notes about how to deploy this on a live system
+If sylio.exe did not installed properly copy file from link above and paste to YourDir/Release
 
 ## Built With
 
