@@ -106,6 +106,7 @@ void ScoreBoard::setPosition(int x, int y, std::vector<Player> & players, sf::Fo
 		dates.back().text.setCharacterSize(charSize);
 		dates.back().text.setString(dates.back().nickname + std::to_string(dates.back().score));
 		dates.back().text.setFont(font);
+		dates.back().text.setScale(setting.xScale, setting.yScale);
 	}
 	for (int i = 0; i < dates.size(); i++)
 	{
@@ -122,7 +123,7 @@ ScoreBoard::ScoreBoard(sf::RenderWindow & win, int size, float vel_) :
 {
 	vel = vel_;
 	updating = false;
-	charSize = size;
+	charSize = size*setting.yScale;
 }
 
 ScoreBoard::~ScoreBoard()

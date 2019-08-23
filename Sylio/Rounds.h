@@ -18,6 +18,7 @@ public:
 	void draw() { Slider::draw(); inputText::draw(); }
 	void checkState() { Slider::checkState(); inputText::checkState(); }
 	void setSoundVolume(double  vol) { inputText::setSoundVolume(vol); Slider::setSoundVolume(vol); }
+	void setScale(double x, double y) { inputText::setScale(x, y); }
 	~Rounds();
 };
 

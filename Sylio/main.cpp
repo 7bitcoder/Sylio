@@ -23,15 +23,20 @@ int main()
 		set.antialiasingLevel = 8;
 		std::string version = "Beta 0.1";
 		auto state = st::mainMenu;
-
-		sf::RenderWindow window(sf::VideoMode(1920, 1080), "Sylio " + version, sf::Style::Fullscreen, set);
+		sf::Vector2i defaultSize(1920, 1080);
+		sf::Vector2i defaultSize2(1366, 768);
+		sf::RenderWindow window(sf::VideoMode(defaultSize2.x, defaultSize2.y), "Sylio " + version, sf::Style::Fullscreen, set);
+		std::cout << window.getSize().x << ": " << window.getSize().y;
+		setting.xScale = double(window.getSize().x) / defaultSize.x;
+		setting.yScale = double(window.getSize().y) / defaultSize.y;
+		
 		window.clear(sf::Color::Black);
+		
 		std::atomic_flag endThread;
 		endThread.test_and_set();
 		loadingScreen loadingScr(window, endThread);
 		window.setActive(false);
 		std::thread thd(loadingScr);
-		music.playMenuMusic();
 
 		Menu Menu_(window, version);
 		sf::Image pointnerIm;
@@ -50,6 +55,9 @@ int main()
 
 		window.setActive(true);
 		window.setMouseCursorVisible(true);
+	
+		music.playMenuMusic();
+
 		while (true)
 		{
 			switch (state)

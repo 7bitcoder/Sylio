@@ -1,7 +1,9 @@
 #include "setPlayer.h"
 #include <iostream>
+#include "Settings.h"
 
 
+extern Settings setting;
 
 bool setPlayer::focused = false;
 std::vector<sf::Keyboard::Key> setPlayer::forbidden = {};
@@ -12,6 +14,7 @@ setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxO
 	checkBox(win, checkOn, checkOff, click)
 {
 	checkBox.setAlpha(100);
+	checkBox.setScale(setting.xScale, setting.yScale);
 
 	leftKey = sf::Keyboard::Unknown;
 	rightKey = sf::Keyboard::Unknown;
@@ -21,21 +24,21 @@ setPlayer::setPlayer(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxO
 	nickname.setColor(sf::Color::Black);
 	nickname.setFont(font);
 	nickname.setString(string);
-	nickname.setScale(1.8, 1.4);
+	nickname.setScale(1.8*setting.xScale, 1.4*setting.yScale);
 	nickname.setAlpha(100);
 
 	right.setSize(45);
 	right.setColor(sf::Color::Black);
 	right.setFont(font);
 	right.setString("R");
-	right.setScale(1.4, 1.4);
+	right.setScale(1.4*setting.xScale, 1.4*setting.yScale);
 	right.setAlpha(100);
 
 	left.setSize(45);
 	left.setColor(sf::Color::Black);
 	left.setFont(font);
 	left.setString("L");
-	left.setScale(1.4, 1.4);
+	left.setScale(1.4*setting.xScale, 1.4*setting.yScale);
 	left.setAlpha(100);
 }
 
@@ -187,16 +190,16 @@ void setPlayer::checkState()
 
 void setPlayer::setPosition(int x, int y)
 {
-	nickname.setPosition(x, y);
-	nickname.setTextPosition(x + 15, y + 10);
+	nickname.setPosition(x*setting.xScale, y*setting.yScale);
+	nickname.setTextPosition((x + 15)*setting.xScale, (y + 10)*setting.yScale);
 
-	left.setPosition(x + 190 * 1.8 + 40, y);
-	left.setTextPosition(x + 190 * 1.8 + 40 + 20, y + 5);
+	left.setPosition((x + 190 * 1.8 + 40)*setting.xScale, y*setting.yScale);
+	left.setTextPosition((x + 190 * 1.8 + 40 + 20)*setting.xScale, (y + 5)*setting.yScale);
 
-	right.setPosition(x + 49 * 1.5 + 80 + 190 * 1.8, y);
-	right.setTextPosition(x + 49 * 1.5 + 80 + 190 * 1.8 + 20, y + 5);
+	right.setPosition((x + 49 * 1.5 + 80 + 190 * 1.8)*setting.xScale, y*setting.yScale);
+	right.setTextPosition((x + 49 * 1.5 + 80 + 190 * 1.8 + 20)*setting.xScale, (y + 5)*setting.yScale);
 
-	checkBox.setPosition(x - 50, y + 20);
+	checkBox.setPosition((x - 50)*setting.xScale, (y + 20)*setting.yScale);
 }
 std::string setPlayer::getNickname() {
 	return nickname.getText();

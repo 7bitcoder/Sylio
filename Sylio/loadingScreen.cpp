@@ -1,8 +1,9 @@
 #include "loadingScreen.h"
+#include "Settings.h"
 
 
 
-
+extern Settings setting;
 
 loadingScreen::loadingScreen(sf::RenderWindow& win, std::atomic_flag& fl): window(win), flag(fl)
 {
@@ -13,6 +14,7 @@ loadingScreen::loadingScreen(sf::RenderWindow& win, std::atomic_flag& fl): windo
 	loading.setCharacterSize(80);
 	loading.setFont(font);
 	loading.setPosition(window.getSize().x / 2 - loading.getGlobalBounds().width/2, window.getSize().y / 2 - loading.getGlobalBounds().height/2);	
+	loading.setScale(setting.xScale, setting.yScale);
 }
 
 loadingScreen::~loadingScreen()

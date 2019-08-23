@@ -123,43 +123,48 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_
 
 st Menu::mainMenuUpdate()
 {
+	int linex = 1920 / 2;
+	int liney = 1080 / 2;
+
 	sf::Text title;
 	title.setFont(font);
 	title.setCharacterSize(140);
 	title.setString("Sylio");
-	title.setPosition(window.getSize().x / 2 - 250, window.getSize().y / 2 - 300);
+	title.setPosition((linex - 250)*setting.xScale, (liney - 300)*setting.yScale);
 	title.setFillColor(sf::Color::White);
+	title.setScale(setting.xScale, setting.yScale);
 
 	sf::Text ver;
 	ver.setFont(font);
 	ver.setCharacterSize(15);
 	ver.setString(version);
-	ver.setPosition(window.getSize().x - 100, window.getSize().y - 15);
+	ver.setPosition((linex*2 - 100) * setting.xScale, (liney*2 - 15) * setting.yScale);
+	ver.setScale(setting.xScale, setting.yScale);
 
 	Button normalGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	normalGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 - 100);
-	normalGame.setScale(1.8, 1);
+	normalGame.setPosition((linex - 190 * 1.8 / 2)*setting.xScale, (liney - 100)*setting.yScale);
+	normalGame.setScale(1.8*setting.xScale, 1*setting.yScale);
 	normalGame.setTitle("normal game");
 	normalGame.setSoundVolume(setting.SoundVolume);
 
 
 	Button multiplayerGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	multiplayerGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2);
-	multiplayerGame.setScale(1.8, 1);
+	multiplayerGame.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney) * setting.yScale);
+	multiplayerGame.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	multiplayerGame.setTitle("multipleyer game");
 	multiplayerGame.setSoundVolume(setting.SoundVolume);
 
 
 	Button settings(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
-	settings.setScale(1.8, 1);
+	settings.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 100)* setting.yScale);
+	settings.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
 
 
 	Button quit(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	quit.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
-	quit.setScale(1.8, 1);
+	quit.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 200)* setting.yScale);
+	quit.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	quit.setTitle("quit");
 	quit.setSoundVolume(setting.SoundVolume);
 
@@ -202,8 +207,8 @@ st Menu::settingsUupdate()
 {
 	PopAlert alert(window, "asdasd", whiteBox, blockPressed, block, offButton, clickBuff, switchBuff, font);
 
-	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
-	int liney = window.getSize().y / 2 - 50;
+	int linex = 1920 / 2 - 190 * 1.8 / 2;
+	int liney = 1080 / 2 - 50;
 
 	sf::Event event;
 
@@ -212,22 +217,22 @@ st Menu::settingsUupdate()
 	VolMusicText.setString("Music Volume");
 	VolMusicText.setFont(font);
 	VolMusicText.setCharacterSize(25);
-	VolMusicText.setPosition(linex + 20, liney - 400 + 8);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
-
+	VolMusicText.setPosition((linex + 20)*setting.xScale, (liney - 400 + 8)*setting.yScale);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
+	VolMusicText.setScale(setting.xScale, setting.yScale);
 
 	sf::Text VolSounndEffectsTest;
 	VolSounndEffectsTest.setString("Sound Effects Volume");
 	VolSounndEffectsTest.setFont(font);
 	VolSounndEffectsTest.setCharacterSize(25);
-	VolSounndEffectsTest.setPosition(linex + 20, liney - 200 + 8); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
-
+	VolSounndEffectsTest.setPosition((linex + 20)*setting.xScale, (liney - 200 + 8)*setting.yScale); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
+	VolSounndEffectsTest.setScale(setting.xScale, setting.yScale);
 
 	sf::Text ChoseMusicText;
 	ChoseMusicText.setString("Chose music file");
 	ChoseMusicText.setFont(font);
 	ChoseMusicText.setCharacterSize(25);
-	ChoseMusicText.setPosition(linex + 20, liney - 50 + 8); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
-
+	ChoseMusicText.setPosition((linex + 20)*setting.xScale, (liney - 50 + 8)*setting.yScale); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
+	ChoseMusicText.setScale(setting.xScale, setting.yScale);
 
 	sf::Text fileError;
 	fileError.setString("could not open file");
@@ -235,6 +240,7 @@ st Menu::settingsUupdate()
 	fileError.setCharacterSize(15);
 	fileError.setPosition(-200, -200); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
 	fileError.setFillColor(sf::Color::Red);
+	fileError.setScale(setting.xScale, setting.yScale);
 
 	Slider musicSlider(window, VolumePointner, VolumeSliderLine, clickBuff);
 	musicSlider.setPosition(linex, liney - 300, (music.getVolume() / 30));//1- music /2 -sound
@@ -252,8 +258,8 @@ st Menu::settingsUupdate()
 	{
 		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
 		list.pushBack(window, blockPressed, listBlock, listBlock, clickBuff, switchBuff, font);
-		list.setPosition(linex, liney + 50 + i * 50);
-		list.setScale(1.8, 1);
+		list.setPosition(linex*setting.xScale, (liney + 50 + i * 50)*setting.yScale);
+		list.setScale(1.8*setting.xScale, 1*setting.yScale);
 		list.setText(entry.path().filename().generic_string());
 		i++;
 		if (i == 5)
@@ -263,15 +269,15 @@ st Menu::settingsUupdate()
 	list.chooseDefault();
 
 	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	goBack.setPosition(linex, liney + 200 + 4 * 58);
-	goBack.setScale(1.8, 1);
+	goBack.setPosition(linex*setting.xScale, setting.yScale*(liney + 200 + 4 * 58));
+	goBack.setScale(1.8*setting.xScale, 1*setting.yScale);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
 
 	Button musicApply(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	musicApply.setPosition(linex, liney + 100 + 4 * 58);
-	musicApply.setScale(1.8, 1);
+	musicApply.setPosition(linex*setting.xScale, (liney + 100 + 4 * 58)*setting.yScale);
+	musicApply.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	musicApply.setTitle("apply");
 	musicApply.setSoundVolume(setting.SoundVolume);
 
@@ -354,30 +360,33 @@ st Menu::settingsUupdate()
 }
 st Menu::pauseUpdate()
 {
+	int linex = 1920 / 2;
+	int liney = 1080 / 2;
+
 	sf::Text title;
 	title.setFont(font);
 	title.setCharacterSize(50);
 	title.setString("Pause");
-	title.setPosition(window.getSize().x / 2 - 150, window.getSize().y / 2 - 100);
+	title.setPosition( (linex - 150)*setting.xScale, (liney - 100)*setting.yScale);
 	title.setFillColor(sf::Color::White);
 
 	Button playGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	playGame.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 );
-	playGame.setScale(1.8, 1);
+	playGame.setPosition( (linex - 190 * 1.8 / 2)*setting.xScale, liney*setting.yScale );
+	playGame.setScale(1.8*setting.xScale, 1*setting.yScale);
 	playGame.setTitle("play");
 	playGame.setSoundVolume(setting.SoundVolume);
 
 
 	Button settings(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	settings.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 100);
-	settings.setScale(1.8, 1);
+	settings.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 100)* setting.yScale);
+	settings.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
 
 
 	Button mainMenu(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	mainMenu.setPosition(window.getSize().x / 2 - 190 * 1.8 / 2, window.getSize().y / 2 + 200);
-	mainMenu.setScale(1.8, 1);
+	mainMenu.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 200) * setting.yScale);
+	mainMenu.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	mainMenu.setTitle("main menu");
 	mainMenu.setSoundVolume(setting.SoundVolume);
 
@@ -423,36 +432,36 @@ st Menu::normalGameUpdate()
 
 	PopAlert alert(window, "asdasd", whiteBox, blockPressed, block, offButton, clickBuff, switchBuff, font2);
 
-	int linex = window.getSize().x / 2 - 190 * 1.8 / 2;
-	int liney = window.getSize().y / 2 - 50;
+	int linex = 1920 / 2 - 190 * 1.8 / 2;
+	int liney = 1080 / 2 - 50;
 
 	sf::Event event;
 
 
 	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	goBack.setPosition(linex, liney + 300);
-	goBack.setScale(1.8, 1);
+	goBack.setPosition(linex*setting.xScale, (liney + 300)*setting.yScale);
+	goBack.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
 
 	Button play(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	play.setPosition(linex, liney + 200);
-	play.setScale(1.8, 1);
+	play.setPosition(linex * setting.xScale, (liney + 200) * setting.yScale);
+	play.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	play.setTitle("play");
 	play.setSoundVolume(setting.SoundVolume);
 
 	Rounds rounds(window, controlOnBlue, controlOffBlue, VolumePointner, VolumeSliderLine, clickBuff);
 	rounds.setFont(font);
-	rounds.setBoxPosition(linex + 100, 300);
-	rounds.setSliderPosition(linex, 500 - 30);
-	rounds.setScale(2.5, 2.5);
+	rounds.setBoxPosition((linex + 100)*setting.xScale, 300*setting.yScale);
+	rounds.setSliderPosition(linex, (500 - 30));
 	rounds.setSize(60);
-	rounds.setTextPosition(linex + 120, 300 + 20);
+	rounds.setTextPosition((linex + 120)*setting.xScale, (300 + 20)*setting.yScale);
 	rounds.setSoundVolume(setting.SoundVolume);
 	rounds.setString("");
 	rounds.addNumber('2');
 	rounds.addNumber('0');
+	rounds.setScale(2.5 * setting.xScale, 2.5 * setting.yScale);
 	rounds.setColor(sf::Color::Black);
 
 
@@ -463,42 +472,42 @@ st Menu::normalGameUpdate()
 
 	std::vector<setPlayer> players;
 	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player1")));
-	players.back().setPosition(col, row + off);
+	players.back().setPosition(col , row + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(53, 186, 243, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player2")));
-	players.back().setPosition(col, row * 2 + off);
+	players.back().setPosition(col , row*2 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(136, 224, 96, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player3")));
-	players.back().setPosition(col, row * 3 + off);
+	players.back().setPosition(col , row*3 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(255, 217, 72, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player4")));
-	players.back().setPosition(col, row * 4 + off);
+	players.back().setPosition(col , row*4 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(250, 129, 50, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player5")));
-	players.back().setPosition(col, row * 5 + off);
+	players.back().setPosition(col , row*5 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 
 	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player6")));
-	players.back().setPosition(col, row * 6 + off);
+	players.back().setPosition(col , row*6 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 
 	players.push_back(std::move(setPlayer(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player7")));
-	players.back().setPosition(col, row * 7 + off);
+	players.back().setPosition(col , row*7 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 
 	players.push_back(std::move(setPlayer(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player8")));
-	players.back().setPosition(col, row * 8 + off);
+	players.back().setPosition(col , row*8 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color::Red);
 

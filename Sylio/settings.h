@@ -12,6 +12,8 @@ class Settings
 public:
 	bool TimeStop = false;
 	bool pause = false;
+	double xScale;
+	double yScale;
 	struct playerStats
 	{
 		sf::Color color;

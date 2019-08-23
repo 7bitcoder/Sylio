@@ -75,6 +75,7 @@ void Button::setTitle(std::string title_)
 	title.setCharacterSize(25);
 	title.setFillColor(sf::Color::Black);
 	title.setString(title_);
+	title.setScale(setting.xScale, setting.yScale);
 	if (title.getGlobalBounds().width > this->getGlobalBounds().width)
 	{
 		while (title.getGlobalBounds().width > this->getGlobalBounds().width)
@@ -88,7 +89,7 @@ void Button::setTitle(std::string title_)
 		title_ += "...";
 		title.setString(title_);
 	}
-	title.setPosition(this->getPosition().x + 20, this->getPosition().y + 8);
+	title.setPosition(this->getPosition().x + 20*setting.xScale, this->getPosition().y + 8*setting.yScale);
 }
 Button::Button(sf::RenderWindow & win, sf::Texture & pres, sf::Texture & rel, sf::Texture & off, sf::SoundBuffer & click_, sf::SoundBuffer & switch_, sf::Font & font_) :
 	font(font_),

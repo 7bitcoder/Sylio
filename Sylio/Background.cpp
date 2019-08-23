@@ -1,5 +1,7 @@
 #include "Background.h"
+#include "Settings.h"
 #define PI 3.14159265
+extern Settings setting;
 
 void Background::draw()
 {
@@ -27,6 +29,7 @@ void Background::set(sf::Texture back_, sf::Texture& base_, double r, double v)
 	velocity = v;
 	Background1.setOrigin(back.getSize().x / 2, back.getSize().y / 2 + r);
 	angle = 0;
+	Background1.setScale(setting.xScale, setting.yScale);
 	Background1.setPosition(window.getSize().x / 2, window.getSize().y + r);
 	zeroPiont.x = Background1.getPosition().x;
 	zeroPiont.y = Background1.getPosition().y + r;

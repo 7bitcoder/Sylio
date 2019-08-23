@@ -28,6 +28,7 @@ public:
 	void setPosition(int x, int y) { box.setPosition(x, y); }
 	void setAlpha(int a) { box.setColor(sf::Color(255, 255, 255, a)); }
 	bool isOnButton();
+	void setScale(double x, double y) { box.setScale(x, y); }
 	~CheckBox();
 };
 

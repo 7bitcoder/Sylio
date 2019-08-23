@@ -57,13 +57,14 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
 	startUpText.setFont(font);
 	startUpText.setCharacterSize(80);
 	startUpText.setFillColor(sf::Color::White);
-	startUpText.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
+	startUpText.setPosition((xmin + (xmax - xmin) / 2)*setting.xScale, (ymin + (ymax - ymin) / 2 - 100)*setting.yScale);
+	startUpText.setScale(setting.xScale, setting.yScale);
 
 	Winner.setFont(font);
 	Winner.setCharacterSize(80);
 	Winner.setFillColor(sf::Color::White);
-	Winner.setPosition(xmin + (xmax - xmin) / 2, ymin + (ymax - ymin) / 2 - 100);
-
+	Winner.setPosition((xmin + (xmax - xmin) / 2)*setting.xScale, (ymin + (ymax - ymin) / 2 - 100)*setting.yScale);
+	Winner.setScale(setting.xScale, setting.yScale);
 }
 
 st gameBoard::update()
@@ -72,7 +73,8 @@ st gameBoard::update()
 	sf::Text fps;
 	fps.setFont(font);
 	fps.setCharacterSize(40);
-	fps.setPosition(20, 20);
+	fps.setPosition(20*setting.xScale, 20*setting.yScale);
+	fps.setScale(setting.xScale, setting.yScale);
 	fps.setFillColor(sf::Color::White);
 
 	sf::Clock timer;
@@ -83,7 +85,7 @@ st gameBoard::update()
 		clearHitbox();
 		clearBoosts();
 		createPlayers();
-		scoreBoard.setPosition(20, 400, Players, font);
+		scoreBoard.setPosition(20*setting.xScale, 400*setting.yScale, Players, font);
 		AllRounds = setting.rounds;
 		rounds = AllRounds;
 	}
@@ -115,6 +117,7 @@ st gameBoard::update()
 					{
 						spacePressed = true;
 						startUpText.setString("round " + std::to_string(AllRounds - rounds + 1));
+						startUpText.setScale(setting.xScale, setting.yScale);
 						startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
 						boostTImer.restart();
 					}
@@ -122,6 +125,7 @@ st gameBoard::update()
 				else if (boostTImer.getElapsedTime().asSeconds() > 1)
 				{
 					startUpText.setString(std::to_string(sec));
+					startUpText.setScale(setting.xScale, setting.yScale);
 					startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
 					boostTImer.restart();
 					if (sec == 0)
@@ -161,6 +165,7 @@ st gameBoard::update()
 						winner.addPoints(poolPoints);
 						scoreBoard.updateScore(winner.getId(), winner);
 						Winner.setString("Round winner :" + winner.getNickname());
+						Winner.setScale(setting.xScale, setting.yScale);
 						Winner.setOrigin(Winner.getGlobalBounds().width / 2, Winner.getGlobalBounds().height / 2);
 						boostTImer.restart();
 					}
@@ -235,25 +240,25 @@ void gameBoard::setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc_
 	ymin = ymin_;
 	ymax = ymax_;
 	thicc = thicc_;
-	bounds[0][0] = sf::Vertex(sf::Vector2f(xmax + thicc, ymin - thicc), sf::Color::White);
-	bounds[0][1] = sf::Vertex(sf::Vector2f(xmax, ymin), sf::Color::White);
-	bounds[0][2] = sf::Vertex(sf::Vector2f(xmax, ymax), sf::Color::White);
-	bounds[0][3] = sf::Vertex(sf::Vector2f(xmax + thicc, ymax + thicc), sf::Color::White);
+	bounds[0][0] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
+	bounds[0][1] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymin*setting.yScale), sf::Color::White);
+	bounds[0][2] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymax*setting.yScale), sf::Color::White);
+	bounds[0][3] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
 
-	bounds[1][0] = sf::Vertex(sf::Vector2f(xmax + thicc, ymax + thicc), sf::Color::White);
-	bounds[1][1] = sf::Vertex(sf::Vector2f(xmax, ymax), sf::Color::White);
-	bounds[1][2] = sf::Vertex(sf::Vector2f(xmin, ymax), sf::Color::White);
-	bounds[1][3] = sf::Vertex(sf::Vector2f(xmin - thicc, ymax + thicc), sf::Color::White);
+	bounds[1][0] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
+	bounds[1][1] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymax*setting.yScale), sf::Color::White);
+	bounds[1][2] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymax*setting.yScale), sf::Color::White);
+	bounds[1][3] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
 
-	bounds[2][0] = sf::Vertex(sf::Vector2f(xmin - thicc, ymax + thicc), sf::Color::White);
-	bounds[2][1] = sf::Vertex(sf::Vector2f(xmin, ymax), sf::Color::White);
-	bounds[2][2] = sf::Vertex(sf::Vector2f(xmin, ymin), sf::Color::White);
-	bounds[2][3] = sf::Vertex(sf::Vector2f(xmin - thicc, ymin - thicc), sf::Color::White);
+	bounds[2][0] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
+	bounds[2][1] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymax*setting.yScale), sf::Color::White);
+	bounds[2][2] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymin*setting.yScale), sf::Color::White);
+	bounds[2][3] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
 
-	bounds[3][0] = sf::Vertex(sf::Vector2f(xmin - thicc, ymin - thicc), sf::Color::White);
-	bounds[3][1] = sf::Vertex(sf::Vector2f(xmin, ymin), sf::Color::White);
-	bounds[3][2] = sf::Vertex(sf::Vector2f(xmax, ymin), sf::Color::White);
-	bounds[3][3] = sf::Vertex(sf::Vector2f(xmax + thicc, ymin - thicc), sf::Color::White);
+	bounds[3][0] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
+	bounds[3][1] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymin*setting.yScale), sf::Color::White);
+	bounds[3][2] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymin*setting.yScale), sf::Color::White);
+	bounds[3][3] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
 
 }
 
@@ -644,9 +649,9 @@ void gameBoard::getRandomBoost()
 		break;
 	}
 	boostsOnBoard.back().setBoost(wsk);
-	boostsOnBoard.back().setScale(0.1, 0.1);
 	boostsOnBoard.back().setOrigin(32, 32);
-	boostsOnBoard.back().setPosition(boostPosition.x, boostPosition.y);
+	boostsOnBoard.back().setPosition(boostPosition.x*setting.xScale, boostPosition.y*setting.yScale);
+	boostsOnBoard.back().setScale(0.1*setting.xScale, 0.1*setting.yScale);
 }
 
 void gameBoard::markBoostPosOnHit(sf::Vector2i boostPosition)

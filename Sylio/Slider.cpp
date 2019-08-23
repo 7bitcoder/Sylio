@@ -1,7 +1,9 @@
 #include"Music.h"
 #include "Slider.h"
 #include<iostream>
+#include "Settings.h"
 
+extern Settings setting;
 
 bool Slider::isOnPointner()
 {
@@ -109,15 +111,16 @@ Slider::Slider(sf::RenderWindow& win, sf::Texture& pointner_, sf::Texture& line_
 };
 void Slider::setPosition(int x, int y, double scale)
 {
-	line.setScale(1.8, 1);
-	line.setPosition(x, y);
-	pointner.setOrigin(14, 0);
+	line.setScale(1.8*setting.xScale, 1*setting.yScale);
+	line.setPosition(x*setting.xScale, y*setting.yScale);
+	pointner.setOrigin(14*setting.xScale, 0);
 	pointner.setPosition(int(scale * line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);
+	pointner.setScale(setting.xScale, setting.yScale);
 }
 
 void Slider::setSlider(double x)
 {
-	pointner.setPosition(int(x * line.getGlobalBounds().width + line.getPosition().x), line.getPosition().y);
+	pointner.setPosition(int(x * line.getGlobalBounds().width + line.getPosition().x*setting.xScale), line.getPosition().y*setting.yScale);
 
 }
 

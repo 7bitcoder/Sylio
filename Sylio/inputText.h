@@ -41,7 +41,7 @@ public:
 	void disActivate() { focuse = false;  spriteBox.setTexture(boxOff); };
 	std::string& getText() { return text; }
 	void clear() { text.clear(); textOutput.setString(""); }
-	void setScale(double x, double y) { spriteBox.setScale(x, y); }
+	void setScale(double x, double y) { spriteBox.setScale(x, y); textOutput.setScale(x, y); }
 	void setSoundVolume(double vol) { click.setVolume(vol * 100); }
 	void setAlpha(int a) { spriteBox.setColor(sf::Color(255, 255, 255, a)); }
 	bool addNumber(char t);
