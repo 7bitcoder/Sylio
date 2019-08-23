@@ -19,9 +19,8 @@ If sylio.exe did not installed properly copy file from link above and paste to Y
 ## Game Description
 soon
 ## Game Rules 
-Players die when snail head collide with snail tails or gameboard bounds.
-
-Round is over when only last player is still alive
+* Players die when snail head collide with snail tails or gameboard bounds.
+* Round is over when only last player is still alive
 
 Player score is update when: player dies or round is over
 
