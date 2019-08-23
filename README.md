@@ -28,7 +28,8 @@ Player score is update when: player dies or round is over
 Points function: points gained for current round = dead players + player segments (visible on board)
 
 Powerups:
-SpeedBoost 
+| col 1      | ![main menu](boosi_icons/speed_up.png)     |
+|------------|-------------| 
 
 Powerups are spawning on board every 10 - 20 sec (random)
 
