@@ -21,32 +21,19 @@ soon
 ## Game Rules 
 * Players die when snail head collide with snail tails or gameboard bounds.
 * Round is over when only last player is still alive
-
-Player score is update when: player dies or round is over
-
-Points function: points gained for current round = dead players + player segments (visible on board)
-
-Powerups:
-
-<img src="boost_icons/speed_up.png" width="25">  speed up: increases speed by 20%
-
-<img src="boost_icons/slow_down.png" width="25">  slow down: decreases speed by 20%
-
-<img src="boost_icons/blind.png" width="25">  blind: make tails invisible
-
-<img src="boost_icons/freeze.png" width="25">  freeze: freezes player for 5s
-
-<img src="boost_icons/grow_up.png" width="25">  grow up: increase radious by 20%
-
-<img src="boost_icons/shrink.png" width="25">  shrink: decreases radious by 20%
-
-<img src="boost_icons/only_left.png" width="25">  lock left: lock left turns
-
-<img src="boost_icons/only_left2.png" width="25">  lock right: lock right turns
-
-<img src="boost_icons/switch_controls.png" width="25">  switch controls: switch controls of your snake
-
-Powerups are spawning on board every 10 - 20 sec (random)
+* Player score is update when: player dies or round is over
+* Points function: points gained for current round = dead players + player segments (visible on board)
+* Powerups:
+* <img src="boost_icons/speed_up.png" width="25">  speed up: increases speed by 20%
+* <img src="boost_icons/slow_down.png" width="25">  slow down: decreases speed by 20%
+* <img src="boost_icons/blind.png" width="25">  blind: make tails invisible
+* <img src="boost_icons/freeze.png" width="25">  freeze: freezes player for 5s
+* <img src="boost_icons/grow_up.png" width="25">  grow up: increase radious by 20%
+* <img src="boost_icons/shrink.png" width="25">  shrink: decreases radious by 20%
+* <img src="boost_icons/only_left.png" width="25">  lock left: lock left turns
+* <img src="boost_icons/only_left2.png" width="25">  lock right: lock right turns
+* <img src="boost_icons/switch_controls.png" width="25">  switch controls: switch controls of your snake
+* Powerups are spawning on board every 10 - 20 sec (random)
 ## Music
 Music creator: Bartosz Twardy
 
