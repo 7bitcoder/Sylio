@@ -43,7 +43,7 @@ Powerups:
 
 <img src="boost_icons/only_left.png" width="25">  lock left: lock left turns
 
-<img src="boost_icons/only_right.png" width="25">  lock right: lock right turns
+<img src="boost_icons/only_left2.png" width="25">  lock right: lock right turns
 
 <img src="boost_icons/switch_controls.png" width="25">  switch controls: switch controls of your snake
 
