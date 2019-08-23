@@ -19,9 +19,17 @@ If sylio.exe did not installed properly copy file from link above and paste to Y
 ## Game Description
 soon
 ## Game Rules 
-soon
+Players die when snail head collide with snail tails or gameboard bounds.
+
+Round is over when only last player is still alive
+
+Player score is update when: player dies or round is over
+
+Points function: points gained for current round = dead players + player segments (visible on board)
+
+
 ## Music
-music creator: 
+Music creator: Bartosz Twardy
 
 https://soundcloud.com/bartosz-twardy-111728082?fbclid=IwAR0gtAkXr3lYFIJDBXkoVPhbxdpg4p6mamCXlR8p2_QWc7UPwoeV9wzrHgo
 ## Built With
