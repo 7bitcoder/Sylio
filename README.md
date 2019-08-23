@@ -27,6 +27,11 @@ Player score is update when: player dies or round is over
 
 Points function: points gained for current round = dead players + player segments (visible on board)
 
+Powerups:
+SpeedBoost 
+
+Powerups are spawning on board every 10 - 20 sec (random)
+
 
 ## Music
 Music creator: Bartosz Twardy
