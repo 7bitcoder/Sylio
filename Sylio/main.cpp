@@ -25,7 +25,7 @@ int main()
 		auto state = st::mainMenu;
 		sf::Vector2i defaultSize(1920, 1080);
 		sf::Vector2i defaultSize2(1366, 768);
-		sf::RenderWindow window(sf::VideoMode(defaultSize2.x, defaultSize2.y), "Sylio " + version, sf::Style::Fullscreen, set);
+		sf::RenderWindow window(sf::VideoMode(defaultSize.x, defaultSize.y), "Sylio " + version, sf::Style::Fullscreen, set);
 		std::cout << window.getSize().x << ": " << window.getSize().y;
 		setting.xScale = double(window.getSize().x) / defaultSize.x;
 		setting.yScale = double(window.getSize().y) / defaultSize.y;

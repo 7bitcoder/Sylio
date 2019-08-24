@@ -1,5 +1,8 @@
 #include "Trace.h"
 #include<iostream>
+#include "Settings.h"
+
+extern Settings setting;
 
 Trace::Trace(sf::RenderWindow& win, sf::Color col, int aloc, int gpuT)
 	:window(win)
@@ -17,8 +20,8 @@ Trace::~Trace()
 
 void Trace::update(sf::Vector2f& left, sf::Vector2f& right)
 {
-	cpuMem.push_back(sf::Vertex(left, color));
-	cpuMem.push_back(sf::Vertex(right, color));
+	cpuMem.push_back(sf::Vertex(sf::Vector2f(left.x*setting.xScale, left.y * setting.yScale), color));
+	cpuMem.push_back(sf::Vertex(sf::Vector2f(right.x * setting.xScale, right.y * setting.yScale), color));
 	//std::cout << cpuMem.size() << std::endl;
 }
 
@@ -50,11 +53,11 @@ void Trace::edge(bool beg, double& R, double& angle, sf::Vector2f& position)
 		for (int i = 0; i < 6; i++)
 		{
 			//std::cout << position.x << " :pos: " << position.y << std::endl;
-			sf::Vector2f point(R * sin(angle + 2.0 * NINETY_DEG - i * ang) + position.x, R * cos(angle + 2 * NINETY_DEG - i * ang) + position.y);
+			sf::Vector2f point(setting.xScale*(R * sin(angle + 2.0 * NINETY_DEG - i * ang) + position.x),setting.yScale*( R * cos(angle + 2 * NINETY_DEG - i * ang) + position.y));
 			cpuMem.push_back(sf::Vertex(point, color));
 			//std::cout << point.x << " :: " << point.y << std::endl;
-			point.x = R * sin(angle + 2 * NINETY_DEG + i * ang) + position.x;
-			point.y = R * cos(angle + 2 * NINETY_DEG + i * ang) + position.y;
+			point.x = (R * sin(angle + 2 * NINETY_DEG + i * ang) + position.x)*setting.xScale;
+			point.y = (R * cos(angle + 2 * NINETY_DEG + i * ang) + position.y)*setting.yScale;
 			//std::cout << point.x << " :: " << point.y << std::endl;
 			cpuMem.push_back(sf::Vertex(point, color));
 		}
@@ -63,10 +66,10 @@ void Trace::edge(bool beg, double& R, double& angle, sf::Vector2f& position)
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			sf::Vector2f point(R * sin(angle + NINETY_DEG - i * ang) + position.x, R * cos(angle + NINETY_DEG - i * ang) + position.y);
+			sf::Vector2f point(setting.xScale*( R * sin(angle + NINETY_DEG - i * ang) + position.x), setting.yScale*(R * cos(angle + NINETY_DEG - i * ang) + position.y));
 			cpuMem.push_back(sf::Vertex(point, color));
-			point.x = R * sin(angle - NINETY_DEG + i * ang) + position.x;
-			point.y = R * cos(angle - NINETY_DEG + i * ang) + position.y;
+			point.x = (R * sin(angle - NINETY_DEG + i * ang) + position.x)*setting.xScale;
+			point.y = (R * cos(angle - NINETY_DEG + i * ang) + position.y)*setting.yScale;
 			cpuMem.push_back(sf::Vertex(point, color));
 		}
 	}

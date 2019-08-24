@@ -111,7 +111,7 @@ public:
 	int getId() { return playerId; }
 	inline void setPosition(sf::Vector2f pos) {
 		position = pos;
-		head.setPosition(position);
+		head.setPosition(position.x*setting.xScale, position.y*setting.yScale);
 		boosthead.setPosition(position);
 		oldPosition = position;
 		float pointlx = headR * sin(angle + NINETY_DEG);

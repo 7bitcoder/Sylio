@@ -46,7 +46,7 @@ bool Player::update()
 				angle -= 4 * NINETY_DEG;
 			position.x += r * sin(angle);
 			position.y += r * cos(angle);
-			head.setPosition(position);
+			head.setPosition(position.x*setting.xScale, position.y*setting.yScale);
 			int diff = round((oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y));
 			if (diff > 4)
 			{
@@ -114,6 +114,7 @@ Player::Player(std::vector<double> & headVec_, std::array<std::array<long long i
 	actualGap = 0;
 	resize = false;
 	points = 0;
+	head.setScale(setting.xScale, setting.yScale);
 }
 void Player::reset()
 {
@@ -408,10 +409,10 @@ void Player::fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f
 	long long int info;
 	info = long long int(1) << 61;
 	info |= long long int(playerId) << 57;
-	sf::Vector2i tactualRight(round(actR.x), round(actR.y));
-	sf::Vector2i tactualLeft(round(actL.x), round(actL.y));
-	sf::Vector2i tlastRight(round(lasR.x), round(lasR.y));
-	sf::Vector2i tlastLeft(round(lasL.x), round(lasL.y));
+	sf::Vector2i tactualRight(round(actR.x / setting.xScale), round(actR.y / setting.yScale));
+	sf::Vector2i tactualLeft(round(actL.x / setting.xScale), round(actL.y / setting.yScale));
+	sf::Vector2i tlastRight(round(lasR.x / setting.xScale), round(lasR.y / setting.yScale));
+	sf::Vector2i tlastLeft(round(lasL.x / setting.xScale), round(lasL.y / setting.yScale));
 	int minx = std::min(std::min(tactualLeft.x, tactualRight.x), std::min(tlastLeft.x, tlastRight.x));
 	int maxx = std::max(std::max(tactualLeft.x, tactualRight.x), std::max(tlastLeft.x, tlastRight.x));
 	int miny = std::min(std::min(tactualLeft.y, tactualRight.y), std::min(tlastLeft.y, tlastRight.y));
