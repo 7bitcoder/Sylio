@@ -7,9 +7,9 @@ Rounds::Rounds(sf::RenderWindow& win, sf::Texture& box_, sf::Texture& boxOff_, s
 	Slider(win, pointner_, line_, click_)
 {
 	min = 1;
-	max = 99;
-	number = 20;
-	this->setString("20");
+	max = 50;
+	number = 10;
+	this->setString("10");
 }
 int Rounds::addNumber(char t)
 {

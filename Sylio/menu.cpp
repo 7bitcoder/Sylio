@@ -65,6 +65,54 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_
 		throw std::exception("png file missing");
 
 
+	if (!checkOnPink.loadFromFile("../PNG/pink_boxCheckmark.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOnPink.loadFromFile("../PNG/pink_button06.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOffPink.loadFromFile("../PNG/pink_button11.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOnPink.loadFromFile("../PNG/pink_button13.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOffPink.loadFromFile("../PNG/pink_button04.png"))
+		throw std::exception("png file missing");
+
+
+	if (!checkOnOliwe.loadFromFile("../PNG/oliwe_boxCheckmark.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOnOliwe.loadFromFile("../PNG/oliwe_button06.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOffOliwe.loadFromFile("../PNG/oliwe_button11.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOnOliwe.loadFromFile("../PNG/oliwe_button13.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOffOliwe.loadFromFile("../PNG/oliwe_button04.png"))
+		throw std::exception("png file missing");
+
+
+	if (!checkOnSkye.loadFromFile("../PNG/skye_boxCheckmark.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOnSkye.loadFromFile("../PNG/skye_button06.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOffSkye.loadFromFile("../PNG/skye_button11.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOnSkye.loadFromFile("../PNG/skye_button13.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOffSkye.loadFromFile("../PNG/skye_button04.png"))
+		throw std::exception("png file missing");
+
+
 	if (!checkOnRed.loadFromFile("../PNG/red_boxCheckmark.png"))
 		throw std::exception("png file missing");
 
@@ -78,6 +126,22 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_
 		throw std::exception("png file missing");
 
 	if (!nickNameOffRed.loadFromFile("../PNG/red_button01.png"))
+		throw std::exception("png file missing");
+
+
+	if (!checkOnPurple.loadFromFile("../PNG/purple_boxCheckmark.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOnPurple.loadFromFile("../PNG/purple_button03.png"))
+		throw std::exception("png file missing");
+
+	if (!controlOffPurple.loadFromFile("../PNG/purple_button08.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOnPurple.loadFromFile("../PNG/purple_button10.png"))
+		throw std::exception("png file missing");
+
+	if (!nickNameOffPurple.loadFromFile("../PNG/purple_button01.png"))
 		throw std::exception("png file missing");
 
 
@@ -113,6 +177,23 @@ Menu::Menu(sf::RenderWindow& win, std::string& ver_) : window(win), version(ver_
 	if (!listBlock.loadFromFile("../PNG/grey_button06.png"))
 		throw std::exception("png file missing");
 
+
+	if (!roundsOff.loadFromFile("../PNG/rounds_off__button06.png"))
+		throw std::exception("png file missing");
+
+	if (!roundsOn.loadFromFile("../PNG/rounds_on_button11.png"))
+		throw std::exception("png file missing");
+
+
+	if (!nicknameInfo.loadFromFile("../PNG/nickname.png"))
+		throw std::exception("png file missing");
+
+	if (!controlsInfo.loadFromFile("../PNG/controls.png"))
+		throw std::exception("png file missing");
+
+	if (!roundsInfo.loadFromFile("../PNG/rounds.png"))
+		throw std::exception("png file missing");
+
 	if (!backgroundShader.loadFromFile("../shaders/shaders/fragment/material-specular.frag", sf::Shader::Fragment))
 		throw std::exception("shader file missing");
 
@@ -130,7 +211,7 @@ st Menu::mainMenuUpdate()
 	title.setFont(font);
 	title.setCharacterSize(140);
 	title.setString("Sylio");
-	title.setPosition((linex - 250)*setting.xScale, (liney - 300)*setting.yScale);
+	title.setPosition((linex - 250) * setting.xScale, (liney - 300) * setting.yScale);
 	title.setFillColor(sf::Color::White);
 	title.setScale(setting.xScale, setting.yScale);
 
@@ -138,32 +219,32 @@ st Menu::mainMenuUpdate()
 	ver.setFont(font);
 	ver.setCharacterSize(15);
 	ver.setString(version);
-	ver.setPosition((linex*2 - 100) * setting.xScale, (liney*2 - 15) * setting.yScale);
+	ver.setPosition((linex * 2 - 100) * setting.xScale, (liney * 2 - 15) * setting.yScale);
 	ver.setScale(setting.xScale, setting.yScale);
 
 	Button normalGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	normalGame.setPosition((linex - 190 * 1.8 / 2)*setting.xScale, (liney - 100)*setting.yScale);
-	normalGame.setScale(1.8*setting.xScale, 1*setting.yScale);
+	normalGame.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney - 100) * setting.yScale);
+	normalGame.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	normalGame.setTitle("normal game");
 	normalGame.setSoundVolume(setting.SoundVolume);
 
 
 	Button multiplayerGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	multiplayerGame.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney) * setting.yScale);
+	multiplayerGame.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney)* setting.yScale);
 	multiplayerGame.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	multiplayerGame.setTitle("multipleyer game");
 	multiplayerGame.setSoundVolume(setting.SoundVolume);
 
 
 	Button settings(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	settings.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 100)* setting.yScale);
+	settings.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 100) * setting.yScale);
 	settings.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
 
 
 	Button quit(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	quit.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 200)* setting.yScale);
+	quit.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 200) * setting.yScale);
 	quit.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	quit.setTitle("quit");
 	quit.setSoundVolume(setting.SoundVolume);
@@ -217,21 +298,21 @@ st Menu::settingsUupdate()
 	VolMusicText.setString("Music Volume");
 	VolMusicText.setFont(font);
 	VolMusicText.setCharacterSize(25);
-	VolMusicText.setPosition((linex + 20)*setting.xScale, (liney - 400 + 8)*setting.yScale);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
+	VolMusicText.setPosition((linex + 20) * setting.xScale, (liney - 400 + 8) * setting.yScale);// .getPosition().x + 20, VolumeMusic.getPosition().y + 8);
 	VolMusicText.setScale(setting.xScale, setting.yScale);
 
 	sf::Text VolSounndEffectsTest;
 	VolSounndEffectsTest.setString("Sound Effects Volume");
 	VolSounndEffectsTest.setFont(font);
 	VolSounndEffectsTest.setCharacterSize(25);
-	VolSounndEffectsTest.setPosition((linex + 20)*setting.xScale, (liney - 200 + 8)*setting.yScale); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
+	VolSounndEffectsTest.setPosition((linex + 20) * setting.xScale, (liney - 200 + 8) * setting.yScale); //(VolumeSoundEffects.getPosition().x + 20, VolumeSoundEffects.getPosition().y + 8);
 	VolSounndEffectsTest.setScale(setting.xScale, setting.yScale);
 
 	sf::Text ChoseMusicText;
 	ChoseMusicText.setString("Chose music file");
 	ChoseMusicText.setFont(font);
 	ChoseMusicText.setCharacterSize(25);
-	ChoseMusicText.setPosition((linex + 20)*setting.xScale, (liney - 50 + 8)*setting.yScale); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
+	ChoseMusicText.setPosition((linex + 20) * setting.xScale, (liney - 50 + 8) * setting.yScale); //(ChoseMusic.getPosition().x + 20, ChoseMusic.getPosition().y + 8);
 	ChoseMusicText.setScale(setting.xScale, setting.yScale);
 
 	sf::Text fileError;
@@ -258,8 +339,8 @@ st Menu::settingsUupdate()
 	{
 		//std::cout << entry.path().generic_string() << " to tutaj"<< std::endl;
 		list.pushBack(window, blockPressed, listBlock, listBlock, clickBuff, switchBuff, font);
-		list.setPosition(linex*setting.xScale, (liney + 50 + i * 50)*setting.yScale);
-		list.setScale(1.8*setting.xScale, 1*setting.yScale);
+		list.setPosition(linex * setting.xScale, (liney + 50 + i * 50) * setting.yScale);
+		list.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 		list.setText(entry.path().filename().generic_string());
 		i++;
 		if (i == 5)
@@ -269,14 +350,14 @@ st Menu::settingsUupdate()
 	list.chooseDefault();
 
 	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	goBack.setPosition(linex*setting.xScale, setting.yScale*(liney + 200 + 4 * 58));
-	goBack.setScale(1.8*setting.xScale, 1*setting.yScale);
+	goBack.setPosition(linex * setting.xScale, setting.yScale * (liney + 200 + 4 * 58));
+	goBack.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
 
 
 	Button musicApply(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	musicApply.setPosition(linex*setting.xScale, (liney + 100 + 4 * 58)*setting.yScale);
+	musicApply.setPosition(linex * setting.xScale, (liney + 100 + 4 * 58) * setting.yScale);
 	musicApply.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	musicApply.setTitle("apply");
 	musicApply.setSoundVolume(setting.SoundVolume);
@@ -365,20 +446,21 @@ st Menu::pauseUpdate()
 
 	sf::Text title;
 	title.setFont(font);
-	title.setCharacterSize(50);
+	title.setCharacterSize(60);
 	title.setString("Pause");
-	title.setPosition( (linex - 150)*setting.xScale, (liney - 100)*setting.yScale);
+	title.setPosition((linex - 120) * setting.xScale, (liney - 100) * setting.yScale);
+	title.setScale(setting.xScale, setting.yScale);
 	title.setFillColor(sf::Color::White);
 
 	Button playGame(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	playGame.setPosition( (linex - 190 * 1.8 / 2)*setting.xScale, liney*setting.yScale );
-	playGame.setScale(1.8*setting.xScale, 1*setting.yScale);
+	playGame.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, liney * setting.yScale);
+	playGame.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	playGame.setTitle("play");
 	playGame.setSoundVolume(setting.SoundVolume);
 
 
 	Button settings(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	settings.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 100)* setting.yScale);
+	settings.setPosition((linex - 190 * 1.8 / 2) * setting.xScale, (liney + 100) * setting.yScale);
 	settings.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	settings.setTitle("settings");
 	settings.setSoundVolume(setting.SoundVolume);
@@ -439,7 +521,7 @@ st Menu::normalGameUpdate()
 
 
 	Button goBack(window, blockPressed, block, offButton, clickBuff, switchBuff, font);
-	goBack.setPosition(linex*setting.xScale, (liney + 300)*setting.yScale);
+	goBack.setPosition(linex * setting.xScale, (liney + 300) * setting.yScale);
 	goBack.setScale(1.8 * setting.xScale, 1 * setting.yScale);
 	goBack.setTitle("Back");
 	goBack.setSoundVolume(setting.SoundVolume);
@@ -451,19 +533,31 @@ st Menu::normalGameUpdate()
 	play.setTitle("play");
 	play.setSoundVolume(setting.SoundVolume);
 
-	Rounds rounds(window, controlOnBlue, controlOffBlue, VolumePointner, VolumeSliderLine, clickBuff);
+	Rounds rounds(window, roundsOff, roundsOn, VolumePointner, VolumeSliderLine, clickBuff);
 	rounds.setFont(font);
-	rounds.setBoxPosition((linex + 100)*setting.xScale, 300*setting.yScale);
+	rounds.setBoxPosition((linex + 100) * setting.xScale, 300 * setting.yScale);
 	rounds.setSliderPosition(linex, (500 - 30));
 	rounds.setSize(60);
-	rounds.setTextPosition((linex + 120)*setting.xScale, (300 + 20)*setting.yScale);
+	rounds.setTextPosition((linex + 120) * setting.xScale, (300 + 20) * setting.yScale);
 	rounds.setSoundVolume(setting.SoundVolume);
 	rounds.setString("");
 	rounds.addNumber('2');
 	rounds.addNumber('0');
-	rounds.setScale(2.5 * setting.xScale, 2.5 * setting.yScale);
+	rounds.setScale(setting.xScale, setting.yScale);
 	rounds.setColor(sf::Color::Black);
 
+	sf::Sprite nicknameInfoS;
+	nicknameInfoS.setTexture(nicknameInfo);
+	nicknameInfoS.setPosition(60 * setting.xScale, 25 * setting.yScale);
+
+
+	sf::Sprite controlsInfoS;
+	controlsInfoS.setTexture(controlsInfo);
+	controlsInfoS.setPosition(400 * setting.xScale, 1 * setting.yScale);
+
+	sf::Sprite roundsInfoS;
+	roundsInfoS.setTexture(roundsInfo);
+	roundsInfoS.setPosition(800 * setting.xScale, 120 * setting.yScale);
 
 	setPlayer::clearForbidden();
 	int row = 90;
@@ -472,44 +566,44 @@ st Menu::normalGameUpdate()
 
 	std::vector<setPlayer> players;
 	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player1")));
-	players.back().setPosition(col , row + off);
+	players.back().setPosition(col, row + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(53, 186, 243, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player2")));
-	players.back().setPosition(col , row*2 + off);
+	players.back().setPosition(col, row * 2 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(136, 224, 96, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player3")));
-	players.back().setPosition(col , row*3 + off);
+	players.back().setPosition(col, row * 3 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(255, 217, 72, 255));
 
 	players.push_back(std::move(setPlayer(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player4")));
-	players.back().setPosition(col , row*4 + off);
+	players.back().setPosition(col, row * 4 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
 	players.back().setColor(sf::Color(250, 129, 50, 255));
 
-	players.push_back(std::move(setPlayer(window, nickNameOnBlue, nickNameOffBlue, controlOnBlue, controlOffBlue, checkOnBlue, checkOff, clickBuff, font2, "player5")));
-	players.back().setPosition(col , row*5 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnPink, nickNameOffPink, controlOnPink, controlOffPink, checkOnPink, checkOff, clickBuff, font2, "player5")));
+	players.back().setPosition(col, row * 5 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(255, 99, 255, 255));
 
-	players.push_back(std::move(setPlayer(window, nickNameOnGreen, nickNameOffGreen, controlOnGreen, controlOffGreen, checkOnGreen, checkOff, clickBuff, font2, "player6")));
-	players.back().setPosition(col , row*6 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnPurple, nickNameOffPurple, controlOnPurple, controlOffPurple, checkOnPurple, checkOff, clickBuff, font2, "player6")));
+	players.back().setPosition(col, row * 6 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(186, 5, 255, 255));
 
-	players.push_back(std::move(setPlayer(window, nickNameOnYellow, nickNameOffYellow, controlOnYellow, controlOffYellow, checkOnYellow, checkOff, clickBuff, font2, "player7")));
-	players.back().setPosition(col , row*7 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnOliwe, nickNameOffOliwe, controlOnOliwe, controlOffOliwe, checkOnOliwe, checkOff, clickBuff, font2, "player7")));
+	players.back().setPosition(col, row * 7 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(141, 141, 0, 255));
 
-	players.push_back(std::move(setPlayer(window, nickNameOnRed, nickNameOffRed, controlOnRed, controlOffRed, checkOnRed, checkOff, clickBuff, font2, "player8")));
-	players.back().setPosition(col , row*8 + off);
+	players.push_back(std::move(setPlayer(window, nickNameOnSkye, nickNameOffSkye, controlOnSkye, controlOffSkye, checkOnSkye, checkOff, clickBuff, font2, "player8")));
+	players.back().setPosition(col, row * 8 + off);
 	players.back().setSoundVolume(setting.SoundVolume);
-	players.back().setColor(sf::Color::Red);
+	players.back().setColor(sf::Color(25, 255, 255, 255));
 
 	setPlayer * activated = &players[0];
 	bool alertFlag = false;
@@ -646,6 +740,9 @@ st Menu::normalGameUpdate()
 			x.draw();
 		rounds.draw();
 		alert.draw();
+		window.draw(nicknameInfoS);
+		window.draw(controlsInfoS);
+		window.draw(roundsInfoS);
 		window.display();
 	}
 }

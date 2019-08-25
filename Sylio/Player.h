@@ -21,6 +21,11 @@ private:
 	friend class Freeze;
 	friend class SwitchControls;
 	friend class Blind;
+	friend class CrossBounds;
+	friend class Immortal;
+	friend class MoreOftenHoles;
+	friend class LongerGaps;
+
 	static double rScan;
 
 	int points;
@@ -38,8 +43,15 @@ private:
 	double waitingR;
 	double boostHeadTime;
 	double boostTimeVel;
+
+	float hiddenNextGapOffset;
+	float hiddenGapOffset;
+	float nextGapOffset;
+	float gapOffset;
+	
 	bool resize;
 
+	bool crossBounds;
 	bool dead;
 	bool lockLeft;
 	bool lockRight;
@@ -47,6 +59,7 @@ private:
 	bool visible;
 	bool brokeWalls;
 	bool activeBoost;
+	bool immortal;
 	int& xmax;
 	int& xmin;
 	int& ymax;
@@ -123,13 +136,7 @@ public:
 		fullFillResizeR(headR);
 		trace.start();
 	}
-	bool checkBounds() {
-		if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) { 
-			die(); 
-			return true; 
-		} 
-		return false;
-	}
+	bool checkBounds();
 
 	~Player();
 };

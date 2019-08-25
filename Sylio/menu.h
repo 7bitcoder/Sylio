@@ -62,7 +62,38 @@ private:
 	sf::Texture controlOffRed;
 	sf::Texture checkOnRed;
 
+	sf::Texture nickNameOffPink;
+	sf::Texture nickNameOnPink;
+	sf::Texture controlOnPink;
+	sf::Texture controlOffPink;
+	sf::Texture checkOnPink;
 
+	sf::Texture nickNameOffPurple;
+	sf::Texture nickNameOnPurple;
+	sf::Texture controlOnPurple;
+	sf::Texture controlOffPurple;
+	sf::Texture checkOnPurple;
+
+	sf::Texture nickNameOffOliwe;
+	sf::Texture nickNameOnOliwe;
+	sf::Texture controlOnOliwe;
+	sf::Texture controlOffOliwe;
+	sf::Texture checkOnOliwe;
+
+	sf::Texture nickNameOffSkye;
+	sf::Texture nickNameOnSkye;
+	sf::Texture controlOnSkye;
+	sf::Texture controlOffSkye;
+	sf::Texture checkOnSkye;
+
+	sf::Texture roundsOff;
+	sf::Texture roundsOn;
+
+	sf::Texture	nicknameInfo;
+
+	sf::Texture	controlsInfo;
+
+	sf::Texture	roundsInfo;
 
 public:
 	Menu(sf::RenderWindow& win, std::string& ver);

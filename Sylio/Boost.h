@@ -29,6 +29,26 @@ public:
 	virtual void clearBoost(Player& player);
 	virtual ~SpeedUp() {};
 };
+class LongerGaps : public Boost
+{
+private:
+	float multVel;
+public:
+	LongerGaps(float dur = 5) { duration = dur; clock.restart(); multVel = 1.5; }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual ~LongerGaps() {};
+};
+class MoreOftenHoles : public Boost
+{
+private:
+	float multVel;
+public:
+	MoreOftenHoles(float dur = 5) { duration = dur; clock.restart(); multVel = 0.5; }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual ~MoreOftenHoles() {};
+};
 class SlowDown : public Boost
 {
 private:
@@ -109,4 +129,25 @@ public:
 	virtual void clearBoost(Player& player);
 	virtual bool stack() { return true; }
 	virtual ~Blind() {};
+};
+
+class CrossBounds : public Boost
+{
+private:
+public:
+	CrossBounds(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~CrossBounds() {};
+};
+class Immortal : public Boost
+{
+private:
+public:
+	Immortal(float dur = 5) { duration = dur; clock.restart(); }
+	virtual void setBoost(Player& player);
+	virtual void clearBoost(Player& player);
+	virtual bool stack() { return true; }
+	virtual ~Immortal() {};
 };

@@ -12,6 +12,10 @@ class gameBoard
 private:
 	static std::array<std::array<long long int, 1920>, 1080> hitbox;
 	Background& background;
+	int defxMax;
+	int defxMin;
+	int defyMax;
+	int defyMin;
 	int xmax;
 	int xmin;
 	int ymin;
@@ -30,7 +34,14 @@ private:
 	int sec;
 	sf::Text startUpText;
 	sf::Text Winner;
+	sf::Text roundsText;
 	sf::Font font;
+	int boundRounds;
+	sf::Clock boundTimer;
+	float boundVel;
+	float boundRange;
+	bool timeFlag;
+	float duration;
 	double dontSetBoostR;//normalbooostR*2
 	sf::Vector2i boostPosition;
 	double boostR;
@@ -83,6 +94,7 @@ public:
 	void clearBoostPosOnHit(sf::Vector2f boostPosition);
 	void checkBoostsColission();
 	float getTimeBoost() { return minBoostTime + rand() % (maxBoostTime - minBoostTime); }
+	Boost* decode(int s);
 	void drawBounds() {
 		window.draw(bounds[0], 4, sf::Quads);
 		window.draw(bounds[1], 4, sf::Quads);
@@ -113,5 +125,6 @@ public:
 	}
 	void clearBoosts();
 	void restart();
+	void boundFunction();
 };
 

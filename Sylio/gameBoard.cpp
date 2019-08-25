@@ -10,12 +10,21 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
 	scoreBoard(window, 30, 500)
 {
 	this->pause = false;
-	setBounds(1075, 5, 1915, 400, 5);
+	defxMin = 300;
+	defyMax = 1075;
+	defxMax = 1915;
+	defyMin = 5;
+	setBounds(defyMax, defyMin, defxMax, defxMin, defyMin);
 	srand(std::time(0));
 	boostR = 40;
 	dontSetBoostR = 50;
 	minBoostTime = 5;
 	maxBoostTime = 10;
+	boundRounds = 0;
+	boundRange = 100;
+	boundVel = 0.5;
+	timeFlag = false;
+	duration = 0;
 	boostTime = getTimeBoost();
 	if (!blind.loadFromFile("../boost_icons/blind.png"))
 		throw std::exception("boost icon missing");
@@ -57,14 +66,20 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
 	startUpText.setFont(font);
 	startUpText.setCharacterSize(80);
 	startUpText.setFillColor(sf::Color::White);
-	startUpText.setPosition((xmin + (xmax - xmin) / 2)*setting.xScale, (ymin + (ymax - ymin) / 2 - 100)*setting.yScale);
+	startUpText.setPosition((xmin + (xmax - xmin) / 2) * setting.xScale, (ymin + (ymax - ymin) / 2 - 100) * setting.yScale);
 	startUpText.setScale(setting.xScale, setting.yScale);
 
 	Winner.setFont(font);
 	Winner.setCharacterSize(80);
 	Winner.setFillColor(sf::Color::White);
-	Winner.setPosition((xmin + (xmax - xmin) / 2)*setting.xScale, (ymin + (ymax - ymin) / 2 - 100)*setting.yScale);
+	Winner.setPosition((xmin + (xmax - xmin) / 2) * setting.xScale, (ymin + (ymax - ymin) / 2 - 100) * setting.yScale);
 	Winner.setScale(setting.xScale, setting.yScale);
+
+	roundsText.setFont(font);
+	roundsText.setCharacterSize(40);
+	roundsText.setFillColor(sf::Color::White);
+	roundsText.setPosition(20 * setting.xScale, 200 * setting.yScale);
+	roundsText.setScale(setting.xScale, setting.yScale);
 }
 
 st gameBoard::update()
@@ -72,8 +87,8 @@ st gameBoard::update()
 
 	sf::Text fps;
 	fps.setFont(font);
-	fps.setCharacterSize(40);
-	fps.setPosition(20*setting.xScale, 20*setting.yScale);
+	fps.setCharacterSize(35);
+	fps.setPosition(20 * setting.xScale, 20 * setting.yScale);
 	fps.setScale(setting.xScale, setting.yScale);
 	fps.setFillColor(sf::Color::White);
 
@@ -85,7 +100,7 @@ st gameBoard::update()
 		clearHitbox();
 		clearBoosts();
 		createPlayers();
-		scoreBoard.setPosition(20*setting.xScale, 400*setting.yScale, Players, font);
+		scoreBoard.setPosition(25 * setting.xScale, 400 * setting.yScale, Players, font);
 		AllRounds = setting.rounds;
 		rounds = AllRounds;
 	}
@@ -104,6 +119,11 @@ st gameBoard::update()
 			setting.TimeStop = true;
 			spacePressed = false;
 			sec = 3;
+			timeFlag = false;
+			duration = 0;
+			boundRounds = 0;
+			setBounds(defyMax, defyMin, defxMax, defxMin, 5);
+			roundsText.setString("Round " + std::to_string(AllRounds - rounds + 1) + " / " + std::to_string(AllRounds));
 			startUpText.setString("press space to start");
 			startUpText.setOrigin(startUpText.getGlobalBounds().width / 2, startUpText.getGlobalBounds().height / 2);
 		}
@@ -164,7 +184,7 @@ st gameBoard::update()
 						winner.die();
 						winner.addPoints(poolPoints);
 						scoreBoard.updateScore(winner.getId(), winner);
-						Winner.setString("Round winner :" + winner.getNickname());
+						Winner.setString("Round winner: " + winner.getNickname());
 						Winner.setScale(setting.xScale, setting.yScale);
 						Winner.setOrigin(Winner.getGlobalBounds().width / 2, Winner.getGlobalBounds().height / 2);
 						boostTImer.restart();
@@ -175,6 +195,8 @@ st gameBoard::update()
 			updatePlayers();
 			scoreBoard.update();
 			checkBoostsColission();
+			if (boundRounds)
+				boundFunction();
 			cnt++;
 			if (!start && !end && boostTImer.getElapsedTime().asSeconds() > boostTime)
 			{
@@ -200,15 +222,42 @@ st gameBoard::update()
 			{
 				setting.pause = true;
 				setting.TimeStop = true;
+				updatePlayers();//for  proper time handle when paused
+				scoreBoard.update();
+				checkBoostsColission();//|^
+				if (boundRounds)
+					boundFunction();
 				return st::pause;
 			}
 			else if (isF6Pressed())
+			{
+				if (!boundRounds)
+					boundTimer.restart();
+				boundRounds++;
+				std::cout << boundRounds;
+			}
+			else if (isF5Pressed())
 				setting.TimeStop = !setting.TimeStop;
-
+			else if (isF2Pressed())
+			{
+				Boost* tmp = new CrossBounds;
+				Players.back().addBoost(tmp);
+			}
+			else if (isF3Pressed())
+			{
+				Boost* tmp = new LongerGaps;
+				Players.back().addBoost(tmp);
+			}
+			else if (isF2Pressed())
+			{
+				Boost* tmp = new MoreOftenHoles;
+				Players.back().addBoost(tmp);
+			}
 			//background.draw();
 			drawBounds();
 			drawPlayers();
 			window.draw(fps);
+			window.draw(roundsText);
 			for (auto& aa : boostsOnBoard)
 				window.draw(aa);
 			if (start)
@@ -220,7 +269,7 @@ st gameBoard::update()
 			if (setting.pause)
 			{
 				setting.pause = false;
-				if(!start)
+				if (!start)
 					setting.TimeStop = false;
 			}
 		}
@@ -240,25 +289,25 @@ void gameBoard::setBounds(int ymax_, int ymin_, int xmax_, int xmin_, int thicc_
 	ymin = ymin_;
 	ymax = ymax_;
 	thicc = thicc_;
-	bounds[0][0] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
-	bounds[0][1] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymin*setting.yScale), sf::Color::White);
-	bounds[0][2] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymax*setting.yScale), sf::Color::White);
-	bounds[0][3] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
+	bounds[0][0] = sf::Vertex(sf::Vector2f((xmax + thicc) * setting.xScale, (ymin - thicc) * setting.yScale), sf::Color::White);
+	bounds[0][1] = sf::Vertex(sf::Vector2f(xmax * setting.xScale, ymin * setting.yScale), sf::Color::White);
+	bounds[0][2] = sf::Vertex(sf::Vector2f(xmax * setting.xScale, ymax * setting.yScale), sf::Color::White);
+	bounds[0][3] = sf::Vertex(sf::Vector2f((xmax + thicc) * setting.xScale, (ymax + thicc) * setting.yScale), sf::Color::White);
 
-	bounds[1][0] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
-	bounds[1][1] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymax*setting.yScale), sf::Color::White);
-	bounds[1][2] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymax*setting.yScale), sf::Color::White);
-	bounds[1][3] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
+	bounds[1][0] = sf::Vertex(sf::Vector2f((xmax + thicc) * setting.xScale, (ymax + thicc) * setting.yScale), sf::Color::White);
+	bounds[1][1] = sf::Vertex(sf::Vector2f(xmax * setting.xScale, ymax * setting.yScale), sf::Color::White);
+	bounds[1][2] = sf::Vertex(sf::Vector2f(xmin * setting.xScale, ymax * setting.yScale), sf::Color::White);
+	bounds[1][3] = sf::Vertex(sf::Vector2f((xmin - thicc) * setting.xScale, (ymax + thicc) * setting.yScale), sf::Color::White);
 
-	bounds[2][0] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymax + thicc)*setting.yScale), sf::Color::White);
-	bounds[2][1] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymax*setting.yScale), sf::Color::White);
-	bounds[2][2] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymin*setting.yScale), sf::Color::White);
-	bounds[2][3] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
+	bounds[2][0] = sf::Vertex(sf::Vector2f((xmin - thicc) * setting.xScale, (ymax + thicc) * setting.yScale), sf::Color::White);
+	bounds[2][1] = sf::Vertex(sf::Vector2f(xmin * setting.xScale, ymax * setting.yScale), sf::Color::White);
+	bounds[2][2] = sf::Vertex(sf::Vector2f(xmin * setting.xScale, ymin * setting.yScale), sf::Color::White);
+	bounds[2][3] = sf::Vertex(sf::Vector2f((xmin - thicc) * setting.xScale, (ymin - thicc) * setting.yScale), sf::Color::White);
 
-	bounds[3][0] = sf::Vertex(sf::Vector2f((xmin - thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
-	bounds[3][1] = sf::Vertex(sf::Vector2f(xmin*setting.xScale, ymin*setting.yScale), sf::Color::White);
-	bounds[3][2] = sf::Vertex(sf::Vector2f(xmax*setting.xScale, ymin*setting.yScale), sf::Color::White);
-	bounds[3][3] = sf::Vertex(sf::Vector2f((xmax + thicc)*setting.xScale, (ymin - thicc)*setting.yScale), sf::Color::White);
+	bounds[3][0] = sf::Vertex(sf::Vector2f((xmin - thicc) * setting.xScale, (ymin - thicc) * setting.yScale), sf::Color::White);
+	bounds[3][1] = sf::Vertex(sf::Vector2f(xmin * setting.xScale, ymin * setting.yScale), sf::Color::White);
+	bounds[3][2] = sf::Vertex(sf::Vector2f(xmax * setting.xScale, ymin * setting.yScale), sf::Color::White);
+	bounds[3][3] = sf::Vertex(sf::Vector2f((xmax + thicc) * setting.xScale, (ymin - thicc) * setting.yScale), sf::Color::White);
 
 }
 
@@ -288,17 +337,17 @@ void gameBoard::createPlayers()
 		Players.back().setGapBounds(40, 300, 500, 1000);
 
 	}
-
-	/*Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin)));
-	Players.back().setId(i);
-	allHeadRadious.push_back(5);
-	Players.back().setParams(generteAngle(), 6, 2.5, 100);
-	Players.back().setPosition(generatePositions());
-	Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
-	Players.back().setNick("sylwow");
-	i++;
-	Players.back().setGapBounds(40, 300, 500, 1000);
-	*/
+	/*
+		Players.push_back(std::move(Player(allHeadRadious, hitbox, window, sf::Color::Red, ymax, ymin, xmax, xmin)));
+		Players.back().setId(i);
+		allHeadRadious.push_back(5);
+		Players.back().setParams(generteAngle(), 6, 2.5, 100);
+		Players.back().setPosition(generatePositions());
+		Players.back().setControls(sf::Keyboard::Key::S, sf::Keyboard::Key::D);
+		Players.back().setNick("sylwow");
+		i++;
+		Players.back().setGapBounds(40, 300, 500, 1000);
+		*/
 }
 
 bool gameBoard::isF2Pressed()
@@ -603,57 +652,84 @@ void gameBoard::getRandomBoost()
 {
 	int N = 9;
 	int choice = rand() % N;
+
 	boostsOnBoard.push_back(BoostOnBoard());
-	Boost* wsk;
 	switch (choice)
 	{
 	case 0:
-		wsk = new GrowUp;
 		boostsOnBoard.back().setTexture(growUp);
 		break;
 	case 1:
-		wsk = new Shrink;
 		boostsOnBoard.back().setTexture(shrink);
 		break;
 	case 2:
-		wsk = new SpeedUp;
 		boostsOnBoard.back().setTexture(speedUp);
 		break;
 	case 3:
-		wsk = new SlowDown;
 		boostsOnBoard.back().setTexture(slowDown);
 		break;
 	case 4:
-		wsk = new LockLeft;
 		boostsOnBoard.back().setTexture(lockLeft);
 		break;
 	case 5:
-		wsk = new LockRight;
 		boostsOnBoard.back().setTexture(lockRight);
 		break;
 	case 6:
-		wsk = new Freeze;
 		boostsOnBoard.back().setTexture(freeze);
 		break;
 	case 7:
-		wsk = new SwitchControls;
 		boostsOnBoard.back().setTexture(switchControls);
 		break;
 	case 8:
-		wsk = new Blind;
 		boostsOnBoard.back().setTexture(blind);
 		break;
 	default:
-		wsk = new Blind;
 		boostsOnBoard.back().setTexture(blind);
 		break;
 	}
-	boostsOnBoard.back().setBoost(wsk);
-	boostsOnBoard.back().setOrigin(32, 32);
-	boostsOnBoard.back().setPosition(boostPosition.x*setting.xScale, boostPosition.y*setting.yScale);
-	boostsOnBoard.back().setScale(0.1*setting.xScale, 0.1*setting.yScale);
+	boostsOnBoard.back().setBoost(choice);
+	boostsOnBoard.back().setPosition(boostPosition.x * setting.xScale, boostPosition.y * setting.yScale);
+	boostsOnBoard.back().setScale( setting.xScale, setting.yScale);
+	boostsOnBoard.back().setOrigin(32 * setting.xScale, 32 * setting.yScale);
 }
-
+Boost* gameBoard::decode(int s)
+{
+	Boost* wsk = nullptr;
+	switch (s)
+	{
+	case 0:
+		wsk = new GrowUp;
+		break;
+	case 1:
+		wsk = new Shrink;
+		break;
+	case 2:
+		wsk = new SpeedUp;
+		break;
+	case 3:
+		wsk = new SlowDown;
+		break;
+	case 4:
+		wsk = new LockLeft;
+		break;
+	case 5:
+		wsk = new LockRight;
+		break;
+	case 6:
+		wsk = new Freeze;
+		break;
+	case 7:
+		wsk = new SwitchControls;
+		break;
+	case 8:
+		wsk = new Blind;
+		break;
+	default:
+		wsk = new Blind;
+		break;
+	}
+	return wsk;
+}
 void gameBoard::markBoostPosOnHit(sf::Vector2i boostPosition)
 {
 	int begx = round(boostPosition.x - boostR);
@@ -720,17 +796,38 @@ void gameBoard::checkBoostsColission()
 {
 	std::vector<BoostOnBoard>::iterator it;
 	bool found;
-	for (auto& player : Players)
+	for (auto player = Players.begin(); player != Players.end() ; player++)
 	{
 		found = false;
-		sf::Vector2f playertPos = player.getPos();
+		sf::Vector2f playertPos = player->getPos();
 		for (it = boostsOnBoard.begin(); it != boostsOnBoard.end(); it++)
 		{
 			sf::Vector2f boostPos = it->getPosition();
-			if (((double(playertPos.x) - boostPos.x) * (double(playertPos.x) - boostPos.x) + (double(playertPos.y) - boostPos.y) * (double(playertPos.y) - boostPos.y)) < (player.getRadious() + boostR) * (player.getRadious() + boostR))
+			if (((double(playertPos.x) - boostPos.x) * (double(playertPos.x) - boostPos.x) + (double(playertPos.y) - boostPos.y) * (double(playertPos.y) - boostPos.y)) < (player->getRadious() + boostR) * (player->getRadious() + boostR))
 			{
 				found = true;
-				player.addBoost(it->getBoost());
+				boostMode mode = it->getMode();
+				int BoostId = it->getBoost();
+				switch (mode)
+				{
+				case boostMode::one:
+					player->addBoost(decode(BoostId));
+					break;
+				case boostMode::all:
+					for (auto pl = Players.begin(); pl != Players.end(); pl++)
+						pl->addBoost(decode(BoostId));
+					break;
+				case boostMode::rest:
+					for (auto pl = Players.begin(); pl != Players.end(); pl++)
+						if(pl != player)
+							pl->addBoost(decode(BoostId));
+					break;
+				case boostMode::random:
+					int ran = rand() & Players.size();
+					(Players.begin() + ran)->addBoost(decode(BoostId));
+					break;
+				}
+
 				clearBoostPosOnHit(it->getPosition());
 				break;
 			}
@@ -742,10 +839,6 @@ void gameBoard::checkBoostsColission()
 
 void gameBoard::clearBoosts()
 {
-	for (auto& x : boostsOnBoard)
-	{
-		delete x.getBoost();
-	}
 	boostsOnBoard.clear();
 }
 
@@ -765,6 +858,35 @@ void gameBoard::restart()
 	Players.back().setPosition(generatePositions());
 	Players.back().reset();
 	*/
+}
+
+void gameBoard::boundFunction()
+{
+	if (setting.TimeStop)
+	{
+		if (!timeFlag)
+		{
+			timeFlag = true;
+			duration += boundTimer.getElapsedTime().asSeconds();
+		}
+		boundTimer.restart();
+	}
+	else
+	{
+		timeFlag = false;
+		float off = boundRange * sin((boundTimer.getElapsedTime().asSeconds() + duration) * boundVel);
+		if (off < 0)
+		{
+			boundRounds--;
+			boundTimer.restart();
+			duration = 0;
+			setBounds(defyMax, defyMin, defxMax, defxMin, 5);
+		}
+		else
+		{
+			setBounds(defyMax - off, defyMin + off, defxMax - off, defxMin + off, 5);
+		}
+	}
 }
 
 

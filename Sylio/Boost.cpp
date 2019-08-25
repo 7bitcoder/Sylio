@@ -10,6 +10,10 @@ struct limitations
 	double minVel = 50;
 	double minRadious = 5;
 	double maxRadious = 30;
+	double maxNextGapOffset = 1;
+	double minNextGapOffset = 0.1;
+	double maxGapOffset = 5;
+	double minGapOffset = 1;
 } limits;
 
 class Player;
@@ -61,6 +65,50 @@ void SpeedUp::clearBoost(Player& player)
 		player.velocity = player.hiddenVelocity;
 }
 
+
+void LongerGaps::setBoost(Player& player)
+{
+	player.hiddenGapOffset *= multVel;
+	if (player.hiddenGapOffset < limits.minGapOffset)
+		player.gapOffset = limits.minGapOffset;
+	else if (player.hiddenGapOffset > limits.maxGapOffset)
+		player.gapOffset = limits.maxGapOffset;
+	else
+		player.gapOffset = player.hiddenGapOffset;
+}
+
+void LongerGaps::clearBoost(Player& player)
+{
+	player.hiddenGapOffset /= multVel;
+	if (player.hiddenGapOffset < limits.minNextGapOffset)
+		player.gapOffset = limits.minNextGapOffset;
+	else if (player.hiddenGapOffset > limits.maxGapOffset)
+		player.gapOffset = limits.maxGapOffset;
+	else
+		player.gapOffset = player.hiddenGapOffset;
+}
+
+void MoreOftenHoles::setBoost(Player& player)
+{
+	player.hiddenNextGapOffset *= multVel;
+	if (player.hiddenNextGapOffset < 0)
+		player.nextGapOffset = 0;
+	else if (player.hiddenNextGapOffset > limits.maxNextGapOffset)
+		player.nextGapOffset = limits.maxNextGapOffset;
+	else
+		player.nextGapOffset = player.hiddenNextGapOffset;
+}
+
+void MoreOftenHoles::clearBoost(Player& player)
+{
+	player.hiddenNextGapOffset /= multVel;
+	if (player.hiddenNextGapOffset < 0)
+		player.nextGapOffset = 0;
+	else if (player.hiddenNextGapOffset > limits.maxNextGapOffset)
+		player.nextGapOffset = limits.maxNextGapOffset;
+	else
+		player.nextGapOffset = player.hiddenNextGapOffset;
+}
 
 void SlowDown::setBoost(Player& player)
 {
@@ -194,4 +242,24 @@ void Blind::setBoost(Player& player)
 void Blind::clearBoost(Player& player)
 {
 	player.visible = true;
+}
+
+void CrossBounds::setBoost(Player& player)
+{
+	player.crossBounds = true;
+}
+
+void CrossBounds::clearBoost(Player& player)
+{
+	player.crossBounds = false;
+}
+
+void Immortal::setBoost(Player& player)
+{
+	player.immortal = true;
+}
+
+void Immortal::clearBoost(Player& player)
+{
+	player.immortal = false;
 }

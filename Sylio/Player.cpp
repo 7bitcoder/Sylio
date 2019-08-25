@@ -46,7 +46,7 @@ bool Player::update()
 				angle -= 4 * NINETY_DEG;
 			position.x += r * sin(angle);
 			position.y += r * cos(angle);
-			head.setPosition(position.x*setting.xScale, position.y*setting.yScale);
+			head.setPosition(position.x * setting.xScale, position.y * setting.yScale);
 			int diff = round((oldPosition.x - position.x) * (oldPosition.x - position.x) + (oldPosition.y - position.y) * (oldPosition.y - position.y));
 			if (diff > 4)
 			{
@@ -113,6 +113,12 @@ Player::Player(std::vector<double> & headVec_, std::array<std::array<long long i
 	setColor(col);
 	actualGap = 0;
 	resize = false;
+	crossBounds = false;
+	immortal = false;
+	nextGapOffset = 1;
+	gapOffset = 1;
+	hiddenGapOffset = 1;
+	hiddenNextGapOffset = 1;
 	points = 0;
 	head.setScale(setting.xScale, setting.yScale);
 }
@@ -127,7 +133,88 @@ void Player::reset()
 	lockRight = false;
 	time.restart();
 	resize = false;
+	crossBounds = false;
+	immortal = false;
+	nextGapOffset = 1;
+	gapOffset = 1;
+	hiddenGapOffset = 1;
+	hiddenNextGapOffset = 1;
 	erise();
+}
+bool Player::checkBounds()
+{
+	if (!crossBounds)
+	{
+		if (position.x - headR < xmin || position.x + headR > xmax || position.y + headR > ymax || position.y - headR < ymin) {
+			die();
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		if (position.x - headR < xmin)
+		{
+			actualGap = 0;
+			trace.edge(false, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.stop();
+			oldPosition = sf::Vector2f(xmax - headR, position.y);
+			position = oldPosition;
+			head.setPosition(position.x * setting.xScale, position.y * setting.yScale);
+			setNewGap();
+			updateTrace();
+			trace.edge(true, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.start();
+		}
+		else if (position.x + headR > xmax)
+		{
+			actualGap = 0;
+			trace.edge(false, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.stop();
+			oldPosition = sf::Vector2f(xmin + headR, position.y);
+			position = oldPosition;
+			head.setPosition(position.x * setting.xScale, position.y * setting.yScale);
+			setNewGap();
+			updateTrace();
+			trace.edge(true, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.start();
+		}
+		else if (position.y + headR > ymax)
+		{
+			actualGap = 0;
+			trace.edge(false, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.stop();
+			oldPosition = sf::Vector2f(position.x, ymin + headR);
+			position = oldPosition;
+			head.setPosition(position.x * setting.xScale, position.y * setting.yScale);
+			setNewGap();
+			updateTrace();
+			trace.edge(true, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.start();
+		}
+		else if (position.y - headR < ymin)
+		{
+			actualGap = 0;
+			trace.edge(false, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.stop();
+			oldPosition = sf::Vector2f(position.x, ymax - headR);
+			position = oldPosition;
+			head.setPosition(position.x * setting.xScale, position.y * setting.yScale);
+			setNewGap();
+			updateTrace();
+			trace.edge(true, headR, angle, position);
+			fullFillResizeR(headR);
+			trace.start();
+		}
+		return false;
+	}
 }
 Player::~Player()
 {
@@ -200,8 +287,8 @@ void Player::checkBoosts()
 
 void Player::setNewGap()
 {
-	gapSize = gapBounds.x + rand() % (gapBounds.y - gapBounds.x);
-	nextGap = NextGapounds.x + rand() % (NextGapounds.y - NextGapounds.x);
+	gapSize = gapBounds.x*gapOffset + rand() % (int((gapBounds.y - gapBounds.x)*gapOffset));
+	nextGap = (NextGapounds.x)*nextGapOffset + rand() % (int((NextGapounds.y - NextGapounds.x)*nextGapOffset));
 }
 void Player::drawLineOnHitBox(int x1, int y1)
 {
@@ -287,39 +374,38 @@ bool Player::Scan()
 					continue;
 				else
 				{
-					int hitboxVal = hitbox[y][x];
-					int id = hitboxVal >> 28;
-					int R = hitboxVal & 0xFFFFF;
-					if (double((R + headR) * (R + headR)) > (double(roundPosition.x) - x) * (double(roundPosition.x) - x) + (double(roundPosition.y) - y) * (double(roundPosition.y) - y))
+					if (!immortal)
 					{
-						die();
-						/*sf::Image im;
-						im.create(1920, 1080, sf::Color::Black);
-						for (int i = 1; i < 1080; i++)
+						int hitboxVal = hitbox[y][x];
+						int id = hitboxVal >> 28;
+						int R = hitboxVal & 0xFFFFF;
+						if (double((R + headR) * (R + headR)) > (double(roundPosition.x) - x) * (double(roundPosition.x) - x) + (double(roundPosition.y) - y) * (double(roundPosition.y) - y))
 						{
-							for (int j = 1; j < 1920; j++)
+							die();
+							/*sf::Image im;
+							im.create(1920, 1080, sf::Color::Black);
+							for (int i = 1; i < 1080; i++)
 							{
-								if (!hitbox[i][j])
-									im.setPixel(j, i, sf::Color::Black);
-								else if (hitbox[i][j] >> 61)
-									im.setPixel(j, i, sf::Color::Green);
-								else
+								for (int j = 1; j < 1920; j++)
 								{
-									if (j == roundPosition.x && i == roundPosition.y)
-										im.setPixel(j, i, sf::Color::Blue);
-									else if (j == x && i == y)
-										im.setPixel(j, i, sf::Color::Cyan);
+									if (!hitbox[i][j])
+										im.setPixel(j, i, sf::Color::Black);
+									else if (hitbox[i][j] >> 61)
+										im.setPixel(j, i, sf::Color::Green);
 									else
-										im.setPixel(j, i, sf::Color::Yellow);
+									{
+										if (j == roundPosition.x && i == roundPosition.y)
+											im.setPixel(j, i, sf::Color::Blue);
+										else if (j == x && i == y)
+											im.setPixel(j, i, sf::Color::Cyan);
+										else
+											im.setPixel(j, i, sf::Color::Yellow);
+									}
 								}
 							}
+							im.saveToFile("hitbox.png");*/
+							return false;
 						}
-						im.saveToFile("hitbox.png");*/
-						return false;
-					}
-					else//ew warunek immortal
-					{
-						;
 					}
 				}
 			}
