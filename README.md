@@ -37,8 +37,15 @@ soon
 * <img src="boost_icons/broken_walls.png" width="25">  broken walls: you can cross gameboard bounds
 * <img src="boost_icons/longer_gaps.png" width="25">  longer gaps: increase your gaps by 20%
 * <img src="boost_icons/more_often_holes.png" width="25">  chese: your snake makes gaps more often by 20%
+* <img src="boost_icons/bounds.png" width="25">  collapse: walls are collapsing for a while
 
 * Powerups are spawning on board every 10 - 20 sec (random) and default duration is 5s
+* Each powerup can be spawned in 4 colours :
+- white: powerup affects all players
+- green: powerup affects only player that activated boost
+- red: powerup affects all player except one that activated boost
+- yellow: powerup affects random player
+* Note that each powerup don't have to appear in all of 4 colours, some of them are negative (only red) etc.
 ## Music
 Music creator: Bartosz Twardy
 
