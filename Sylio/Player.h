@@ -80,6 +80,8 @@ private:
 	sf::Keyboard::Key right;
 	sf::Vector2f position;
 	sf::Vector2f oldPosition;
+	sf::Vector2f end;
+	double endAngle;
 	sf::Vector2i gapBounds;
 	sf::Vector2i NextGapounds;
 	sf::Vector2i roundPosition;
@@ -94,7 +96,7 @@ public:
 	Player(std::vector<double>& headVec, std::array<std::array<long long int, 1920>, 1080>& hitbox_, sf::RenderWindow& win, sf::Color col, int& ymax_, int& ymin_, int& xmax_, int& xmin_);
 	void reset();
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
-	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; headR = 0; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
+	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; endAngle = angle_ + 2*NINETY_DEG; headR = 0; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
 	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
 	void setId(int id) { playerId = id; }
@@ -120,6 +122,7 @@ public:
 	double getRadious() { return headR; }
 	int getPoints() { return points; }
 	std::string getNickname() { return nickname; }
+	double getAngle() { return angle; }
 	sf::Color getColor() { return color; }
 	int getId() { return playerId; }
 	inline void setPosition(sf::Vector2f pos) {
@@ -136,6 +139,7 @@ public:
 		fullFillResizeR(headR);
 		trace.start();
 	}
+	void changeHead(double angle_, sf::Vector2f pos);
 	bool checkBounds();
 
 	~Player();

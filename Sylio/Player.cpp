@@ -141,6 +141,22 @@ void Player::reset()
 	hiddenNextGapOffset = 1;
 	erise();
 }
+void Player::changeHead(double angle_, sf::Vector2f pos)
+{
+	actualGap = 0;
+	trace.edge(false, headR, angle, position);
+	fullFillResizeR(headR);
+	trace.stop();
+	oldPosition = pos;
+	position = oldPosition;
+	angle = angle_;
+	head.setPosition(position.x * setting.xScale, position.y * setting.yScale);
+	setNewGap();
+	updateTrace();
+	trace.edge(true, headR, angle, position);
+	fullFillResizeR(headR);
+	trace.start();
+}
 bool Player::checkBounds()
 {
 	if (!crossBounds)

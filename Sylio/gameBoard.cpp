@@ -689,7 +689,7 @@ void gameBoard::getRandomBoost()
 	}
 	boostsOnBoard.back().setBoost(choice);
 	boostsOnBoard.back().setPosition(boostPosition.x * setting.xScale, boostPosition.y * setting.yScale);
-	boostsOnBoard.back().setScale( setting.xScale, setting.yScale);
+	boostsOnBoard.back().setScale(setting.xScale, setting.yScale);
 	boostsOnBoard.back().setOrigin(32 * setting.xScale, 32 * setting.yScale);
 }
 Boost* gameBoard::decode(int s)
@@ -796,7 +796,7 @@ void gameBoard::checkBoostsColission()
 {
 	std::vector<BoostOnBoard>::iterator it;
 	bool found;
-	for (auto player = Players.begin(); player != Players.end() ; player++)
+	for (auto player = Players.begin(); player != Players.end(); player++)
 	{
 		found = false;
 		sf::Vector2f playertPos = player->getPos();
@@ -819,7 +819,7 @@ void gameBoard::checkBoostsColission()
 					break;
 				case boostMode::rest:
 					for (auto pl = Players.begin(); pl != Players.end(); pl++)
-						if(pl != player)
+						if (pl != player)
 							pl->addBoost(decode(BoostId));
 					break;
 				case boostMode::random:
@@ -887,6 +887,16 @@ void gameBoard::boundFunction()
 			setBounds(defyMax - off, defyMin + off, defxMax - off, defxMin + off, 5);
 		}
 	}
+}
+
+void gameBoard::changeHeads()
+{
+	int i = 0;
+	for(i = 0; i < Players.size() - 1 ; i++)
+	{
+		Players[i + 1].changeHead(Players[i].getAngle(), Players[i].getPos());
+	}
+	Players[0].changeHead(Players[i].getAngle(), Players[i].getPos());
 }
 
 
