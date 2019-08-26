@@ -33,7 +33,12 @@ soon
 * <img src="boost_icons/only_left.png" width="25">  lock left: lock left turns
 * <img src="boost_icons/only_left2.png" width="25">  lock right: lock right turns
 * <img src="boost_icons/switch_controls.png" width="25">  switch controls: switch controls of your snake
-* Powerups are spawning on board every 10 - 20 sec (random)
+* <img src="boost_icons/immortal.png" width="25">  immortal: you are immortal (accept when crossing bounds)
+* <img src="boost_icons/broken_walls.png" width="25">  broken walls: you can cross gameboard bounds
+* <img src="boost_icons/longer_gaps.png" width="25">  longer gaps: increase your gaps by 20%
+* <img src="boost_icons/more_often_holes.png" width="25">  chese: your snake makes gaps more often by 20%
+
+* Powerups are spawning on board every 10 - 20 sec (random) and default duration is 5s
 ## Music
 Music creator: Bartosz Twardy
 
