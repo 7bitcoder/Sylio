@@ -78,6 +78,8 @@ private:
 	sf::Color headCol;
 	sf::Keyboard::Key left;
 	sf::Keyboard::Key right;
+	sf::Keyboard::Key defleft;
+	sf::Keyboard::Key defright;
 	sf::Vector2f position;
 	sf::Vector2f oldPosition;
 	sf::Vector2f end;
@@ -98,14 +100,14 @@ public:
 	void setGapBounds(int gbx, int gby, int ngbx, int ngby) { gapBounds = { gbx,gby }; NextGapounds = { ngbx,ngby }; setNewGap(); }
 	void setParams(double angle_, double R, double angvel, double vel) { angle = angle_; endAngle = angle_ + 2*NINETY_DEG; headR = 0; changeRadious(R); hiddenHeadR = R; angleVelocity = angvel; velocity = vel; hiddenVelocity = vel; }
 	void setNick(std::string str) { nickname = str; }
-	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; }
+	void setControls(sf::Keyboard::Key l, sf::Keyboard::Key r) { left = l; right = r; defleft = l; defright = r; }
 	void setId(int id) { playerId = id; }
-	void setColor(sf::Color col) { color = col; 	headCol = col; headCol.r *= 0.8; headCol.g *= 0.8; headCol.b *= 0.8; head.setFillColor(headCol);  boosthead.setFillColor(sf::Color::White); }
+	void setColor(sf::Color col) { color = col; 	headCol = col; headCol.r *= 0.8; headCol.g *= 0.8; headCol.b *= 0.8; head.setFillColor(headCol);  boosthead.setFillColor(sf::Color::Black); }
 
 	void addBoost(Boost * bost_);
 	void checkBoosts();
 	void die(bool x = true) { dead = true; clearBoosts(); }
-	void clearBoosts() { for (auto& x : boosts) delete x; boosts.clear(); }
+	void clearBoosts() { for (auto& x : boosts) { x->clearBoost(*this); delete x; } boosts.clear(); }
 	void setNewGap();
 	void drawLineOnHitBox(int x1, int y1);
 	void fullFillForBoost(sf::Vector2f actR, sf::Vector2f actL, sf::Vector2f lasR, sf::Vector2f lasL);
@@ -128,7 +130,7 @@ public:
 	inline void setPosition(sf::Vector2f pos) {
 		position = pos;
 		head.setPosition(position.x*setting.xScale, position.y*setting.yScale);
-		boosthead.setPosition(position);
+		boosthead.setPosition(position.x*setting.xScale, position.y*setting.yScale);
 		oldPosition = position;
 		float pointlx = headR * sin(angle + NINETY_DEG);
 		float pointly = headR * cos(angle + NINETY_DEG);

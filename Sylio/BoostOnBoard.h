@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Boost.h"
 //				white/yellow/green/blue
-enum boostMode { one , all, rest, random };
+enum boostMode { one , all, rest, random, global };
 class BoostOnBoard: public sf::Sprite
 {
 private:

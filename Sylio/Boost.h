@@ -24,7 +24,7 @@ class SpeedUp : public Boost
 private:
 	float multVel;
 public:
-	SpeedUp(float dur = 5) { duration = dur; clock.restart(); multVel = 1.2; }
+	SpeedUp(float dur = 5) { duration = dur; clock.restart(); multVel = 1.5; }
 	virtual void setBoost(Player& player);
 	virtual void clearBoost(Player& player);
 	virtual ~SpeedUp() {};
@@ -54,7 +54,7 @@ class SlowDown : public Boost
 private:
 	float multVel;
 public:
-	SlowDown(float dur = 5) { duration = dur; clock.restart(); multVel = 0.8; }
+	SlowDown(float dur = 5) { duration = dur; clock.restart(); multVel = 0.5; }
 	virtual void setBoost(Player& player);
 	virtual void clearBoost(Player& player);
 	virtual ~SlowDown() {};
@@ -64,7 +64,7 @@ class GrowUp : public Boost
 private:
 	float multSize;
 public:
-	GrowUp(float dur = 5) { duration = dur; clock.restart(); multSize = 3; }
+	GrowUp(float dur = 5) { duration = dur; clock.restart(); multSize = 1.5; }
 	virtual void setBoost(Player& player);
 	virtual void clearBoost(Player& player);
 	virtual ~GrowUp() {};
@@ -74,7 +74,7 @@ class Shrink : public Boost
 private:
 	float multSize;
 public:
-	Shrink(float dur = 5) { duration = dur; clock.restart(); multSize = 0.2; }
+	Shrink(float dur = 5) { duration = dur; clock.restart(); multSize = 0.5; }
 	virtual void setBoost(Player& player);
 	virtual void clearBoost(Player& player);
 	virtual ~Shrink() {};

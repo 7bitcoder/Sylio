@@ -54,20 +54,30 @@ private:
 	sf::Texture blind;
 	sf::Texture boundsShrink;
 	sf::Texture brokenWalls;
+	sf::Texture brokenWallsGreen;
 	sf::Texture clearAll;
 	sf::Texture freeze;
+	sf::Texture freezeRed;
 	sf::Texture growUp;
+	sf::Texture growUpRed;
 	sf::Texture hydra;
-	sf::Texture immortal;
+	sf::Texture immortalGreen;
 	sf::Texture longerGaps;
+	sf::Texture longerGapsGreen;
 	sf::Texture moreOftenHoles;
-	sf::Texture lockLeft;
-	sf::Texture lockRight;
-	sf::Texture shrink;
+	sf::Texture moreOftenHolesGreen;
+	sf::Texture lockLeftRed;
+	sf::Texture lockRightRed;
+	sf::Texture shrink;	
+	sf::Texture shrinkGreen;
 	sf::Texture slowDown;
+	sf::Texture slowDownGreen;
+	sf::Texture slowDownRed;
 	sf::Texture speedUp;
-	sf::Texture stop;
-	sf::Texture switchControls;
+	sf::Texture speedUpRed;
+	sf::Texture speedUpGreen;
+	sf::Texture colapseBounds;
+	sf::Texture switchControlsRed;
 	sf::Texture switchHeads;
 	ScoreBoard scoreBoard;
 public:
@@ -126,5 +136,6 @@ public:
 	void clearBoosts();
 	void restart();
 	void boundFunction();
+	void changeHeads();
 };
 

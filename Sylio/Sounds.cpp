@@ -2,7 +2,7 @@
 
 Sounds::Sounds(std::string click_, std::string switch_)
 {
-	if (!switchBuffer.loadFromFile("../Sounds/"+switch_))
+	if (!switchBuffer.loadFromFile("../Sounds/" + switch_))
 		throw std::exception("sound file missing sound.h");
 	switchSound.setBuffer(switchBuffer);
 	switchSound.setVolume(30 * setting.SoundVolume);

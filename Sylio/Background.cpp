@@ -22,6 +22,7 @@ void Background::set(sf::Texture back_, sf::Texture& base_, double r, double v)
 	Background1.rotate(40);
 	prevPos = { 0,0 };
 	base.setTexture(base_);
+	base.setScale(setting.xScale, setting.yScale);
 	back = back_;
 	Background1.setTexture(back);
 	Background2.setTexture(back);

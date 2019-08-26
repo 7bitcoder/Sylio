@@ -42,6 +42,11 @@ void Rounds::updateText()
 		number = min;
 		setString(std::to_string(number));
 	}
+	else if (number > max)
+	{
+		number = max;
+		setString(std::to_string(number));
+	}
 	setSlider(double(number - min) / double(max - min));
 }
 

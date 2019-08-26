@@ -28,35 +28,53 @@ gameBoard::gameBoard(sf::RenderWindow& win, Background& back) :
 	boostTime = getTimeBoost();
 	if (!blind.loadFromFile("../boost_icons/blind.png"))
 		throw std::exception("boost icon missing");
-	if (!boundsShrink.loadFromFile("../boost_icons/bounds.png"))
+	if (!colapseBounds.loadFromFile("../boost_icons/bounds.png"))
 		throw std::exception("boost icon missing");
 	if (!brokenWalls.loadFromFile("../boost_icons/broken_walls.png"))
+		throw std::exception("boost icon missing");
+	if (!brokenWallsGreen.loadFromFile("../boost_icons/broken_walls_green.png"))
 		throw std::exception("boost icon missing");
 	if (!clearAll.loadFromFile("../boost_icons/clean_board.png"))
 		throw std::exception("boost icon missing");
 	if (!freeze.loadFromFile("../boost_icons/freeze.png"))
 		throw std::exception("boost icon missing");
+	if (!freezeRed.loadFromFile("../boost_icons/freeze_red.png"))
+		throw std::exception("boost icon missing");
 	if (!growUp.loadFromFile("../boost_icons/grow_up.png"))
 		throw std::exception("boost icon missing");
-	if (!hydra.loadFromFile("../boost_icons/hydra.png"))
+	if (!growUpRed.loadFromFile("../boost_icons/grow_up_red.png"))
 		throw std::exception("boost icon missing");
-	if (!immortal.loadFromFile("../boost_icons/immortal.png"))
+	if (!immortalGreen.loadFromFile("../boost_icons/immortal_green.png"))
 		throw std::exception("boost icon missing");
 	if (!longerGaps.loadFromFile("../boost_icons/longer_gaps.png"))
 		throw std::exception("boost icon missing");
+	if (!longerGapsGreen.loadFromFile("../boost_icons/longer_gaps_green.png"))
+		throw std::exception("boost icon missing");
 	if (!moreOftenHoles.loadFromFile("../boost_icons/more_often_holes.png"))
 		throw std::exception("boost icon missing");
-	if (!lockLeft.loadFromFile("../boost_icons/only_left2.png"))
+	if (!moreOftenHolesGreen.loadFromFile("../boost_icons/more_often_holes_green.png"))
+		throw std::exception("boost icon missing");
+	if (!lockLeftRed.loadFromFile("../boost_icons/only_left_red.png"))
+		throw std::exception("boost icon missing");
+	if (!lockRightRed.loadFromFile("../boost_icons/only_right_red.png"))
 		throw std::exception("boost icon missing");
 	if (!shrink.loadFromFile("../boost_icons/shrink.png"))
 		throw std::exception("boost icon missing");
+	if (!shrinkGreen.loadFromFile("../boost_icons/shrink_green.png"))
+		throw std::exception("boost icon missing");
 	if (!slowDown.loadFromFile("../boost_icons/slow_down.png"))
+		throw std::exception("boost icon missing");
+	if (!slowDownRed.loadFromFile("../boost_icons/slow_down_red.png"))
+		throw std::exception("boost icon missing");
+	if (!slowDownGreen.loadFromFile("../boost_icons/slow_down_green.png"))
 		throw std::exception("boost icon missing");
 	if (!speedUp.loadFromFile("../boost_icons/speed_up.png"))
 		throw std::exception("boost icon missing");
-	if (!stop.loadFromFile("../boost_icons/stop_freeze.png"))
+	if (!speedUpRed.loadFromFile("../boost_icons/speed_up_red.png"))
 		throw std::exception("boost icon missing");
-	if (!switchControls.loadFromFile("../boost_icons/switch_controls.png"))
+	if (!speedUpGreen.loadFromFile("../boost_icons/speed_up_green.png"))
+		throw std::exception("boost icon missing");
+	if (!switchControlsRed.loadFromFile("../boost_icons/switch_controls_red.png"))
 		throw std::exception("boost icon missing");
 	if (!switchHeads.loadFromFile("../boost_icons/switch_head.png"))
 		throw std::exception("boost icon missing");
@@ -231,26 +249,17 @@ st gameBoard::update()
 			}
 			else if (isF6Pressed())
 			{
-				if (!boundRounds)
-					boundTimer.restart();
-				boundRounds++;
-				std::cout << boundRounds;
+				EriseAll();
 			}
 			else if (isF5Pressed())
 				setting.TimeStop = !setting.TimeStop;
 			else if (isF2Pressed())
 			{
-				Boost* tmp = new CrossBounds;
-				Players.back().addBoost(tmp);
+				changeHeads();
 			}
 			else if (isF3Pressed())
 			{
 				Boost* tmp = new LongerGaps;
-				Players.back().addBoost(tmp);
-			}
-			else if (isF2Pressed())
-			{
-				Boost* tmp = new MoreOftenHoles;
 				Players.back().addBoost(tmp);
 			}
 			//background.draw();
@@ -650,47 +659,121 @@ void gameBoard::clearOnHitTmp()
 
 void gameBoard::getRandomBoost()
 {
-	int N = 9;
+	int N = 26;
 	int choice = rand() % N;
 
 	boostsOnBoard.push_back(BoostOnBoard());
 	switch (choice)
 	{
 	case 0:
-		boostsOnBoard.back().setTexture(growUp);
+		boostsOnBoard.back().setTexture(blind);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
 		break;
 	case 1:
-		boostsOnBoard.back().setTexture(shrink);
+		boostsOnBoard.back().setTexture(colapseBounds);
+		boostsOnBoard.back().setBoost(choice, boostMode::global);
 		break;
 	case 2:
-		boostsOnBoard.back().setTexture(speedUp);
+		boostsOnBoard.back().setTexture(brokenWalls);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
 		break;
 	case 3:
-		boostsOnBoard.back().setTexture(slowDown);
+		boostsOnBoard.back().setTexture(brokenWallsGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
 		break;
 	case 4:
-		boostsOnBoard.back().setTexture(lockLeft);
+		boostsOnBoard.back().setTexture(clearAll);
+		boostsOnBoard.back().setBoost(choice, boostMode::global);
 		break;
 	case 5:
-		boostsOnBoard.back().setTexture(lockRight);
+		boostsOnBoard.back().setTexture(freeze);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
 		break;
 	case 6:
-		boostsOnBoard.back().setTexture(freeze);
+		boostsOnBoard.back().setTexture(freezeRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
 		break;
 	case 7:
-		boostsOnBoard.back().setTexture(switchControls);
+		boostsOnBoard.back().setTexture(growUp);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
 		break;
 	case 8:
-		boostsOnBoard.back().setTexture(blind);
+		boostsOnBoard.back().setTexture(growUpRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
 		break;
+	case 9:
+		boostsOnBoard.back().setTexture(immortalGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
+		break;
+	case 10:
+		boostsOnBoard.back().setTexture(longerGaps);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
+		break;
+	case 11:
+		boostsOnBoard.back().setTexture(longerGapsGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
+		break;
+	case 12:
+		boostsOnBoard.back().setTexture(moreOftenHoles);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
+		break;
+	case 13:
+		boostsOnBoard.back().setTexture(moreOftenHolesGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
+		break;
+	case 14:
+		boostsOnBoard.back().setTexture(lockLeftRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
+		break;
+	case 15:
+		boostsOnBoard.back().setTexture(lockRightRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
+		break;
+	case 16:
+		boostsOnBoard.back().setTexture(shrink);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
+		break;
+	case 17:
+		boostsOnBoard.back().setTexture(shrinkGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
+		break;
+	case 18:
+		boostsOnBoard.back().setTexture(slowDown);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
+		break;
+	case 19:
+		boostsOnBoard.back().setTexture(slowDownGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
+		break;
+	case 20:
+		boostsOnBoard.back().setTexture(slowDownRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
+		break;
+	case 21:
+		boostsOnBoard.back().setTexture(speedUp);
+		boostsOnBoard.back().setBoost(choice, boostMode::all);
+		break;
+	case 22:
+		boostsOnBoard.back().setTexture(speedUpGreen);
+		boostsOnBoard.back().setBoost(choice, boostMode::one);
+		break;
+	case 23:
+		boostsOnBoard.back().setTexture(speedUpRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
+		break;
+	case 24:
+		boostsOnBoard.back().setTexture(switchControlsRed);
+		boostsOnBoard.back().setBoost(choice, boostMode::rest);
+		break;
+	case 25:
 	default:
-		boostsOnBoard.back().setTexture(blind);
+		boostsOnBoard.back().setTexture(switchHeads);
+		boostsOnBoard.back().setBoost(choice, boostMode::global);
 		break;
 	}
-	boostsOnBoard.back().setBoost(choice);
 	boostsOnBoard.back().setPosition(boostPosition.x * setting.xScale, boostPosition.y * setting.yScale);
 	boostsOnBoard.back().setScale(setting.xScale, setting.yScale);
-	boostsOnBoard.back().setOrigin(32 * setting.xScale, 32 * setting.yScale);
+	boostsOnBoard.back().setOrigin(40 * setting.xScale, 40 * setting.yScale);
 }
 Boost* gameBoard::decode(int s)
 {
@@ -698,34 +781,65 @@ Boost* gameBoard::decode(int s)
 	switch (s)
 	{
 	case 0:
-		wsk = new GrowUp;
+		wsk = new Blind;
 		break;
 	case 1:
-		wsk = new Shrink;
+		if (!boundRounds)
+			boundTimer.restart();
+		boundRounds++;
 		break;
 	case 2:
-		wsk = new SpeedUp;
-		break;
 	case 3:
-		wsk = new SlowDown;
+		wsk = new CrossBounds;
 		break;
 	case 4:
-		wsk = new LockLeft;
+		EriseAll();
 		break;
 	case 5:
-		wsk = new LockRight;
-		break;
 	case 6:
 		wsk = new Freeze;
 		break;
 	case 7:
+	case 8:
+		wsk = new GrowUp;
+		break;
+	case 9:
+		wsk = new Immortal;
+		break;
+	case 10:
+	case 11:
+		wsk = new LongerGaps;
+		break;
+	case 12:
+	case 13:
+		wsk = new MoreOftenHoles;
+		break;
+	case 14:
+		wsk = new LockLeft;
+		break;
+	case 15:
+		wsk = new LockRight;
+		break;
+	case 16:
+	case 17:
+		wsk = new Shrink;
+		break;
+	case 18:
+	case 19:
+	case 20:
+		wsk = new SlowDown;
+		break;
+	case 21:
+	case 22:
+	case 23:
+		wsk = new SpeedUp;
+		break;
+	case 24:
 		wsk = new SwitchControls;
 		break;
-	case 8:
-		wsk = new Blind;
-		break;
+	case 25:
 	default:
-		wsk = new Blind;
+		changeHeads();
 		break;
 	}
 	return wsk;
@@ -808,6 +922,7 @@ void gameBoard::checkBoostsColission()
 				found = true;
 				boostMode mode = it->getMode();
 				int BoostId = it->getBoost();
+				int ran;
 				switch (mode)
 				{
 				case boostMode::one:
@@ -823,11 +938,15 @@ void gameBoard::checkBoostsColission()
 							pl->addBoost(decode(BoostId));
 					break;
 				case boostMode::random:
-					int ran = rand() & Players.size();
+					ran = rand() & Players.size();
 					(Players.begin() + ran)->addBoost(decode(BoostId));
 					break;
+				case boostMode::global:
+					decode(BoostId);
+					break;
+				default:
+					break;
 				}
-
 				clearBoostPosOnHit(it->getPosition());
 				break;
 			}
@@ -892,11 +1011,13 @@ void gameBoard::boundFunction()
 void gameBoard::changeHeads()
 {
 	int i = 0;
-	for(i = 0; i < Players.size() - 1 ; i++)
+	double angl = Players[0].getAngle();
+	sf::Vector2f posTmp = Players[0].getPos();
+	for (i = 0; i < Players.size() - 1; i++)
 	{
-		Players[i + 1].changeHead(Players[i].getAngle(), Players[i].getPos());
+		Players[i].changeHead(Players[i + 1].getAngle(), Players[i + 1].getPos());
 	}
-	Players[0].changeHead(Players[i].getAngle(), Players[i].getPos());
+	Players[i].changeHead(angl, posTmp);
 }
 
 
