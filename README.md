@@ -41,10 +41,10 @@ soon
 
 * Powerups are spawning on board every 10 - 20 sec (random) and default duration is 5s
 * Each powerup can be spawned in 4 colours :
-- white: powerup affects all players
-- green: powerup affects only player that activated boost
-- red: powerup affects all player except one that activated boost
-- yellow: powerup affects random player
+-- white: powerup affects all players
+-- green: powerup affects only player that activated boost
+-- red: powerup affects all player except one that activated boost
+-- yellow: powerup affects random player
 * Note that each powerup don't have to appear in all of 4 colours, some of them are negative (only red) etc.
 ## Music
 Music creator: Bartosz Twardy
