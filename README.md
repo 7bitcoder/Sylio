@@ -7,7 +7,7 @@ If you find any bugs leave feedback
 ## Screenshots
 ![main menu](ScreenShots/mainMenu.png)
 ![setup game](ScreenShots/setUpGame.png)
-![gameplay](ScreenShots/inGame.png)
+![gameplay](ScreenShots/inGame.jpg)
 ![gameplay2](ScreenShots/inGame2.jpg)
 ![gameplay3](ScreenShots/inGame3.jpg)
 ![gameplay3](ScreenShots/inGame4.jpg)
