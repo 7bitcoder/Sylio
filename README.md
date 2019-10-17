@@ -7,9 +7,10 @@ If you find any bugs leave feedback
 ## Screenshots
 ![main menu](ScreenShots/mainMenu.png)
 ![setup game](ScreenShots/setUpGame.png)
-![gameplay](ScreenShots/inGame.jpg)
-![gameplay2](ScreenShots/inGame2.jpg)
-
+![gameplay](ScreenShots/game1.jpg)
+![gameplay2](ScreenShots/game2.jpg)
+![gameplay3](ScreenShots/game3.jpg)
+![gameplay4](ScreenShots/game4.jpg)
 ![settings](ScreenShots/settings.jpg)
 ## Instalator
 link to instalator :
