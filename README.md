@@ -8,6 +8,7 @@ If you find any bugs leave feedback
 ![main menu](ScreenShots/mainMenu.png)
 ![setup game](ScreenShots/setUpGame.png)
 ![gameplay](ScreenShots/inGame.jpg)
+![gameplay2](ScreenShots/inGame2.jpg)
 
 ![settings](ScreenShots/settings.jpg)
 ## Instalator
