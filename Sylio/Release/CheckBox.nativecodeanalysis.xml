@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>checkbox.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'CheckBox::lastPositionSt' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>CheckBox::{ctor}</FUNCTION>
+    <DECORATED>??0CheckBox@@QAE@AAVRenderWindow@sf@@AAVTexture@2@1AAVSoundBuffer@2@@Z</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>checkbox.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'CheckBox::lastButtonSt' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>CheckBox::{ctor}</FUNCTION>
+    <DECORATED>??0CheckBox@@QAE@AAVRenderWindow@sf@@AAVTexture@2@1AAVSoundBuffer@2@@Z</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>boostonboard.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'BoostOnBoard::boost' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>BoostOnBoard::{ctor}</FUNCTION>
+    <DECORATED>??0BoostOnBoard@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>boostonboard.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'BoostOnBoard::mode' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>BoostOnBoard::{ctor}</FUNCTION>
+    <DECORATED>??0BoostOnBoard@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

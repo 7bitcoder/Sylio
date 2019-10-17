@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>settings.cpp</FILENAME>
+      <LINE>4</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Settings::yScale' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Settings::{ctor}</FUNCTION>
+    <DECORATED>??0Settings@@QAE@XZ</DECORATED>
+    <FUNCLINE>4</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>settings.cpp</FILENAME>
+      <LINE>4</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Settings::xScale' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Settings::{ctor}</FUNCTION>
+    <DECORATED>??0Settings@@QAE@XZ</DECORATED>
+    <FUNCLINE>4</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\sylwester\source\repos\sylio\sylio</FILEPATH>
+      <FILENAME>settings.cpp</FILENAME>
+      <LINE>4</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Settings::rounds' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Settings::{ctor}</FUNCTION>
+    <DECORATED>??0Settings@@QAE@XZ</DECORATED>
+    <FUNCLINE>4</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
