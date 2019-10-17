@@ -30,10 +30,10 @@ soon
 * <img src="boost_icons/freeze.png" width="25">  freeze: freezes player for 5s
 * <img src="boost_icons/grow_up.png" width="25">  grow up: increase radious by 20%
 * <img src="boost_icons/shrink.png" width="25">  shrink: decreases radious by 20%
-* <img src="boost_icons/only_left.png" width="25">  lock left: lock left turns
-* <img src="boost_icons/only_left2.png" width="25">  lock right: lock right turns
-* <img src="boost_icons/switch_controls.png" width="25">  switch controls: switch controls of your snake
-* <img src="boost_icons/immortal.png" width="25">  immortal: you are immortal (except when crossing bounds)
+* <img src="Deleted/only_left.png" width="25">  lock left: lock left turns
+* <img src="Deleted/only_left2.png" width="25">  lock right: lock right turns
+* <img src="Deleted/switch_controls.png" width="25">  switch controls: switch controls of your snake
+* <img src="Deleted/immortal.png" width="25">  immortal: you are immortal (except when crossing bounds)
 * <img src="boost_icons/broken_walls.png" width="25">  broken walls: you can cross gameboard bounds
 * <img src="boost_icons/longer_gaps.png" width="25">  longer gaps: increase your gaps by 20%
 * <img src="boost_icons/more_often_holes.png" width="25">  chese: your snake makes gaps more often by 20%
