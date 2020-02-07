@@ -5,8 +5,8 @@ Currently application works only on windows and the best screen resolution is fu
 
 If you find any bugs leave feedback
 ## Screenshots
-![gif](https://media.giphy.com/media/IzXdG4zJlQsWH2DKbI/giphy.gif)
-</br> Full video: https://www.youtube.com/watch?v=T5zxTI1gxOQ </br>
+![gif](https://media.giphy.com/media/IzXdG4zJlQsWH2DKbI/giphy.gif) <br/> <br/>
+Full video: https://www.youtube.com/watch?v=T5zxTI1gxOQ <br/> <br/>
 ![main menu](ScreenShots/mainMenu.png)
 ![setup game](ScreenShots/setUpGame.png)
 ![gameplay](ScreenShots/game1.jpg)
